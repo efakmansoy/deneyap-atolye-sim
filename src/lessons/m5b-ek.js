@@ -415,8 +415,8 @@ lcd.print((String(map(analogRead(${SENSOR}), 0, 4095, 0, 50)) + String(" C      
     },
   ],
   sahne: { parcalar: [
-    { tur: 'sicaklik', pin: SENSOR, konum: [100, 0, -6] },
-    { tur: 'lcd', kablo: false, konum: [70, 0, 24] },
+    { tur: 'sicaklik', pin: SENSOR, konum: [99.59, 0, 6.19] },
+    { tur: 'lcd', kablo: false, konum: [70.38, 0, 23.29] },
   ] },
   girdi: sicakGirdi(SICAK_VARSAYILAN),
   kontrol(sim) {
@@ -516,8 +516,8 @@ lcd.print(random(1, 7));</code></pre>`,
     },
   ],
   sahne: { parcalar: [
-    { tur: 'dugme', pin: DUGME, renk: 'kirmizi', konum: [112, 0, 2] },
-    { tur: 'lcd', kablo: false, konum: [70, 0, 24] },
+    { tur: 'dugme', pin: DUGME, renk: 'kirmizi', konum: [109.75, 0, 6.19] },
+    { tur: 'lcd', kablo: false, konum: [70.38, 0, 23.29] },
   ] },
   girdi: zarGirdi(),
   kontrol(sim) {

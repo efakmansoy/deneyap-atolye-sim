@@ -26,6 +26,9 @@ function ortak(THREE) {
 
 export default {
   tur: 'dugme',
+  izgara: true, izgaraSatir: 'e', // bacaklar orta kanalı kapar: e ve f şeritleri
+  // Sinyal: sol bacak sütunu, GND: sağ bacak sütunu (aynı yarıda); bacaklar orta kanalı kapar
+  girisler: () => ({ pin: [[0, 0]], gnd: [2 * P, 0], bacaklar: [[0, 0], [2 * P, 0], [0, 3 * P], [2 * P, 3 * P]] }),
   olustur({ THREE, tanim }) {
     const renk = RENK[tanim.renk] ?? RENK.kirmizi;
     const O = ortak(THREE);

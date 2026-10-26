@@ -453,7 +453,7 @@ export default [
         ipucu: 'LED düğmeyi geç takip ediyorsa sürekli tekrarla bloğunun içinde olduğundan emin ol.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'dugme', pin: 'D5', renk: 'kirmizi' }, { tur: 'led', pin: 'D2', renk: 'sari' }] },
+    sahne: { parcalar: [{ tur: 'dugme', pin: 'D5', renk: 'kirmizi' }, { tur: 'led', pin: 'D2', renk: 'sari', konum: [66.57, 0, 13.81] }] },
     async girdi(sim) {
       await sim.bekle(500); bas(sim, 'D5', 1);
       await sim.bekle(1000); bas(sim, 'D5', 0);
@@ -545,7 +545,7 @@ export default [
     ],
     sahne: { parcalar: [
       { tur: 'dugme', pin: 'D5', renk: 'mavi' }, { tur: 'dugme', pin: 'D6', renk: 'yesil' },
-      { tur: 'led', pin: 'D2', renk: 'kirmizi' }, { tur: 'led', pin: 'D3', renk: 'yesil' }] },
+      { tur: 'led', pin: 'D2', renk: 'kirmizi', konum: [79.27, 0, 13.81] }, { tur: 'led', pin: 'D3', renk: 'yesil', konum: [91.97, 0, 13.81] }] },
     async girdi(sim) {
       await sim.bekle(400); bas(sim, 'D5', 1);          // sadece A
       await sim.bekle(800); bas(sim, 'D5', 0);
@@ -808,7 +808,7 @@ sure = millis() - baslangic;</code></pre>
         ipucu: 'Süre çok tuhaf çıkıyorsa baslangic değerini LED yandıktan hemen sonra kaydettiğine bak.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'dugme', pin: 'D5', renk: 'kirmizi' }, { tur: 'led', pin: 'D2', renk: 'yesil' }] },
+    sahne: { parcalar: [{ tur: 'dugme', pin: 'D5', renk: 'kirmizi' }, { tur: 'led', pin: 'D2', renk: 'yesil', konum: [66.57, 0, 13.81] }] },
     async girdi(sim) {
       while (!sim.pin.D2.deger) await sim.tick();
       await sim.bekle(350);

@@ -35,6 +35,9 @@ function ortak(THREE) {
 
 export default {
   tur: 'rgb-led',
+  izgara: true,
+  // Bacaklar R, katot, G, B (x = 0..3P)
+  girisler: () => ({ pin: [[0, 0], [2 * P, 0], [3 * P, 0]], gnd: [P, 0], bacaklar: [[0, 0], [P, 0], [2 * P, 0], [3 * P, 0]] }),
   olustur({ THREE, tanim }) {
     const pinler = tanim.pinler ?? ['D0', 'D1', 'D2'];
     const O = ortak(THREE);

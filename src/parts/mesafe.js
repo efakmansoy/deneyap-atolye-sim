@@ -3,8 +3,12 @@ const OLCEK = .15;   // mm / cm
 const OFSET = 8;     // sensör önünden engele başlangıç mesafesi (mm)
 const CY = 12.5;     // PCB merkez yüksekliği (mm)
 
+const P = 2.54;
+// Dik duran modül: 4 pin (VCC, Trig, Echo, GND) aynı satırda ardışık sütunlarda, x = -3.81 -1.27 +1.27 +3.81 (konum.x = ilk pin deliği + 3.81).
+// Sinyal: Trig (2. pin); GND: 4. pin. Dört bacak da deliğe girer.
 export default {
   tur: 'mesafe',
+  girisler: () => ({ pin: [[-1.27, 0]], gnd: [3.81, 0], bacaklar: [[-3.81, 0], [-1.27, 0], [1.27, 0], [3.81, 0]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin;
     const group = new THREE.Group();
@@ -16,12 +20,12 @@ export default {
     const altin = new THREE.MeshStandardMaterial({ color: 0xd9b24a, metalness: .8, roughness: .3 });
     const meshMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2e, roughness: .8 });
 
-    // PCB 45 x 20 x 1.6 (ayakları breadboard'a girer, alt kenar y=2.5)
+    // PCB 45 x 20 x 1.6 (dik durur, alt kenar y=2.5 = başlığın üstü)
     add(new THREE.BoxGeometry(45, 20, 1.6), pcbMat, 0, CY, 0);
-    // 4 pinli başlık (Vcc, Trig, Echo, Gnd)
-    add(new THREE.BoxGeometry(10.2, 2.5, 2.5), siyah, 0, 1.6 + 1.25, 0);
+    // 4 pinli başlık (Vcc, Trig, Echo, Gnd): plastik gövde breadboard yüzeyinde, pinler deliğe iner (y -5)
+    add(new THREE.BoxGeometry(10.2, 2.5, 2.5), siyah, 0, 1.25, 0);
     for (let i = 0; i < 4; i++) {
-      add(new THREE.BoxGeometry(.64, 4.6, .64), altin, (i - 1.5) * 2.54, 1.6, 0);
+      add(new THREE.BoxGeometry(.64, 10, .64), altin, (i - 1.5) * P, 0, 0);
     }
     // İki transdüser "göz": gümüş silindir + koyu ızgara + arka gövde
     const govdeGeo = new THREE.CylinderGeometry(8, 8, 6.4, 24);
@@ -47,13 +51,17 @@ export default {
     engel.userData.engel = true;
     const isinMat = new THREE.MeshBasicMaterial({ color: 0x7ee0ff, transparent: true, opacity: .35, depthWrite: false });
     const isin = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), isinMat);
-    group.add(engel, isin);
+    // Engelin ayağı: zemine (y=0) basan taban + dikme (sürüklenebilir widget havada asılı kalmasın)
+    const ayak = new THREE.Mesh(new THREE.BoxGeometry(18, 1, 7), engelMat), dikme = new THREE.Mesh(new THREE.BoxGeometry(3, CY - 7, 1.6), engelMat);
+    ayak.userData.engel = true; dikme.userData.engel = true;
+    group.add(engel, ayak, dikme, isin);
 
     const durum = { cm: 100 };
     let tutuyor = false;
     const yerlestir = () => {
       const z = OFSET + durum.cm * OLCEK;
       engel.position.set(0, CY, z);
+      ayak.position.set(0, .5, z); dikme.position.set(0, (CY - 7) / 2, z);
       const u = Math.max(.1, z - 7.8);
       isin.scale.set(1.2, 1.2, u);
       isin.position.set(0, CY, 7.8 + u / 2);

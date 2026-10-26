@@ -3,12 +3,16 @@
 const MENZIL = 70, YARI_ACI = 52 * Math.PI / 180;   // algılama alanı: yarıçap (mm) ve yarım açı
 const BEKLEME = 1500;                               // ms
 
+// Breadboard: 3 pin (VCC, OUT, GND) arka kenarda x = -2.54 0 +2.54, z = -10 (konum.x = orta pin deliği, konum.z = satır z + 10).
 export default {
   tur: 'pir',
+  girisler: () => ({ pin: [[0, -10]], gnd: [2.54, -10], bacaklar: [[-2.54, -10], [0, -10], [2.54, -10]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin ?? 'D5';
     const group = new THREE.Group();
-    const add = (geo, mat, x, y, z, ebeveyn = group) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); ebeveyn.add(m); return m; };
+    // Sensör gövdesi doğrudan group'a eklenir ve DY kadar alçaltılır (başlık plastiği breadboard yüzeyinde, PCB 2.5 mm üstte); alan ve figür yerde kalır
+    const DY = -3.7;
+    const add = (geo, mat, x, y, z, ebeveyn = group, dy = ebeveyn === group ? DY : 0) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y + dy, z); ebeveyn.add(m); return m; };
 
     const pcb = new THREE.MeshStandardMaterial({ color: 0x2c8a4a, roughness: .55 });
     const siyah = new THREE.MeshStandardMaterial({ color: 0x15151a, roughness: .6 });
@@ -19,8 +23,9 @@ export default {
 
     // PCB 32 x 24 x 1.6 (y=7), 3 pinli başlık (VCC, OUT, GND), 2 turuncu trimpot, lehim noktaları
     add(new THREE.BoxGeometry(32, 1.6, 24), pcb, 0, 7, 0);
-    add(new THREE.BoxGeometry(7.62 + 2.5, 2.5, 2.5), siyah, 0, 5.4, -10);
-    for (let i = 0; i < 3; i++) add(new THREE.BoxGeometry(.64, 8, .64), altin, (i - 1) * 2.54, 3.4, -10);
+    add(new THREE.BoxGeometry(7.62 + 2.5, 2.5, 2.5), siyah, 0, 4.95, -10);               // yüzeyde (0..2.5)
+    for (let i = 0; i < 3; i++) add(new THREE.BoxGeometry(.64, 10, .64), altin, (i - 1) * 2.54, 3.7, -10);   // pinler y -5..5
+    for (const x of [-12, 12]) add(new THREE.BoxGeometry(3, 2.5, 3), siyah, x, 4.95, 9);   // ön destek ayakları
     for (const x of [-10, -5]) {
       add(new THREE.BoxGeometry(5, 4, 5), turuncu, x, 9.4, -7);
       add(new THREE.CylinderGeometry(1.2, 1.2, .4, 10), metal, x, 11.6, -7);
@@ -37,7 +42,7 @@ export default {
 
     // Algılama alanı: yerde yarı saydam pasta dilimi (+z yönüne bakar)
     const alanMat = new THREE.MeshBasicMaterial({ color: 0x4ade80, transparent: true, opacity: .16, side: THREE.DoubleSide, depthWrite: false });
-    const alan = add(new THREE.CircleGeometry(MENZIL, 40, Math.PI / 2 - YARI_ACI, YARI_ACI * 2), alanMat, 0, .3, 3);
+    const alan = add(new THREE.CircleGeometry(MENZIL, 40, Math.PI / 2 - YARI_ACI, YARI_ACI * 2), alanMat, 0, .3, 3, group, 0);
     alan.rotation.x = Math.PI / 2;
 
     // İnsan figürü: sürüklenebilir (yer düzleminde)

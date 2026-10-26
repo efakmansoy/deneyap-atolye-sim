@@ -457,7 +457,7 @@ export default [
         ipucu: 'Pompa hiç çalışmıyorsa eşik karşılaştırmasının yönüne (nem &lt; 1500) ve pompa pinine (D6) bak.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'nem', pin: 'A0', konum: [52, 0, -8] }, { tur: 'pompa', pin: 'D6', konum: [102, 0, -6] }] },
+    sahne: { parcalar: [{ tur: 'nem', pin: 'A0', konum: [51.33, 0, 6.19] }, { tur: 'pompa', pin: 'D6', konum: [84.35, 0, 4.03] }] },
     girdi: analogSenaryo('A0', G71),
     kontrol(sim) {
       const p = pompa(sim);
@@ -522,7 +522,7 @@ export default [
         ipucu: 'Lamba hiç yanmıyorsa PIR pini (D5) ve lamba pini (D0) doğru mu?',
       },
     ],
-    sahne: { parcalar: [{ tur: 'pir', pin: 'D5', konum: [64, 0, 2] }, { tur: 'led', pin: 'D0', renk: 'sari', konum: [108, 0, 10] }] },
+    sahne: { parcalar: [{ tur: 'pir', pin: 'D5', konum: [64.03, 0, 6.03] }, { tur: 'led', pin: 'D0', renk: 'sari', konum: [108, 0, 10] }] },
     girdi: darbeSenaryo('D5', G72),
     kontrol(sim) {
       const l = lamba(sim);
@@ -593,7 +593,7 @@ export default [
         ipucu: 'Ekran güncellenmiyorsa bekle bloğunun sürekli tekrarla içinde olduğundan emin ol.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [58, 0, -16] }, { tur: 'sicaklik', pin: 'A1', konum: [98, 0, -16] }, { tur: 'lcd', konum: [78, 0, 16] }] },
+    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [51.33, 0, 6.19] }, { tur: 'sicaklik', pin: 'A1', konum: [107.19, 0, 6.19] }, { tur: 'lcd', konum: [78, 0, 23.29] }] },
     girdi: havaGirdi,
     kontrol(sim) {
       const k = kayitlar(sim);
@@ -671,7 +671,7 @@ export default [
         ipucu: 'Alarm 1800 iken çalıyorsa eşik 2000\'den küçük kalmış olabilir.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'gaz', pin: 'A0', konum: [58, 0, -4] }, { tur: 'buzzer', pin: 'D8', konum: [104, 0, -6] }, { tur: 'led', pin: 'D0', renk: 'kirmizi', konum: [110, 0, 18] }] },
+    sahne: { parcalar: [{ tur: 'gaz', pin: 'A0', konum: [58.95, 0, 6.19] }, { tur: 'buzzer', pin: 'D8', konum: [104, 0, -6] }, { tur: 'led', pin: 'D0', renk: 'kirmizi', konum: [110, 0, 18] }] },
     girdi: analogSenaryo('A0', G74),
     kontrol(sim) {
       if (!led0(sim).length && !bip(sim).length) return hata('Alarm hiç çalışmadı. Gaz 2000\'i aşınca LED yak ve buzzer çal.');
@@ -754,7 +754,7 @@ else if (adim == 1 &amp;&amp; A0 &gt; 510 &amp;&amp; A0 &lt; 850) adim = 2; ...<
         ipucu: 'Kilit yanlış şifrede de açılıyorsa her kolun koşulunda adim değerini kontrol ettiğinden emin ol.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'tustakimi', pin: 'A0', konum: [46, 0, -2] }, { tur: 'servo', pin: 'D5', konum: [112, 0, -10] }, { tur: 'lcd', konum: [100, 0, 26] }, { tur: 'led', pin: 'D0', renk: 'kirmizi', konum: [68, 0, 32] }] },
+    sahne: { parcalar: [{ tur: 'tustakimi', pin: 'A0', konum: [51.33, 0, 0.47] }, { tur: 'servo', pin: 'D5', konum: [105.77, 0, -3.97] }, { tur: 'lcd', konum: [98.32, 0, 25.83] }, { tur: 'led', pin: 'D0', renk: 'kirmizi', konum: [68, 0, 32] }] },
     girdi: kasaSenaryo(G75),
     kontrol: sim => kasaKontrol(sim, KASA),
   },

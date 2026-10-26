@@ -20,6 +20,9 @@ function sesBaglami() {
 
 export default {
   tur: 'buzzer',
+  izgara: true,
+  // + bacak (uzun) solda, − bacak sağda, 5.08 mm aralık
+  girisler: () => ({ pin: [[-2.54, 0]], gnd: [2.54, 0], bacaklar: [[-2.54, 0], [2.54, 0]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin;
     const group = new THREE.Group();

@@ -423,7 +423,7 @@ export default [
         ipucu: 'Düğmeye basınca LED yanmalı.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'dugme', pin: 'D5', renk: 'kirmizi' }, { tur: 'led', pin: 'D0', renk: 'yesil' }] },
+    sahne: { parcalar: [{ tur: 'dugme', pin: 'D5', renk: 'kirmizi' }, { tur: 'led', pin: 'D0', renk: 'yesil', konum: [66.57, 0, 13.81] }] },
     girdi: dugmeSenaryo('D5', G93_BASMA),
     kontrol(sim) {
       const l = olaylar(sim, 'D0');
@@ -488,7 +488,7 @@ void loop() {
         ipucu: 'Dokunuş başına LED durumu bir kez değişmeli.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'dokunmatik', pin: 'D4', konum: [50, 0, 0] }, { tur: 'led', pin: 'D0', renk: 'mavi', konum: [100, 0, 10] }] },
+    sahne: { parcalar: [{ tur: 'dokunmatik', pin: 'D4', konum: [51.33, 0, -3.97] }, { tur: 'led', pin: 'D0', renk: 'mavi', konum: [100, 0, 10] }] },
     girdi: dokunmaSenaryo('D4', [[500, 400], [1400, 600], [2600, 400]]),
     kontrol(sim) {
       const l = olaylar(sim, 'D0');

@@ -1,7 +1,7 @@
 import { xOrani, sinirla } from '../ortak/m3-kaydirici.js';
 
 // Sıcaklık sensörü: kaydırıcıyla 0-50 °C arası ayarlanır; analog değer 0-4095 (sıcaklık / 50 * 4095).
-const MAX = 4095, UZ = 34, Z = -7.62;
+const MAX = 4095, UZ = 34, ZY = -13, TX = -9, P2 = 2.54; // ZY: kaydırıcı z'si; bacaklar x=0, 2.54, 5.08 (z=0); TX: cam termometrenin x'i
 
 let P = null;
 function paylasim(THREE) {
@@ -17,7 +17,7 @@ function paylasim(THREE) {
     camG: new THREE.CylinderGeometry(1.6, 1.6, 20, 16),
     siviG: new THREE.CylinderGeometry(.9, .9, 1, 12),
     hazneG: new THREE.SphereGeometry(2.8, 16, 12),
-    bacakG: new THREE.BoxGeometry(.5, 8, .3),
+    bacakG: new THREE.BoxGeometry(.5, 10, .3),
     yolG: new THREE.BoxGeometry(UZ + 8, 1.5, 3),
     tutacG: new THREE.BoxGeometry(5, 5, 5),
     cam: new THREE.MeshStandardMaterial({ color: 0xcfe9ff, transparent: true, opacity: .4 }),
@@ -31,35 +31,37 @@ function paylasim(THREE) {
 
 export default {
   tur: 'sicaklik',
+  // LM35 benzeri 3 bacak: Vs (x=0), çıkış (x=2.54, sinyal), GND (x=5.08)
+  girisler: () => ({ pin: [[P2, 0]], gnd: [2 * P2, 0], bacaklar: [[0, 0], [P2, 0], [2 * P2, 0]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin ?? 'A1';
     let deger = tanim.baslangic ?? 1500;
     const p = paylasim(THREE);
     const group = new THREE.Group();
     const cam = new THREE.Mesh(p.camG, p.cam);
-    cam.position.set(0, 10, -8);
+    cam.position.set(TX, 10, 0);
     const sivi = new THREE.Mesh(p.siviG, p.kirmizi);
     const hazne = new THREE.Mesh(p.hazneG, p.kirmizi);
-    hazne.position.set(0, 2.8, -8);
-    // TO-92 gövde: 2.54 aralıklı 3 bacak (x = 7.62, 10.16, 12.7)
+    hazne.position.set(TX, 2.8, 0);
+    // TO-92 gövde: 2.54 aralıklı 3 bacak (x = 0, 2.54, 5.08), düz yüz bacak satırında
     const govde = new THREE.Mesh(p.govG, p.govde);
-    govde.position.set(10.16, 3, Z);
+    govde.position.set(P2, 2.6, 1.3);
     group.add(govde);
     for (let i = 0; i < 3; i++) {
       const b = new THREE.Mesh(p.bacakG, p.gumus);
-      b.position.set(7.62 + i * 2.54, 0, Z);
+      b.position.set(i * P2, 0, 0);
       group.add(b);
     }
     const yol = new THREE.Mesh(p.yolG, p.yol);
-    yol.position.set(0, .75, 7);
+    yol.position.set(0, .75, ZY);
     const tutacMat = new THREE.MeshStandardMaterial({ color: 0x4aa3ff });
     const tutac = new THREE.Mesh(p.tutacG, tutacMat);
-    tutac.position.set(0, 4, 7);
+    tutac.position.set(0, 4, ZY);
     group.add(cam, sivi, hazne, yol, tutac);
     const goster = () => {
       const t = deger / MAX;
       const h = 2 + t * 16;
-      sivi.scale.y = h; sivi.position.set(0, 3 + h / 2, -8);
+      sivi.scale.y = h; sivi.position.set(TX, 3 + h / 2, 0);
       tutac.position.x = (t - .5) * UZ;
       tutacMat.color.setRGB(.2 + t * .8, .55 - t * .3, 1 - t * .8);
     };

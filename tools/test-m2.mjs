@@ -12,7 +12,7 @@ try {
   const { Blockly, generator, TOOLBOX } = await vite.ssrLoadModule('/src/blocks.js');
   const { Sim, DurdurSinyali } = await vite.ssrLoadModule('/src/sim.js');
   const { DERSLER } = await vite.ssrLoadModule('/src/lessons/index.js');
-  const dersler = DERSLER.filter(d => d.modul?.startsWith('Modül 2'));
+  const dersler = DERSLER.filter(d => String(d.modul ?? '').startsWith('Modül 2'));
   kontrolEt('5 ders yüklendi', dersler.length === 5, dersler.map(d => d.id).join(','));
   const kats = TOOLBOX.contents.map(c => c.name);
   kontrolEt('kategoriler', ['Değişkenler', 'Düğme', 'Metin'].every(k => kats.includes(k)), kats.join(','));

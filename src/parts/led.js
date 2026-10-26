@@ -2,6 +2,7 @@
 // Anot ana delikte (x=0), katot bir delik sağda (x=+2.54), uzun bacak anot. Direnç iki satır ötede, anot sütununa bağlı.
 // tanim: { pin, renk }. Davranış: sim.pin[pin].pwm ile parlar.
 const RENK = { kirmizi: 0xff3b3b, yesil: 0x38ef7d, sari: 0xffd23b, mavi: 0x4aa3ff };
+import { direncYonu } from '../ortak/izgara.js';
 const P = 2.54, Y0 = 1.6; // flanş tabanı (bacaklar bükülüp LED'i delik üstünde tutar)
 
 let ORT = null; // paylaşımlı geometri/malzeme
@@ -50,7 +51,10 @@ function ortak(THREE) {
 
 export default {
   tur: 'led',
-  olustur({ THREE, tanim }) {
+  izgara: true,     // sahne konumu en yakın deliğe oturtulur
+  // Sinyal: direncin serbest ucu (anot sütunu 3 delik solda); GND: katot bacağı
+  girisler: (_, konum) => { const dz = 2 * P * (konum ? direncYonu(konum.z ?? konum[2]) : 1); return { pin: [[-3 * P, dz]], gnd: [P, 0], bacaklar: [[0, 0], [P, 0], [-3 * P, dz], [0, dz]] }; },
+  olustur({ THREE, tanim, konum }) {
     const renk = RENK[tanim.renk] ?? RENK.kirmizi;
     const O = ortak(THREE);
     const group = new THREE.Group();
@@ -97,7 +101,7 @@ export default {
     group.add(isik);
 
     // 220 Ω direnç: anot sütunundan 3 delik sola, iki satır ötede yatay
-    const dz = 2 * P, d = new THREE.Group(); d.position.set(0, 0, dz); group.add(d);
+    const dz = 2 * P * (konum ? direncYonu(konum.z) : 1), d = new THREE.Group(); d.position.set(0, 0, dz); group.add(d);
     const dxA = -3 * P, uzun = 3 * P;       // sol bacak x, aralık
     const dg = new THREE.Mesh(O.dGovde, O.dMat); dg.position.set(dxA + uzun / 2, 1.55, 0); d.add(dg);
     const bx = [-2.0, -1.0, 0.0, 1.9];       // 3 bant yakın, altın tolerans bandı ayrık

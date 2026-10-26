@@ -2,8 +2,10 @@
 // bırakınca değer silinir (boşta touchRead ~70). Parmak şeffaf bir hayalet olarak pad üstünde durur; basınca iner ve parlar.
 export const BOSTA = 70, DOKUNUNCA = 10;
 
+// Breadboard: 3 pin (GND, VCC, SIG) x = 0, 2.54, 5.08 (konum = GND deliği); kart pinlerden ileri (+z) uzanır.
 export default {
   tur: 'dokunmatik',
+  girisler: () => ({ pin: [[2 * 2.54, 0]], gnd: [0, 0], bacaklar: [[0, 0], [2.54, 0], [2 * 2.54, 0]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin ?? 'D4';
     const group = new THREE.Group();
@@ -15,14 +17,16 @@ export default {
     const P = 2.54;
 
     // 3 pinli başlık (GND, VCC, SIG) breadboard'a girer; kart 24 x 1.6 x 30 mm, üstte kare bakır pad
-    add(new THREE.BoxGeometry(2 * P + 2.5, 2.5, 2.5), siyah, P, 5.4, 0);
-    for (let i = 0; i < 3; i++) add(new THREE.BoxGeometry(.64, 9, .64), altin, i * P, 3, 0);
-    add(new THREE.BoxGeometry(24, 1.6, 30), pcb, P, 7, 17);
-    const pad = add(new THREE.BoxGeometry(17, .5, 17), bakir, P, 8.05, 20);
+    // Başlık plastiği breadboard yüzeyinde (0..2.5), pinler deliğe iner (y -5); kart (alt y=2.5) uçtaki iki destekle yüzeye yaslanır
+    add(new THREE.BoxGeometry(2 * P + 2.5, 2.5, 2.5), siyah, P, 1.25, 0);
+    for (let i = 0; i < 3; i++) add(new THREE.BoxGeometry(.64, 10, .64), altin, i * P, 0, 0);
+    for (const x of [-6, 10]) add(new THREE.BoxGeometry(3, 2.5, 3), siyah, x + P, 1.25, 29);
+    add(new THREE.BoxGeometry(24, 1.6, 30), pcb, P, 3.3, 17);
+    const pad = add(new THREE.BoxGeometry(17, .5, 17), bakir, P, 4.35, 20);
     pad.userData.pad = true;
-    add(new THREE.BoxGeometry(5, 1, 3), siyah, P, 8, 6);                              // küçük IC
+    add(new THREE.BoxGeometry(5, 1, 3), siyah, P, 4.3, 6);                              // küçük IC
     // pad çevresinde ince koruma halkası
-    const halka = add(new THREE.RingGeometry(9.6, 10.4, 4, 1, Math.PI / 4), new THREE.MeshStandardMaterial({ color: 0xe8e8ee, roughness: .5, side: THREE.DoubleSide }), P, 8.35, 20);
+    const halka = add(new THREE.RingGeometry(9.6, 10.4, 4, 1, Math.PI / 4), new THREE.MeshStandardMaterial({ color: 0xe8e8ee, roughness: .5, side: THREE.DoubleSide }), P, 4.65, 20);
     halka.rotation.x = -Math.PI / 2;
 
     // Parmak: kapsül, hayalet halinde pad üstünde asılı
@@ -30,8 +34,8 @@ export default {
     const ten = new THREE.MeshStandardMaterial({ color: 0xf0c9a0, roughness: .6, transparent: true, opacity: .35 });
     add(new THREE.CylinderGeometry(4.2, 4.2, 22, 16), ten, 0, 11, 0, parmak);
     add(new THREE.SphereGeometry(4.2, 16, 12), ten, 0, 0, 0, parmak);
-    parmak.position.set(P, 28, 20);
-    const YUKARI = 28, ASAGI = 12;
+    parmak.position.set(P, 24.3, 20);
+    const YUKARI = 24.3, ASAGI = 8.3;
 
     const ayarla = sim => {
       const v = sim.dokunma?.[pin] ?? BOSTA;

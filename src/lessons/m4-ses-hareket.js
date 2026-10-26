@@ -144,7 +144,7 @@ delay(100);
         ipucu: 'Kol 180°\'ye ulaşmıyorsa son açıyı kontrol et. Hareket kopuksa adımları küçült.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'servo', pin: 'D5', konum: [88, 0, 6] }] },
+    sahne: { parcalar: [{ tur: 'servo', pin: 'D5', konum: [87.99, 0, -3.97] }] },
     kontrol(sim) {
       const o = sirali(olaylar(sim, 'D5', 'servo'));
       if (o.length < 6) return { ok: false, mesaj: 'Servo çok az hareket etti. Kolu küçük adımlarla döndür.' };
@@ -226,7 +226,7 @@ delay((mesafeOlc(D3) * 4));</code></pre>
         ipucu: 'Bip sıklaşmıyorsa bekleme süresini sabit sayıya değil, mesafe x 4 ifadesine bağla.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [62, 0, -8] }, { tur: 'buzzer', pin: 'D8', konum: [104, 0, 12] }] },
+    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [50.06, 0, -3.97] }, { tur: 'buzzer', pin: 'D8', konum: [104, 0, 12] }] },
     async girdi(sim) {
       sim.cihaz.mesafe ??= {};
       for (const [t, cm] of PARK_ASAMALARI) {
@@ -310,7 +310,7 @@ delay((mesafeOlc(D3) * 4));</code></pre>
       },
     ],
     sahne: { parcalar: [
-      { tur: 'piyano', pinler: ['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6'], konum: [46, 0, 22] },
+      { tur: 'piyano', pinler: ['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6'], konum: [46.25, 0, 11.97] },
       { tur: 'buzzer', pin: 'D8', konum: [100, 0, -8] }] },
     async girdi(sim) {
       const adimlar = PIYANO_SENARYO.flatMap(([pin, bas, birak]) => [[bas, pin, 1], [birak, pin, 0]]);

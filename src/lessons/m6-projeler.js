@@ -398,7 +398,7 @@ export default [
         ipucu: 'Programı çalıştırıp turuncu engeli sensöre yaklaştır.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [48, 0, -8] }, { tur: 'servo', pin: 'D5', konum: [118, 0, 4] }] },
+    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [50.06, 0, -3.97] }, { tur: 'servo', pin: 'D5', konum: [105.77, 0, -3.97] }] },
     girdi: mesafeSenaryo('D3', G61_MESAFE),
     kontrol(sim) {
       const acilar = olaylar(sim, 'D5', 'servo');
@@ -460,7 +460,7 @@ export default [
         ipucu: 'Kişiler sırayla geçtikçe sayı artacaktır.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [48, 0, -12] }, { tur: 'lcd', konum: [84, 0, 26] }, { tur: 'buzzer', pin: 'D8', konum: [112, 0, -6] }] },
+    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [50.06, 0, -3.97] }, { tur: 'lcd', konum: [100.86, 0, 23.29] }, { tur: 'buzzer', pin: 'D8', konum: [112, 0, -6] }] },
     girdi: async sim => {
       sim.cihaz.kayit = [];
       const kaydet = async () => {
@@ -529,7 +529,7 @@ export default [
         ipucu: 'Çalıştırıp düğmeye tıkla.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'dugme', pin: 'D2', konum: [42, 0, -4] }, { tur: 'servo', pin: 'D5', konum: [96, 0, -4] }, { tur: 'buzzer', pin: 'D8', konum: [110, 0, 22] }] },
+    sahne: { parcalar: [{ tur: 'dugme', pin: 'D2', konum: [42, 0, -4] }, { tur: 'servo', pin: 'D5', konum: [95.61, 0, -3.97] }, { tur: 'buzzer', pin: 'D8', konum: [110, 0, 22] }] },
     girdi: dugmeSenaryo('D2', [[500, 300]]),
     kontrol(sim) {
       const sesler = olaylar(sim, 'D8', 'ses');
@@ -593,7 +593,7 @@ export default [
         ipucu: 'Güneşi karartarak alarmı test et.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [70, 0, -10] }, { tur: 'buzzer', pin: 'D8', konum: [55, 0, 15] }, { tur: 'led', pin: 'D0', renk: 'kirmizi', konum: [75, 0, 15] }] },
+    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [91.97, 0, 6.19] }, { tur: 'buzzer', pin: 'D8', konum: [55, 0, 15] }, { tur: 'led', pin: 'D0', renk: 'kirmizi', konum: [75, 0, 15] }] },
     girdi: analogSenaryo('A0', G64_ISIK),
     kontrol(sim) {
       const sesler = olaylar(sim, 'D8', 'ses');
@@ -650,7 +650,7 @@ export default [
         ipucu: 'Engeli yaklaşarak test et.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [48, 0, -14] }, { tur: 'servo', pin: 'D5', konum: [116, 0, -6] }, { tur: 'lcd', konum: [78, 0, 26] }] },
+    sahne: { parcalar: [{ tur: 'mesafe', pin: 'D3', konum: [50.06, 0, -3.97] }, { tur: 'servo', pin: 'D5', konum: [105.77, 0, -3.97] }, { tur: 'lcd', konum: [100.86, 0, 25.83] }] },
     girdi: async sim => {
       sim.cihaz.kayit = [];
       await mesafeSenaryo('D3', G65_MESAFE)(sim);
@@ -710,7 +710,7 @@ export default [
         ipucu: 'Güneşin konumunu değiştirerek testi tamamla.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [70, 0, -10] }, { tur: 'servo', pin: 'D5', konum: [70, 0, 15] }] },
+    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [69.11, 0, 6.19] }, { tur: 'servo', pin: 'D5', konum: [77.83, 0, 16.35] }] },
     girdi: analogSenaryo('A0', G66_ISIK),
     kontrol(sim) {
       const acilar = olaylar(sim, 'D5', 'servo');
@@ -772,7 +772,7 @@ export default [
         ipucu: 'Güneş ışığını artırıp azaltarak test et.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [50, 0, -4] }, { tur: 'lcd', konum: [86, 0, 24] }, { tur: 'led', pin: 'D0', renk: 'yesil', konum: [38, 0, 20] }] },
+    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [48.79, 0, 6.19] }, { tur: 'lcd', konum: [85.62, 0, 23.29] }, { tur: 'led', pin: 'D0', renk: 'yesil', konum: [48.79, 0, 18.89] }] },
     girdi: async sim => {
       sim.cihaz.kayit = [];
       await analogSenaryo('A0', G67_ISIK)(sim);

@@ -3,8 +3,10 @@ const SUTUN = 16, SATIR = 2;
 const PW = 56, PD = 25;      // PCB genişlik (x) / derinlik (z)
 const PY = 8;                // PCB alt yüzü (mm) - başlık pinleri üzerinde yükseltilmiş
 
+// Breadboard: I2C başlığı (GND, VCC, SDA, SCL) 4 ardışık sütunda, x = -3.81 -1.27 +1.27 +3.81, z = -4.4 (konum = ekran merkezi; konum.x = ilk pin deliği + 3.81, konum.z = satır z + 4.4).
 export default {
   tur: 'lcd',
+  girisler: () => ({ pin: [[1.27, -4.4], [3.81, -4.4]], gnd: [-3.81, -4.4], bacaklar: [[-3.81, -4.4], [-1.27, -4.4], [1.27, -4.4], [3.81, -4.4]] }),
   olustur({ THREE }) {
     const group = new THREE.Group();
     // Canvas (node ortamında document yoksa texture'sız güvenli yedek)
@@ -53,13 +55,11 @@ export default {
     add(new THREE.BoxGeometry(32, 1.4, 9), yesilPcb, 0, PY - 1.6, bz + 3);
     add(new THREE.BoxGeometry(9, 1.4, 4.6), siyah, -6, PY - 2.8, bz + 3);
     add(new THREE.BoxGeometry(5, 3, 5), new THREE.MeshStandardMaterial({ color: 0x2f7fe0, roughness: .5 }), 10, PY - 3, bz + 3);
-    add(new THREE.BoxGeometry(10.2, 2.5, 2.5), siyah, -10, PY - 1.6 - 2, bz + 6.5);
-    add(new THREE.BoxGeometry(.64, 8, .64), altin, -13.5, PY - 6, bz + 6.5);
-    add(new THREE.BoxGeometry(.64, 8, .64), altin, -10.9, PY - 6, bz + 6.5);
-    add(new THREE.BoxGeometry(.64, 8, .64), altin, -8.4, PY - 6, bz + 6.5);
-    add(new THREE.BoxGeometry(.64, 8, .64), altin, -5.8, PY - 6, bz + 6.5);
-    // Ana başlık pinlerinin breadboard'a uzanan kısmı (görsel ayak)
-    for (const x of [-PW / 2 + 3, PW / 2 - 3]) add(new THREE.CylinderGeometry(.9, .9, PY, 8), metal, x, PY / 2, PD / 2 - 3);
+    // I2C başlığı: plastik breadboard yüzeyinde, 4 pin deliğe iner (z = -4.4)
+    add(new THREE.BoxGeometry(10.2, 2.5, 2.5), siyah, 0, 1.25, bz + 6.5);
+    for (let i = 0; i < 4; i++) add(new THREE.BoxGeometry(.64, 11, .64), altin, (i - 1.5) * 2.54, .5, bz + 6.5);
+    // Köşe destekleri (4 adet): ekran kartı breadboard üstünde sabit durur
+    for (const x of [-PW / 2 + 3, PW / 2 - 3]) for (const z of [-PD / 2 + 3, PD / 2 - 3]) add(new THREE.CylinderGeometry(.9, .9, PY, 8), metal, x, PY / 2, z);
 
     let onceki = null;
     function ciz(satirlar) {

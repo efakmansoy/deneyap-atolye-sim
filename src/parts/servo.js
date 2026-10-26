@@ -1,6 +1,8 @@
 // Servo (SG90 mikro servo): sim.cihaz.servo[pin] = açı (0-180). Kol hedefe yumuşakça döner.
+// Breadboard: sinyal / GND / VCC sütunları ardışık (x = -31.58, -29.04, -26.5), z = 0; konum = servo gövdesi (konum.x = sinyal deliği + 31.58).
 export default {
   tur: 'servo',
+  girisler: () => ({ pin: [[-31.58, 0]], gnd: [-29.04, 0], bacaklar: [[-31.58, 0], [-29.04, 0], [-26.5, 0]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin;
     const group = new THREE.Group();
@@ -49,22 +51,23 @@ export default {
     kol.add(vida);
     group.add(kol);
 
-    // 3 telli kablo (kahverengi, kırmızı, turuncu) + 3'lü konnektör
-    const tel = [[0x6b3a1e, 2.54], [0xd22b2b, 0], [0xf08a1c, -2.54]];
-    for (const [renk, z] of tel) {
+    // 3 telli kablo: her tel ayrı dupont ucuyla breadboard deliğine girer (aynı satır, ardışık sütunlar).
+    // Uçlar: turuncu (sinyal) x=-31.58, kahverengi (GND) x=-29.04, kırmızı (VCC) x=-26.5, z=0 (konum.x = sinyal deliği + 31.58).
+    const tel = [[0x6b3a1e, 2.54, -29.04], [0xd22b2b, 0, -26.5], [0xf08a1c, -2.54, -31.58]];
+    for (const [renk, z, xu] of tel) {
       const egri = new THREE.CatmullRomCurve3([
         new THREE.Vector3(-11, 5, z * .45),
-        new THREE.Vector3(-18, 4.2, z * .8),
-        new THREE.Vector3(-27, 2, z),
-        new THREE.Vector3(-35, 3.6, z),
+        new THREE.Vector3(-17, 4.2, z * .8),
+        new THREE.Vector3(xu + 5, 3.4, z * .45),
+        new THREE.Vector3(xu, 3.4, 0),
+        new THREE.Vector3(xu, 2.4, 0),
       ]);
-      const t = new THREE.Mesh(new THREE.TubeGeometry(egri, 14, .6, 5, false), new THREE.MeshStandardMaterial({ color: renk, roughness: .6 }));
+      const t = new THREE.Mesh(new THREE.TubeGeometry(egri, 20, .6, 5, false), new THREE.MeshStandardMaterial({ color: renk, roughness: .6 }));
       group.add(t);
+      add(new THREE.BoxGeometry(2.4, 3, 2.4), siyah, xu, 1.5, 0);                    // dupont gövdesi (yüzeyde)
+      add(new THREE.BoxGeometry(.64, 9, .64), metal, xu, -.5, 0);                    // pin: y -5 .. 4
     }
     add(new THREE.BoxGeometry(2.8, 6, 3 * 2.54 + .6), siyah, -9.8, 5, 0);       // gövdeden çıkış lastiği
-    const konn = add(new THREE.BoxGeometry(8.5, 2.6, 3 * 2.54 + .4), siyah, -38.8, 3.6, 0);
-    for (let i = 0; i < 3; i++) add(new THREE.BoxGeometry(2.5, 1, .8), metal, -43.3, 3.6, (i - 1) * 2.54);
-    konn.userData.konnektor = true;
 
     const durum = { aci: 90, hedef: 90 };
     const uygula = () => { kol.rotation.y = -durum.aci * Math.PI / 180; };

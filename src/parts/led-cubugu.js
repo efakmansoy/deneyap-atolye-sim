@@ -18,6 +18,9 @@ function haleDoku(THREE) {
 
 export default {
   tur: 'led-cubugu',
+  izgara: true, izgaraSatir: 'e',
+  // Her segment kendi sütununda; iki sıra bacak orta kanalın iki yanında
+  girisler: tanim => { const n = (tanim.pinler ?? [0, 1, 2, 3, 4, 5, 6, 7]).length, s = [...Array(n).keys()]; return { pin: s.map(i => [i * P, 0]), gnd: null, bacaklar: s.flatMap(i => [[i * P, 0], [i * P, ARA]]) }; },
   olustur({ THREE, tanim }) {
     const pinler = tanim.pinler ?? ['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7'];
     const n = pinler.length;

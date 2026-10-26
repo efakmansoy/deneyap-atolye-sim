@@ -125,7 +125,7 @@ const DERSLER = [
         ipucu: 'Ses ışıkla zıt yönde değişiyorsa harita bloğunun son iki sayısını kontrol et: küçük sayı önce, büyük sayı sonra gelmeli. Hiç ses yoksa buzzer pinini kontrol et.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [58, 0, -4] }, { tur: 'buzzer', pin: 'D8', konum: [104, 0, 12] }] },
+    sahne: { parcalar: [{ tur: 'ldr', pin: 'A0', konum: [58.95, 0, 6.19] }, { tur: 'buzzer', pin: 'D8', konum: [104, 0, 12] }] },
     girdi: analogSenaryo('A0', IS_ASAMALARI),
     kontrol(sim) {
       const a = olaylar(sim, 'A0', 'analog');
@@ -209,7 +209,7 @@ const DERSLER = [
         ipucu: 'Kol ters yöne dönüyorsa harita çıktısı 180 - 0 yazılmıştır, 0 - 180 olmalı. Kol hiç kıpırdamıyorsa servo pini D5 mi?',
       },
     ],
-    sahne: { parcalar: [{ tur: 'pot', pin: 'A0', konum: [44, 0, 12] }, { tur: 'servo', pin: 'D5', konum: [102, 0, 6] }] },
+    sahne: { parcalar: [{ tur: 'pot', pin: 'A0', konum: [46.25, 0, 13.81] }, { tur: 'servo', pin: 'D5', konum: [100.69, 0, -3.97] }] },
     girdi: analogSenaryo('A0', POT_ASAMALARI),
     kontrol(sim) {
       const a = olaylar(sim, 'A0', 'analog');

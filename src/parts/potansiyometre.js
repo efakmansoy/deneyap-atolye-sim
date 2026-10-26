@@ -24,7 +24,7 @@ function paylasim(THREE) {
     milG: new THREE.CylinderGeometry(1.7, 1.7, 3, 20),
     yuvaG: new THREE.BoxGeometry(6.4, .7, 1.1),
     cizgiG: new THREE.BoxGeometry(3.4, .35, 1),
-    bacakG: new THREE.BoxGeometry(.6, 6, .3),
+    bacakG: new THREE.BoxGeometry(.6, 8, .3),
     vidaG: new THREE.CylinderGeometry(1.1, 1.1, .3, 12),
     mavi: new THREE.MeshStandardMaterial({ color: 0x1f5fc4, roughness: .55, metalness: .05 }),
     metal: new THREE.MeshStandardMaterial({ color: 0xd8b25a, roughness: .3, metalness: .85 }),
@@ -37,6 +37,8 @@ function paylasim(THREE) {
 
 export default {
   tur: 'pot',
+  // Yerel (0,0) = topuzun merkezi (ızgara deliği); 3 bacak iki satır ötede, x=-5.08, 0, 5.08: sol GND, orta sinyal, sağ 3V3
+  girisler: () => ({ pin: [[0, 5.08]], gnd: [-5.08, 5.08], bacaklar: [[-5.08, 5.08], [0, 5.08], [5.08, 5.08]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin ?? 'A0';
     let deger = tanim.baslangic ?? 2048, onceki = 0;
@@ -44,13 +46,14 @@ export default {
     const group = new THREE.Group();
 
     // Mavi gövde + gümüş kapak + pirinç halka/mil
+    const ust = new THREE.Group(); ust.position.y = 1.6; group.add(ust); // gövde tabanı 2.5 mm yüksekte: bacaklar görünür
     const gov = new THREE.Mesh(p.govG, p.mavi); gov.position.y = 3.2;
     const kapak = new THREE.Mesh(p.kapakG, p.gumus); kapak.position.y = 5.75;
     const halka = new THREE.Mesh(p.halkaG, p.metal); halka.position.y = 6.3;
     const mil = new THREE.Mesh(p.milG, p.metal); mil.position.y = 7.6;
-    group.add(gov, kapak, halka, mil);
+    ust.add(gov, kapak, halka, mil);
     for (const [x, z] of [[-5.6, -5.6], [5.6, -5.6], [-5.6, 5.6], [5.6, 5.6]]) {
-      const v = new THREE.Mesh(p.vidaG, p.gumus); v.position.set(x, 5.55, z); group.add(v);
+      const v = new THREE.Mesh(p.vidaG, p.gumus); v.position.set(x, 5.55, z); ust.add(v);
     }
 
     // Döner topuz: siyah tırtıllı, üstte metal tornavida yuvası ve beyaz işaret çizgisi
@@ -60,12 +63,12 @@ export default {
     const yuva = new THREE.Mesh(p.yuvaG, p.metal); yuva.position.y = 5.0;
     const cizgi = new THREE.Mesh(p.cizgiG, p.beyaz); cizgi.position.set(3.0, 5.0, 0);
     dugme.add(topuz, yuva, cizgi);
-    group.add(dugme);
+    ust.add(dugme);
 
     // 3 bacak: 2.54 mm ızgarasına oturur (5.08 aralık)
     for (let i = 0; i < 3; i++) {
       const b = new THREE.Mesh(p.bacakG, p.gumus);
-      b.position.set(-5.08 + i * 5.08, -.2, 5.08);
+      b.position.set(-5.08 + i * 5.08, -1, 5.08);
       group.add(b);
     }
 

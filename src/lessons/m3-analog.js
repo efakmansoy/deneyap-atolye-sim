@@ -209,7 +209,7 @@ analogWrite(D2, 255);</code></pre>`,
       },
     ],
     sahne: { parcalar: [
-      { tur: 'pot', pin: 'A0', konum: [92, 0, 12] },
+      { tur: 'pot', pin: 'A0', konum: [91.97, 0, 13.81] },
       { tur: 'led', pin: 'D0', renk: 'sari', konum: [56, 0, 12] }] },
     async girdi(sim) {
       for (const d of [0, 1024, 2048, 4095]) {
@@ -290,7 +290,7 @@ digitalWrite(D0, LOW);</code></pre>`,
       },
     ],
     sahne: { parcalar: [
-      { tur: 'ldr', pin: 'A0', konum: [88, 0, 10] },
+      { tur: 'ldr', pin: 'A0', konum: [86.89, 0, 6.19] },
       { tur: 'led', pin: 'D0', renk: 'sari', konum: [52, 0, 12] }] },
     async girdi(sim) {
       for (const d of [3000, 300, 3000]) {
@@ -367,7 +367,7 @@ digitalWrite(D0, LOW);</code></pre>`,
       },
     ],
     sahne: { parcalar: [
-      { tur: 'sicaklik', pin: 'A1', konum: [88, 0, 10] },
+      { tur: 'sicaklik', pin: 'A1', konum: [86.89, 0, 6.19] },
       { tur: 'led', pin: 'D0', renk: 'kirmizi', konum: [52, 0, 12] }] },
     async girdi(sim) {
       for (const d of [1200, 3300, 1500]) {
@@ -442,7 +442,7 @@ digitalWrite(D0, LOW);</code></pre>`,
     ],
     sahne: { parcalar: [
       { tur: 'led-cubugu', pinler: D8, konum: [76, 0, -10] },
-      { tur: 'pot', pin: 'A0', konum: [78, 0, 20] }] },
+      { tur: 'pot', pin: 'A0', konum: [61.49, 0, 13.81] }] },
     async girdi(sim) {
       for (const d of [0, 2048, 4095, 1024]) {
         sim.analog.A0 = d;

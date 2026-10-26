@@ -102,5 +102,21 @@ export function breadboardOlustur(THREE, cx, cz) {
     for (const [h, z] of Object.entries(SATIR_Z)) { const d = Math.abs(v.z - cz - z); if (d < fark) { fark = d; en = h; } }
     return delik(en, s + 1);
   };
-  return { group: g, delik, ray, enYakin };
+  /** Aynı sütun şeridinde (a-e ya da f-j) kanaldan en uzak, "dolu" (bacak) deliklerinden biri olmayan delik: kablo, parça bacağıyla aynı şeride iner. */
+  const serit = (v, dolu = []) => {
+    const s = Math.max(0, Math.min(SUTUN - 1, Math.round((v.x - cx) / P + (SUTUN - 1) / 2)));
+    const sirala = v.z - cz < 0 ? ['a', 'b', 'c', 'd', 'e'] : ['j', 'i', 'h', 'g', 'f'];
+    for (const h of sirala) {
+      const d = delik(h, s + 1);
+      if (!dolu.some(o => Math.abs(o.x - d.x) < .5 && Math.abs(o.z - d.z) < .5)) return d;
+    }
+    return delik(sirala[0], s + 1);
+  };
+  /** x konumuna en yakın güç rayı deliği */
+  const rayYakin = (taraf, kutup, x) => {
+    let en = 0, fark = Infinity;
+    for (let i = 0; i < 25; i++) { const d = Math.abs(cx + rayX(i) - x); if (d < fark) { fark = d; en = i; } }
+    return ray(taraf, kutup, en);
+  };
+  return { group: g, delik, ray, enYakin, serit, rayYakin };
 }

@@ -14,14 +14,16 @@ function ortak(THREE) {
     yan: new THREE.BoxGeometry(1.2, 6, 21.5),
     plastik: new THREE.MeshStandardMaterial({ color: 0x1a1a20, roughness: .5 }),
     ahsap: new THREE.MeshStandardMaterial({ color: 0x251a14, roughness: .7 }),
-    bacak: new THREE.BoxGeometry(.5, 5, .5),
+    bacak: new THREE.BoxGeometry(.5, 6.5, .5),
     metal: new THREE.MeshStandardMaterial({ color: 0xcfcfd6, metalness: .9, roughness: .3 }),
   };
   return ORT;
 }
 
+const PIN_X = i => (i + 4) * 2.54;   // 7 sinyal bacağı ardışık sütunlarda (konum.x = ilk bacak deliği - 10.16), ön kenarda z = +12
 export default {
   tur: 'piyano',
+  girisler: tanim => { const n = (tanim.pinler ?? VARSAYILAN).length, s = [...Array(n).keys()]; return { pin: s.map(i => [PIN_X(i), 12]), gnd: null, bacaklar: s.map(i => [PIN_X(i), 12]) }; },
   olustur({ THREE, tanim }) {
     const pinler = tanim.pinler ?? VARSAYILAN;
     const O = ortak(THREE);
@@ -32,7 +34,7 @@ export default {
     const sagY = new THREE.Mesh(O.yan, O.ahsap); sagY.position.set(38.6, 6, 1.5);
     group.add(taban, arka, solY, sagY);
     // alt bacaklar (breadboard'a bağlanan 7 sinyal pini)
-    pinler.forEach((_, i) => { const b = new THREE.Mesh(O.bacak, O.metal); b.position.set(i * 6, -1.5, 12); group.add(b); });
+    pinler.forEach((_, i) => { const b = new THREE.Mesh(O.bacak, O.metal); b.position.set(PIN_X(i), -2.25, 12); group.add(b); });
     const tuslar = pinler.map((pin, i) => {
       const mat = new THREE.MeshStandardMaterial({ color: 0xf4f4f0, roughness: .35, emissive: RENKLER[i % 7], emissiveIntensity: 0 });
       const m = new THREE.Mesh(O.tus, mat);

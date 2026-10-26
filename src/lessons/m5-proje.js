@@ -255,7 +255,7 @@ lcd.print(i);</code></pre>`,
         ipucu: 'Sayı değişmiyorsa i bloğunun döngünün içindeki LCD bloğuna takılı olduğuna bak.',
       },
     ],
-    sahne: { parcalar: [{ tur: 'lcd', kablo: false, konum: [78, 0, 10] }] },
+    sahne: { parcalar: [{ tur: 'lcd', kablo: false, konum: [78, 0, 10.59] }] },
     async girdi(sim) {
       const cihaz = sim.cihaz;
       cihaz.kayit = [];
@@ -358,8 +358,8 @@ lcd.print(i);</code></pre>`,
       },
     ],
     sahne: { parcalar: [
-      { tur: 'perde', servoPin: SERVO, isikPin: ISIK, kablo: false, konum: [92, 0, -6] },
-      { tur: 'lcd', kablo: false, konum: [70, 0, 24] },
+      { tur: 'perde', servoPin: SERVO, isikPin: ISIK, kablo: false, konum: [92, 0, -3.97] },
+      { tur: 'lcd', kablo: false, konum: [70.38, 0, 23.29] },
     ] },
     async girdi(sim) {
       const cihaz = sim.cihaz;

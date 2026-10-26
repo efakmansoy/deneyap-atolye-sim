@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { izgaraKonum } from './ortak/izgara.js';
 import { breadboardOlustur } from './breadboard.js';
 import { arenaKur } from './arena3b.js';
 import { hazirArena } from './araba-dunya.js';
@@ -181,7 +182,7 @@ export class Sahne {
     this.arenaVar = !!tanim.arena;
     if (this.arenaVar) {
       this.parcalar.add(arenaKur(THREE, hazirArena(tanim.arena)));
-      this.delik = () => new THREE.Vector3(); this.ray = () => new THREE.Vector3(); this.enYakinDelik = v => v.clone();
+      this.delik = () => new THREE.Vector3(); this.ray = () => new THREE.Vector3(); this.enYakinDelik = v => v.clone(); this.seritDelik = null; this.rayYakin = null;
       this.basla();
     } else {
       const bb = breadboardOlustur(THREE, 78, 10);
@@ -189,11 +190,14 @@ export class Sahne {
       this.delik = bb.delik;
       this.ray = bb.ray;
       this.enYakinDelik = bb.enYakin;
+      this.seritDelik = bb.serit;
+      this.rayYakin = bb.rayYakin;
     }
     (tanim.parcalar ?? []).forEach((p, i) => {
       const mod = PARCALAR[p.tur];
       if (!mod) throw new Error('Bilinmeyen parça türü: ' + p.tur);
-      const konum = p.konum ? new THREE.Vector3(...p.konum) : this.delik(i < 5 ? 'f' : 'b', 5 + (i % 5) * 5);
+      let konum = p.konum ? new THREE.Vector3(...p.konum) : this.delik(mod.izgaraSatir ?? (i < 5 ? 'f' : 'b'), 5 + (i % 5) * 5);
+      if (mod.izgara && !this.arenaVar) konum = new THREE.Vector3(...izgaraKonum(konum.toArray(), mod.izgaraSatir)); // bacaklar gerçek deliğe otursun
       const n = mod.olustur({ THREE, tanim: p, konum, index: i, sahne: tanim });
       if (!mod.konumSabit) n.group.position.copy(konum);
       n.group.userData.nesne = n;
@@ -239,19 +243,32 @@ export class Sahne {
     await this.kartHazir;
     if (sira !== this.kabloSira) return;
     let renk = 0, gnd = 0;
+    this.gndRay = new Set();
     (tanim.parcalar ?? []).forEach((p, i) => {
       const n = this.nesneler[i]; if (!n) return;
       const pinler = [...new Set([p.pin, ...(Array.isArray(p.pinler) ? p.pinler : []), p.servoPin, p.isikPin].filter(Boolean))];
       if (p.kablo === false || p.tur === 'araba' || !pinler.length) return;
       const konum = n.group.position;
+      // Breadboard'a bacağıyla oturan parça kendi bacak sütunlarını bildirir (girisler): kablo aynı şeritte boş bir deliğe iner
+      const gir = this.seritDelik ? PARCALAR[p.tur]?.girisler?.(p, n.group.position) : null;
+      const yerel = d => new THREE.Vector3(konum.x + d[0], 0, konum.z + d[1]);
+      const dolu = gir ? gir.bacaklar.map(yerel) : [];
       pinler.forEach((pin, k) => {
         const bas = this.kartPin(pin); if (!bas) return;
-        const son = this.enYakinDelik(new THREE.Vector3(konum.x - 2.54 * (k + 1), 0, konum.z));
+        const son = gir?.pin[k] ? this.seritDelik(yerel(gir.pin[k]), dolu) : this.enYakinDelik(new THREE.Vector3(konum.x - 2.54 * (k + 1), 0, konum.z));
         this.#kablo(bas, son, Sahne.KABLO_RENK[renk++ % Sahne.KABLO_RENK.length], 10 + (renk % 4) * 4);
       });
+      if (gir?.gnd) {
+        // Katot/GND bacağı: aynı yarıdaki (−) rayına siyah jumper; o ray karttan GND alır
+        const delikG = this.seritDelik(yerel(gir.gnd), dolu), taraf = delikG.z - 10 < 0 ? 'ust' : 'alt';
+        const rayG = this.rayYakin(taraf, '-', delikG.x);
+        this.#kablo(rayG, delikG, 0x111827, 8);
+        const g0 = this.kartPin('GND');
+        if (g0 && !this.gndRay.has(taraf)) { this.gndRay.add(taraf); this.#kablo(g0, this.ray(taraf, '-', 1), 0x111827, taraf === 'ust' ? 22 : 26); }
+      }
       // GND: karttan breadboard'un (−) rayına, her parça için ayrı delik
       const g = this.kartPin('GND');
-      if (g && gnd < 1) this.#kablo(g, this.ray('ust', '-', 1), 0x111827, 22);
+      if (g && gnd < 1 && !gir && !this.gndRay.has('ust')) { this.gndRay.add('ust'); this.#kablo(g, this.ray('ust', '-', 1), 0x111827, 22); }
       gnd++;
     });
   }

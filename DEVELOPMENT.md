@@ -11,6 +11,7 @@ node tools/e2e/e2e.mjs            # tam uçtan uca test (gerçek Chrome + vite b
 node tools/test-m7.mjs            # tek modül paketi (test-m2 … test-m10, test-cpp, test-araba, test-esp32 …)
 node tools/test-parts-m7.mjs      # parça sözleşmesi (Node'da three, WebGL gerekmez)
 node tools/test-yerlesim.mjs      # tüm sahnelerde parça üst üste binme / breadboard taşma kontrolü
+node tools/test-bacak.mjs         # breadboard parçalarının her bacağı gerçek bir deliğe iniyor mu, farklı parçalar aynı sütunu paylaşıyor mu
 ```
 
 - Linter yok. Testler bağımsız `node tools/*.mjs` betikleri; hata varsa çıkış kodu ≠ 0.
@@ -26,6 +27,7 @@ Tek sayfa; `src/main.js` (CRLF satır sonlu) her şeyi bağlar. Çekirdek parça
 - **İki kod yolu, tek simülatör**: Blockly blokları (`blocks.js`, `bloklar/`) ve C++ (`cpp.js` ayrıştırır, `cppcalistir.js` ~1000 satır yorumlayıp çalıştırır; Arduino/ESP32 API'si burada taklit edilir). Modül 9–10 dersleri `sadeceKod`.
 - **`scene.js` / `breadboard.js`**: three.js sahnesi. `Sahne.basla()` kart + breadboard + parçaların sınır küresine kamerayı oturtur (kullanıcı kamerayı oynatmadıysa `boyutla()`'da yeniden). Arena dersleri (M8) eski kamerayı korur.
 - **`parts/*.js`**: her parça `{ tur, olustur({THREE,tanim,konum,index}) → { group, guncelle(sim), kare(dt,sim), pointer* } }` sözleşmesi. Breadboard merkezi (78,10), 86×54 mm; ders sahnesinde çakışma olursa parçaya açık `konum` ver (`test-yerlesim.mjs` doğrular). PIR kutusu algılama alanını içerdiği için testten muaf.
+  Breadboard'a bacakla oturan parçalar `girisler(tanim, konum)` ile bacak sütunlarını bildirir (`{ pin, gnd, bacaklar }`, parça yerel x,z): `scene.js` kabloyu bacakla aynı sütun şeridindeki boş deliğe indirir ve GND için (−) rayına jumper çeker. `izgara: true` olan parçaların (`led`, `rgb-led`, `buzzer`, `dugme`, `led-cubugu`) `konum`u `src/ortak/izgara.js` ile en yakın deliğe oturtulur; `izgaraSatir: 'e'` orta kanalı kapayan parçalar içindir. Yeni parça/ders eklerken `test-bacak.mjs` çalıştır.
 - **Modül 8**: `araba-dunya.js` (saf JS fizik) + `parts/araba.js` + `arena3b.js`; sözleşme `tools/ARABA-SOZLESME.md`. **Modül 9–10** (ESP32, Wi-Fi, `ag.js`, `telefon.js`, dokunmatik): `tools/ESP32-SOZLESME.md`. Ders yazarken ilgili sözleşmeyi oku.
 - **Dersler**: `src/lessons/m*.js` her biri `export default [ders…]`; `index.js` `import.meta.glob` ile yükler ve "doğal sıra" (m2 < m10, m4 < m4b) ile dizer. Toplam 47 ders, modül 1–10. `ad` mutlaka `"<modül>.<no> · Ad"`. Ek içerik (`sesli` anlatım parçaları, `duzenle` "kodu değiştir" görevleri) ders dosyalarına dokunmadan `src/lessons/icerik/*.js` içinde ders `id`'sine bağlanır ve `index.js` birleştirir.
 - **Anlatıcı / ses**: `anlatici.js` `sesli` parçalarını sırayla okutur; `tts.js` varsayılan sağlayıcı "Kayıtlı ses"tir: `public/ses/<ders id>-<NN>.mp3` (NN = 1 tabanlı parça sırası) çalar, `public/ses/liste.json` (`{ders id: parça sayısı}`) yalnız mp3 seti tam olan dersleri listeler. public/ses/ git dışındadır (.gitignore); klonda mp3 yoksa tüm dersler tarayıcı sesiyle okunur. Listede olmayan ders baştan sona tarayıcı sesiyle okunur (aynı derste ses karışmasın), mp3 hata verirse yine tarayıcı sesine düşer.

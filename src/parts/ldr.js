@@ -1,7 +1,7 @@
 import { xOrani, sinirla } from '../ortak/m3-kaydirici.js';
 
 // LDR (ışık sensörü) + sürüklenebilir güneş/lamba. Işık ne kadar çoksa değer o kadar büyük (0-4095).
-const MAX = 4095, UZ = 34, Z = -7.62;
+const MAX = 4095, UZ = 34, ZY = -13, P2 = 2.54; // ZY: kaydırıcı yolunun (yerel) z'si; bacaklar x=0 ve x=2.54, z=0
 
 // CdS yüzey deseni: bej zemin üstünde iki tarak elektrot (kıvrımlı kırmızı-kahve iz)
 function izDoku(THREE) {
@@ -33,7 +33,7 @@ function paylasim(THREE) {
     THREE,
     diskG: new THREE.CylinderGeometry(4.5, 4.5, 1.6, 28),
     yuzG: new THREE.CircleGeometry(4.1, 28),
-    bacakG: new THREE.CylinderGeometry(.3, .3, 9, 8),
+    bacakG: new THREE.CylinderGeometry(.3, .3, 10, 8),
     yolG: new THREE.BoxGeometry(UZ + 8, 1.5, 3),
     kureG: new THREE.SphereGeometry(4.5, 20, 16),
     sapG: new THREE.CylinderGeometry(.6, .6, 16, 8),
@@ -48,23 +48,25 @@ function paylasim(THREE) {
 
 export default {
   tur: 'ldr',
+  // Bacaklar x=0 ve x=2.54 (aynı satır): sinyal sol bacak, GND sağ bacak
+  girisler: () => ({ pin: [[0, 0]], gnd: [P2, 0], bacaklar: [[0, 0], [P2, 0]] }),
   olustur({ THREE, tanim }) {
     const pin = tanim.pin ?? 'A0';
     let deger = tanim.baslangic ?? 2800;
     const p = paylasim(THREE);
     const group = new THREE.Group();
     const disk = new THREE.Mesh(p.diskG, p.disk);
-    disk.position.set(0, 4.6, Z);
+    disk.position.set(P2 / 2, 5, 0);
     const yuz = new THREE.Mesh(p.yuzG, p.yuz);
-    yuz.rotation.x = -Math.PI / 2; yuz.position.set(0, 5.42, Z);
+    yuz.rotation.x = -Math.PI / 2; yuz.position.set(P2 / 2, 5.82, 0);
     group.add(disk, yuz);
-    for (const x of [-1.27, 1.27]) {
+    for (const x of [0, P2]) {
       const b = new THREE.Mesh(p.bacakG, p.gumus);
-      b.position.set(x, 1.5, Z);
+      b.position.set(x, 0, 0);
       group.add(b);
     }
     const yol = new THREE.Mesh(p.yolG, p.yol);
-    yol.position.set(0, .75, 7);
+    yol.position.set(0, .75, ZY);
     const gunMat = new THREE.MeshStandardMaterial({ color: 0xffd23b, emissive: 0xffa500, emissiveIntensity: 1 });
     const gun = new THREE.Group();
     const kure = new THREE.Mesh(p.kureG, gunMat);
@@ -72,7 +74,7 @@ export default {
     sap.position.y = -9;
     kure.position.y = 4;
     gun.add(kure, sap);
-    gun.position.set(0, 18, 7);
+    gun.position.set(0, 18, ZY);
     const isik = new THREE.PointLight(0xffe08a, 0, 80);
     gun.add(isik);
     group.add(yol, gun);
