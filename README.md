@@ -13,6 +13,13 @@ Türkçe: [README.tr.md](README.tr.md)
 - **Progress and fun**: XP, levels, badges, streaks and local profiles (stored in the browser only).
 - **Languages**: Turkish (default) and English. Use the **EN / TR** button in the header. Voice narration is Turkish only; its subtitles stay Turkish.
 
+## Download
+
+Ready-made builds are attached to the [latest release](../../releases/latest): a Windows installer and a portable exe, and an Android APK. They do not include the voice narration recordings (the app then reads lessons with the browser's built-in voice).
+
+- Windows: the executables are not code-signed, so SmartScreen may warn on first run ("More info" → "Run anyway").
+- Android: the APK is signed with the author's own key, not distributed through Google Play. Allow installing from unknown sources to install it.
+
 ## Getting started
 
 Requirements: Node.js 20+.

@@ -13,6 +13,13 @@ English: [README.md](README.md)
 - **İlerleme ve oyunlaştırma**: XP, seviye, rozet, seri ve yerel profiller (yalnızca tarayıcıda saklanır).
 - **Diller**: Türkçe (varsayılan) ve İngilizce. Üst çubuktaki **EN / TR** düğmesini kullan. Sesli anlatım yalnızca Türkçedir, altyazısı da Türkçe kalır.
 
+## İndir
+
+Hazır sürümler [son sürüm](../../releases/latest) sayfasındadır: bir Windows kurulum dosyası ve taşınabilir exe, bir de Android APK. Sesli anlatım kayıtları içlerinde yoktur (uygulama dersleri tarayıcının yerleşik sesiyle okur).
+
+- Windows: exe dosyaları kod imzalı değildir, ilk çalıştırmada SmartScreen uyarı verebilir ("Daha fazla bilgi" → "Yine de çalıştır").
+- Android: APK, yazarın kendi anahtarıyla imzalıdır, Google Play'den dağıtılmaz. Kurmak için bilinmeyen kaynaklardan yüklemeye izin vermelisin.
+
 ## Başlarken
 
 Gereksinim: Node.js 20+.
