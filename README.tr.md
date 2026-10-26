@@ -15,6 +15,10 @@ English: [README.md](README.md)
 - **İlerleme ve oyunlaştırma**: XP, seviye, rozet, seri ve yerel profiller (yalnızca tarayıcıda saklanır).
 - **Diller**: Türkçe (varsayılan) ve İngilizce. Üst çubuktaki **EN / TR** düğmesini kullan. Sesli anlatım yalnızca Türkçedir, altyazısı da Türkçe kalır.
 
+## Çevrimiçi dene
+
+Canlı sürümü tarayıcıda aç: **https://efakmansoy.github.io/deneyap-atolye-sim/** (kurulum gerekmez; sesli anlatım tarayıcının yerleşik sesiyle okunur).
+
 ## İndir
 
 Hazır sürümler [son sürüm](../../releases/latest) sayfasındadır: bir Windows kurulum dosyası ve taşınabilir exe, bir de Android APK. Sesli anlatım kayıtları içlerinde yoktur (uygulama dersleri tarayıcının yerleşik sesiyle okur).
@@ -34,20 +38,9 @@ npm run build      # dist/ içine üretim derlemesi
 
 Yazdırılan yerel adresi aç. İngilizce için adrese `?lang=en` ekle ya da **EN** düğmesine bas.
 
-## 3B kart modeli
+## Kaynaklar
 
-Deneyap Kart 3B modeli **bu depoda tutulmaz**. Resmi [deneyapkart/deneyapkart-arduino-core](https://github.com/deneyapkart/deneyapkart-arduino-core) deposundan gelir (LGPL-2.1):
-
-- STEP: [docs/3B Model (.step).STEP](https://github.com/deneyapkart/deneyapkart-arduino-core/blob/master/docs/3B%20Model%20(.step).STEP)
-- STL: [DK_v2_3BModel(.stl).STL](https://github.com/deneyapkart/deneyapkart-arduino-core/blob/master/DK_v2_3BModel(.stl).STL)
-
-Uygulama `public/models/deneyap-1a-v2-renkli.glb` dosyasını yükler. STEP dosyasından üretmek için:
-
-```
-node tools/step2glb.mjs "3B Model (.step).STEP" public/models/deneyap-1a-v2-renkli.glb
-```
-
-Bu dosya olmadan da uygulama çalışır, gerçek model yerine düz kırmızı bir kart levhası çizer. Resmi STEP'ten üretilen glb, geliştirmede kullanılanla karşılaştırılmadı; renkler ve sadeleştirme biraz farklı olabilir.
+Deneyap Kart 1A v2 3B modeli (`public/models/deneyap-1a-v2-renkli.glb`), T3 Vakfı'nın Deneyap Kart projesinin yayımladığı resmi 3B modeli temel alır: [deneyapkart/deneyapkart-arduino-core](https://github.com/deneyapkart/deneyapkart-arduino-core) (`docs/3B Model (.step).STEP`; ayrıca [Deneyap Kart 1A dokümantasyonunda](https://docs.deneyapkart.org/tr/Cards/Deneyap-Kart-1A/Documentation) bağlantılıdır). Tarayıcıda kullanılabilmesi için `tools/step2glb.mjs` ile sadeleştirilmiş, renkli bir glTF ikili dosyasına dönüştürülmüştür. Deneyap adı ve Deneyap Kart tasarımı ilgili sahiplerine (T3 Vakfı / TÜBİTAK) aittir.
 
 ## Testler
 
@@ -113,4 +106,4 @@ node tools/apk-derle.mjs [debug|release]   # JDK'yı kendisi ayarlayan derleme b
 
 ## Lisans
 
-Kod [MIT Lisansı](LICENSE) ile yayımlanır. Deneyap adı ve Deneyap Kart tasarımı ilgili sahiplerine (T3 Vakfı / TÜBİTAK) aittir; bu, resmi olmayan bir eğitim projesidir ve onlarla bağlantılı değildir. 3B model bu depoda yoktur, özgün lisansıyla kalır (yukarıya bak).
+Kod [MIT Lisansı](LICENSE) ile yayımlanır. Deneyap adı ve Deneyap Kart tasarımı ilgili sahiplerine (T3 Vakfı / TÜBİTAK) aittir; bu, resmi olmayan bir eğitim projesidir ve onlarla bağlantılı değildir. 3B kart modelinin kaynağı yukarıdaki bölümde belirtilmiştir.

@@ -104,7 +104,7 @@ export class Sahne {
 
   #kartYukle() {
     this.kartHazir = new Promise(coz => { this.#kartCoz = coz; });
-    new GLTFLoader().load('/models/deneyap-1a-v2-renkli.glb', g => {
+    new GLTFLoader().load(`${import.meta.env?.BASE_URL ?? '/'}models/deneyap-1a-v2-renkli.glb`, g => {
       const m = g.scene; // STEP: Z yukarı, mm; renkler dosyadan gelir
       const kutu = new THREE.Group();
       kutu.add(m);

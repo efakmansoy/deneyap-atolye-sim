@@ -14,8 +14,10 @@ tts-ornek/
 # Dosyalar yoksa uygulama tarayıcı sesine düşer.
 public/ses/
 
-# Deneyap Kart 3B modeli (üçüncü taraf, LGPL-2.1 depodan); README'deki adımlarla indirilir/üretilir
-public/models/
+# Kullanılmayan büyük model kaynakları (STEP/STL, sade glb); yalnız renkli glb repoda
+public/models/*
+!public/models/deneyap-1a-v2-renkli.glb
+!public/models/KAYNAK.md
 
 # Android (android/.gitignore ile birlikte): yerel yollar, imza dosyaları, derleme çıktıları
 android/local.properties

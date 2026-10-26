@@ -15,6 +15,10 @@ Türkçe: [README.tr.md](README.tr.md)
 - **Progress and fun**: XP, levels, badges, streaks and local profiles (stored in the browser only).
 - **Languages**: Turkish (default) and English. Use the **EN / TR** button in the header. Voice narration is Turkish only; its subtitles stay Turkish.
 
+## Try it online
+
+Open the live version in your browser: **https://efakmansoy.github.io/deneyap-atolye-sim/** (no install needed; voice narration uses the browser's built-in voice).
+
 ## Download
 
 Ready-made builds are attached to the [latest release](../../releases/latest): a Windows installer and a portable exe, and an Android APK. They do not include the voice narration recordings (the app then reads lessons with the browser's built-in voice).
@@ -34,20 +38,9 @@ npm run build      # production build in dist/
 
 Open the printed local address. Add `?lang=en` to the URL (or press **EN**) for English.
 
-## 3D board model
+## Credits
 
-The 3D model of the Deneyap Kart is **not stored in this repository**. It comes from the official [deneyapkart/deneyapkart-arduino-core](https://github.com/deneyapkart/deneyapkart-arduino-core) repository (LGPL-2.1):
-
-- STEP: [docs/3B Model (.step).STEP](https://github.com/deneyapkart/deneyapkart-arduino-core/blob/master/docs/3B%20Model%20(.step).STEP)
-- STL: [DK_v2_3BModel(.stl).STL](https://github.com/deneyapkart/deneyapkart-arduino-core/blob/master/DK_v2_3BModel(.stl).STL)
-
-The app loads `public/models/deneyap-1a-v2-renkli.glb`. To create it from the STEP file:
-
-```
-node tools/step2glb.mjs "3B Model (.step).STEP" public/models/deneyap-1a-v2-renkli.glb
-```
-
-Without that file the app still runs and draws a plain red board slab instead of the real model. A glb made from the upstream STEP has not been compared with the one used during development, so colors and simplification may differ slightly.
+The 3D model of the Deneyap Kart 1A v2 (`public/models/deneyap-1a-v2-renkli.glb`) is based on the official 3D model published by the Deneyap Kart project of the T3 Foundation, from [deneyapkart/deneyapkart-arduino-core](https://github.com/deneyapkart/deneyapkart-arduino-core) (`docs/3B Model (.step).STEP`; also linked from the [Deneyap Kart 1A documentation](https://docs.deneyapkart.org/tr/Cards/Deneyap-Kart-1A/Documentation)). It was converted to a simplified, colored glTF binary with `tools/step2glb.mjs` for use in the browser. Deneyap and the Deneyap Kart design belong to their respective owners (T3 Foundation / TÜBİTAK).
 
 ## Tests
 
@@ -137,4 +130,4 @@ node tools/apk-derle.mjs [debug|release]   # build script that sets the JDK itse
 
 ## License
 
-The code is released under the [MIT License](LICENSE). The Deneyap name and the Deneyap Kart design belong to their respective owners (T3 Foundation / TÜBİTAK); this is an unofficial educational project and is not affiliated with them. The 3D model is not included here and keeps its original license (see above).
+The code is released under the [MIT License](LICENSE). The Deneyap name and the Deneyap Kart design belong to their respective owners (T3 Foundation / TÜBİTAK); this is an unofficial educational project and is not affiliated with them. The 3D model of the board is credited in the section above.
