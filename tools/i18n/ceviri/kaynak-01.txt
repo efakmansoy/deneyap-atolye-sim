@@ -1,0 +1,578 @@
+@@950
+Tepki süren yaklaşık 350 ms. HIZLI olması için süre sınırdan küçük olmalı; 350 ms yavaş sayılsın diye sınırı 350'den küçük yap.
+@@951
+Seri monitöre HIZLI ya da YAVAS yazılmadı.
+@@952
+Tepki süren yaklaşık {0} ms ama hakem HIZLI dedi. Sınırı bu süreden küçük yap.
+@@953
+YAVAS yazılmadı.
+@@956
+Bu oyun gerçek tepki süresi yerine saçma sayılar yazıyor. İki hata var: düğmeyi bekleyen döngünün koşulu ve süreyi hesaplayan işlem. İşaretli iki yeri bul ve düzelt.
+@@961
+Düğmeye basılana kadar beklemek için, düğme basılı DEĞİLKEN (LOW) döngüde kalmalısın. Geçen süre ise şimdiki zaman eksi başlangıç zamanıdır.
+@@962
+Seri monitöre tepki süresi yazılmadı.
+@@963
+Yazılan süre ({0}) gerçek tepkiye (~{1} ms) uymuyor. Bekleme koşulunu ve süre hesabını kontrol et.
+@@964
+Kronometre düzeldi: tepki süren {0} ms.
+@@967
+Program çok erken bitti. Her şey loop içinde kalmalı.
+@@968
+{0} = {1} iken LED {2}, ama {3}.
+@@969
+yanmalıydı
+@@970
+sönük olmalıydı
+@@971
+yanıyor
+@@972
+sönük
+@@973
+Pot {0} iken LED {1} parlak olmalıydı, şu an {2}.
+@@974
+Pot {0} iken {1} LED yanmalıydı, {2} LED yanıyor.
+@@1006
+Turkuaz yap
+@@1007
+LED şu an mor yanıyor. İşaretli iki değeri değiştirerek <b>turkuaz</b> (yeşil + mavi) elde et: kırmızı <b>sönük</b>, yeşil <b>tam parlak</b> olsun, mavi aynı kalsın.
+@@1016
+Kırmızıyı (D0) 0 yap, yeşili (D1) 255 yap. Mavi (D2) olduğu gibi kalsın.
+@@1019
+Turkuaz oldu! Yeşil ile mavi karışımı tam bu renk.
+@@1020
+Kırmızı (D0) sönük olmalı, yoksa renk turkuazdan uzaklaşır.
+@@1021
+Yeşil (D1) tam parlak (255) olmalı.
+@@1022
+Mavi (D2) tam parlak (255) kalmalı.
+@@1023
+Turuncuya çevir
+@@1024
+LED şu an sarı. Turuncu, kırmızıya biraz yeşil katınca olur. İşaretli <b>yeşil değerini</b> yarıya indir (yaklaşık <b>128</b>).
+@@1027
+Yeşil kanalı D1 yönetiyor. 255 yerine 128 yaz.
+@@1029
+Turuncu oldu! Yeşili azaltınca sarı turuncuya kaydı.
+@@1030
+Yeşil hâlâ çok parlak ({0}), renk sarı. D1'i yaklaşık 128 yap.
+@@1031
+Yeşil çok az ({0}), renk kırmızıya yakın. D1'i yaklaşık 128 yap.
+@@1032
+Kırmızı (D0) tam parlak, mavi (D2) sönük kalmalı.
+@@1034
+Mor çok parlak ve göz yoruyor. İşaretli <b>iki değeri</b> de değiştir: kırmızı ve mavi <b>yarım parlaklıkta</b> (yaklaşık <b>128</b>) olsun, yeşil sönük kalsın.
+@@1036
+İki yerde de 255 yazıyor. İkisini de 128 yap; yeşile (D1) dokunma.
+@@1039
+Yeşil (D1) sönük kalmalı.
+@@1040
+Hâlâ çok parlak (kırmızı {0}, mavi {1}). İkisini de yaklaşık 128 yap.
+@@1041
+Çok sönük (kırmızı {0}, mavi {1}). İkisini de yaklaşık 128 yap.
+@@1042
+Soluk bir mor! Değerleri küçültünce renk aynı kalır, sadece parlaklık azalır.
+@@1043
+Kırmızı ve mavi birbirine yakın olmalı.
+@@1049
+Hızlı nefes
+@@1050
+LED yavaş nefes alıyor. İşaretli <b>bekleme sürelerini</b> küçülterek (her biri <b>2 ile 10 milisaniye</b> arası) çok daha hızlı parlayıp sönmesini sağla.
+@@1052
+İki delay satırında da 20 yazıyor. 5 gibi küçük bir sayı yaz.
+@@1053
+LED yeterince adım atmadı.
+@@1054
+Adımlar arası ~{0} ms, hâlâ yavaş. Bekleme süresini 10 ms veya altına indir.
+@@1055
+Bekleme çok kısa, parlayıp sönme göz açıp kapayana kadar biter. En az 2 ms bekle.
+@@1056
+Hızlı nefes! Bekleme süresini kısaltınca animasyon hızlandı.
+@@1057
+Loş nefes
+@@1058
+LED şu an tam parlaklığa kadar çıkıyor. İşaretli sayıları değiştir: LED en fazla <b>yarım parlaklığa</b> (yaklaşık <b>128</b>) çıksın, sonra tekrar sönsün.
+@@1061
+İlk döngünün üst sınırını (i <= 255) ve ikinci döngünün başlangıcını (int i = 255) 128 yap.
+@@1062
+D0 pinine hiç PWM yazılmadı.
+@@1063
+LED en fazla {0} parlaklığa çıkıyor, çok yüksek. Hem parlama hem sönme döngüsünde 255 yerine 128 yaz.
+@@1064
+LED en fazla {0} parlaklığa çıkıyor, çok düşük. Tepe değer 128 civarı olmalı.
+@@1065
+LED hem yumuşakça parlamalı hem yumuşakça sönmeli. İki döngüde de aynı tepe değeri kullan.
+@@1066
+Loş bir nefes! Tepe parlaklığı yarıya indirdin.
+@@1067
+Hızlı sönen LED
+@@1068
+LED parlarken yumuşak, sönerken <b>daha hızlı</b> olsun. Sönme döngüsündeki <b>adım büyüklüğünü</b> (<code>i -= 5</code>) 5'ten <b>15</b>'e çıkar. Parlama döngüsü aynı kalsın.
+@@1070
+Sönme döngüsünün sonundaki i -= 5 ifadesinde 5 yerine 15 yaz.
+@@1071
+Parlama yumuşak kalmalı: ilk döngüye (i += 5) dokunma.
+@@1072
+Sönme hâlâ yavaş. Sönme döngüsünde i -= 15 yaz.
+@@1073
+Adım çok büyük, sönme yumuşak görünmüyor. 15 civarı bir değer kullan.
+@@1074
+Parlayış yumuşak, sönüş hızlı. Adım büyüklüğü hızı belirliyor!
+@@1078
+Eski alışkanlık: bin yirmi üç
+@@1079
+Bu programı eski bir Arduino kartına göre yazmışlar: orada pot en çok <b>1023</b> verir. Bizim kartta ise <b>4095</b> verir. İşaretli sayıyı düzelt ki LED potun tüm aralığında doğru parlasın.
+@@1081
+Bu kartta analogRead 0 ile 4095 arası okur. map komutunun ikinci aralığının üst sınırı da bu olmalı.
+@@1082
+Artık pot tüm aralıkta doğru çalışıyor!
+@@1083
+Üst parlaklığı sınırla
+@@1084
+LED potun sonunda çok parlak oluyor. Göz yormasın diye en parlak değeri <b>255 yerine 100</b> yap. Pot tam sağdayken LED yaklaşık yüzde 40 parlaklıkta olsun.
+@@1086
+map komutundaki son sayı, LED'e yazılacak en büyük değerdir.
+@@1087
+Pot tam sağdayken LED {0} parlıyor, çok yüksek. map komutunun son sayısını 100 yap.
+@@1088
+Pot tam sağdayken LED {0} parlıyor, fazla sönük. Son sayı 100 civarı olmalı.
+@@1089
+Pot tam soldayken LED sönük olmalı. Baştaki 0 değerine dokunma.
+@@1090
+Parlaklık güvenle sınırlandı. Pot yine yumuşakça çalışıyor.
+@@1091
+Pot ortadayken parlaklık, tam sağdakinin yaklaşık yarısı olmalı.
+@@1092
+Ters çalışan pot
+@@1093
+Pot sağa gidince LED sönsün, sola gidince en parlak yansın. <code>map</code> komutundaki <b>hedef aralığın iki sayısını</b> yer değiştir.
+@@1094
+map komutunun son iki sayısı hedef aralık. Küçük sayıyı sona, büyük sayıyı başa yaz: 255, 0.
+@@1095
+Ters çalışan pot hazır! Sol tam parlak, sağ sönük.
+@@1100
+Daha erken yansın
+@@1101
+Lamba şu an ancak çok karanlıkta yanıyor. Akşam loşluğunda da yansın: <b>eşik değerini</b> 1000'den <b>2500</b>'e çıkar.
+@@1103
+if içindeki 1000 sayısını değiştir. Okuma 2500'ün altına düşünce lamba yansın.
+@@1105
+Loşlukta da yanan bir gece lambası!
+@@1106
+Aydınlık göstergesi
+@@1107
+Bu program karanlıkta yanıyor. Tersini istiyoruz: ortam <b>aydınlıkken</b> LED yansın, karanlıkta sönsün. Karşılaştırma işaretini değiştir.
+@@1108
+Küçüktür (<) işareti yerine büyüktür (>) işaretini kullan.
+@@1109
+Işıkta yanan, karanlıkta sönen bir gösterge yaptın!
+@@1110
+Gece lambası yüzünü yakmasın! Karanlıkta LED tam parlak değil, <b>loş</b> yansın (yaklaşık <b>80</b>). Ayrıca eşik değerini <b>2000</b> yap ki akşam loşluğunda da devreye girsin.
+@@1111
+İki değişiklik var: if içindeki eşiği 2000 yap, yanma durumundaki analogWrite satırında 255 yerine 80 yaz.
+@@1112
+Ortam aydınlıkken (LDR 3500) LED sönük olmalı.
+@@1113
+LDR 1700 iken LED yanmalıydı. Eşik değeri 2000 olmalı.
+@@1114
+Karanlıkta LED yanmalıydı.
+@@1115
+LED çok parlak ({0}). Yanarken analogWrite değeri 80 civarı olmalı.
+@@1116
+Loş ve rahat bir gece lambası!
+@@1117
+LED çok sönük. analogWrite değerini 80 civarı yap.
+@@1120
+Daha hassas alarm
+@@1121
+Alarm ancak çok sıcakta çalıyor. Biraz ılıkta da çalsın: <b>eşik değerini</b> 2500'den <b>1800</b>'e düşür.
+@@1124
+if içindeki 2500 sayısını değiştir. Eşik küçülünce alarm daha erken çalar.
+@@1126
+Alarm artık daha hassas!
+@@1127
+Yanlış pin
+@@1128
+Bu programda alarm <b>D1</b> pinine bağlanmış, ama sahnedeki kırmızı alarm LED'i <b>D0</b> pininde. Alarm çalışsın diye <b>D1</b> yazan her yeri <b>D0</b> yap.
+@@1129
+D1, kodda üç yerde geçiyor: pinMode içinde ve iki digitalWrite satırında. Hepsini D0 yap.
+@@1130
+Doğru pin, doğru alarm! Pin numarası yanlışsa program çalışır ama LED tepki vermez.
+@@1131
+Soğuk alarmı
+@@1132
+Bu kez alarm <b>soğuktan</b> korusun, buzlanma uyarısı gibi. Sensör sayısı <b>800'ün altına</b> düşünce LED yansın, daha sıcakken sönük kalsın. Karşılaştırma işaretini ve eşiği değiştir.
+@@1134
+Büyüktür (>) yerine küçüktür (<) kullan ve 2500 yerine 800 yaz.
+@@1136
+Soğuk alarmı hazır! Küçüktür işareti ile ters çalışan bir alarm yaptın.
+@@1141
+Hep en az bir LED
+@@1142
+Pot tam solda iken bile çubuğun <b>ilk LED'i yansın</b>, her seviyede bir LED fazla yanık olsun. Karşılaştırma işaretini değiştir.
+@@1143
+Küçüktür (<) yerine küçük eşittir (<=) kullan.
+@@1145
+Her seviyede bir LED fazla yanıyor!
+@@1146
+Dört LED'lik gösterge
+@@1147
+Çubuğun sadece <b>ilk 4 LED'i</b> kullanılsın: pot tam sağdayken en fazla 4 LED yansın. <code>map</code> komutunun son sayısını değiştir.
+@@1149
+map komutunun son sayısı, en çok kaç LED yanacağını belirler. 8 yerine 4 yaz.
+@@1150
+Dört LED'lik gösterge hazır!
+@@1151
+Duyarlı pot
+@@1152
+Çubuk potun tam yarı yolunda <b>tamamen dolsun</b>. Yani pot <b>2048</b> iken 8 LED yanmalı. Pot okumasının üst sınırını <code>map</code> komutunda düzelt.
+@@1154
+map'in ilk aralığı pot okumasıdır. 4095 yerine 2048 yaz; daha küçük bir sayıya ulaşınca çubuk dolar.
+@@1155
+Duyarlı pot! Çubuk yarı yolda doldu.
+@@1158
+Senaryo tamamlanmadı, tekrar dene.
+@@1159
+{0} tuşuna basınca {1} Hz çalmalı (şu an {2}).
+@@1161
+{0} tuşunu bırakınca ses kesilmeli ama buzzer hâlâ ötüyor.
+@@1163
+// Mesafeyi santimetre olarak ölç
+long mesafeOlc(int pin) {
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pin, LOW);
+  pinMode(pin, INPUT);
+  return pulseIn(pin, HIGH, 30000) / 58;
+}
+
+
+@@1174
+Melodinin başını değiştir
+@@1175
+Melodi şu an Do-Mi-Sol ile başlıyor. Listedeki <b>ilk üç sayıyı</b> değiştir: melodi <b>Sol (392), La (440), Si (494)</b> ile başlasın. Gerisi aynı kalsın.
+@@1177
+Süslü parantez içindeki ilk üç sayı sırayla 392, 440, 494 olmalı. Virgülleri silme.
+@@1178
+Melodi eksik çalıyor, listeyi bozma: 7 nota olmalı.
+@@1179
+{0}. nota {1} Hz olmalı (şu an {2} Hz).
+@@1180
+Melodi artık Sol-La-Si ile başlıyor!
+@@1181
+Yavaş melodi
+@@1182
+Notalar çok hızlı geçiyor. Her notanın <b>en az 500 ms</b> (yarım saniye) sürmesini sağla; 7 nota da çalsın.
+@@1184
+Nota ne kadar sürecekse tone komutundan sonraki delay o kadar bekler. 300 yerine daha büyük bir sayı yaz, örneğin 600.
+@@1185
+Sadece {0} nota çaldı, 7 olmalı.
+@@1186
+En kısa nota {0} ms sürüyor. Her nota en az 500 ms olmalı.
+@@1187
+Notalar çok uzadı, 900 ms'yi geçmesin.
+@@1188
+Melodi artık yavaş ve ağır çalıyor!
+@@1189
+Kısa melodi, uzun nefes
+@@1190
+Melodiyi <b>sadece ilk 4 nota</b> çalacak şekilde kısalt ve notalar arasındaki sessizliği <b>150-300 ms</b> yap.
+@@1193
+Döngü kaç kez dönerse o kadar nota çalar. Sessizlik, noTone'dan sonraki delay'dir.
+@@1194
+{0} nota çaldı, tam 4 nota olmalı. Döngünün kaç kez döneceğini değiştir.
+@@1195
+Notalar arası sessizlik {0} ms. 150-300 ms olmalı.
+@@1196
+4 notalık, ferah bir melodi oldu!
+@@1203
+Daraltılmış hareket
+@@1204
+Kol şu an <b>0°</b> ile <b>180°</b> arasında gidip geliyor. Uçları değiştir: kol <b>30°</b> ile <b>150°</b> arasında gidip gelsin.
+@@1209
+İki write komutunun içindeki açıları değiştir: biri 30, öbürü 150 olsun.
+@@1210
+Servo yeterince hareket etmedi.
+@@1211
+Kol 30° ve 150° dışında bir açıya gitti ({0}°). Uçlar tam 30 ve 150 olmalı.
+@@1213
+Kol 30° ile 150° arasında gidip geliyor!
+@@1214
+Yavaş süpürme
+@@1215
+Kol çok hızlı süpürüyor. Kolu 0°'den 180°'ye <b>en fazla 12°</b>'lik adımlarla ve toplam <b>en az 1,5 saniyede</b> götür. (İki sayıyı değiştirmen gerekecek.)
+@@1219
+Adım küçülürse adım sayısı artar. 10° adımla 18 adım olur; her adımda 100 ms beklersen 1,8 saniye eder.
+@@1220
+Kol 0°'ye gelmedi.
+@@1221
+Kol 180°'ye ulaşmadı.
+@@1222
+En büyük adım {0}°. 12°'yi geçmemeli, adımı küçült.
+@@1223
+Süpürme {0} ms sürdü, en az 1500 ms olmalı. Adımlar arası beklemeyi artır.
+@@1224
+Kol artık yavaş ve yumuşak süpürüyor!
+@@1225
+Dört kez selam
+@@1226
+Kol şu an iki kez <b>0°</b> ile <b>180°</b> arasında gidip geliyor. Onu <b>60°</b> ile <b>120°</b> arasında, <b>4 kez</b> gidip gelecek şekilde değiştir. Üç yeri değiştirmen gerekecek.
+@@1230
+Döngüdeki 2 kaç kez tekrar edileceğini belirler. Açılar 60 ve 120 olmalı.
+@@1231
+Kol 60° ve 120° dışına çıktı ({0}°). Sadece bu iki açı kullanılmalı.
+@@1232
+Kol {0} kez gidip geldi. 4 kez olmalı.
+@@1233
+Kol dört kez selam verdi!
+@@1234
+// Mesafeyi santimetre olarak ölç
+long mesafeOlc(int pin) {
+
+@@1241
+Uyarı mesafesini kısalt
+@@1242
+Buzzer şu an engel <b>100 cm</b>'den yakınsa ötüyor. Eşiği değiştir: sadece <b>30 cm</b>'den yakın engellerde ötsün. (60 cm'de sessiz, 20 cm'de bip olmalı.)
+@@1246
+Koşuldaki 100 sayısı "kaç santimetreden yakın" demek. 60'tan küçük, 20'den büyük bir sayı seç, örneğin 30.
+@@1247
+Engel 150 cm'deyken buzzer ötmemeli.
+@@1248
+Engel 60 cm'deyken buzzer hâlâ ötüyor. Eşik 60'tan küçük olmalı.
+@@1249
+Engel 20 cm'deyken buzzer ötmedi. Eşik 20'den büyük olmalı.
+@@1250
+Park sensörün artık sadece 30 cm'den yakında uyarıyor!
+@@1251
+Tiz ve telaşlı alarm
+@@1252
+Bip sesini <b>tizleştir</b> (1800-2500 Hz arası) ve <b>sıklaştır</b>: engel 20 cm'deyken saniyede yaklaşık 10 bip veya daha çok olsun. Bekleme süresindeki çarpanı küçültmen gerekecek.
+@@1256
+Frekans 1000'den büyük olsun, örneğin 2000. İki delay'deki 4 çarpanını 2 yap; bekleme yarıya iner, bip iki kat sıklaşır.
+@@1257
+Engel 20 cm'deyken buzzer ötmedi.
+@@1258
+Bip frekansı {0} Hz. 1800-2500 Hz arasında olmalı.
+@@1259
+Saniyede {0} bip var, en az 9 olmalı. Bekleme çarpanını küçült.
+@@1260
+Tiz ve telaşlı bir alarm yaptın!
+@@1261
+Yaklaştıkça incelen ses
+@@1262
+Şu an her bip aynı <b>1000 Hz</b>. Bip frekansı sabit bir sayı yerine <b>mesafeye bağlı</b> olsun: engel yaklaştıkça ses <b>daha tiz</b> çıksın. Frekansı 100-5000 Hz arasında tut.
+@@1264
+cm küçüldükçe büyüyen bir ifade lazım. Örneğin 2000 - cm * 10: 80 cm'de 1200, 15 cm'de 1850 Hz olur.
+@@1265
+Her mesafe aşamasında (80, 40 ve 15 cm) bip duyulmalı.
+@@1266
+Frekans 100-5000 Hz arasında kalmalı.
+@@1267
+Frekanslar 80 cm: {0}, 40 cm: {1}, 15 cm: {2} Hz. Yaklaştıkça artmalı (her adımda en az 100 Hz).
+@@1268
+Engel yaklaştıkça ses incelip tizleşiyor!
+@@1275
+Tuşları takas et
+@@1276
+D0 tuşu şu an Do (262 Hz), D5 tuşu La (440 Hz) çalıyor. İki notayı <b>takas et</b>: D0 tuşu <b>La (440)</b>, D5 tuşu <b>Do (262)</b> çalsın.
+@@1279
+D0 satırındaki sayıyı 440, D5 satırındakini 262 yap. Pin numaralarına dokunma.
+@@1281
+Akort ayarı
+@@1282
+Piyanonun üç tuşu akortsuz! Nota tablosuna bakarak <b>D1 (Re 294)</b>, <b>D4 (Sol 392)</b> ve <b>D6 (Si 494)</b> tuşlarının frekanslarını düzelt.
+@@1286
+Re = 294, Sol = 392, Si = 494 Hz. Her satırdaki yanlış sayıyı doğrusuyla değiştir.
+@@1287
+Piyano akortlandı, tüm tuşlar doğru!
+@@1289
+Bu piyanoda tuşu bırakınca <b>ses kesilmiyor</b>! Döngünün başındaki sorunlu satırı, sesi susturan doğru komutla değiştir (buzzer D8 pininde).
+@@1292
+Sesi susturan komutun adı noTone. İçine buzzer pinini yaz.
+@@1293
+Tuşu bırakınca ses artık kesiliyor!
+@@1312
+Frekans aralığını daralt
+@@1313
+Çalgı şu an <b>200 Hz</b> ile <b>2000 Hz</b> arasında çalıyor. Aralığı değiştir: karanlıkta (0) <b>500 Hz</b>, tam ışıkta (4095) <b>1500 Hz</b> çalsın. Yalnızca map içindeki iki sayıyı değiştirmen yeter.
+@@1316
+map'in son iki sayısı çıktı aralığıdır: önce en düşük frekans, sonra en yüksek frekans. 500 ve 1500 yaz.
+@@1318
+Işık {0} iken yaklaşık {1} Hz çalmalı (şu an {2}).
+@@1319
+Çalgı artık 500-1500 Hz aralığında çalıyor!
+@@1320
+Hızlı tepki
+@@1321
+Bu çalgı ışığa <b>geç</b> tepki veriyor: ışık değişince ses ancak çeyrek saniye sonra değişiyor. Tepkiyi hızlandır: ışık değiştikten sonra ses <b>70 ms içinde</b> değişsin. Yalnızca bekleme süresini değiştirmen gerekecek.
+@@1323
+Döngü sonundaki bekleme, kartın ışığa ne kadar sık baktığını belirler. 200 yerine çok daha küçük bir sayı yaz, örneğin 20.
+@@1324
+Işık {0} olunca ses {1} Hz civarına gelmedi. Haritayı bozma, yalnızca beklemeyi değiştir.
+@@1325
+Işık değişince ses {0} ms sonra değişti. 70 ms içinde olmalı; beklemeyi küçült.
+@@1326
+Çalgı ışığa anında tepki veriyor!
+@@1327
+Ses tavanı koy
+@@1328
+Güneşli bir günde çalgı çok tiz ötüyor ve kulakları rahatsız ediyor. <b>tone</b> komutunu değiştir: frekans hiçbir zaman <b>1200 Hz</b>'i geçmesin, ama aşağıda eskisi gibi ışığı izlesin. (<code>constrain(x, en_az, en_çok)</code> sayıyı sınırlar.)
+@@1331
+tone'a frekans yerine constrain(frekans, 200, 1200) ver. Böylece sonuç hiçbir zaman 1200'ü geçmez.
+@@1332
+Her ışık seviyesinde ses çıkmalı.
+@@1333
+Frekans {0} Hz çıktı. 1200 Hz'i geçmemeli.
+@@1334
+Düşük ışıkta çalgı ışığı izlemeli ({0} → {1} Hz). Yalnızca üst sınırı koy.
+@@1335
+Çok ışıkta ses 1200 Hz'e dayanmalı (şu an {0} Hz).
+@@1336
+Ses tavanı koydun: hiçbir zaman 1200 Hz'i geçmiyor!
+@@1342
+Dar hareket aralığı
+@@1343
+Kol şu an topuzla birlikte <b>0°</b> ile <b>180°</b> arasında geziyor. Aralığı daralt: topuz tam solda iken kol <b>45°</b>, tam sağda iken <b>135°</b> olsun (ortada 90°).
+@@1346
+map'in son iki sayısı çıktı aralığıdır. 0 ve 180 yerine 45 ve 135 yaz; ilk iki sayıya (0, 4095) dokunma.
+@@1347
+Servo hiç hareket etmedi.
+@@1348
+Pot {0} iken kol yaklaşık {1}° olmalı (şu an {2}).
+@@1351
+Kol artık 45°-135° arasında geziyor!
+@@1352
+Ters yön
+@@1353
+Topuz sağa döndükçe kol da sağa gidiyor. Yönü <b>tersine çevir</b>: topuz tam solda iken kol <b>180°</b>, tam sağda iken <b>0°</b> olsun.
+@@1355
+map'in çıktı aralığını ters yaz: önce 180, sonra 0.
+@@1356
+Yön tersine döndü: topuz sağa, kol sola!
+@@1357
+Güvenli sınır
+@@1358
+Servo kolu bir engele çarpıyor: <b>120°</b>'den fazla açılmamalı. Alçak değerlerde eskisi gibi topuzu izlesin, ama kol hiçbir zaman <b>120°</b>'yi geçmesin. (<code>constrain(x, en_az, en_çok)</code> sayıyı sınırlar.)
+@@1361
+servo.write'a aci yerine constrain(aci, 0, 120) ver. Sınır, yazılacak açıyı kırpar.
+@@1362
+Kol {0}° açısına gitti. 120°'yi geçmemeli.
+@@1363
+Servo her aşamada bir açıya gitmeli.
+@@1364
+Pot 500 iken kol yaklaşık {0}° olmalı (şu an {1}°). Düşük değerlerde topuzu izlemeli.
+@@1365
+Pot 2048 iken kol yaklaşık 90° olmalı (şu an {0}°).
+@@1366
+Pot tam sağdayken kol 120°'de durmalı (şu an {0}°).
+@@1367
+Kol 120°'de duruyor, engele çarpmıyor!
+@@1380
+Yazıyı değiştir
+@@1381
+Ekranın ilk satırında <b>Merhaba</b> yazıyor. İşaretli yazıyı <b>Selam</b> olarak değiştir. Tırnak işaretlerini silme!
+@@1384
+Yazı, çift tırnağın içindedir. Sadece harfleri değiştir.
+@@1385
+Ekrana henüz bir şey yazılmadı.
+@@1386
+Ekranda Selam yazıyor!
+@@1387
+Satır 1'de "Selam" yazmalı. Tırnak içindeki yazıyı değiştir.
+@@1388
+Sayaç şu an birden beşe sayıyor. İşaretli üç yeri değiştirerek <b>beşten bire geriye</b> saymasını sağla: başlangıç, koşul ve artış.
+@@1393
+Beşten başla, i sıfıra düşmeden dur (i büyük eşit bir olsun) ve her turda bir azalt (i, eksi eksi).
+@@1394
+Satır 2'de sayı görünmedi.
+@@1395
+Geri sayım çalışıyor: 5, 4, 3, 2, 1!
+@@1396
+Ekranda sayılar şu sırayla göründü: {0}. İstenen: 5, 4, 3, 2, 1.
+@@1397
+Sayıyı sağa al
+@@1398
+İkinci satırdaki sayı sol başta görünüyor. İşaretli sütun numarasını değiştirip sayıyı satırın <b>en sağına</b> (on beşinci sütuna) al. Ayrıca ilk satırdaki yazıyı <b>Selam</b> yap.
+@@1400
+Sütunlar sıfırdan başlar ve on altı sütun vardır. En sağ sütun numarası on beştir.
+@@1401
+Satır 1'de "Selam" yazmalı.
+@@1402
+Sayı hâlâ satırın başında görünüyor. setCursor'ın ilk sayısını büyüt.
+@@1403
+Sayı sağ köşede, Selam yukarıda. Süper!
+@@1404
+Sayı satırın en sağ köşesinde (sütun 15) görünmeli.
+@@1413
+Sadece çok parlakta aç
+@@1414
+Perde şu an ışık iki binden büyük olunca açılıyor. İşaretli sayıyı değiştir: perde <b>sadece çok parlak ışıkta</b> (üç bin ve üzeri) açılsın. Orta ışıkta (yaklaşık iki bin beş yüz) kapalı kalsın.
+@@1416
+Eşik büyüdükçe perdenin açılması için gereken ışık da artar. İki bin beş yüzden büyük, üç bin beşyüzden küçük bir eşik seç, örneğin 3000.
+@@1417
+Program ışığı sürekli izlemeli, döngüyü bozma.
+@@1418
+Çok parlak ışıkta perde açılmadı. Eşik fazla büyük olmasın (3000 gibi).
+@@1419
+Orta ışıkta (2500) perde hâlâ açılıyor. Eşiği 2500'den büyük yap.
+@@1420
+Perde artık sadece çok parlak ışıkta açılıyor!
+@@1421
+Yarım açık perde
+@@1422
+Perde ışıkta tamamen açılıyor (yüz seksen derece). İşaretli açıyı <b>doksan</b> yap ve ekran yazısını <b>Perde: Yari</b> olarak değiştir. Karanlıkta eskisi gibi kapanmaya devam etsin.
+@@1426
+write komutunun parantezindeki sayı servonun açısıdır. Yazıda sadece Acik kelimesini değiştirmen yeter.
+@@1427
+Program ışığı sürekli izlemeli.
+@@1428
+Işıkta perde yaklaşık doksan dereceye açılmalı.
+@@1429
+Işıkta ekranda "Perde: Yari" yazmalı.
+@@1430
+Karanlıkta perde kapanmalı ve ekranda Kapali yazmalı. Bu kısma dokunma.
+@@1431
+Perde yarım açılıyor ve ekran doğru yazıyor!
+@@1432
+Ters çalışan perde
+@@1433
+Bu perde ışık varken açılıyor. Biz <b>tersini</b> istiyoruz: ortam <b>karanlıkken açılsın</b>, ışıkta kapansın. Karşılaştırma işaretini ters çevir.
+@@1435
+Büyüktür işareti ile küçüktür işareti birbirinin tersidir. Karanlıkta sayı küçük olur.
+@@1436
+Karanlıkta perde açılmalı (servo 180). Karşılaştırma işaretini ters çevir.
+@@1437
+Işıkta perde kapanmalı (servo 0).
+@@1438
+Perde açıkken ekranda "Perde: Acik" yazmalı.
+@@1439
+Perde ters çalışıyor: karanlıkta açıp ışıkta kapatıyor!
+@@1452
+Eşiği 25 yap
+@@1453
+Uyarı şu an <b>30 °C</b> üstünde çıkıyor. İşaretli sayıyı değiştirerek uyarıyı <b>25 °C</b> üstüne çek. Böylece 28 °C gibi ılık bir ortamda da SICAK! yazar.
+@@1455
+Karşılaştırmadaki otuzu yirmi beş yap. İşareti ve değişken adını değiştirme.
+@@1456
+Uyarı artık 25 °C üstünde çıkıyor!
+@@1457
+Tam sayı göster
+@@1458
+Ekran sıcaklığı <b>36.6</b> gibi ondalıklı gösteriyor. Sıcaklık <b>tam sayı</b> olarak (<b>37</b> gibi, virgülden sonrası olmadan) görünsün. İşaretli satırdaki ondalık basamak sayısını değiştir.
+@@1460
+print komutundaki ikinci sayı, virgülden sonra kaç basamak yazılacağını söyler. Sıfır yazarsan hiç ondalık basamak olmaz.
+@@1461
+Sıcaklık tam sayı olarak görünüyor!
+@@1463
+Bir arkadaşın sıcaklığı <b>Fahrenheit</b> (°F) olarak görmek istiyor. Dönüşüm: <code>F = C * 1.8 + 32</code>. Formülü uzat, uyarı eşiğini <b>86</b>'ya çıkar (30 °C = 86 °F) ve iki yazıda birimi <b>F</b> yap.
+@@1469
+Formülün sonuna * 1.8 + 32 ekle. Eşik 86 olsun. Tırnak içindeki C harflerini F yap, boşluk sayılarını değiştirme.
+@@1470
+Sıcaklık Fahrenheit olarak görünüyor ve uyarı doğru çalışıyor!
+@@1477
+Sekiz yüzlü zar
+@@1478
+Bu zar 1-6 arası sayı veriyor. Oyun masasında <b>sekiz yüzlü</b> bir zar gerekiyor: sayılar <b>1-8</b> arası olsun. Üst sınırın dahil olmadığını unutma!

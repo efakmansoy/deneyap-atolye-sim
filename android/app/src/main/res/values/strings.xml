@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Deneyap Atölye</string>
+    <string name="title_activity_main">Deneyap Atölye</string>
+    <string name="package_name">com.deneyap.atolye</string>
+    <string name="custom_url_scheme">com.deneyap.atolye</string>
+</resources>

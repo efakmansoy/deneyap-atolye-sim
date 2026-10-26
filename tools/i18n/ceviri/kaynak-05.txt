@@ -1,0 +1,390 @@
+@@2605
+<p>Düğmeye ne zaman basılacağını bilemeyiz. O yüzden kart düğmeyi <b>durmadan kontrol etmeli</b>. <span class="chip akis">Akış</span> kategorisini aç ve <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına sürükle.</p>
+          <pre><code>void loop() {
+  ...
+}</code></pre>
+@@2606
+Akış kategorisinin ilk bloğu. Boş çalışma alanına bırak.
+@@2607
+Eğer bloğunu ekle
+@@2608
+<p>Yine <span class="chip akis">Akış</span> içinden <span class="chip akis">eğer</span> bloğunu al ve <span class="chip akis">sürekli tekrarla</span> bloğunun <b>içine</b> koy.</p>
+          <div class="kutu bilgi"><b>Eğer</b> bloğu bir şeyi sorar: koşul doğruysa içindeki bloklar çalışır.
+          <pre><code>if (koşul) {
+  ...
+}</code></pre></div>
+          <p>Bloğun üstündeki <b>⚙ dişli</b> simgesine tıklayıp <b>değilse</b> parçasını da ekle. Koşul doğru değilse o parça çalışır.</p>
+@@2609
+Eğer bloğunu sürekli tekrarla bloğunun C şeklindeki boşluğuna yaklaştır; yerine oturunca takılır.
+@@2610
+Düğme koşulunu tak
+@@2611
+<p><span class="chip dugme">Düğme</span> kategorisini aç. <span class="chip dugme">D5 düğmesine basılı mı?</span> bloğunu <b>eğer</b> bloğunun koşul yuvasına tak.</p>
+          <pre><code>if (digitalRead(D5) == HIGH) {</code></pre>
+          <p>Pin olarak <span class="pin-etiket">D5</span> seçili olsun.</p>
+@@2612
+Koşul yuvası eğer yazısının hemen sağındaki girinti. Blok oraya yapışır.
+@@2613
+LED'i yak ve söndür
+@@2614
+<p><span class="chip pin">Pinler</span> kategorisinden iki tane <span class="chip pin">pini yap</span> bloğu al. <b>Eğer</b> kısmına <span class="pin-etiket">D2</span> <b>YÜKSEK (1)</b>, <b>değilse</b> kısmına <span class="pin-etiket">D2</span> <b>DÜŞÜK (0)</b> koy.</p>
+          <pre><code>if (digitalRead(D5) == HIGH) {
+  digitalWrite(D2, HIGH);
+} else {
+  digitalWrite(D2, LOW);
+}</code></pre>
+          <div class="kutu dikkat"><b>Dikkat:</b> Pinleri D2 yap. Bloklar varsayılan olarak D0 gelir.</div>
+@@2615
+Bir blok eğer kısmında, diğeri değilse kısmında olmalı. İkisinin de pinini D2 yapmayı unutma.
+@@2616
+Çalıştır ve düğmeye bas
+@@2617
+<p><b>▶ Çalıştır</b> düğmesine bas. Program çalışırken 3B sahnedeki <b>düğmeye fareyle bas ve basılı tut</b>, sonra bırak. LED'i izle!</p>
+          <div class="kutu bilgi"><b>Kısa yol:</b> <span class="chip dugme">D2 pinini [ ] değerine eşitle</span> bloğu (Düğme kategorisi) eğer / değilse işini tek başına yapar.</div>
+          <div class="kutu hedef"><b>Hedef:</b> Düğmeye basınca LED yansın, bırakınca sönsün.</div>
+@@2618
+LED düğmeyi geç takip ediyorsa sürekli tekrarla bloğunun içinde olduğundan emin ol.
+@@2620
+Düğmeye basılıyken LED sönük kaldı.
+@@2621
+Süper! LED düğmeyi takip ediyor.
+@@2623
+2.2 · İki düğme (AND / OR)
+@@2624
+<h2>İki düğme: VE / VEYA</h2>
+      <p>D5 ve D6'ya iki düğme, D2 ve D3'e iki LED bağlı.</p>
+      <ul>
+        <li><b>D2 (VE):</b> yalnızca <b>iki düğmeye de</b> basılıyken yansın.</li>
+        <li><b>D3 (VEYA):</b> düğmelerden <b>en az birine</b> basılıyken yansın.</li>
+      </ul>
+      <p><b>Mantık</b> kategorisindeki <b>ve / veya</b> bloğunu kullan; iki <b>düğmesine basılı mı?</b> bloğunu içine tak.
+      <b>Sürekli tekrarla</b> içinde iki <b>eşitle</b> bloğu yeter.</p>
+@@2625
+<p>Bu sefer <b>iki düğme</b> (<span class="pin-etiket">D5</span> mavi, <span class="pin-etiket">D6</span> yeşil) ve <b>iki LED</b> (<span class="pin-etiket">D2</span> kırmızı, <span class="pin-etiket">D3</span> yeşil) var.</p>
+          <ul>
+            <li><span class="pin-etiket">D2</span>: iki düğmeye de basılınca yansın (<b>VE</b>).</li>
+            <li><span class="pin-etiket">D3</span>: düğmelerden biri yetsin (<b>VEYA</b>).</li>
+          </ul>
+@@2626
+VE ve VEYA nedir?
+@@2627
+<div class="kutu bilgi"><b>VE (AND):</b> iki şart <i>birlikte</i> doğru olmalı. <b>VEYA (OR):</b> şartlardan <i>biri</i> doğru olsa yeter.
+          <pre><code>(a == HIGH) &amp;&amp; (b == HIGH)   // VE
+(a == HIGH) || (b == HIGH)   // VEYA</code></pre></div>
+          <p>Bir örnek: "yağmur VE rüzgar var" ise şemsiye gerekir. "yağmur VEYA rüzgar var" ise de ceket giyersin.</p>
+@@2628
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına sürükle. Düğmeler hep kontrol edilecek.</p>
+@@2629
+İki eşitle bloğu
+@@2630
+<p><span class="chip dugme">Düğme</span> kategorisinden iki tane <span class="chip dugme">pinini [ ] değerine eşitle</span> bloğu al ve <b>sürekli tekrarla</b> içine alt alta koy. Birincisini <span class="pin-etiket">D2</span>, ikincisini <span class="pin-etiket">D3</span> yap.</p>
+          <pre><code>digitalWrite(D2, ... ? HIGH : LOW);</code></pre>
+          <p>Bu blok, yuvasına gelen doğru / yanlış değerine göre pini YÜKSEK ya da DÜŞÜK yapar.</p>
+@@2631
+İkinci bloğu birincinin hemen altına bırak; iki blok birbirine yapışır.
+@@2632
+VE / VEYA bloklarını tak
+@@2633
+<p><span class="chip mantik">Mantık</span> kategorisinden iki tane <span class="chip mantik">ve / veya</span> bloğu al ve eşitle bloklarının yuvalarına tak. D2'ninkini <b>ve</b>, D3'ünkini <b>veya</b> yap (blok üzerindeki açılır listeden).</p>
+          <pre><code>digitalWrite(D2, (digitalRead(D5) == HIGH) &amp;&amp; (digitalRead(D6) == HIGH) ? HIGH : LOW);</code></pre>
+@@2634
+Bloğun ortasındaki küçük liste "ve" ile "veya" arasında seçim yapar.
+@@2635
+Düğme sorularını tak
+@@2636
+<p><span class="chip dugme">Düğme</span> kategorisinden dört tane <span class="chip dugme">düğmesine basılı mı?</span> bloğu al. Her ve / veya bloğunun içine biri <span class="pin-etiket">D5</span>, biri <span class="pin-etiket">D6</span> olacak şekilde tak.</p>
+          <div class="kutu dikkat"><b>Dikkat:</b> Dört blokta da doğru pin (D5 ve D6) seçili olsun. Aynı pin iki kez olursa sonuç yanlış çıkar.</div>
+@@2637
+Bloğu kopyalamak için üzerine tıkla, Ctrl+C ve Ctrl+V yapabilirsin.
+@@2638
+Çalıştır ve dene
+@@2639
+<p><b>▶ Çalıştır</b>'a bas. Sahnede önce sadece mavi, sonra sadece yeşil, en sonda ikisine birden fareyle bas.</p>
+          <div class="kutu hedef"><b>Hedef:</b> <span class="pin-etiket">D3</span> bir düğmeyle bile yansın, <span class="pin-etiket">D2</span> yalnızca ikisi birden basılınca yansın.</div>
+@@2640
+D2 tek düğmede yanıyorsa ve bloğunu veya yapmış olabilirsin.
+@@2642
+D2 (VE) LED hatalı: yalnızca iki düğmeye birden basılınca yanmalı.
+@@2643
+D3 (VEYA) LED hatalı: en az bir düğmeye basılınca yanmalı.
+@@2644
+Mükemmel! VE ve VEYA mantığı doğru çalışıyor.
+@@2646
+2.3 · Seri monitör
+@@2647
+<h2>Seri monitör</h2>
+      <p>Seri monitör, kartın bilgisayara yazı göndermesini sağlar. Düğmenin durumunu sürekli yazdıralım.</p>
+      <ol>
+        <li><b>Sürekli tekrarla</b> içine <b>seri monitöre yaz</b> bloğunu koy.</li>
+        <li>İçine <b>birleştir</b> bloğu tak: ilk parça <i>"Düğme: "</i>, ikinci parça <b>D5 düğme değeri (0 / 1)</b>.</li>
+        <li>Sonra <b>200 ms bekle</b> ekle ki ekran dolup taşmasın.</li>
+      </ol>
+      <p>Düğmeye basınca satırlarda <b>1</b>, bırakınca <b>0</b> görmelisin.</p>
+@@2648
+Seri monitör nedir?
+@@2649
+<p>Kartın <span class="pin-etiket">D5</span> pinine bağlı bir düğme var. Düğmenin durumunu bilgisayara <b>yazı</b> olarak göndereceğiz.</p>
+          <div class="kutu bilgi"><b>Seri monitör</b>, kartın bilgisayara mesaj gönderdiği küçük bir ekrandır. Kod yazarken "içeride ne oluyor?" diye bakmanın en iyi yolu budur.
+          <pre><code>Serial.begin(115200);
+Serial.println("Merhaba");</code></pre></div>
+          <p>Önce sahnede düğmeye basıp bırak, nasıl çalıştığını gör.</p>
+@@2650
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına sürükle.</p>
+@@2651
+Seri monitöre yaz
+@@2652
+<p><span class="chip seri">Seri</span> kategorisini aç. <span class="chip seri">seri monitöre yaz</span> bloğunu <b>sürekli tekrarla</b> içine koy.</p>
+@@2653
+Blok sürekli tekrarla bloğunun içindeki boşluğa oturmalı.
+@@2654
+Yazıyı ve düğme değerini birleştir
+@@2655
+<p><span class="chip analog">Metin</span> kategorisinden <span class="chip analog">birleştir</span> bloğunu al ve <b>seri monitöre yaz</b> bloğunun yuvasına tak. İlk kutuya <i>Düğme: </i> yaz.</p>
+          <p>Sonra <span class="chip dugme">Düğme</span> kategorisinden <span class="chip dugme">D5 düğme değeri (0 / 1)</span> bloğunu ikinci yuvaya tak.</p>
+          <pre><code>Serial.println((String("Düğme: ") + String(digitalRead(D5))));</code></pre>
+          <div class="kutu bilgi"><code>String(...)</code> sayıyı metne çevirir; <code>+</code> iki metni yan yana yapıştırır.</div>
+@@2656
+Birleştir bloğu Metin kategorisinde. Düğme değeri bloğunun pini D5 olmalı.
+@@2657
+Biraz bekle
+@@2658
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">ms bekle</span> bloğunu al, <b>seri monitöre yaz</b> bloğunun altına koy ve <b>200</b> yap.</p>
+          <div class="kutu dikkat"><b>Dikkat:</b> Beklemezsen kart saniyede binlerce satır yazar ve ekran dolup taşar.</div>
+@@2659
+Bekle bloğunun sayı kutusuna 200 yaz.
+@@2660
+<p><b>▶ Çalıştır</b>'a bas. Seri monitörde satırlar akarken sahnedeki <b>düğmeye fareyle bas, basılı tut</b> ve bırak.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Satırlar önce <b>0</b>, basarken <b>1</b>, bırakınca yine <b>0</b> olsun.</div>
+@@2661
+Hiç 1 görünmüyorsa D5 düğme değeri bloğunun pini D5 mi, kontrol et.
+@@2662
+Seri monitöre yeterince satır yazılmadı. Döngü ve bekleme kullandın mı?
+@@2663
+Her satır 0 veya 1 ile bitmeli (D5 düğme değerini ekle).
+@@2664
+Hiç 1 görünmedi. Düğmenin değerini yazdırdığından emin ol.
+@@2665
+Basılı kaldığı süre kadar 1 yazılmalı (200 ms'de bir).
+@@2666
+Sıra 0...0, 1...1, 0...0 olmalı.
+@@2667
+Harika! Düğme durumunu seri monitörde görüyorsun.
+@@2669
+2.4 · Düğme sayacı
+@@2670
+<h2>Düğme sayacı</h2>
+      <p>Değişken, sayıyı hatırlayan bir kutudur. Düğmeye her basışı sayalım.</p>
+      <ol>
+        <li><b>Değişkenler</b> kategorisinde <b>Değişken oluştur…</b> de, adı <i>sayac</i> olsun.</li>
+        <li>Önce (döngüden önce) <b>sayac değerini 0 yap</b>.</li>
+        <li><b>Sürekli tekrarla</b> içinde: <b>D5 düğmesi basılana kadar bekle</b>, <b>sayac değerini 1 artır</b>, sayacı seri monitöre yaz, sonra <b>D5 düğmesi bırakılana kadar bekle</b>.</li>
+      </ol>
+      <p>Seri monitörde 1, 2, 3 ... görmelisin. (Bırakılmasını beklemezsen sayaç hızla çılgına döner!)</p>
+@@2671
+Sayaç fikri
+@@2672
+<p>Düğmeye kaç kez bastığını kart <b>hatırlamalı</b>. Bunun için bir <b>değişken</b> kullanacağız.</p>
+          <div class="kutu bilgi"><b>Değişken</b>, sayı saklayan adlı bir kutudur. Kutuyu bir kez oluşturur, sonra içindeki sayıyı değiştirirsin.
+          <pre><code>int sayac = 0;
+sayac += 1;</code></pre></div>
+          <p>Sahnedeki düğmeye (<span class="pin-etiket">D5</span>) bir kez bas, sonra programı yazalım.</p>
+@@2673
+Değişkeni oluştur ve sıfırla
+@@2674
+<p><span class="chip degisken">Değişkenler</span> kategorisini aç, <b>Değişken oluştur…</b> düğmesine bas ve adı <i>sayac</i> yap. Sonra <span class="chip degisken">sayac değerini [ ] yap</span> bloğunu çalışma alanına koy; değeri <b>0</b> olsun.</p>
+          <pre><code>sayac = 0;</code></pre>
+          <p>Bu blok döngünün <b>dışında</b> olsun. Sayaç yalnızca başta sıfırlanır.</p>
+@@2676
+Değişken oluşturunca kategoride yeni bloklar belirir. "ata" bloğunu al.
+@@2677
+Sürekli tekrarla ve basışı bekle
+@@2678
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu alıp sayaç bloğunun altına yerleştir. İçine <span class="chip dugme">Düğme</span> kategorisinden <span class="chip dugme">D5 düğmesi basılı kadar bekle</span> bloğunu koy ve durumunu <b>basılı</b> seç.</p>
+          <pre><code>while (digitalRead(D5) != HIGH) {
+  delay(1);
+}</code></pre>
+          <p>Kart burada düğmeye basılana kadar bekler.</p>
+@@2679
+Bekle bloğundaki durum listesinde basılı ve bırakılmış seçenekleri var. Şimdilik basılı lazım.
+@@2680
+Sayacı artır ve yazdır
+@@2681
+<p><span class="chip degisken">sayac değerini [1] artır</span> bloğunu bekle bloğunun altına koy. Sonra <span class="chip seri">seri monitöre yaz</span> bloğuna <span class="chip degisken">sayac</span> değerini tak.</p>
+          <pre><code>sayac += 1;
+Serial.println(sayac);</code></pre>
+@@2683
+Artır bloğunu Değişkenler kategorisinde bul. Seri monitöre yaz bloğu Seri kategorisinde.
+@@2684
+Bırakılmasını bekle
+@@2685
+<p>Son olarak <span class="chip dugme">D5 düğmesi bekle</span> bloğunu bir tane daha al, en alta koy ve durumunu <b>bırakılmış</b> yap.</p>
+          <pre><code>while (digitalRead(D5) != LOW) {
+  delay(1);
+}</code></pre>
+          <div class="kutu dikkat"><b>Dikkat:</b> Bu blok olmazsa düğme basılı kaldığı sürece sayaç çılgınca artar. Kart "bir basış" ile "basılı tutuş" arasındaki farkı bilmez!</div>
+@@2686
+Aynı blok, sadece durumu farklı: bu sefer bırakılmış seçili olsun.
+@@2687
+Çalıştır ve 3 kez bas
+@@2688
+<p><b>▶ Çalıştır</b>'a bas. Sahnedeki düğmeye <b>3 kez</b> fareyle bas, her seferinde bırak.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Seri monitörde <b>1, 2, 3</b> yazsın.</div>
+@@2689
+Sayılar çok hızlı artıyorsa bırakılmasını bekleyen bloğu eklediğinden emin ol.
+@@2690
+Düğmeye 3 kez basıldı ama {0} satır yazıldı. Her basışta bir kez yaz; bırakılmasını bekle.
+@@2691
+Sayaç 1, 2, 3 diye artmalı (başlangıç 0, her basışta +1).
+@@2692
+Süper! Değişkenle düğme basışlarını saydın.
+@@2695
+<h2>Refleks oyunu</h2>
+      <p>LED rastgele bir an yanacak. Yanar yanmaz düğmeye bas; ne kadar hızlı olduğunu ölçelim!</p>
+      <ol>
+        <li><b>2000 ms bekle</b> (oyuncu LED'in ne zaman yanacağını bilmesin).</li>
+        <li><b>D2 pinini YÜKSEK</b> yap ve <b>geçen süre (ms)</b> değerini <i>baslangic</i> değişkenine kaydet.</li>
+        <li><b>D5 düğmesi basılana kadar bekle</b>.</li>
+        <li><i>sure</i> = <b>geçen süre</b> − <i>baslangic</i>.</li>
+        <li>Seri monitöre yaz: <i>"Tepki: "</i> + sure + <i>" ms"</i> (birleştir ve sayıyı metne çevir kullan). Sonunda D2'yi söndür.</li>
+      </ol>
+@@2696
+Oyunun planı
+@@2697
+<p>Plan şöyle: kart biraz bekler, <span class="pin-etiket">D2</span> LED'ini yakar ve sen <span class="pin-etiket">D5</span> düğmesine basana kadar geçen süreyi ölçer.</p>
+          <div class="kutu bilgi"><b>Zaman ölçmek:</b> Kart açıldığı andan beri milisaniye sayar. Yanma anını ve basış anını kaydedip farkını alırsak tepki süreni buluruz.
+          <pre><code>baslangic = millis();
+sure = millis() - baslangic;</code></pre></div>
+@@2698
+Bekle ve LED'i yak
+@@2699
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">ms bekle</span> bloğunu al ve <b>2000</b> yap. Altına <span class="chip pin">Pinler</span> kategorisinden <span class="chip pin">D2 pinini YÜKSEK (1) yap</span> bloğunu koy.</p>
+          <pre><code>delay(2000);
+digitalWrite(D2, HIGH);</code></pre>
+@@2700
+Pin D2 ve değer YÜKSEK olmalı. Bekleme bloğu LED bloğunun üstünde dursun.
+@@2701
+Başlangıç zamanını kaydet
+@@2702
+<p><span class="chip degisken">Değişkenler</span> kategorisinde <i>baslangic</i> adlı bir değişken oluştur ve <span class="chip degisken">baslangic değerini [ ] yap</span> bloğunu al. İçine <span class="chip analog">Metin</span> kategorisindeki <span class="chip analog">geçen süre (ms)</span> bloğunu tak.</p>
+          <pre><code>baslangic = millis();</code></pre>
+@@2703
+Geçen süre bloğu Metin kategorisinde. Değişken ata bloğunun yuvasına tak.
+@@2704
+Basılmasını bekle ve süreyi hesapla
+@@2705
+<p><span class="chip dugme">D5 düğmesi basılı kadar bekle</span> bloğunu al (<span class="chip dugme">Düğme</span> kategorisi). Altına <i>sure</i> adlı yeni bir değişken ata ve içine bir <span class="chip sayi">Sayı</span> kategorisinden <span class="chip sayi">çıkarma (−)</span> bloğu tak: <b>geçen süre</b> − <b>baslangic</b>.</p>
+          <pre><code>while (digitalRead(D5) != HIGH) {
+  delay(1);
+}
+sure = millis() - baslangic;</code></pre>
+          <p>Bloğun işlem listesinden <b>−</b> seçmeyi unutma.</p>
+@@2706
+Çıkarma sırası önemli: şimdiki zaman eksi başlangıç zamanı.
+@@2707
+Sonucu yazdır
+@@2708
+<p><span class="chip seri">seri monitöre yaz</span> bloğuna <span class="chip analog">birleştir</span> tak: <i>Tepki: </i> + <span class="chip analog">sure sayısını metne çevir</span>. Sonra bir birleştir daha ekleyip sonuna <i> ms</i> ekle.</p>
+          <pre><code>Serial.println((String((String("Tepki: ") + String(String(sure)))) + String(" ms")));</code></pre>
+          <div class="kutu bilgi">Kod karışık görünüyor ama yaptığı şey basit: metinleri uç uca yapıştırıyor.</div>
+          <p>Son olarak <span class="pin-etiket">D2</span> pinini <b>DÜŞÜK</b> yaparak LED'i söndür.</p>
+@@2709
+Sayıyı yazıyla birleştirmeden önce metne çevirmen gerekir.
+@@2711
+<p><b>▶ Çalıştır</b>'a bas. LED yanar yanmaz sahnedeki <b>düğmeye fareyle bas</b>.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Seri monitörde tepki süren (ms) yazsın.</div>
+@@2712
+Süre çok tuhaf çıkıyorsa baslangic değerini LED yandıktan hemen sonra kaydettiğine bak.
+@@2713
+LED hemen yandı. Önce biraz bekle ki oyun heyecanlı olsun.
+@@2714
+Ölçülen süre ({0} ms) gerçek süreye (~{1} ms) uymuyor. LED yandığı anı ve basılma anını kaydet.
+@@2715
+Tepki süren {0} ms. Harika oyun!
+@@2718
+<h2>RGB LED: renk karıştırma</h2>
+      <p>RGB LED'in içinde üç küçük ışık var: <b>kırmızı (D0)</b>, <b>yeşil (D1)</b>, <b>mavi (D2)</b>. Üçünü karıştırarak her rengi yapabilirsin.</p>
+      <ol>
+        <li><b>PWM</b> bloğunu üç kez al (Pinler kutusu).</li>
+        <li>D0'a <b>255</b>, D1'e <b>0</b>, D2'ye <b>255</b> yaz.</li>
+        <li>▶ Çalıştır'a bas. Kırmızı + mavi = <b>mor</b>!</li>
+      </ol>
+      <p>0 = tamamen sönük, 255 = en parlak. Başka renkler de dene.</p>
+@@2719
+RGB LED'i tanı
+@@2720
+<p>Sahnedeki <b>RGB LED</b>'in içinde üç minik ışık var: <b>kırmızı</b> (<span class="pin-etiket">D0</span>), <b>yeşil</b> (<span class="pin-etiket">D1</span>) ve <b>mavi</b> (<span class="pin-etiket">D2</span>). Yeşil halka LED'i gösteriyor.</p>
+          <div class="kutu bilgi"><b>Renk karışımı:</b> Ressamlar boyayı karıştırır, biz ışığı! Kırmızı + mavi = mor, kırmızı + yeşil = sarı, üçü birden = beyaz. Her rengin parlaklığını ayrı ayrı ayarlayacağız.</div>
+@@2721
+PWM bloğunu al
+@@2722
+<p><span class="chip pin">Pinler</span> kategorisini aç ve <span class="chip pin">PWM</span> bloğunu çalışma alanına sürükle.</p>
+          <div class="kutu bilgi"><b>PWM nedir?</b> Pin sadece açık/kapalı olmak zorunda değil. PWM ile pine <b>0 ile 255</b> arası bir sayı yazarız: 0 sönük, 255 en parlak, ortası yarım parlak.
+            <pre><code>analogWrite(D0, 255);</code></pre></div>
+@@2723
+Pinler kategorisinde ikinci sıradaki blok. Boş çalışma alanına bırak.
+@@2724
+Kırmızı ve mavi: tam parlak
+@@2725
+<p>Üç tane <span class="chip pin">PWM</span> bloğu olacak. Birincisi <span class="pin-etiket">D0</span> pinine <b>255</b>, ikincisi <span class="pin-etiket">D2</span> pinine <b>255</b> yazsın. Blokları alt alta tak.</p>
+          <pre><code>analogWrite(D0, 255);
+analogWrite(D2, 255);</code></pre>
+@@2726
+Pin adını bloktaki açılır listeden seç. Sayıya tıklayıp 255 yazabilirsin.
+@@2727
+Yeşili söndür
+@@2728
+<p>Üçüncü <span class="chip pin">PWM</span> bloğunu <span class="pin-etiket">D1</span> pinine ayarla ve değerini <b>0</b> yap. Yeşil kapalı kalsın ki renk saf mor olsun.</p>
+          <pre><code>analogWrite(D1, 0);</code></pre>
+@@2729
+Üç blokta üç farklı pin olmalı: D0, D1, D2.
+@@2730
+<p>▶ <b>Çalıştır</b>'a bas ve LED'in rengine bak.</p>
+          <div class="kutu hedef"><b>Hedef:</b> RGB LED <b>mor</b> yansın. Sonra sayıları değiştirip başka renkler de dene!</div>
+@@2731
+Mor için: D0 = 255, D1 = 0, D2 = 255.
+@@2732
+Harika, mor renk yaptın!
+@@2733
+LED sönük. D0 ve D2 pinlerine 255 yaz.
+@@2734
+Mor için kırmızı (D0) ve mavi (D2) tam parlak, yeşil (D1) sönük olmalı.
+@@2736
+3.2 · Parlaklık ayarı
+@@2737
+<h2>Yumuşak yanıp sönme (PWM)</h2>
+      <p>PWM, LED'i çok hızlı açıp kapatarak parlaklığı ayarlar. 0 = sönük, 255 = en parlak.</p>
+      <ol>
+        <li><b>say: i değeri 0'dan 255'e, 5'er 5'er</b> döngüsünü al (Analog kutusu).</li>
+        <li>İçine <b>D0 pinine PWM</b> koy ve değer olarak <b>i</b> değişkenini ver.</li>
+        <li>Altına <b>20 ms bekle</b> ekle. LED yavaşça parlar.</li>
+        <li>İkinci bir döngü yap: <b>255'ten 0'a</b> (5'er 5'er). LED yavaşça söner.</li>
+      </ol>
+@@2738
+<p><span class="pin-etiket">D0</span> pinindeki LED'i bu sefer sadece yakıp söndürmeyeceğiz. Önce <b>yavaşça parlayacak</b>, sonra <b>yavaşça sönecek</b>, tıpkı nefes alıyormuş gibi.</p>
+          <div class="kutu bilgi"><b>PWM:</b> Kart pini saniyede binlerce kez açıp kapatır. Açık kalma süresi uzadıkça LED daha parlak görünür. <code>analogWrite</code> için sayı <b>0-255</b> arasıdır.</div>
+@@2739
+Sayaç döngüsünü al
+@@2740
+<p><span class="chip analog">Analog</span> kategorisini aç ve <span class="chip analog">say: i değeri 0'dan 255'e, 5'er 5'er</span> döngüsünü çalışma alanına bırak.</p>
+          <div class="kutu bilgi"><code>i</code> bir <b>değişken</b>: 0'dan başlar, her turda 5 artar, 255'e kadar gider.
+            <pre><code>for (int i = 0; i &lt;= 255; i += 5) {
+  ...
+}</code></pre></div>
+@@2741
+Analog kategorisinin en altına doğru, "say" yazan döngü bloğu.
+@@2742
+PWM yaz, değer i olsun
+@@2743
+<p><span class="chip pin">PWM</span> bloğunu döngünün <b>içine</b> koy, pini <span class="pin-etiket">D0</span> yap. Değer kutusuna <span class="chip degisken">i</span> bloğunu tak (<span class="chip analog">Analog</span> kategorisinin sonunda).</p>
+          <pre><code>analogWrite(D0, i);</code></pre>
+          <p>Böylece her turda parlaklık 5 artar.</p>
+@@2744
+i bloğunu sayı kutusunun üstüne bırakırsan onun yerine geçer.
+@@2745
+Küçük bir bekleme ekle
+@@2746
+<p><span class="chip akis">20 ms bekle</span> bloğunu PWM bloğunun altına, döngünün içine koy.</p>
+          <div class="kutu dikkat">Bekleme olmazsa 52 adım göz açıp kapayana kadar biter ve parlamayı göremezsin.</div>
+          <pre><code>delay(20);</code></pre>
+@@2747
+Bekle bloğu Akış kategorisinde; varsayılan 500 yazar, onu 20 yap.

@@ -1,0 +1,762 @@
+@@1480
+Üst sınır dahil değildir. Son sayıyı, istediğin en büyük sayıdan bir fazla yap.
+@@1481
+7 ya da 8 hiç görünmedi. Sayılar 1-8 arasında gelmeli: random(1, 9) yaz.
+@@1482
+Sekiz yüzlü zar çalışıyor!
+@@1483
+Daha uzun yuvarlanma
+@@1484
+Zar şu an yaklaşık yarım saniye yuvarlanıyor. Yuvarlanmayı <b>uzat</b>: döngü <b>15 tur</b> dönsün. Yuvarlanma yine de yaklaşık bir saniyede bitmeli.
+@@1486
+Döngü koşulundaki 10 sayısını 15 yap. Bekleme süresini değiştirmene gerek yok.
+@@1487
+Zar daha uzun yuvarlanıyor!
+@@1489
+Sayı şu an ekranın sol başında görünüyor. İki değişiklik yap: sayıyı <b>8. sütuna</b> (sütun numarası <b>7</b>) kaydır ve üst satırdaki yazıyı <b>ZAR</b> olarak değiştir.
+@@1491
+Sütunlar sıfırdan sayılır; setCursor komutundaki ilk sayıyı yedi yap. Yazıyı tırnakların içinde değiştir.
+@@1492
+Üst satırda yalnızca ZAR yazmalı (büyük harflerle).
+@@1493
+Sayı 8. sütunda (sütun numarası 7) görünmeli. setCursor'ın ilk sayısını 7 yap.
+@@1494
+Sayı hâlâ satırın başında görünüyor.
+@@1495
+Sayı ortada, başlık ZAR!
+@@1509
+Daha geniş algılama mesafesi (30 cm)
+@@1510
+Kapağın daha uzaktan açılması için algılama eşiğini <b>30 cm</b> yap.
+@@1512
+< 20 ifadesindeki 20 sayısını 30 yap.
+@@1513
+25 cm yaklaşınca kapak açılmadı.
+@@1514
+Algılama mesafesi 30 cm olarak güncellendi!
+@@1515
+Kapağı 3 saniye açık tut
+@@1516
+Kapağın açık kalma süresini <b>3 saniyeye (3000 ms)</b> çıkar.
+@@1518
+delay(2000) satırındaki 2000 sayısını 3000 yap.
+@@1519
+Kapak 3 saniye açık kalmadı.
+@@1520
+Kapak 3 saniye boyunca açık kaldı!
+@@1521
+Kapağı tam dik aç (110 derece)
+@@1522
+Çöp poşetinin rahat girmesi için açılma açısını <b>110 derece</b> yap.
+@@1524
+servo.write(90) komutundaki 90 sayısını 110 yap.
+@@1525
+Kapak 110 dereceye açılmadı.
+@@1526
+Kapak 110 derece dik açıldı!
+@@1534
+Bip frekansını değiştir
+@@1535
+Geçiş sesini <b>800 Hz</b> olarak ayarla.
+@@1537
+tone fonksiyonundaki 1500 sayısını 800 yap.
+@@1538
+Buzzer 800 Hz tonunda çalmadı.
+@@1539
+Geçiş sesi 800 Hz olarak ayarlandı!
+@@1540
+Daha dar kapı eşiği (20 cm)
+@@1541
+Yalnızca kapının tam ortasından geçenleri saymak için mesafeyi <b>20 cm</b> yap.
+@@1543
+< 30 ifadesini < 20 yap (while içindekini de değiştirmeyi unutma).
+@@1544
+20 cm yakınına gelince sayaç 1 artmalıydı.
+@@1545
+Turnike eşiği 20 cm yapıldı!
+@@1546
+Bip süresini uzat
+@@1547
+Onay bip sesinin süresini 100 ms yerine <b>250 ms</b> yap.
+@@1549
+delay(100) komutunu delay(250) yap.
+@@1550
+Bip sesi 250 ms sürmedi.
+@@1551
+Onay sesi 250 ms boyunca çaldı!
+@@1557
+Mama çağrı sesini incelt
+@@1558
+Mama çağrı tonunu 1000 Hz yerine <b>1800 Hz</b> yap.
+@@1559
+tone fonksiyonundaki 1000 frekansını 1800 yap.
+@@1560
+Buzzer 1800 Hz frekansında çalmadı.
+@@1561
+Mama çağrı sesi 1800 Hz oldu!
+@@1562
+Kapağı daha geniş aç (120 derece)
+@@1563
+İri taneli yemlerin geçebilmesi için kapağı <b>120 dereceye</b> kadar aç.
+@@1565
+Servo 120 dereceye açılmadı.
+@@1566
+Kapak 120 derece genişliğinde açıldı!
+@@1567
+Mama dökülme süresini artır
+@@1568
+Kapağın açık kalma süresini 1000 ms yerine <b>1500 ms</b> yap.
+@@1570
+Kapak açıldıktan sonraki delay(1000) süresini 1500 yap.
+@@1571
+Kapak 1.5 saniye açık kalmadı.
+@@1572
+Kapak 1.5 saniye açık kaldı!
+@@1578
+Eşiği 2000 yap
+@@1579
+Alarmın daha erken çalması için ışık eşiğini <b>2000</b> yap.
+@@1581
+< 1500 yerine < 2000 yaz.
+@@1582
+Işık 1800 iken alarm çalmadı.
+@@1583
+Işık eşiği 2000 olarak güncellendi!
+@@1584
+Daha tiz siren tonu
+@@1585
+Siren sesini daha dikkat çekici yap: tiz tonu 1200 yerine <b>2000 Hz</b> yap.
+@@1587
+1200 sayısını 2000 ile değiştir.
+@@1588
+2000 Hz siren tonu çalmadı.
+@@1590
+Siren hızını iki katına çıkar
+@@1591
+Siren bekleme sürelerini 150 ms yerine <b>75 ms</b> yap.
+@@1593
+delay(150) satırlarını delay(75) yap.
+@@1594
+Siren yeterince hızlı çalmadı.
+@@1595
+Siren iki kat hızlı çalıyor!
+@@1601
+Bariyer açılma mesafesini 35 cm yap
+@@1602
+Bariyerin daha erken açılması için mesafeyi <b>35 cm</b> yap.
+@@1604
+< 25 yerine < 35 yaz.
+@@1605
+30 cm mesafede bariyer açılmadı.
+@@1606
+Bariyer algılama mesafesi 35 cm oldu!
+@@1607
+Bariyeri tam dik kaldır (100 derece)
+@@1608
+Bariyer kolunu 90 yerine <b>100 dereceye</b> kadar kaldır.
+@@1609
+servo.write(90) komutundaki 90 sayısını 100 yap.
+@@1610
+Servo 100 dereceye kalkmadı.
+@@1611
+Bariyer 100 dereceye dik açıldı!
+@@1612
+Hoş geldiniz mesajı
+@@1613
+Araç yaklaşınca ekranda "Geciniz     " yerine <b>"Hosgeldiniz "</b> yazdır.
+@@1615
+Geciniz yazısını Hosgeldiniz ile değiştir.
+@@1616
+Ekranda Hosgeldiniz mesajı görünmedi.
+@@1617
+Ekranda Hosgeldiniz mesajı görüntülendi!
+@@1620
+Açıyı 0-120 dereceye sınırla
+@@1621
+Panelin aşırı dönmesini önlemek için maksimum açıyı <b>120 derece</b> yap.
+@@1623
+map fonksiyonundaki 0, 180 yerine 0, 120 yaz.
+@@1624
+Tam ışıkta servo 120 derece olmadı.
+@@1625
+Maksimum açı 120 dereceye sınırlandı!
+@@1626
+Ters yöne döndür (180 - 0)
+@@1627
+Paneli ters yönde hareket ettir: karanlıkta 180, tam ışıkta <b>0 derece</b> olsun.
+@@1628
+map aralığını 180, 0 olarak yaz.
+@@1629
+Tam ışıkta servo 0 dereceye inmedi.
+@@1630
+Ters yönlü takip başarıyla ayarlandı!
+@@1631
+Hassas hareket beklemesi (15 ms)
+@@1632
+Servonun daha akıcı ve titreşimsiz hareket etmesi için bekleme süresini <b>15 ms</b> yap.
+@@1634
+delay(30) komutunu delay(15) yap.
+@@1635
+Servo bekleme süresi 15 ms oldu!
+@@1641
+Şarj eşiğini 65 Watt yap
+@@1642
+Yalnızca yüksek verimde şarj etmek için eşiği <b>65 Watt</b> yap.
+@@1644
+>= 50 yerine >= 65 yaz.
+@@1645
+65W üzerinde LED yanmalıydı.
+@@1646
+Şarj eşiği 65 Watt yapıldı!
+@@1647
+Güç aralığını 0-150 Watt yap
+@@1648
+Büyük boyutlu panel için maksimum gücü 100 yerine <b>150 Watt</b> yap.
+@@1650
+map fonksiyonundaki 0, 100 yerine 0, 150 yaz.
+@@1651
+Maksimum ışıkta ekranda 150 W görünmeli.
+@@1652
+Panel kapasitesi 150 Watt olarak ayarlandı!
+@@1653
+Ekran yenileme hızını artır (50 ms)
+@@1654
+Ekranın daha hızlı güncellenmesi için delay süresini <b>50 ms</b> yap.
+@@1655
+delay(100) komutunu delay(50) yap.
+@@1656
+Ekran yenileme süresi 50 ms oldu!
+@@1662
+Hareket var
+@@1674
+Eşiği 2500 yap
+@@1675
+Çiçek çok susuz kalmasın: toprak nemi <b>2500'ün altına</b> inince pompa çalışsın. Yalnızca eşik sayısını değiştir.
+@@1676
+< 1500 yerine < 2500 yaz. Nem 2200 iken pompa çalışmalı.
+@@1677
+Toprak ıslakken (3500) pompa çalışmamalı.
+@@1678
+Nem 2200 iken pompa çalışmadı; eşik 2500 olmalı.
+@@1679
+Toprak tekrar ıslanınca pompa durmalı.
+@@1680
+Eşik 2500 oldu, saksı daha erken sulanıyor!
+@@1681
+Pompa 3 saniye çalışsın
+@@1682
+Pompa her sulamada <b>1 saniye</b> çalışıyor, bu yetmiyor. Çalışma süresini <b>3 saniyeye (3000 ms)</b> çıkar.
+@@1683
+Pompa HIGH olduktan sonraki delay(1000) süresini delay(3000) yap.
+@@1684
+Pompa açılıp kapanmadı.
+@@1685
+Pompa {0} ms çalıştı; 3000 ms çalışmalı.
+@@1686
+Pompa artık 3 saniye çalışıyor!
+@@1687
+Nemi saniyede bir yaz
+@@1688
+Seri monitör nem sayısıyla doldu taştı! Ölçüm aralığını <b>1 saniyeye (1000 ms)</b> çıkar; böylece saniyede bir satır yazılsın.
+@@1689
+Döngünün sonundaki delay(100) komutunu delay(1000) yap.
+@@1690
+Seri monitöre yeterince değer yazılmadı.
+@@1691
+4,5 saniyede {0} satır yazıldı; saniyede bir satır (en fazla 5-6) olmalı.
+@@1692
+Nem artık saniyede bir kez yazılıyor!
+@@1698
+Lamba 4 saniye yansın
+@@1699
+Lamba hareketten sonra <b>4 saniye (4000 ms)</b> yanık kalsın.
+@@1700
+Lamba yandıktan sonraki delay(2000) süresini delay(4000) yap.
+@@1701
+Hareket algılanınca lamba yanmadı.
+@@1702
+Lamba çok erken söndü; 4 saniye yanık kalmalı.
+@@1703
+Lamba 4 saniye sonra sönmedi.
+@@1704
+Lamba 4 saniye yanıyor!
+@@1705
+Gece lambası göz almasın: parlaklığı <b>255 yerine 80</b> yap (analogWrite ile 0-255 arası parlaklık verilir).
+@@1707
+analogWrite(LAMBA, 255) satırındaki 255 sayısını 80 yap.
+@@1708
+Lamba parlaklığı {0}; yaklaşık 80 olmalı.
+@@1709
+Lamba loş yanıyor, göz almıyor!
+@@1710
+Mesajı değiştir
+@@1711
+Seri monitörde hareket olunca <b>Hareket var</b> yazıyor. Bunu <b>Hareket algilandi</b> olarak değiştir.
+@@1712
+"Hareket var"
+@@1713
+Hareket algilandi
+@@1714
+Tırnak içindeki yazıyı Hareket algilandi yap. Tırnakları silme.
+@@1715
+Mesaj "Hareket algilandi" olmalı (şu an "{0}").
+@@1716
+Mesaj güncellendi!
+@@1723
+Sensör aralığını 0-100 derece yap
+@@1724
+Sanayi tipi bir sıcaklık sensörü <b>0-100 °C</b> ölçüyor. Sıcaklık haritasının son sayısını <b>50 yerine 100</b> yap.
+@@1726
+map(analogRead(SICAKLIK), 0, 4095, 0, 50) içindeki son sayıyı 100 yap.
+@@1727
+Sensör 0-100 derece ölçerse LCD 40 ve 60 göstermeli (şu an "{0}" ve "{1}").
+@@1728
+Sıcaklık aralığı 0-100 derece oldu!
+@@1729
+Ölçümü saniyede bire indir
+@@1730
+Seri monitör çok hızlı akıyor, okunmuyor. Bekleme süresini <b>1000 ms</b> yap; saniyede bir satır yazılsın.
+@@1731
+Döngü sonundaki delay(500) komutunu delay(1000) yap.
+@@1732
+Seri monitöre yeterince satır yazılmadı.
+@@1733
+4,5 saniyede {0} satır yazıldı; saniyede bir satır olmalı.
+@@1734
+Seri monitör saniyede bir kez güncelleniyor!
+@@1735
+Başlığı "Isi:" yap
+@@1736
+LCD'nin ilk satırında <b>Sicaklik: </b> yazıyor. Yerine daha kısa <b>Isi: </b> yaz.
+@@1739
+lcd.print içindeki "Sicaklik: " yazısını "Isi: " yap. Tırnakları silme.
+@@1740
+Başlık hâlâ "Sicaklik: " yazıyor.
+@@1741
+1. satır "Isi: ..." diye başlamalı.
+@@1742
+Başlık "Isi:" oldu!
+@@1748
+Yanlış alarmları azalt
+@@1749
+Mutfakta kızartma yapınca alarm boşuna çalıyor. Eşiği <b>2500</b> yap; gaz 2200 iken alarm çalmasın.
+@@1751
+if koşulundaki 2000 sayısını 2500 yap.
+@@1752
+Gaz 2200 iken alarm çalmamalı; eşik 2500 olmalı.
+@@1753
+Gaz 3200 iken alarm çalmalı.
+@@1754
+Gaz azalınca alarm susmalı.
+@@1755
+Eşik 2500 oldu, boş alarmlar azaldı!
+@@1757
+Alarm sesi daha dikkat çekici olsun: buzzer frekansını <b>1000 Hz yerine 2500 Hz</b> yap.
+@@1758
+tone(BUZZER, 1000) satırındaki 1000 sayısını 2500 yap.
+@@1759
+Alarm sırasında buzzer ötmedi.
+@@1760
+Buzzer {0} Hz çaldı; 2500 Hz olmalı.
+@@1761
+Alarm 2500 Hz ile tiz tiz ötüyor!
+@@1762
+Gazı yarım saniyede bir yaz
+@@1763
+Seri monitör saniyede on satır yazıyor. Bekleme süresini <b>500 ms</b> yap.
+@@1764
+Döngünün sonundaki delay(100) komutunu delay(500) yap.
+@@1765
+4,4 saniyede {0} satır yazıldı; yarım saniyede bir satır (yaklaşık 9) olmalı.
+@@1766
+Gaz değeri yarım saniyede bir yazılıyor!
+@@1776
+Yanlış şifrede LED 2 saniye yansın
+@@1777
+Hırsız şifreyi yanlış girince kırmızı LED <b>2 saniye (2000 ms)</b> yanık kalsın.
+@@1778
+LED yandıktan sonraki delay(1000) süresini delay(2000) yap.
+@@1779
+Yanlış şifrede LED yanmadı.
+@@1780
+LED hiç sönmedi.
+@@1781
+LED {0} ms yandı; 2000 ms yanmalı.
+@@1782
+Yanlış şifrede LED 2 saniye yanıyor!
+@@1783
+Şifreyi 4-3-2-1 yap
+@@1784
+Kasanın şifresini <b>4-3-2-1</b> olarak değiştir. Önce yanlış (1-2-3-4) sonra doğru (4-3-2-1) şifre denenecek.
+@@1787
+int sifre[4] = {1, 2, 3, 4}; dizisindeki sayıları 4, 3, 2, 1 yap.
+@@1788
+Kilidi daha geniş aç
+@@1789
+Kilit mandalı daha geniş açılmalı: servoyu <b>90 yerine 120 dereceye</b> çevir.
+@@1791
+Doğru şifre dalındaki kilit.write(90) komutunun 90 sayısını 120 yap.
+@@1792
+Doğru şifrede kilit açılmadı.
+@@1794
+Kilit 120 dereceye kadar açılıyor!
+@@1818
+Üç saniye ileri
+@@1819
+Araba şu an 2 saniye ileri gidiyor. İleri gitme süresini <b>3 saniyeye (3000 ms)</b> çıkar.
+@@1820
+İleri() çağrısından sonraki delay(2000) değerini 3000 yap.
+@@1821
+Araba 3 saniye ileri gitti!
+@@1822
+İki saniye geri
+@@1823
+Araba geri gelirken yalnızca 1 saniye gidiyor. Geri gitme süresini <b>2 saniye (2000 ms)</b> yap; araba başladığı yere dönsün.
+@@1824
+geri() çağrısından sonraki delay(1000) değerini 2000 yap.
+@@1825
+Araba yeterince geri gelmedi (en az 45 cm geri gitmeli).
+@@1826
+Araba 2 saniye geri geldi ve başladığı yere döndü!
+@@1827
+Dururken 2 saniye bekle
+@@1828
+İleri gittikten sonra araba yalnızca yarım saniye duruyor. Bu bekleme süresini <b>2 saniye (2000 ms)</b> yap.
+@@1829
+dur() çağrısından sonraki delay(500) değerini 2000 yap.
+@@1830
+Araba ileri gidip sonra geri gelmedi.
+@@1831
+Araba {0} ms durdu; en az 2000 ms durmalı.
+@@1832
+Araba ileri ve geri arasında 2 saniye durdu!
+@@1833
+Üçgen çiz
+@@1834
+Kare yerine <b>eşkenar üçgen</b> çiz: döngü <b>3</b> kez dönsün ve her dönüş <b>120 derece</b> (yaklaşık <b>507 ms</b>) olsun.
+@@1837
+i < 4 yerine i < 3 yaz, delay(380) yerine delay(507) yaz.
+@@1838
+Araba {0} cm gitti; üçgenin 3 kenarı yaklaşık 75 cm etmeli.
+@@1839
+Üçgen tamam, araba başladığı yere döndü!
+@@1840
+Gidiş-dönüş yolu
+@@1841
+Araba bir ileri gitsin, <b>180 derece</b> (yaklaşık <b>760 ms</b>) dönsün, geri gelsin ve tekrar dönsün. Döngü <b>2</b> kez çalışsın.
+@@1842
+i < 2 ve delay(760) yaz. Araba aynı doğru üzerinde gidip gelmeli.
+@@1843
+Araba {0} cm gitti; iki kenar yaklaşık 50 cm etmeli.
+@@1844
+Araba aynı doğru üzerinde gidip gelmedi. Dönüşler 180 derece olmalı.
+@@1845
+Araba gidip geldi ve aynı yere döndü!
+@@1846
+Dönüş süresi hatası
+@@1847
+Bu kare bir türlü kapanmıyor! Dönüş süresi çok kısa olduğu için araba 90 derece dönemiyor. Süreyi <b>380 ms</b> yap.
+@@1848
+saga() çağrısından sonraki delay(300) değerini 380 yap.
+@@1849
+Araba kareyi tamamlamadı.
+@@1850
+Dönüşler 90 derece oldu, kare kapandı!
+@@1851
+Daha yakın tepki: 25 cm
+@@1852
+Araba engele 30 cm kala tepki veriyor. Eşiği <b>25 cm</b> yap; araba engele biraz daha yaklaşıp sonra geri dönsün.
+@@1853
+mesafeOlc(D4) < 30 koşulundaki 30 yerine 25 yaz.
+@@1854
+Araba engele yaklaşınca hiç geri gitmedi.
+@@1855
+Araba çok erken geri gitti (x = {0}). Eşik 25 cm olmalı.
+@@1856
+Araba kaçınma manevrasını tekrarlamadı.
+@@1857
+Eşik 25 cm: araba engele biraz daha yaklaşıp geri döndü!
+@@1858
+Sola kaçsın
+@@1859
+Araba kaçarken sağa dönüyor. Bunu değiştir: engelden <b>sola</b> dönerek kaçsın.
+@@1862
+Dönüş fonksiyonunu saga() yerine sola() yap.
+@@1863
+Araba sola dönmedi (yön {0} derece). Sola dönüşte sol motor geri, sağ motor ileri çalışır.
+@@1864
+Araba engelden sola dönerek kaçtı!
+@@1865
+Daha uzun geri çekilme
+@@1866
+Araba engelden kaçarken geri çekilme süresini <b>600 ms</b> yap; engelden daha fazla uzaklaşsın.
+@@1867
+geri() çağrısından sonraki delay(400) değerini 600 yap.
+@@1868
+Geri hareket bitmedi.
+@@1869
+Araba {0} ms geri gitti; yaklaşık 600 ms gitmeli.
+@@1870
+Araba 600 ms geri çekildi!
+@@1871
+Üç saniye hazırlık
+@@1872
+Araba yarışa başlamadan önce 1 saniye bekliyor. Bekleme süresini <b>3 saniye (3000 ms)</b> yap.
+@@1873
+setup içindeki delay(1000) değerini 3000 yap.
+@@1874
+Araba hiç hareket etmedi.
+@@1875
+Araba {0} ms sonra hareket etti; 3000 ms beklemeli.
+@@1876
+Araba bekledikten sonra yeterince ilerlemedi.
+@@1877
+Araba çizgiden çıktı.
+@@1878
+Araba 3 saniye bekleyip çizgiyi izlemeye başladı!
+@@1879
+Ters bağlanmış sensörler
+@@1880
+Araba çizgiden hemen kaçıyor! Sol ve sağ sensör pinleri kodda ters okunuyor. <b>Sol sensörü D5, sağ sensörü D6</b> olarak düzelt.
+@@1883
+int sol = digitalRead(D5); ve int sag = digitalRead(D6); olmalı.
+@@1884
+Araba çizgiden çıkıp duvara çarptı. Sensör pinleri doğru okunuyor mu?
+@@1885
+Araba çizgiden {0} cm uzaklaştı.
+@@1886
+Araba çizgiyi izleyerek yeterince ilerlemedi.
+@@1887
+Sensörler doğru okunuyor, araba çizgide!
+@@1888
+Çok yavaş kontrol
+@@1889
+Araba çizgiyi sürekli kaçırıyor çünkü iki ölçüm arasında yarım saniye bekliyor. Kontrol aralığını <b>50 ms</b> yap.
+@@1890
+loop sonundaki delay(500) değerini 50 yap.
+@@1891
+Araba çizgiyi kaçırıp duvara çarptı. Ölçümler arasındaki bekleme çok uzun.
+@@1892
+Araba çizgiden {0} cm uzaklaştı. Ölçümleri daha sık yap.
+@@1893
+Araba artık çizgiyi kaçırmıyor!
+@@1903
+Yavaş yanıp sön (1000 ms)
+@@1904
+LED daha yavaş yanıp sönsün: yanma ve sönme sürelerini <b>1000 ms</b> yap.
+@@1905
+İki delay(500) satırını da delay(1000) yap.
+@@1906
+Süreler yaklaşık 1000 ms olmalı.
+@@1907
+LED artık saniyede bir değişiyor!
+@@1908
+Seri monitöre <b>Merhaba Atolye!</b> yazdır.
+@@1910
+Tırnak içindeki yazıyı değiştir; tırnakları silme.
+@@1911
+Seri monitörde "Merhaba Atolye!" yazısı görünmedi.
+@@1912
+Yeni mesaj seri monitöre yazıldı!
+@@1913
+Kısa parlama
+@@1914
+LED <b>100 ms</b> parlasın, sonra <b>900 ms</b> sönük kalsın (fener gibi kısa çakma).
+@@1917
+İlk delay 100, ikinci delay 900 olmalı.
+@@1918
+LED {0} ms yandı, 100 ms olmalı.
+@@1919
+LED {0} ms sönük kaldı, 900 ms olmalı.
+@@1920
+Kısa çakma efekti hazır!
+@@1926
+Hızlı nefes (5 ms)
+@@1927
+LED daha hızlı parlasın: bekleme süresini <b>5 ms</b> yap.
+@@1928
+İki delay(20) satırını da delay(5) yap.
+@@1929
+LED tam parlaklığa ulaşmadı.
+@@1930
+Tam parlaklığa {0} ms'de ulaştı; 600 ms içinde ulaşmalı.
+@@1931
+Hızlı nefes hazır!
+@@1932
+En fazla yarım parlaklık
+@@1933
+LED hiçbir zaman yarıdan fazla parlamasın: en yüksek değeri <b>128</b> yap.
+@@1934
+255 sayısı iki yerde geçiyor; ikisini de 128 yap.
+@@1935
+LED'e değer yazılmadı.
+@@1936
+LED yarıdan fazla parladı. En yüksek değer 128 olmalı.
+@@1937
+LED çok az parladı; tepe değer 128 olmalı.
+@@1938
+Parlaklık yarıyla sınırlandı!
+@@1939
+Basamaklı parlaklık (adım 15)
+@@1940
+Parlaklık basamakları belirgin olsun: adım büyüklüğünü <b>15</b> yap (p += 15 ve p -= 15).
+@@1943
+İki for döngüsünde de 5 yerine 15 yaz.
+@@1944
+Tam parlaklığa {0} adımda ulaştı; yaklaşık 18 adım beklenir (adım 15).
+@@1945
+Daha büyük basamaklarla parlıyor!
+@@1948
+Normalde yanık, basınca sönük
+@@1949
+Mantığı tersine çevir: LED <b>normalde yansın</b>, düğmeye <b>basılınca sönsün</b>. İpucu: koşuldaki LOW yerine HIGH yaz.
+@@1950
+== LOW ifadesini == HIGH yap.
+@@1951
+Düğmeye basmıyorken LED yanık olmalı.
+@@1952
+Düğmeye basılıyken LED sönük olmalı.
+@@1953
+Ters mantık çalışıyor!
+@@1954
+Yarım parlaklıkta yan
+@@1955
+Düğmeye basınca LED <b>yarım parlaklıkta</b> yansın: <code>digitalWrite(D0, HIGH)</code> yerine <code>analogWrite(D0, 128)</code> yaz.
+@@1957
+Satırın tamamını analogWrite(D0, 128) olarak değiştir.
+@@1958
+Basılıyken LED yarım parlaklıkta (128/255) olmalı.
+@@1959
+LED yarım parlaklıkta yanıyor!
+@@1960
+Bırakınca yarım saniye daha yan
+@@1961
+Düğmeyi bırakınca LED hemen sönmesin, <b>500 ms daha yanık kalsın</b>. İpucu: söndürmeden önce <code>delay(500);</code> ekle.
+@@1964
+else içinde digitalWrite(D0, LOW) satırının üstüne delay(500); yaz.
+@@1965
+Düğmeye basılıyken LED yanmalı.
+@@1966
+Düğme bırakılınca LED hemen söndü; 500 ms daha yanık kalmalı.
+@@1967
+Birazdan LED sönmeli.
+@@1968
+LED, bırakıldıktan sonra yarım saniye daha yanıyor!
+@@1975
+Daha sert eşik (20)
+@@1976
+Hafif temaslar (değer ~25) sayılmasın. Eşiği <b>20</b> yap.
+@@1978
+ESIK = 40 ifadesindeki 40 sayısını 20 yap.
+@@1979
+Hafif temas (değer 25) LED'i değiştirdi; eşik 20 olmalı.
+@@1980
+Sağlam dokunuş LED'i yakmadı.
+@@1981
+Eşik 20 oldu; hafif temaslar yok sayılıyor!
+@@1982
+Hassas eşik (60)
+@@1983
+Pad çok hassas olsun: değer <b>55</b> bile dokunuş sayılsın. Eşiği <b>60</b> yap.
+@@1984
+ESIK = 40 ifadesindeki 40 sayısını 60 yap.
+@@1985
+Değer 55 iken LED yanmadı; eşik 60 olmalı.
+@@1986
+Pad artık çok hassas!
+@@1987
+Seri monitöre mesaj
+@@1988
+Her dokunuşta seri monitöre sayı yerine <b>Dokunuldu</b> yazdır.
+@@1991
+println içindeki deger yerine "Dokunuldu" yaz (tırnaklı).
+@@1992
+Seri monitörde "Dokunuldu" görünmedi.
+@@1993
+Dokunuş mesajı yazıldı!
+@@1997
+Bir kez yan ve sön
+@@1998
+<span class="pin-etiket">D0</span> LED'i <b>yak</b>, yarım saniye (<b>500 ms</b>) <b>bekle</b>, sonra <b>söndür</b>. LED yalnızca <b>bir kez</b> yanıp sönsün, program orada bitsin. Sürekli tekrarla bloğu kullanma!
+@@1999
+Üç blok yeterli: YÜKSEK yap, bekle, DÜŞÜK yap. Bu sefer döngüye gerek yok.
+@@2000
+LED hiç yanmadı. Önce D0 pinini YÜKSEK yap.
+@@2001
+İlk olarak LED yanmalı (D0 YÜKSEK).
+@@2002
+LED yandı ama sönmedi. Beklemeden sonra D0 pinini DÜŞÜK yap.
+@@2003
+LED birden fazla kez değişti. Sürekli tekrarla kullanma; yak, bekle, söndür yeterli.
+@@2004
+LED {0} ms yandı. Yaklaşık 500 ms yanmalı.
+@@2005
+Tam istediğimiz gibi: bir kez yandı ve söndü!
+@@2007
+<code>digitalWrite(D0, HIGH);</code> komutu çalışınca ESP32-S3'ün <span class="pin-etiket">D0</span> pininde yaklaşık kaç volt olur?
+@@2012
+ESP32-S3 pinleri 3,3 V ile çalışır: HIGH yaklaşık 3,3 V, LOW ise 0 V demektir.
+@@2013
+Geç yansın
+@@2014
+Program başlayınca LED <b>hemen yanmasın</b>: önce <b>300 ms bekle</b>, sonra <span class="pin-etiket">D0</span> LED'ini yak. LED yandıktan sonra <b>yanık kalsın</b>.
+@@2015
+Bekleme bloğu LED bloğundan önce gelmeli. Komutlar yukarıdan aşağı çalışır, sıra önemli.
+@@2016
+LED hemen yandı. Yakmadan önce 300 ms bekle.
+@@2017
+LED {0} ms sonra yandı. Yaklaşık 300 ms beklemelisin.
+@@2018
+LED yandıktan sonra yanık kalmalı, tekrar sönmemeli.
+@@2019
+LED 300 ms sonra yandı ve yanık kaldı!
+@@2020
+Bir Arduino programında <code>setup()</code> ve <code>loop()</code> arasındaki fark nedir?
+@@2021
+İkisi de sonsuza kadar tekrar eder
+@@2022
+setup() her turda, loop() yalnızca bir kez çalışır
+@@2023
+setup() bir kez, loop() sürekli tekrar çalışır
+@@2024
+loop() yalnızca düğmeye basılınca çalışır
+@@2025
+setup() kart açılınca bir kez çalışır (hazırlık için), loop() ise bitince başa dönerek sürekli çalışır.
+@@2026
+Üç kez yanıp sön
+@@2027
+<span class="pin-etiket">D0</span> LED'i <b>tam 3 kez</b> yanıp sönsün: her seferinde <b>200 ms yansın</b>, <b>200 ms sönsün</b>. Sonunda LED <b>sönük</b> kalsın. İstersen <b>say</b> döngüsü kullan.
+@@2028
+"i değerini 1'den 3'e say" bloğu içindekileri 3 kez tekrarlar. Sürekli tekrarla ise hiç bitmez.
+@@2029
+LED {0} kez yandı, 3 kez yanmalı.
+@@2030
+LED {0} kez yandı. Tam 3 kez yanıp durmalı; sürekli tekrarla yerine say döngüsü kullan.
+@@2031
+Son yanıştan sonra LED sönük kalmalı. D0 en sonda düşük olmalı.
+@@2032
+Yanma ve sönme süreleri yaklaşık 200 ms olmalı.
+@@2033
+LED tam 3 kez yanıp söndü!
+@@2034
+Hangi komut <span class="pin-etiket">D0</span> pinine bağlı LED'i <b>yakar</b>?
+@@2039
+Bir pine değer yazan komut digitalWrite()'dır. pinMode() ise yalnızca pinin giriş mi çıkış mı olduğunu belirler.
+@@2040
+<code>pinMode(D0, OUTPUT);</code> satırı ne işe yarar?
+@@2042
+D0 pinini çıkış yapar: karttan dışarıya gerilim verebilir
+@@2043
+D0 pinini girdi yapar, sensör okur
+@@2044
+Programı durdurur
+@@2045
+OUTPUT, pinin dışarıya sinyal vereceğini söyler. LED'in yanması için ayrıca digitalWrite(HIGH) gerekir.
+@@2046
+Bu sefer LED <b>hızlı</b> yanıp sönsün: <span class="pin-etiket">D0</span> <b>200 ms yansın</b>, <b>200 ms sönsün</b> ve bu sürekli tekrar etsin.
+@@2047
+Bekle bloklarındaki 500 değerini değiştir. İki bekleme de aynı olmalı.
+@@2048
+LED sadece {0} kez değişti. Sürekli tekrarla içinde yak-bekle-söndür-bekle yap.
+@@2049
+Hem yanma hem sönme süresi yaklaşık 200 ms olmalı. Bekle bloklarını kontrol et.

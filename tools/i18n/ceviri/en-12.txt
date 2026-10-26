@@ -1,0 +1,442 @@
+@@4192
+Trigger earlier
+@@4193
+Right now the alarm sounds when gas goes above 2000. For safety, set the threshold to <b>1500</b> so the alarm goes off even at a gas level of 1800.
+@@4194
+Change the number 2000 in the if (gaz > 2000) condition to 1500.
+@@4195
+The alarm must not sound when gas is low (600).
+@@4196
+With gas at 1800 the LED should be on and the buzzer should sound. With a threshold of 1500, 1800 is dangerous.
+@@4197
+When gas drops (600), the alarm should stop.
+@@4198
+The alarm now kicks in earlier, at the 1500 threshold!
+@@4199
+Which gases is the MQ-2 sensor sensitive to?
+@@4200
+Only oxygen
+@@4201
+Flammable gases such as LPG, methane, smoke and alcohol
+@@4202
+Only water
+@@4203
+Radio waves
+@@4204
+The MQ-2 is a flammable gas and smoke sensor. Its output rises as the amount of gas increases, so we raise the alarm when "gas > threshold".
+@@4205
+Two-level alarm
+@@4206
+When gas is between <b>2000-3000</b>, only the <b>LED should turn on</b> (warning). If gas goes <b>above 3000</b>, the LED should stay on and the <b>buzzer should sound too</b> (danger). Below 2000 everything should be off.
+@@4207
+if (gaz > 3000) { LED+tone } else if (gaz > 2000) { LED on, noTone } else { LED off, noTone }
+@@4208
+Everything should be off when gas is low.
+@@4209
+With gas at 2500 the warning LED should be on.
+@@4210
+With gas at 2500 only the LED should be on; the buzzer must stay silent for now.
+@@4211
+With gas at 3600 the LED should stay on and the buzzer should sound too.
+@@4212
+When gas drops, the LED and buzzer should turn off.
+@@4213
+The warning and danger levels work!
+@@4214
+Why do we use both sound and light in a gas alarm?
+@@4215
+To power the light sensor
+@@4216
+Sound and light share the same electrical line
+@@4217
+In a noisy place light helps, and sound warns someone who is asleep or cannot see; using both increases safety
+@@4218
+A buzzer cannot work on its own
+@@4219
+An alarm tied to a single channel can be missed. Using sound and light together makes sure everyone, whatever their situation, notices the warning.
+@@4220
+Flashing alarm
+@@4221
+During the alarm the LED should not stay solid, it should <b>blink</b>: in each round turn the LED on for 200 ms and off for 200 ms. The buzzer keeps sounding throughout the alarm. When gas drops the LED turns off and the buzzer stops.
+@@4222
+In the alarm branch: digitalWrite(LED, HIGH); tone(BUZZER, 1000); delay(200); digitalWrite(LED, LOW); delay(200);
+@@4223
+The LED turned on {0} times during the alarm; it should blink at least 4 times (200 ms on, 200 ms off).
+@@4224
+The buzzer should sound during the alarm.
+@@4225
+The alarm blinks like a flasher!
+@@4226
+What happens if we choose a very low threshold in a gas alarm?
+@@4227
+Even a little smoke or smell gives a false alarm
+@@4228
+The alarm never sounds
+@@4230
+The sensor heats itself
+@@4231
+If the threshold is too low, even normal changes in the environment trigger the alarm. If it is too high, a real danger is missed. We choose the threshold by watching the values on the serial monitor.
+@@4232
+The servo never moved. Connect the lock servo to D5 and turn it with servo.write.
+@@4233
+The lock opened with a wrong password! The servo should go to 90 degrees only for the correct password.
+@@4234
+The correct password was entered but the lock did not open (the servo should be at 90 degrees).
+@@4235
+The lock did not close again after opening (the servo should return to 0 degrees).
+@@4236
+The lock closed too early ({0} ms). It must stay open at least {1} ms.
+@@4237
+The lock closed too late ({0} ms). It must stay open at most {1} ms.
+@@4238
+The red LED (D0) did not turn on for the wrong password.
+@@4239
+The safe opens and closes with the correct password and stays closed with a wrong one!
+@@4240
+Set your own password
+@@4241
+The safe's password is currently <b>1-2-3-4</b>. Change it to <b>2-4-6-8</b>. A wrong attempt (1-2-3-4) and then a correct one (2-4-6-8) will be tried.
+@@4242
+Change the password array to int sifre[4] = {2, 4, 6, 8};
+@@4243
+How can a 12-key keypad be connected to a single analog pin?
+@@4244
+A separate sensor is placed behind each key
+@@4245
+The keys are connected to a resistor ladder; each key produces a different voltage
+@@4246
+The keys communicate by radio
+@@4247
+Every key produces the same number, and the board counts in order
+@@4248
+When a key is pressed, a resistor of a different value enters the circuit and the analog pin reads a different number. Here key 1 gives 340, key 2 gives 680, ... key 12 gives 4080.
+@@4249
+How long the safe stays open
+@@4250
+Reaching into the safe doesn't fit in 3 seconds! With the correct password the lock should stay open for <b>5 seconds (5000 ms)</b>, then close again.
+@@4251
+Change the delay(3000) after writing servo 90 to delay(5000).
+@@4252
+What is the security weakness of writing the password in plain text in the code (sifre = {1, 2, 3, 4})?
+@@4253
+The board forgets the password immediately
+@@4254
+The servo goes to the wrong angle
+@@4255
+The keypad breaks
+@@4256
+Anyone who reads the code or pulls the program from the board can see the password
+@@4257
+Real safes do not store the password openly; it is kept in a scrambled (hash) form in protected memory. This lesson is a learning project.
+@@4258
+Cancel with the star (*) key
+@@4259
+Let the <b>*</b> key (key number <b>10</b>) be used to start over after a wrong key: when * is pressed, the count of entered keys resets and the error flag is cleared. The scenario will enter <b>1-2-*-1-2-3-4</b>; the safe should open.
+@@4260
+if (tus == 10) { girilen = 0; dogru = true; } else { old comparison and girilen += 1; }
+@@4261
+Why is the line <code>while (tusOku() &gt; 0) { delay(20); }</code> in the code?
+@@4262
+It waits until the user lifts their finger off the key, so one press is counted only once
+@@4263
+It speeds up the servo
+@@4264
+It erases the password
+@@4265
+It turns off the LCD
+@@4266
+The board runs very fast; one press could be read hundreds of times. Waiting until the key is released makes each press count as a single key.
+@@4268
+7.1 · Smart plant watering
+@@4269
+<h2>Smart plant watering</h2>
+      <p>We are building a system that waters your flower by itself when the soil dries out: soil moisture sensor on <b>A0</b>, water pump on pin <b>D6</b>.</p>
+      <ol>
+        <li>Inside <b>repeat forever</b>, read the <b>A0</b> moisture value (0-4095; <b>wet = big number</b>).</li>
+        <li>If moisture is <b>below 1500</b>, the soil is dry: set the <b>D6</b> pump to <b>HIGH</b>.</li>
+        <li>Otherwise (soil is moist enough), set the pump to <b>LOW</b>.</li>
+        <li>At the end <b>wait 100 ms</b> and press ▶ Run. The soil will be moist first, then dry, then moist again.</li>
+      </ol>
+@@4270
+Get to know the pot
+@@4271
+<p>The scene has a <b>soil moisture sensor</b> (<span class="pin-etiket">A0</span>) and a <b>water pump</b> (<span class="pin-etiket">D6</span>).</p>
+          <div class="kutu bilgi"><b>Wet = big number:</b> The two prongs of the sensor go into the soil. When the soil is wet, electricity flows well and <code>analogRead</code> gets close to 4095; when it is dry, the number gets smaller.
+          <pre><code>int nem = analogRead(A0);</code></pre></div>
+          <div class="kutu hedef"><b>Goal:</b> The pump should run when moisture drops below 1500 and stop when the soil gets wet.</div>
+@@4272
+<p>The soil's state can change at any moment. Drop the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category onto the workspace.</p>
+@@4273
+Moisture threshold: if - else
+@@4274
+<p>Put an <span class="chip akis">if</span> block inside the loop; use the gear icon to add an <b>else</b> branch. Plug a <span class="chip mantik">compare</span> block into the condition: <span class="chip analog">read analog value A0</span> <b>&lt; 1500</b>.</p>
+          <pre><code>if (analogRead(A0) &lt; 1500) { ... } else { ... }</code></pre>
+@@4275
+The compare block is in the Logic category, the A0 read block is in the Analog category. Set the comparison sign to &lt;.
+@@4276
+Turn the pump on and off
+@@4277
+<p>Take two <b>set pin</b> blocks from the <span class="chip pin">Pins</span> category. In the "if" branch put <b>set pin D6 HIGH</b>, in the "else" branch put <b>set pin D6 LOW</b>.</p>
+@@4278
+Set the pin box of the block to D6. The first should be HIGH, the second LOW.
+@@4279
+A short wait
+@@4280
+<p>Put the <span class="chip akis">wait 100 ms</span> block below the if-else block, inside <b>repeat forever</b>.</p>
+          <div class="kutu dikkat">Soil moisture does not change fast enough to be measured thousands of times per second. A short wait keeps the board from working needlessly hard.</div>
+@@4281
+The wait block should stay inside repeat forever.
+@@4282
+Run and water
+@@4283
+<p>Press ▶ <b>Run</b>. The soil becomes moist first, then dry, and you will see the pump run. Then when the soil gets wet again, the pump stops. You can also drag the sensor in the scene yourself.</p>
+@@4284
+If the pump never runs, check the direction of the threshold comparison (moisture &lt; 1500) and the pump pin (D6).
+@@4287
+The pump never ran. Set pin D6 HIGH when moisture drops below the threshold.
+@@4288
+The pump did not run when the soil dried (moisture 700). Condition: moisture < 1500.
+@@4289
+The pump did not stop when the soil got wet again. Add D6 LOW to the "else" branch.
+@@4290
+Your plant pot waters itself: the pump runs when it dries and stops when it gets wet!
+@@4293
+<h2>Motion-activated lamp</h2>
+      <p>We are building a lamp that turns on by itself when someone enters the hallway and then turns off: PIR motion sensor on <b>D5</b>, lamp (LED) on pin <b>D0</b>.</p>
+      <ol>
+        <li>Inside <b>repeat forever</b>, check the PIR with <b>is D5 high?</b> (HIGH if there is motion).</li>
+        <li>If there is motion, turn on the <b>D0</b> lamp.</li>
+        <li>Wait <b>2 seconds (2000 ms)</b>, then turn the lamp off.</li>
+        <li>At the end <b>wait 50 ms</b> and press ▶ Run. Motion will happen twice.</li>
+      </ol>
+@@4294
+Get to know the PIR sensor
+@@4295
+<p>The <b>PIR</b> (<span class="pin-etiket">D5</span>) in the scene notices changes in the infrared heat a person gives off. Its output is <b>HIGH</b> while there is motion and <b>LOW</b> when there is none. The lamp is on pin <span class="pin-etiket">D0</span>.</p>
+          <div class="kutu bilgi"><b>Digital input:</b> The PIR is read like a button: <code>digitalRead(D5)</code> gives 1 while there is motion.</div>
+          <div class="kutu hedef"><b>Goal:</b> When motion is detected the lamp should stay on for 2 seconds, then turn off.</div>
+@@4296
+<p>Motion can come at any moment. Drop the <span class="chip akis">repeat forever</span> block onto the workspace.</p>
+@@4297
+Is there motion?
+@@4298
+<p>Put an <span class="chip akis">if</span> block inside the loop. Plug the <span class="chip pin">is pin D5 high?</span> block into its condition.</p>
+          <pre><code>if (digitalRead(D5) == HIGH) { ... }</code></pre>
+@@4299
+Set the pin box to D5.
+@@4300
+Turn the lamp on, wait, turn it off
+@@4301
+<p>Inside the "if", put in order: <span class="chip pin">set pin D0 HIGH</span>, <span class="chip akis">wait 2000 ms</span>, <span class="chip pin">set pin D0 LOW</span>.</p>
+@@4302
+Set the wait time to 2000. The first D0 block should be HIGH, the second LOW.
+@@4303
+<p>Press ▶ <b>Run</b>. Two separate motions will come: the lamp should blink on and off for each one. You can also trigger the PIR in the scene with the mouse.</p>
+          <div class="kutu dikkat">A real PIR stays HIGH for a while after motion. That's not a problem for this lesson: after the lamp waits 2 seconds, the PIR is already LOW.</div>
+@@4304
+If the lamp never turns on, are the PIR pin (D5) and the lamp pin (D0) correct?
+@@4306
+The lamp never turned on. When the PIR (D5) is HIGH, set pin D0 HIGH.
+@@4307
+The lamp did not turn on at the first motion.
+@@4308
+The lamp did not turn off after 2 seconds. After waiting, set pin D0 LOW.
+@@4309
+The lamp did not turn on again at the second motion. Everything must be inside repeat forever.
+@@4310
+The lamp should turn off at the second motion too.
+@@4311
+The lamp turns on with motion and turns off after 2 seconds!
+@@4314
+<h2>Mini weather station</h2>
+      <p>A weather station that measures temperature and light and shows them on the LCD screen and the serial monitor: temperature sensor on <b>A1</b>, light sensor (LDR) on <b>A0</b>, I2C LCD screen.</p>
+      <ol>
+        <li>Convert the <b>A1</b> value to the <b>0-50 °C</b> range with <b>map</b>.</li>
+        <li>Convert the <b>A0</b> light value to the <b>0-100 percent</b> range.</li>
+        <li>Write <i>Sicaklik: 20 C</i> on LCD line 1 and <i>Isik: 50 %</i> on line 2.</li>
+        <li>Write the same values to the <b>serial monitor</b> and <b>wait 500 ms</b>.</li>
+      </ol>
+@@4315
+Get to know the station
+@@4316
+<p>The scene has a <b>temperature sensor</b> (<span class="pin-etiket">A1</span>), a <b>light sensor</b> (<span class="pin-etiket">A0</span>) and an <b>LCD</b>.</p>
+          <div class="kutu bilgi"><b>From a raw number to a real unit:</b> Both sensors give a number between 0-4095. For temperature this number corresponds to 0-50 °C, for light to 0-100 percent. We use <b>map</b> to convert it.</div>
+@@4317
+<p>The weather changes. Drop the <span class="chip akis">repeat forever</span> block onto the workspace.</p>
+@@4318
+Write the temperature to the LCD
+@@4319
+<p>Put the <span class="chip ekran">write LCD line 1</span> block in the loop. Instead of text, plug in a <span class="chip metin">join</span> block: write <b>Sicaklik: </b> in the first box and plug a <span class="chip analog">map</span> block into the second. In the map, the reading is <span class="pin-etiket">A1</span> and the output range is <b>0 - 50</b>.</p>
+@@4320
+The map block comes pre-filled in the Analog category; change where it says A0 to A1, and set the last two numbers to 0 and 50.
+@@4321
+Write the light to the LCD
+@@4322
+<p>Do the same for line 2: <span class="chip ekran">write LCD line 2</span>, join <b>Isik: </b> and map (reading <span class="pin-etiket">A0</span>, output <b>0 - 100</b>).</p>
+@@4323
+Set the line box of the LCD block to 2.
+@@4324
+<p>Take the <span class="chip seri">write to serial monitor</span> block from the <span class="chip seri">Serial</span> category and send the temperature value there too. The serial monitor lets you see values line by line on the computer.</p>
+@@4325
+You can plug a join or map block into the text box.
+@@4326
+<p>Put <span class="chip akis">wait 500 ms</span> at the end of the loop and press ▶ <b>Run</b>. The temperature will be 20, 30, 10 °C; the light will change too. Watch the screen and the serial monitor update.</p>
+@@4327
+If the screen does not update, make sure the wait block is inside repeat forever.
+@@4328
+LCD line 1 should show the temperature {0} (it currently shows "{1}"). Did you convert A1 to the 0-50 range?
+@@4329
+LCD line 2 should show the light percentage {0} (it currently shows "{1}"). Did you convert A0 to the 0-100 range?
+@@4330
+The serial monitor should show the temperature as 20 → 30 → 10.
+@@4331
+The weather station works: the screen and serial monitor show temperature and light!
+@@4333
+7.4 · Gas leak alarm
+@@4334
+<h2>Gas leak alarm</h2>
+      <p>A safety system that notices a gas leak in the kitchen: MQ-2 gas sensor on <b>A0</b>, buzzer on <b>D8</b>, red LED on pin <b>D0</b>.</p>
+      <ol>
+        <li>Read the <b>A0</b> gas value (0-4095; <b>lots of gas = big number</b>) and write it to the serial monitor.</li>
+        <li>If gas is <b>above 2000</b>, turn on the LED and play the buzzer at <b>1000 Hz</b>.</li>
+        <li>Otherwise turn off the LED and silence the buzzer.</li>
+        <li>At the end <b>wait 100 ms</b> and press ▶ Run.</li>
+      </ol>
+@@4335
+Get to know the alarm
+@@4336
+<p>The scene has an <b>MQ-2 gas sensor</b> (<span class="pin-etiket">A0</span>), a <b>buzzer</b> (<span class="pin-etiket">D8</span>) and a <b>red LED</b> (<span class="pin-etiket">D0</span>).</p>
+          <div class="kutu bilgi"><b>Lots of gas = big number:</b> The MQ-2 detects flammable gas and smoke. As gas increases in the air, the <code>analogRead</code> number gets bigger.
+          <pre><code>int gaz = analogRead(A0);</code></pre></div>
+          <div class="kutu dikkat">A real MQ-2 sensor needs a few minutes to warm up, and the alarm threshold is adjusted to the environment. That's why you watch the values on the serial monitor and pick a threshold.</div>
+@@4337
+<p>Gas can leak at any moment. Drop the <span class="chip akis">repeat forever</span> block onto the workspace.</p>
+@@4338
+Threshold condition
+@@4339
+<p>Place the <span class="chip akis">if</span> block and add an <b>else</b> branch with the gear. Condition: <span class="chip analog">read analog value A0</span> <b>&gt; 2000</b> (set the comparison sign to &gt;).</p>
+@@4340
+The compare block is in the Logic category, the A0 read block is in the Analog category.
+@@4341
+Alarm: LED and buzzer
+@@4342
+<p>In the "if" branch put <span class="chip pin">set pin D0 HIGH</span> and <span class="chip ses">play 1000 Hz tone on pin D8</span>.</p>
+@@4343
+The buzzer is on D8, the LED on D0. Set the frequency of the sound block to 1000.
+@@4344
+Silence it when safe
+@@4345
+<p>In the "else" branch put <span class="chip pin">set pin D0 LOW</span> and <span class="chip ses">stop the sound on pin D8</span>. Then add <span class="chip akis">wait 100 ms</span>.</p>
+@@4346
+The silence block is also in the Sound and motion category.
+@@4347
+<p>Press ▶ <b>Run</b>. Gas is low at first, then it increases. The alarm should sound only when gas exceeds 2000. You can also drag the sensor in the scene yourself.</p>
+@@4348
+If the alarm sounds at 1800, the threshold may have been left lower than 2000.
+@@4350
+The alarm never worked. When gas exceeds 2000, turn on the LED and play the buzzer.
+@@4351
+The alarm must not sound at a gas level of 1800; the threshold is 2000.
+@@4352
+The red LED should be on when gas is 3200.
+@@4353
+The buzzer should sound when gas is 3200.
+@@4354
+When gas drops (700), the LED and buzzer should turn off. Add it to the "else" branch.
+@@4355
+The gas alarm works: the LED turns on and the buzzer sounds when the threshold is exceeded!
+@@4357
+7.5 · Password safe
+@@4358
+<h2>Password safe</h2>
+      <p>A safe opened with a 12-key keypad: keypad on <b>A0</b>, lock servo on <b>D5</b>, red LED on <b>D0</b>, and an LCD for the status display.</p>
+      <ol>
+        <li>The keypad works on a single analog pin: <b>key n = 340 × n</b> (key 1 is 340, key 2 is 680 ...). If no key is pressed it is <b>0</b>.</li>
+        <li>The password is <b>1-2-3-4</b>. If 4 keys are pressed in the right order, the servo turns to <b>90 degrees</b> and unlocks.</li>
+        <li>After <b>3 seconds</b> the servo turns back to <b>0 degrees</b> and locks.</li>
+        <li>If a wrong key is pressed, the red LED turns on and the lock stays closed.</li>
+      </ol>
+@@4359
+Get to know the safe
+@@4360
+<p>The scene has a <b>keypad</b> (<span class="pin-etiket">A0</span>), a lock <b>servo</b> (<span class="pin-etiket">D5</span>), an <b>LCD</b> and an <b>LED</b> (<span class="pin-etiket">D0</span>).</p>
+          <div class="kutu bilgi"><b>One pin, 12 keys:</b> The keys are connected to a resistor ladder. Each key gives a different number: key 1 is 340, key 2 is 680, key 3 is 1020, key 4 is 1360 ... If no key is pressed it is 0. The board looks at the number to tell which key was pressed.</div>
+          <div class="kutu hedef"><b>Goal:</b> If 1, 2, 3, 4 are pressed in that order, the servo should open the lock for 3 seconds; on a wrong key the red LED should turn on.</div>
+@@4361
+Step counter and loop
+@@4362
+<p>From the <span class="chip degisken">Variables</span> category create a variable named <b>adim</b> and set it to <b>0</b> at the start. Then attach a <span class="chip akis">repeat forever</span> block below it.</p>
+          <div class="kutu bilgi"><b>adim</b> keeps track of which key of the password we are waiting for: 0 = key 1, 1 = key 2, 2 = key 3, 3 = key 4.</div>
+@@4363
+In the Variables category click "Create variable" and type the name adim. Put the "set adim to 0" block above the repeat forever block.
+@@4364
+Was a key pressed?
+@@4365
+<p>Put an <span class="chip akis">if</span> inside the loop. Condition: <span class="chip analog">read analog value A0</span> <b>&gt; 150</b>. (If no key is pressed, the value is 0.)</p>
+@@4366
+Set the sign of the compare block to &gt; and type 150 in the right box.
+@@4367
+Is it the right key?
+@@4368
+<p>Inside this "if", build another <span class="chip akis">if - else if - ... - else</span> chain (with the gear, add 3 "else if" and 1 "else"). The condition of each branch is: <b>adim = k</b> <span class="chip mantik">and</span> <b>A0 is in the range of key k+1</b>. For example for key 1 (340): <b>A0 &gt; 170</b> and <b>A0 &lt; 510</b>. If true, increase adim by one.</p>
+          <pre><code>if (adim == 0 &amp;&amp; A0 &gt; 170 &amp;&amp; A0 &lt; 510) adim = 1;
+else if (adim == 1 &amp;&amp; A0 &gt; 510 &amp;&amp; A0 &lt; 850) adim = 2; ...</code></pre>
+          <div class="kutu bilgi">The key ranges are spaced 340 apart: key 2 reads between 510-850, key 3 between 850-1190, key 4 between 1190-1530.</div>
+@@4369
+You can first build and test the whole chain with a single branch; then add more branches with the gear. Use the and block in the conditions.
+@@4370
+Open the lock
+@@4371
+<p>In the last branch (if the 4th key is right) set <b>adim</b> to 0 and open-wait-close the servo: <span class="chip ses">set servo D5 to 90</span>, <span class="chip akis">wait 3000 ms</span>, <span class="chip ses">set servo D5 to 0</span>.</p>
+@@4372
+Write 90 in the first servo block and 0 in the second. The wait 3000 ms block goes between them.
+@@4373
+Wrong key: LED
+@@4374
+<p>In the last "else" branch of the chain (wrong key) set <b>adim</b> to 0, then <span class="chip pin">set pin D0 HIGH</span>, <span class="chip akis">wait 500 ms</span>, <span class="chip pin">set pin D0 LOW</span>. At the end of the outer "if" put <span class="chip akis">wait 300 ms</span> so one press isn't counted twice. Add a 20 ms wait at the end of the loop.</p>
+@@4375
+A held key lasts about 200 ms; waiting 300 ms makes sure one press is counted only once.
+@@4376
+<p>Press ▶ <b>Run</b>. First a wrong password (1-2-3-5) is entered: the LED should turn on and the safe should stay closed. Then the correct password (1-2-3-4) is entered: the servo should open the lock and close it after 3 seconds. You can also press the keys in the scene yourself.</p>
+@@4377
+If the lock opens with a wrong password too, make sure you check the adim value in the condition of each branch.
+@@4380
+The car did not move at all. You must set pin D0 HIGH for the left motor and pin D2 HIGH for the right motor.
+@@4381
+The car did not go forward far enough (at most {0} cm). Both motors must turn forward.
+@@4382
+Long trip: 3 seconds forward, 3 seconds back
+@@4383
+The car currently goes forward for 2 seconds. Go <b>forward for 3 seconds</b>, <b>stop for 500 ms</b>, then come <b>back for 3 seconds</b> to where you started and stop the motors.
+@@4384
+Set up the sequence ileri(); delay(3000); dur(); delay(500); geri(); delay(3000); dur();
+@@4385
+The car did not come back for 3 seconds; it should return to where it started.
+@@4386
+The car did not return to its starting point: the forward and backward times must be equal.
+@@4387
+Don't forget to stop the motors when the program ends.
+@@4388
+The car went forward 75 cm and came back along the same path!
+@@4389
+Why aren't the motors in a robot car connected directly to the Deneyap Kart pins, and a motor driver (L298N) is used instead?
+@@4390
+Pins cannot supply the large current a motor needs; the driver takes this current from the battery and gives it to the motor
+@@4391
+The motor driver makes the car faster
+@@4392
+Pins can only light an LED
+@@4393
+Motors cannot read the code directly
+@@4394
+A pin can supply a few mA, while a DC motor draws hundreds of mA. The driver switches the large current from the battery on and off with the small signal from the pin.
+@@4396
+Run only the <b>left motor</b> forward for 2 seconds (the right motor should not run at all) and then stop. The car should curve and turn to one side.
+@@4397
+Just set pin D0 HIGH, wait 2000 ms, then set pin D0 LOW.
+@@4398
+The right motor (D2, D3) must not run at all.
+@@4399
+Set pin D0 HIGH to run the left motor forward.
+@@4400
+The car did not move enough.

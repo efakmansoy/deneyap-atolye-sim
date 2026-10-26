@@ -1,0 +1,473 @@
+@@2989
+What does the LED do with <code>if (analogRead(A0) &lt; 1000) { digitalWrite(D0, HIGH); } else { digitalWrite(D0, LOW); }</code> when A0 = 300?
+@@2990
+Glows at half brightness
+@@2991
+300 is less than 1000, so the condition is true and D0 becomes HIGH. The LED turns on.
+@@2992
+Blinking warning in the dark
+@@2993
+<p>In the dark, the LED should not stay on steadily. It should <b>blink</b> (about half a second on, half a second off). When the light comes back, the LED should stay <b>off</b>.</p>
+@@2994
+In the if arm, put turn on, wait, turn off, wait. Otherwise, in the else arm, turn the LED off.
+@@2995
+The LED must not be on when there is light.
+@@2996
+The LED did not blink enough. Put the order turn on, wait, turn off, wait into the if arm.
+@@2997
+The LED did not blink in the dark. In the dark arm, turn the LED on first, then off.
+@@2998
+The LED must stay off when the light comes back.
+@@2999
+It blinks in the dark and stays off in the light!
+@@3000
+Early warning (threshold 2000)
+@@3001
+<p>Make the alarm go off earlier: when the <span class="pin-etiket">A1</span> value is <b>above 2000</b>, the <span class="pin-etiket">D0</span> alarm LED should turn on, and it should be off below that.</p>
+@@3002
+Lower the threshold number in the comparison block. There should be no alarm at 1800 and an alarm at 2200.
+@@3003
+The alarm now goes off above 2000!
+@@3004
+What does the expression <code>analogRead(A1) &gt; 2500</code> tell you about the temperature sensor?
+@@3005
+The temperature is below the threshold
+@@3006
+The number read from the sensor is greater than 2500, so the temperature is high
+@@3007
+Pin A1 has been set as an output
+@@3008
+The LED is already on
+@@3009
+With this sensor, the number gets bigger as the temperature rises. The condition checks whether the number goes above the threshold.
+@@3010
+<p>This time let's make a <b>cold</b> warning (like a refrigerator). The LED should turn on when the <span class="pin-etiket">A1</span> value drops <b>below 1000</b>, and be off at 1000 and above.</p>
+@@3011
+You only need to change the sign and the threshold number of the previous alarm.
+@@3012
+The alarm sounds when it gets cold and stops when it warms up!
+@@3013
+How many <b>different values</b> can the ESP32-S3's 12-bit ADC read in total?
+@@3015
+2 to the power of 12 = 4096 different values: from 0 to 4095. Although the largest value is 4095, the number of values is 4096.
+@@3016
+Brightness by temperature
+@@3017
+<p>Instead of an alarm, make a <b>temperature gauge</b>: as the <span class="pin-etiket">A1</span> value rises, the LED's brightness should increase <b>gradually</b>. It should be off when A1 = 0 and fully bright when A1 = 4095.</p>
+@@3018
+Remember the map block from the potentiometer lesson; this time read A1.
+@@3019
+The LED gets brighter as the temperature rises!
+@@3020
+In the alarm code, what happens if the <b>else</b> arm (<code>else</code>) is never written and the temperature drops later?
+@@3022
+The LED blinks
+@@3023
+The LED stays on because nobody turns it off
+@@3024
+Once a pin is set HIGH, it stays that way until it is set LOW again. That is why you need an arm that turns it off.
+@@3025
+Two-stage alarm
+@@3026
+<p>Let there be three cases: below <b>1500</b> on A1 the LED is off. <b>Between 1500 and 2500</b> the LED stays steadily on (warning). Above <b>2500</b> the LED <b>blinks</b> (danger).</p>
+@@3027
+Check the most dangerous case first. To blink, use turn on, wait, turn off, wait (about 250 ms).
+@@3028
+When the temperature is low (A1 = 1000), the LED must be off.
+@@3029
+When A1 = 2000 (warning), the LED must be on.
+@@3030
+When A1 = 2000, the LED must stay steadily on, not blink.
+@@3031
+When A1 = 3300 (danger), the LED must blink: on, wait, off, wait.
+@@3032
+All three cases are correct: off, steady warning, blinking danger!
+@@3033
+Reverse-filling bar
+@@3034
+<p>Make the bar work in <b>reverse</b>: with the pot at the left, all <b>8 LEDs</b> are on. As the pot turns right, the LEDs <b>turn off one by one</b>, and at the far right none are on.</p>
+@@3035
+Computing 8 minus the level, or reversing the output range of the map block from 8 to 0, will work.
+@@3036
+The bar empties as the pot turns right!
+@@3037
+What is the result of <code>map(2048, 0, 4095, 0, 8)</code>?
+@@3038
+2048 is exactly the middle of the range 0-4095. The middle of the range 0-8 is 4.
+@@3039
+A bar with only 4 LEDs
+@@3040
+<p>Use only the <b>first 4 LEDs</b> (D0-D3) of the bar. With the pot fully right, 4 LEDs should be on; in the middle, 2 LEDs; fully left, none. The other 4 LEDs should always stay off.</p>
+@@3041
+What should the output range of the map block be, from 0 to what? Also set the bar's LED count.
+@@3042
+LEDs D4-D7 must never light up. Make the bar 4 LEDs.
+@@3043
+The four-LED bar fills according to the pot!
+@@3044
+Which LEDs are on when the level is <b>3</b> in the LED bar block? (The bar starts at D0.)
+@@3046
+Only D3
+@@3049
+As many LEDs light up as the level, starting from the left: 3 LEDs, that is D0, D1 and D2. D3 is the fourth LED, so it stays off.
+@@3050
+Warning LED (75%)
+@@3051
+<p>Only the <b>last LED (D7)</b> should light up, and only when the pot goes <b>above 75%</b> (about A0 &gt; 3072). If the pot is lower, <b>no LED</b> should be on. D0-D6 must always stay off.</p>
+@@3052
+Instead of the bar block, use the if block and the single pin write block.
+@@3053
+When A0 = {0}, D0-D6 must be off; only D7 may be on.
+@@3055
+The warning LED turns on when the pot goes past 75%!
+@@3056
+Why is the target range of the map block for an 8-LED bar chosen as <b>0-8</b> and not <b>0-255</b>?
+@@3057
+Because the pot only gives 8 values
+@@3058
+Because the bar has 255 colors
+@@3059
+Because the bar does not use PWM, so a delay is needed
+@@3060
+The resulting number must be the number of LEDs to light, and the bar has 8 LEDs
+@@3061
+The bar block expects a number as the answer to "how many LEDs should light up?". Since at most 8 LEDs can be on, the value must be in the range 0-8.
+@@3063
+<p>Do not fill the bar: instead, light <b>just one LED</b> and let this light <b>travel</b> from left to right as you turn the pot. With the pot fully left, D0 is on; fully right, D7 is on; in between, the matching LED is on.</p>
+@@3064
+First convert the pot to a number from 0 to 7 (the position). Then for each LED write "if the position equals this LED, turn it on, otherwise turn it off".
+@@3065
+When A0 = {0}, exactly 1 LED should be on, but {1} LEDs are on.
+@@3066
+When A0 = {0}, D{1}{2} should have been on, but D{3} is on.
+@@3068
+The light dot travels along with the pot!
+@@3069
+<table class="nota">
+  <tr><th>Do</th><th>Re</th><th>Mi</th><th>Fa</th><th>Sol</th><th>La</th><th>Si</th><th>Do'</th></tr>
+  <tr><td>262</td><td>294</td><td>330</td><td>349</td><td>392</td><td>440</td><td>494</td><td>523</td></tr></table>
+@@3071
+4.1 · Melody with a buzzer
+@@3072
+<h2>Melody with a buzzer</h2>
+      <p>A buzzer is connected to pin D8. The <b>play ... Hz sound on pin D8</b> block makes the buzzer play a note, and the <b>stop the sound</b> block cuts it off.</p>
+      <p>Note frequencies (Hz):</p>{0}
+      <ol>
+        <li>Play a note (e.g. Do = 262).</li>
+        <li><b>Wait 300 ms</b>, then stop the sound and <b>wait 50 ms</b>; otherwise the notes blur together.</li>
+        <li>Repeat this for at least 5 notes, for example: Do Mi Sol Do' Sol Mi Do.</li>
+      </ol>
+      <p>Hint: Instead of writing repetitive code for the notes, you can duplicate the consecutive blocks.</p>
+@@3073
+Meet the buzzer
+@@3074
+<p>A <b>buzzer</b> (a small speaker that makes sound) is connected to pin <span class="pin-etiket">D8</span> of the board. The green ring points to it.</p>
+          <div class="kutu bilgi"><b>What is frequency?</b> Sound is how many times per second the air vibrates. This number is called <b>frequency</b>, and its unit is <b>Hz</b> (hertz). The faster the vibration, the <i>higher-pitched</i> the sound. Every note has a frequency:
+          <br>Do (C4) = 262 Hz, Re (D4) = 294, Mi (E4) = 330, Fa (F4) = 349, Sol (G4) = 392, La (A4) = 440, Si (B4) = 494.</div>
+          <div class="kutu hedef"><b>Goal:</b> Play a melody with at least 5 notes and 4 different pitches.</div>
+@@3075
+Get the play sound block
+@@3076
+<p>Open the <span class="chip ses">Sound and motion</span> category and drop the <span class="chip ses">play ... Hz sound on pin D8</span> block into the workspace. Set the frequency to <b>262</b> (Do).</p>
+          <pre><code>tone(D8, 262);</code></pre>
+          <div class="kutu bilgi"><code>tone(pin, frequency)</code> makes the buzzer play a continuous sound at that frequency. The sound goes on until you stop it!</div>
+@@3077
+The pin must be D8. You can click the number box and type 262.
+@@3078
+Wait and stop
+@@3079
+<p>To make the note audible, attach a <span class="chip akis">wait 300 ms</span> block below it. Then add <span class="chip ses">stop the sound on pin D8</span> and <span class="chip akis">wait 50 ms</span>.</p>
+          <pre><code>tone(D8, 262);
+delay(300);
+noTone(D8);
+delay(50);</code></pre>
+          <div class="kutu bilgi"><code>noTone(pin)</code> cuts off the sound.</div>
+          <div class="kutu dikkat">If you do not stop the sound and wait a short moment, consecutive notes blur together and sound like one long tone.</div>
+@@3080
+The wait block is in the Flow category. Order: play, wait, stop, wait.
+@@3082
+<p>Select the group of four blocks, copy it (Ctrl+C, Ctrl+V) and add the copies one below another. Change the frequency in each copy. Example melody: <b>Do Mi Sol Do' Sol Mi Do</b>.</p>
+          <p>Use at least <b>5 notes</b> and <b>4 different frequencies</b>. Keep the frequencies between 100 and 2000 Hz.</p>
+@@3083
+Do' = 523 Hz. Copying blocks is faster than dragging them from scratch.
+@@3084
+Run and listen
+@@3085
+<p>Press ▶ <b>Run</b> and listen to your melody.</p>
+          <div class="kutu hedef"><b>Goal:</b> The notes should be clearly separated and the melody should play from start to finish.</div>
+@@3086
+If the notes blur together, stop the sound and wait briefly after each note. If it played too few notes, copy the block group more times.
+@@3088
+You played only {0} notes. Play at least 5 notes.
+@@3089
+The melody must have at least 4 different notes.
+@@3090
+Note frequencies must be between 100 and 2000 Hz (see the table).
+@@3091
+The notes go by too fast. Wait after each note and stop the sound.
+@@3092
+Nice melody!
+@@3095
+<h2>Servo motor</h2>
+      <p>A servo is connected to pin D5. The <b>set servo D5 to ... °</b> block moves the arm to an angle between 0 and 180 degrees.</p>
+      <ol>
+        <li>First set the arm to <b>0°</b>.</li>
+        <li>Turn the arm in 30° steps (30, 60, 90 ... ) up to <b>180°</b>; <b>wait 100 ms</b> at each step.</li>
+        <li>Then bring it back the same way from <b>180° to 0°</b>.</li>
+      </ol>
+      <p>Hint: Duplicating one step block (servo + wait) and changing the angle speeds things up. Steps must not be larger than 45°.</p>
+@@3096
+Meet the servo motor
+@@3097
+<p>A <b>servo motor</b> is connected to pin <span class="pin-etiket">D5</span>. Can you see the arm with the green ring?</p>
+          <div class="kutu bilgi"><b>Servo angle:</b> A normal motor spins continuously. A servo moves its arm to the <b>angle</b> you give it and stays there. The angle is between <b>0° and 180°</b>: 0° is one end, 90° is the middle, 180° is the other end.</div>
+@@3098
+Set the arm to 0°
+@@3099
+<p>From the <span class="chip ses">Sound and motion</span> category, take the <span class="chip ses">set servo D5 to ... °</span> block. Set the angle to <b>0</b>.</p>
+          <pre><code>servo_D5.write(0);</code></pre>
+          <div class="kutu bilgi"><code>servo.write(angle)</code> turns the arm to that angle. We add the servo library (<code>ESP32Servo.h</code>) automatically.</div>
+@@3100
+The pin must be D5. Click the angle box and type 0.
+@@3101
+Sweep from 0° to 180°
+@@3102
+<p>Add <span class="chip akis">wait 100 ms</span> below the servo block. Then copy this pair and set the angle to <b>30, 60, 90, 120, 150, 180</b>.</p>
+          <pre><code>servo_D5.write(0);
+delay(100);
+servo_D5.write(30);
+delay(100);
+...</code></pre>
+          <div class="kutu dikkat">The servo needs time to move. If you do not add a wait, a new command arrives before the arm reaches its target.</div>
+@@3103
+There must be 7 servo blocks in total: 0, 30, 60, 90, 120, 150, 180. Put a wait after each angle.
+@@3104
+Come back from 180°
+@@3105
+<p>Bring the arm back the same way: <b>150, 120, 90, 60, 30, 0</b>. Wait 100 ms at each step again. Steps must not be larger than 45°!</p>
+@@3106
+Copying the blocks from above speeds up your work. You end up with 13 servo blocks in total.
+@@3107
+<p>Press ▶ <b>Run</b> and watch the arm go back and forth.</p>
+          <div class="kutu hedef"><b>Goal:</b> The arm should go from 0° to 180°, then return to 0°.</div>
+@@3108
+If the arm does not reach 180°, check the last angle. If the motion is jerky, make the steps smaller.
+@@3109
+The servo moved too little. Turn the arm in small steps.
+@@3110
+The arm never reached 0°.
+@@3111
+The arm did not return from 180° to 0°.
+@@3112
+The steps are too big. Move in steps of about 10°.
+@@3113
+The servo swept from 0 to 180 and back!
+@@3115
+4.3 · Parking sensor
+@@3116
+<h2>Parking sensor</h2>
+      <p>A distance sensor is connected to D3 and a buzzer to D8. When you run it, an obstacle approaches the car step by step (150, 80, 40, 15 cm; about 1 s each).</p>
+      <ol>
+        <li>Inside <b>repeat forever</b>, read the <b>D3 distance sensor (cm)</b> value.</li>
+        <li>If the distance is <b>less than 100</b>, beep: play a sound (e.g. 1000 Hz), wait for a time that depends on the distance, stop the sound and wait the same time again.</li>
+        <li>Make the wait time proportional to the distance (e.g. <b>distance × 4</b> ms): the closer the obstacle, the more frequent the beeps.</li>
+        <li>If the distance is 100 or more, stay silent (add a short wait).</li>
+      </ol>
+@@3117
+Meet the parking sensor
+@@3118
+<p>The <b>distance sensor</b> on pin <span class="pin-etiket">D3</span> measures the distance to the obstacle in front of it in centimeters (cm). The buzzer on pin <span class="pin-etiket">D8</span> gives the warning.</p>
+          <p>When you run it, the obstacle will approach step by step: 150, 80, 40, 15 cm. You can also try dragging the object in the scene with the mouse.</p>
+          <div class="kutu bilgi"><b>Plan:</b> If the obstacle is far, stay silent. If it is near, beep. As it gets closer, the gap between beeps should get shorter, so the beeps become <b>more frequent</b>.</div>
+@@3119
+<p>The sensor must measure continuously. Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category.</p>
+@@3120
+Read the distance and compare
+@@3121
+<p>Put an <span class="chip akis">if</span> block in the loop. For its condition, take a <span class="chip mantik">comparison</span> block, put <span class="chip ses">D3 distance sensor (cm)</span> on its left and <span class="chip sayi">100</span> on its right. Set the sign to <b>&lt;</b>.</p>
+          <pre><code>if ((mesafeOlc(D3) &lt; 100)) {
+  ...
+}</code></pre>
+          <div class="kutu bilgi"><code>mesafeOlc(D3)</code> is the cm value coming from the sensor. The condition asks "is it closer than 100 cm?".</div>
+@@3122
+The if block is in Flow, the comparison in Logic, and the distance block in Sound and motion.
+@@3123
+Play a beep
+@@3124
+<p>Inside the if block, put these in order: <span class="chip ses">play 1000 Hz sound on pin D8</span>, <span class="chip akis">wait</span>, <span class="chip ses">stop the sound on D8</span>, <span class="chip akis">wait</span>.</p>
+          <p>For both wait times, use the <span class="chip sayi">arithmetic</span> block to make <b>distance × 4</b>. The smaller the distance, the shorter the wait and the more frequent the beeps.</p>
+          <pre><code>tone(D8, 1000);
+delay((mesafeOlc(D3) * 4));
+noTone(D8);
+delay((mesafeOlc(D3) * 4));</code></pre>
+          <div class="kutu bilgi">For 15 cm the wait is 60 ms, for 80 cm it is 320 ms. The beeps speed up as it gets closer.</div>
+@@3125
+You need three distance blocks: one in the comparison and two in the wait times. The multiplication sign is in the arithmetic block's list.
+@@3127
+<p>Add the <b>else</b> arm to the if block (blue gear) and put a short <span class="chip akis">wait 50 ms</span> in it. When the obstacle is far, the buzzer does not sound and the loop runs smoothly.</p>
+          <div class="kutu dikkat">Even in the silent case, the loop must have a small wait.</div>
+@@3128
+There must be three wait blocks in total: two inside the beep and one in the else arm.
+@@3129
+<p>Press ▶ <b>Run</b>. Listen to the beep speed as the obstacle approaches.</p>
+          <div class="kutu hedef"><b>Goal:</b> Silence at 150 cm, then more frequent beeps at each step.</div>
+@@3130
+If the beeps do not get more frequent, connect the wait time to the expression distance x 4, not to a fixed number.
+@@3131
+The buzzer must not sound when the obstacle is far (150 cm).
+@@3132
+The buzzer did not sound when the obstacle came within 80 cm. Condition: distance < 100.
+@@3133
+The beeps must get more frequent as the obstacle approaches. Connect the wait time to the distance.
+@@3134
+Your parking sensor works, and the beeps get more frequent as you get closer!
+@@3136
+4.4 · Button piano
+@@3137
+<h2>Button piano</h2>
+      <p>The piano's seven keys are connected to pins D0-D6, and there is a buzzer on D8. When you press a key, its note should sound.</p>
+      {0}
+      <ol>
+        <li>Inside <b>repeat forever</b>, first <b>stop the sound on D8</b>.</li>
+        <li>For each key: if <b>pin D0 is high?</b>, play that note on D8 (D0 = 262, D1 = 294, D2 = 330, D3 = 349, D4 = 392, D5 = 440, D6 = 494).</li>
+      </ol>
+      <p>You can also try it yourself: after running, click the piano keys in the scene.</p>
+@@3138
+Meet the piano
+@@3139
+<p>The seven-key piano is connected to pins <span class="pin-etiket">D0</span>-<span class="pin-etiket">D6</span>. The buzzer is on pin <span class="pin-etiket">D8</span>. You can press the keys by clicking them with the mouse.</p>
+          <div class="kutu bilgi"><b>Key-note mapping:</b> D0 = Do 262 Hz, D1 = Re 294, D2 = Mi 330, D3 = Fa 349, D4 = Sol 392, D5 = La 440, D6 = Si 494.</div>
+@@3140
+Stop the sound first
+@@3141
+<p>Take a <span class="chip akis">repeat forever</span> block. Put <span class="chip ses">stop the sound on pin D8</span> inside it.</p>
+          <pre><code>noTone(D8);</code></pre>
+          <div class="kutu bilgi">If we stop the sound at the start of every round, the buzzer stays silent when no key is pressed. When you release the key, the sound stops.</div>
+@@3142
+Repeat forever is in Flow, stop the sound is in Sound and motion.
+@@3143
+First key: D0 = Do
+@@3144
+<p>Take an <span class="chip akis">if</span> block. Attach the <span class="chip pin">is pin D0 high?</span> block as its condition. Put <span class="chip ses">play 262 Hz sound on pin D8</span> inside it.</p>
+          <pre><code>if ((digitalRead(D0) == HIGH)) {
+  tone(D8, 262);
+}</code></pre>
+@@3145
+The pin read block is in the Pins category.
+@@3146
+Add the other six keys
+@@3147
+<p>Copy the if block and duplicate it for each key, changing the pin and the frequency.</p>
+          {0}
+          <p>D1 = 294, D2 = 330, D3 = 349, D4 = 392, D5 = 440, D6 = 494.</p>
+@@3148
+There will be 7 if blocks and 7 play sound blocks in total. Copying is faster than dragging.
+@@3149
+Run and play
+@@3150
+<p>Press ▶ <b>Run</b>. The program plays a key-pressing scenario by itself. Then play yourself by clicking the piano keys in the scene.</p>
+          <div class="kutu hedef"><b>Goal:</b> Each key should play its own note, and the sound should stop when you release the key.</div>
+@@3151
+If a wrong note plays, check the pin-to-frequency pairing. If the sound does not stop, check the stop block at the start of the loop.
+@@3153
+The sound must stop when you release the key. Stop the sound at the start of the loop.
+@@3154
+Your piano is ready, and the keys play the right notes!
+@@3155
+One octave up
+@@3156
+<p>The buzzer is on pin <span class="pin-etiket">D8</span>. Play the Do-Mi-Sol melody <b>one octave higher</b>: <b>523 Hz, 659 Hz, 784 Hz</b>.</p><p>Each note should last at least 150 ms, and none of the notes you play should be below 500 Hz.</p>
+@@3157
+For each note: play the sound, wait, stop, wait briefly. Write the frequency numbers exactly.
+@@3158
+The buzzer never sounded. Play a sound on pin D8.
+@@3159
+You played a note from the lower octave. All notes must be 500 Hz or above.
+@@3160
+You must play the notes 523, 659 and 784 Hz in order (right now {0}/3 are in the right order).
+@@3161
+Some notes are too short. Wait at least 150 ms after each note.
+@@3162
+The melody plays one octave higher!
+@@3163
+You make the buzzer play <code>440</code> Hz first, then <code>880</code> Hz. Which sound is heard as <b>higher-pitched</b>?
+@@3166
+Both are the same
+@@3167
+Hz determines the length of the sound, not its pitch
+@@3168
+As frequency increases, the vibration gets faster and the sound gets higher. 880 Hz is twice 440 Hz; it is one octave higher.
+@@3170
+<p>Play the seven-note <b>scale</b> in order: Do 262, Re 294, Mi 330, Fa 349, Sol 392, La 440, Si 494 Hz.</p><p>Keep the notes clearly separated: each should last at least 120 ms.</p>
+@@3171
+Copy one note block group and change the frequency. Or, if you are writing by hand, go through the frequency array with a loop.
+@@3172
+All 7 notes of the scale must play in order (right now {0}/7). Check the table: 262, 294, 330, 349, 392, 440, 494.
+@@3173
+Some notes are too short. Each note must last at least 120 ms.
+@@3174
+The scale is complete: Do Re Mi Fa Sol La Si!
+@@3175
+You wrote the <code>tone(D8, 262);</code> command but never used <code>noTone</code>. What happens?
+@@3176
+The sound continues until I stop it (or give another frequency)
+@@3177
+The sound stops by itself after 1 second
+@@3178
+The buzzer makes no sound at all
+@@3179
+The board restarts
+@@3180
+<code>tone(pin, frequency)</code> plays a continuous sound. You need <code>noTone(pin)</code> to stop it.
+@@3182
+<p>Make an ambulance siren: go back and forth between two notes. The low note should be <b>440 Hz</b> and the high note exactly <b>double (880 Hz)</b>.</p><p>Repeat this switch at least <b>3 times</b> (at least 6 notes in total); each note should last at least 100 ms.</p>
+@@3183
+You can use a loop: play 440, wait, play 880, wait. The total time is 4.5 s.
+@@3184
+You played only {0} notes. The siren must have at least 6 notes (3 back-and-forth rounds).
+@@3185
+The siren must have exactly two different frequencies (right now there are {0} different frequencies).
+@@3186
+The high note must be exactly double the low note (440 and 880).
+@@3187
+The notes must alternate: low, high, low, high...
+@@3188
+Some notes are too short. Wait at least 100 ms on each note.
+@@3189
+The siren is sounding!
+@@3190
+What is the main reason we put <code>noTone</code> and a short <code>delay</code> between notes?
+@@3191
+So the buzzer does not overheat
+@@3192
+To increase the frequency
+@@3193
+So consecutive notes do not blur into one long sound
+@@3195
+Without a short silence between notes, consecutive notes at the same frequency blur together and the melody cannot be told apart.
+@@3196
+Countdown beep
+@@3197
+<p>Make a rocket launch countdown: <b>3 short beeps</b> (each 60-300 ms), followed by <b>1 long beep</b> (600 ms or longer).</p><p>Leave silence between the beeps. Stop the sound when the long beep ends; the long beep must not exceed 2.5 seconds.</p>
+@@3198
+Short beep: play, wait ~150 ms, stop, wait ~150 ms. For the long beep, increase the wait time (e.g. 800 ms).
+@@3199
+I heard only {0} beeps. 3 short + 1 long = 4 beeps are needed.
+@@3200
+Countdown done: beep beep beep, beeeep!
+@@3201
+I could not find 3 short beeps in a row (60-300 ms, with silence between them) followed by one long beep of 600-2500 ms.
+@@3202
+Between 45° and 135°
+@@3203
+<p>The arm of the <span class="pin-etiket">D5</span> servo should go to <b>45°</b>, then to <b>135°</b>, then return to <b>45°</b> again.</p><p>The arm must never go below 40° or above 140°.</p>
+@@3204
+First servo.write(45), wait a bit, then 135, then 45 again. Wait after each move.
+@@3205
+The arm went outside the 45°-135° range (it must not exceed the 40°-140° limit).
+@@3206
+The arm did not reach around 45°.
+@@3207
+The arm did not reach around 135°.
+@@3208
+The arm did not return from 135° to 45°.

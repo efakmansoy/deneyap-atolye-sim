@@ -1,0 +1,11 @@
+{
+  "appId": "com.deneyap.atolye",
+  "appName": "Deneyap Atölye",
+  "webDir": "dist",
+  "backgroundColor": "#0b1020",
+  "android": { "allowMixedContent": false },
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 800, "backgroundColor": "#0b1020" },
+    "StatusBar": { "style": "DARK", "backgroundColor": "#0b1020", "overlaysWebView": false }
+  }
+}

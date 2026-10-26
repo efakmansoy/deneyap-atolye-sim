@@ -1,0 +1,583 @@
+@@4401
+The car did not curve and turn. The car only changes direction when just the left motor runs.
+@@4402
+Don't forget to stop the motor after 2 seconds.
+@@4403
+With one motor, the car curved to the right!
+@@4404
+What happens if both the forward and backward pins of the same motor are set to HIGH at the same time?
+@@4405
+The motor doesn't turn; the two directions cancel each other out
+@@4406
+The motor turns twice as fast
+@@4407
+The motor turns forward
+@@4408
+The motor turns backward
+@@4409
+The motor driver compares the two direction pins. If they are the same (both 0 or both 1), there is no voltage difference across the motor terminals and the motor stops.
+@@4411
+Make the car go <b>forward for 1 second</b>, then <b>backward for 1 second</b>; repeat this <b>3 times</b>. After each step, stop the motors with dur().
+@@4412
+Build the loop: for (int i = 0; i < 3; i++) { ileri(); delay(1000); dur(); geri(); delay(1000); dur(); }
+@@4415
+After each forward move, it must come back for the same amount of time; the car should return to where it started.
+@@4416
+The car hit the wall.
+@@4417
+You went back and forth three times, and the car is back where it started!
+@@4418
+When the left motor runs forward and the right motor is stopped, which way does the car curve?
+@@4419
+To the right (the left wheel pushes forward, the right wheel stays in place)
+@@4421
+It goes straight forward
+@@4422
+It goes backward on the spot
+@@4423
+Because the left wheel turns faster than the right wheel, the car turns to the right around the right wheel.
+@@4424
+The car did not return to its starting point ({0} cm away).
+@@4425
+The car is not facing its starting direction ({0} degrees off).
+@@4426
+Square to the left
+@@4427
+The car currently draws the square by turning <b>right</b>. Draw the square by turning <b>left</b>: the car should head up (+y) and still return to where it started.
+@@4428
+Change the turn function from saga() to sola(). Don't change the durations.
+@@4429
+The car did not travel far enough. You must draw the square along all 4 sides.
+@@4430
+The car did not turn left (up). To turn left, the left motor must run backward and the right motor forward.
+@@4431
+The car drew a square to the left and returned to where it started!
+@@4432
+How should the motors run to turn the car right on the spot?
+@@4433
+Left motor forward, right motor backward
+@@4434
+Left motor backward, right motor forward
+@@4435
+Both motors forward
+@@4436
+Both motors stopped
+@@4437
+If the left wheel turns forward and the right wheel backward, the car spins clockwise (to the right) around itself. The opposite turns it left.
+@@4438
+Big square (35 cm side)
+@@4439
+The square currently has 25 cm sides. Make the side length <b>35 cm</b> (the wheels turn at 25 cm/s: go forward for <b>1400 ms</b> for 35 cm). Keep the turns at 90 degrees.
+@@4440
+Change the delay(1000) value used while going forward to 1400; don't touch the turning time.
+@@4441
+The car traveled {0} cm in total; in a square with 35 cm sides it should travel about 140 cm.
+@@4442
+The square is not big enough: the side must be 35 cm.
+@@4443
+You completed the big square with 35 cm sides!
+@@4444
+If we double the turning time (delay), how many degrees does the car turn?
+@@4447
+90 degrees, but slower
+@@4449
+Since the turning speed is constant, the turning angle is proportional to the time: 380 ms is about 90 degrees, and 760 ms is about 180 degrees.
+@@4450
+U-turn
+@@4451
+Make the car go <b>forward for 1 second</b>, turn <b>180 degrees on the spot</b> (760 ms), then go <b>forward for 1 more second</b> and stop. The car must reach its starting point facing the opposite direction.
+@@4452
+Write the sequence: ileri(); delay(1000); saga(); delay(760); ileri(); delay(1000); dur();
+@@4454
+The car is not facing the opposite direction ({0} degrees). Turning 180 degrees takes about 760 ms.
+@@4455
+The car did not return to its starting point. The two forward durations must be equal.
+@@4456
+Stop the motors at the end.
+@@4457
+U-turn successful: the car came back!
+@@4458
+When drawing a square, why do we put a short dur() and a wait after each turn?
+@@4459
+So the car doesn't slide from momentum while moving, and the turn starts cleanly
+@@4460
+So the battery doesn't run out
+@@4461
+So the sensors can turn on
+@@4462
+So the code compiles faster
+@@4463
+If a moving car suddenly changes direction, it skids. A short pause makes the turns consistent and repeatable.
+@@4464
+Brake earlier: 40 cm
+@@4465
+The car turns back when it is 30 cm from the obstacle. To be safer, make it react when it is closer than <b>40 cm</b>.
+@@4466
+Change the number 30 in the condition mesafeOlc(D4) < 30 to 40.
+@@4467
+The car never backed up when it approached the obstacle. Is there a geri() call that sets pins D1 and D3 to HIGH?
+@@4468
+The car backed up only when it got very close to the obstacle (x = {0}). It should react at 40 cm.
+@@4469
+The car turns back when it is 40 cm from the obstacle!
+@@4470
+How does the ultrasonic sensor measure the distance to an obstacle?
+@@4471
+It sends a sound wave and measures the time until the echo returns
+@@4472
+It takes an image from a camera
+@@4474
+It measures the temperature of the obstacle
+@@4475
+The sensor sends out a high-frequency sound pulse. The sound hits the obstacle and bounces back; the distance in cm is calculated from the round-trip time.
+@@4476
+Buzzer warning while backing up
+@@4477
+While the car escapes from an obstacle, the buzzer on pin <b>D8</b> should play a <b>1000 Hz</b> warning tone. When the path is clear, the buzzer should be silent (noTone).
+@@4478
+Add tone(D8, 1000); inside the obstacle condition and noTone(D8); in the else part.
+@@4479
+The buzzer never played. Use tone(D8, 1000) when the obstacle is near.
+@@4480
+The buzzer never went silent. Call noTone(D8) when the path is clear.
+@@4481
+The buzzer did not play at 1000 Hz.
+@@4482
+The car did not escape from the obstacle (it did not back up).
+@@4483
+The car hit the obstacle.
+@@4484
+The buzzer warns while the obstacle is near!
+@@4485
+Before escaping an obstacle, why does the car first back up and then turn?
+@@4486
+To avoid scraping the obstacle while turning, it first needs to move a little away
+@@4487
+Because backing up is faster
+@@4488
+Because the sensor only measures behind
+@@4489
+To save battery
+@@4490
+If the car turns on the spot while close to the obstacle, its body may hit the obstacle. Backing up makes room for turning.
+@@4491
+LED on while escaping
+@@4492
+While the car escapes from an obstacle, the LED on pin <b>D7</b> should light up, and turn off when the path is clear.
+@@4493
+Write digitalWrite(D7, HIGH); in the obstacle condition and digitalWrite(D7, LOW); in the else part. Don't forget pinMode(D7, OUTPUT); for D7.
+@@4494
+The D7 LED never lit up.
+@@4495
+The LED did not turn off after lighting up. Write digitalWrite(D7, LOW) when the path is clear.
+@@4496
+The LED lights up when the obstacle is near and turns off when the path is clear!
+@@4497
+What limitation does a single ultrasonic sensor give the car?
+@@4498
+It only sees obstacles in the direction it faces, not the ones at the side
+@@4499
+It only sees black obstacles
+@@4500
+It doesn't work at night
+@@4501
+It only measures below 5 cm
+@@4502
+The sensor works like a narrow beam; an obstacle at the side of the car is not seen. That's why the car may hit edges and corners while turning.
+@@4503
+Buzzer while correcting
+@@4504
+When the car turns to correct its course on the line, the <b>D8</b> buzzer should play <b>800 Hz</b>, and be silent when going straight. The car must still keep following the line.
+@@4505
+Add tone(D8, 800); next to the sola() and saga() calls; in the else branch with ileri(), write noTone(D8);.
+@@4506
+The buzzer never went silent: call noTone(D8) when going straight.
+@@4507
+The car did not follow the line and move forward.
+@@4508
+The car left the line. The line-following code must work first.
+@@4509
+The buzzer sounds during corrections, and the car stays on the line!
+@@4510
+What does the line-following sensor read digitally (over the black line)?
+@@4511
+1 (HIGH) over the line, 0 (LOW) on the white floor
+@@4512
+Always 0
+@@4513
+0 over the line, 1 on the white floor
+@@4514
+A temperature value
+@@4515
+In this lesson, the sensors give 1 over the black line and 0 on the white floor. A black surface reflects little light, so the sensor tells the line apart this way.
+@@4516
+Watch the sensors in the serial monitor
+@@4517
+In every loop, print the left and right sensor values to the serial monitor (start with Serial.begin(9600); write the left value with Serial.println, then the right value). The car should still follow the line.
+@@4518
+Add Serial.begin(9600); inside setup. In loop, after reading the sensors, write Serial.println(sol); Serial.println(sag);.
+@@4519
+Only {0} lines were written to the serial monitor. You must write two values in every loop.
+@@4520
+Both 0 and 1 should appear in the serial monitor (sensor values).
+@@4521
+Sensor values flow in the serial monitor, and the car is on the line!
+@@4522
+If the left sensor sees the line, which way should the car correct?
+@@4523
+To the left; the line is on the left of the car
+@@4524
+To the right; it should get away from the line
+@@4526
+It should stop and wait
+@@4527
+If the left sensor sees black, the line is on the left of the car. The car turns left and brings the line back to the middle of the two sensors.
+@@4528
+LED on while correcting
+@@4529
+When the car corrects to the left or right, the <b>D7</b> LED should light up; when going straight, it should turn off. The car must keep following the line.
+@@4530
+Add pinMode(D7, OUTPUT);. Write digitalWrite(D7, HIGH); in the sola/saga branches and digitalWrite(D7, LOW); in the ileri() branch.
+@@4531
+The LED never turned off after lighting up (digitalWrite(D7, LOW) when going straight).
+@@4532
+The LED lights up during corrections!
+@@4533
+In a line-following car, what problem does a control loop (delay) that is too long cause?
+@@4534
+The car may lose the line between two measurements
+@@4535
+The car goes faster
+@@4536
+Nothing happens
+@@4537
+After each measurement, the car moves blind for the duration of the delay. If the delay is long, the line slips out from under the sensors.
+@@4540
+<h2>Robot car: motors</h2>
+      <p>We are learning to drive your two-DC-motor robot car: forward, backward, and stop!</p>
+      <ol>
+        <li>Each motor has <b>two direction pins</b>: the left motor has <b>D0 (forward)</b> and <b>D1 (backward)</b>, the right motor has <b>D2 (forward)</b> and <b>D3 (backward)</b>.</li>
+        <li>Make the car go <b>forward for 2 seconds</b>.</li>
+        <li>Then <b>stop</b> and wait half a second.</li>
+        <li>Then come <b>back for 1 second</b> and stop the motors.</li>
+      </ol>
+@@4541
+Get to know the car
+@@4542
+<p>The car's two wheels are turned by two separate DC motors. Each motor is controlled through a <b>motor driver</b> with two pins: a forward pin and a backward pin.</p><p>Left motor: <span class="pin-etiket">D0</span> forward, <span class="pin-etiket">D1</span> backward. Right motor: <span class="pin-etiket">D2</span> forward, <span class="pin-etiket">D3</span> backward.</p>
+@@4543
+Forward: run both motors
+@@4544
+<p>From the <span class="chip pin">Pins</span> category, take the <span class="chip pin">set pin</span> block: <b>D0 → HIGH</b>. Then set <b>D2 → HIGH</b>. Keep both backward pins (D1, D3) LOW.</p>
+@@4545
+Two blocks: D0 HIGH (1) and D2 HIGH (1).
+@@4546
+Walk for 2 seconds
+@@4547
+<p>While the motors run, the car moves. From the <span class="chip akis">Flow</span> category, add the <span class="chip akis">wait ms</span> block and type <b>2000</b>.</p>
+@@4548
+1 second = 1000 ms; type 2000 for 2 seconds.
+@@4550
+<p>To stop, set pins <b>D0</b> and <b>D2</b> to <b>LOW</b> (all four pins LOW). Then wait half a second.</p>
+@@4551
+Add the D0 LOW (0) and D2 LOW (0) blocks.
+@@4553
+<p>To go backward, this time run the <b>backward pins</b>: <b>D1 → HIGH</b> and <b>D3 → HIGH</b>. Wait 1 second, then set all pins LOW.</p>
+@@4554
+The backward pins are D1 and D3.
+@@4555
+<p>Press ▶ <b>Run</b>. The car will go forward and stop, then come back.</p>
+@@4556
+The check result appears after you run it.
+@@4557
+The car did not come back after going forward. To go backward, set pins D1 and D3 to HIGH.
+@@4558
+Don't forget to stop the motors when the program ends (set all pins LOW).
+@@4559
+Great! The car went forward, stopped, and came back.
+@@4561
+8.2 · Robot car: turns
+@@4562
+<h2>Robot car: turns</h2>
+      <p>By running the two motors in opposite directions, we spin the car on the spot and make it draw a <b>square</b>.</p>
+      <ol>
+        <li><b>Turn right:</b> left motor forward, right motor backward.</li>
+        <li><b>Turn left:</b> left motor backward, right motor forward.</li>
+        <li>At full power, the car turns 90 degrees in about <b>380 ms</b>.</li>
+        <li>Square: do { <b>1 second forward</b> (25 cm), <b>turn right 90 degrees</b> } 4 times.</li>
+      </ol>
+@@4563
+Opposite directions to turn
+@@4564
+<p>When the car goes straight, both wheels turn in the same direction. To <b>turn right on the spot</b>, the left wheel turns forward and the right wheel backward. To turn left, it's the opposite.</p>
+@@4565
+Forward 1 second
+@@4566
+<p>First we'll go 25 cm: set pins <span class="chip pin">D0</span> and <span class="chip pin">D2</span> to HIGH, <span class="chip akis">wait 1000 ms</span>.</p>
+@@4567
+D0 HIGH, D2 HIGH, wait 1000 ms.
+@@4568
+Right 90 degrees
+@@4569
+<p>To turn right, set <b>D0 → HIGH</b>, <b>D1 → LOW</b>, <b>D2 → LOW</b>, <b>D3 → HIGH</b> and wait <b>380 ms</b>.</p>
+@@4570
+Left motor forward (D0), right motor backward (D3).
+@@4571
+Repeat four times
+@@4572
+<p>The square has 4 sides. From the <span class="chip akis">Flow</span> category, take the <span class="chip akis">repeat</span> block, type <b>4</b>, and put the forward + turn blocks inside it.</p>
+@@4573
+Drag the pin-writing blocks into the repeat block.
+@@4575
+<p>After each turn, set all pins to <b>LOW</b> and wait <b>200 ms</b>. That way the car starts the next side without skidding.</p>
+@@4576
+There should be 3 waits inside the repeat block: forward, turn, stop.
+@@4577
+<p>Press ▶ <b>Run</b>. The car should draw a square and return to where it started.</p>
+@@4578
+The turn should be 380 ms, and forward 1000 ms.
+@@4579
+The car did not travel far enough. You must draw the square along all four sides.
+@@4580
+The car did not turn right. To turn right, the left motor must run forward and the right motor backward.
+@@4581
+The car traveled {0} cm; each side should be 1 second (25 cm).
+@@4582
+Great! The car drew the square and returned to its starting point.
+@@4584
+8.3 · Robot car: obstacle avoider
+@@4585
+<h2>Obstacle-avoiding car</h2>
+      <p>With the ultrasonic sensor on the car's nose, we measure the distance to the obstacle ahead. If the obstacle is close, the car backs up and turns to escape!</p>
+      <ol>
+        <li>The distance sensor is on pin <b>D4</b>. Motor pins: D0, D1 (left), D2, D3 (right).</li>
+        <li>If the obstacle is closer than <b>30 cm</b>: go <b>backward for 400 ms</b>, then turn <b>right for 380 ms</b> (about 90 degrees).</li>
+        <li>If the path is clear: go <b>forward</b>.</li>
+        <li>Repeat the check every <b>50 ms</b>.</li>
+      </ol>
+@@4586
+Sensor on the car's nose
+@@4587
+<p>The ultrasonic sensor (<span class="pin-etiket">D4</span>) faces the front of the car and measures how many cm are left to the obstacle ahead. We'll get around the rectangular obstacle in the arena without hitting it.</p>
+@@4588
+Check continuously
+@@4589
+<p>From the <span class="chip akis">Flow</span> category, take the <span class="chip akis">repeat forever</span> block; we'll do the checks inside it.</p>
+@@4590
+Is the obstacle near?
+@@4591
+<p>Put an <span class="chip akis">if</span> block inside the loop (with its else branch). Plug <span class="chip mantik">D4 distance sensor &lt; 30</span> into its condition.</p>
+@@4592
+The distance block is in the Sound and motion category; the comparison block is in the Logic category.
+@@4593
+Back up and turn
+@@4594
+<p>In the if branch: <b>D1 and D3 → HIGH</b> (backward), D0 and D2 LOW, <b>wait 400 ms</b>; then <b>D0 and D3 → HIGH</b> (turn right), D1 and D2 LOW, <b>wait 380 ms</b>.</p>
+@@4595
+Backward: D1 + D3. Turn right: D0 + D3.
+@@4596
+Forward if the path is clear
+@@4597
+<p>In the else branch, set <b>D0 and D2 → HIGH</b> (forward), D1 and D3 LOW. At the end of the loop, add <b>wait 50 ms</b>.</p>
+@@4598
+For forward, D0 and D2 must be HIGH.
+@@4599
+<p>Press ▶ <b>Run</b>. When the car nears the obstacle, it will back up, turn, and get around without hitting it.</p>
+@@4600
+The car must get around for 15 seconds without hitting the obstacle.
+@@4601
+The car hardly moved at all. When the path is clear, you must go forward (D0 and D2 HIGH).
+@@4602
+The car hit the wall or the obstacle. React to the obstacle from farther away, and don't forget to back up.
+@@4603
+The car backed away from the obstacle only {0} times. It should go backward when the distance is < 30.
+@@4604
+The car did not continue on its way after escaping.
+@@4605
+Great! The car gets around without hitting the obstacle.
+@@4607
+8.4 · Robot car: line follower
+@@4608
+<h2>Line-following car</h2>
+      <p>The two line sensors under the car look for the black line. Whichever sensor the line goes under, the car turns that way and finds the line again!</p>
+      <ol>
+        <li>The left line sensor is on pin <b>D5</b>, the right line sensor on pin <b>D6</b>. They read <b>1</b> over the black line and <b>0</b> on the white floor.</li>
+        <li>If the left sensor sees the line: turn <b>left</b>.</li>
+        <li>If the right sensor sees the line: turn <b>right</b>.</li>
+        <li>If neither sees it (line in the middle): go <b>forward</b>.</li>
+        <li>Repeat the check every <b>50 ms</b>.</li>
+      </ol>
+@@4609
+Line sensors
+@@4610
+<p>There are two sensors under the car's nose: <span class="pin-etiket">D5</span> on the left, <span class="pin-etiket">D6</span> on the right. When the line (4 cm) passes <b>between</b> the two, both see white.</p>
+@@4611
+Continuous check
+@@4612
+Is the left sensor on the line?
+@@4613
+<p>Put an <span class="chip akis">if</span> block in the loop and add <b>else if</b> + <b>else</b> branches. Plug <span class="chip pin">is pin D5 high?</span> into the first condition and <span class="chip pin">is pin D6 high?</span> into the second.</p>
+@@4614
+The "is pin high?" block in the Pins category reads the sensor.
+@@4615
+Turn left
+@@4616
+<p>In the first branch, put the <b>left turn</b>: <b>D0 → LOW</b>, <b>D1 → HIGH</b>, <b>D2 → HIGH</b>, <b>D3 → LOW</b>.</p>
+@@4617
+Left motor backward (D1), right motor forward (D2).
+@@4618
+Turn right and go forward
+@@4619
+<p>In the second branch, write the <b>right turn</b> (D0 HIGH, D3 HIGH), and in the else branch write <b>forward</b> (D0 and D2 HIGH). At the end of the loop, put <b>wait 50 ms</b>.</p>
+@@4620
+Right turn: left motor forward (D0), right motor backward (D3).
+@@4621
+<p>Press ▶ <b>Run</b>. The car should follow the black line and go around the track.</p>
+@@4622
+If the car leaves the line, check the turning directions.
+@@4623
+The car hardly moved at all. When the line is in the middle, you must go forward.
+@@4624
+The car hit the wall; it must have left the line. If the left sensor sees the line, turn left; if the right sensor sees it, turn right.
+@@4625
+The car strayed {0} cm from the line. Check the turning directions and the control interval.
+@@4626
+The car followed the line for only {0} cm; it should travel at least 300 cm.
+@@4627
+Great! The car went around the track without leaving the line.
+@@4628
+Blink fast (250 ms)
+@@4629
+Make the <span class="pin-etiket">D0</span> LED blink faster: <b>250 ms on</b>, <b>250 ms off</b>, repeating forever.
+@@4630
+Set both wait times to 250.
+@@4631
+The LED did not blink enough.
+@@4632
+The on and off times should be about 250 ms.
+@@4633
+The LED blinks twice per second!
+@@4634
+About how many volts is the operating voltage (HIGH level) of the ESP32 pins?
+@@4636
+ESP32 pins work at 3.3 V. If you apply 5 V to them, the board can be damaged; that's why you must pay attention to the voltage of sensors and modules.
+@@4637
+Blink exactly 3 times
+@@4638
+Make the <span class="pin-etiket">D0</span> LED blink <b>exactly 3 times</b>: each time <b>200 ms on</b>, <b>200 ms off</b>. Then it should stop and stay <b>off</b>.
+@@4639
+Write the code in setup() instead of loop(), or use a for loop. loop() repeats forever!
+@@4640
+The LED lit up {0} times; it should light up exactly 3 times.
+@@4641
+The LED should stay off after the last blink.
+@@4642
+What does 115200 in the line <code>Serial.begin(115200);</code> determine?
+@@4643
+The board's clock speed (Hz)
+@@4644
+The serial communication speed (baud)
+@@4645
+The LED brightness
+@@4646
+The Wi-Fi channel
+@@4647
+115200 is the communication speed (baud) between the board and the computer. The Serial Monitor must be set to the same speed, otherwise the text looks garbled.
+@@4648
+Count in the serial monitor
+@@4649
+Print a number to the serial monitor <b>once every second</b>: it should increase one by one, like <b>1, 2, 3, 4…</b>
+@@4650
+Create a counter variable, increase it by 1 each round, and print it with Serial.println; then delay(1000).
+@@4651
+There are not enough numbers in the serial monitor (one number per second is needed).
+@@4652
+The numbers should start at 1 and increase one by one.
+@@4653
+The serial monitor counts once a second!
+@@4654
+Which of the following is the most important feature that sets the ESP32 apart from the classic Arduino Uno?
+@@4655
+Wi-Fi and Bluetooth built right onto the board
+@@4656
+LEDs shining brighter
+@@4658
+Having no memory at all
+@@4659
+The ESP32 is a dual-core, fast board with built-in wireless communication. That's why serving a web page over Wi-Fi is possible.
+@@4660
+Light the LED continuously at <b>half brightness</b>: the PWM value should be half of 255, about <b>128</b>, and never change.
+@@4661
+Write ledcWrite(D0, 128) or analogWrite(D0, 128); don't build a blinking loop.
+@@4662
+No value was ever written to the LED.
+@@4663
+The LED should be at about half brightness (128/255) (currently {0}%).
+@@4664
+The LED should never be brighter than half.
+@@4665
+The LED stays on steadily at half brightness!
+@@4666
+What is the main reason we put a resistor in front of the LED?
+@@4667
+To change the LED's color
+@@4668
+To limit the current and protect the LED and the pin
+@@4669
+To make the board faster
+@@4670
+To strengthen the Wi-Fi signal
+@@4671
+An LED doesn't limit current; if connected without a resistor, it draws too much current and can burn out. Usually a resistor between 220 and 330 ohms is used.
+@@4672
+Shorten the time the LED takes to reach full brightness: the LED should reach its brightest state <b>within 600 ms</b>. Fading out slowly afterwards is still fine.
+@@4673
+Change the wait time between brightness steps (for example 20 ms) to 5 ms.
+@@4674
+The LED brightness did not change gradually.
+@@4675
+The LED never reached full brightness.
+@@4676
+It reached full brightness in {0} ms. It should reach it within 600 ms.
+@@4677
+The LED is breathing very fast!
+@@4678
+With 8-bit PWM resolution (ledcAttach(D0, 5000, 8)), what is the largest value that can be written to the LED?
+@@4680
+8 bits means 2^8 = 256 different values: from 0 to 255. 255 means full brightness, and 0 means off.
+@@4681
+Step the LED through three levels and repeat: <b>dim (~30)</b>, <b>medium (~120)</b>, <b>bright (255)</b>. Each level should last <b>500 ms</b>.
+@@4682
+Call ledcWrite (or analogWrite) three times in loop(), with delay(500) between them.
+@@4683
+All three levels should be visible: dim (~30), medium (~120), and bright (255).
+@@4684
+Each level should last about 500 ms.
+@@4685
+Three-level brightness works!
+@@4686
+How does PWM change the brightness of an LED?
+@@4687
+The pin's voltage is slowly adjusted between 0 and 3.3 V
+@@4688
+The pin switches on and off very fast; the fraction of time it stays on sets the brightness
+@@4689
+The LED's color changes
+@@4690
+The resistor value changes
+@@4691
+PWM switches the pin on and off thousands of times per second. The larger the on-time fraction (duty cycle), the higher the average brightness your eye perceives.
+@@4692
+Push-on push-off switch (toggle)
+@@4693
+Make the LED's state change <b>every time</b> you press the button: one press turns it on, the next turns it off. Even if you hold the button down, it should count as <b>one</b> press.
+@@4694
+Keep a bool variable (acik = !acik). After catching a press, wait (while) until the button is released.
+@@4695
+The LED should not be on without pressing the button.
+@@4696
+The LED should be on after the 1st press.
+@@4697
+The LED should turn off after the 2nd press (even if you hold the button long, it should count as one press).
+@@4698
+The LED should turn on again after the 3rd press.

@@ -1,0 +1,473 @@
+@@2989
+<code>if (analogRead(A0) &lt; 1000) { digitalWrite(D0, HIGH); } else { digitalWrite(D0, LOW); }</code> kodunda A0 = 300 ise LED ne yapar?
+@@2990
+Yarım parlak yanar
+@@2991
+300, 1000'den küçük olduğu için koşul doğrudur ve D0 YÜKSEK olur. LED yanar.
+@@2992
+Karanlıkta yanıp sönen uyarı
+@@2993
+<p>Karanlıkta LED sabit yanmasın, <b>yanıp sönsün</b> (yaklaşık yarım saniye açık, yarım saniye kapalı). Işık geri gelince LED <b>sönük</b> kalsın.</p>
+@@2994
+Eğer kolunun içine yak, bekle, söndür, bekle koy. Değilse kolunda LED'i söndür.
+@@2995
+Işık varken LED yanmamalı.
+@@2996
+LED yeterince yanıp sönmedi. Yak, bekle, söndür, bekle sırasını eğer kolunun içine koy.
+@@2997
+Karanlıkta LED yanıp sönmedi. Karanlık kolunda LED'i önce yak, sonra söndür.
+@@2998
+Işık geri gelince LED sönük kalmalı.
+@@2999
+Karanlıkta yanıp sönüyor, ışıkta sönük kalıyor!
+@@3000
+Erken uyarı (eşik 2000)
+@@3001
+<p>Alarm daha erken çalsın: <span class="pin-etiket">A1</span> değeri <b>2000'i geçince</b> <span class="pin-etiket">D0</span> alarm LED'i yansın, altında sönük olsun.</p>
+@@3002
+Karşılaştırma bloğundaki eşik sayısını düşür. 1800'de alarm olmamalı, 2200'de olmalı.
+@@3003
+Alarm artık 2000 üstünde çalıyor!
+@@3004
+<code>analogRead(A1) &gt; 2500</code> ifadesi sıcaklık sensörü için ne söyler?
+@@3005
+Sıcaklık eşiğin altında
+@@3006
+Sensörden okunan sayı 2500'den büyük, yani sıcaklık yüksek
+@@3007
+A1 pini çıkış yapılmış
+@@3008
+LED zaten yanıyor
+@@3009
+Bu sensörde sıcaklık arttıkça sayı büyür. Koşul, sayının eşiği aşıp aşmadığını kontrol eder.
+@@3010
+<p>Bu kez <b>soğuk</b> uyarısı yapalım (buzdolabı gibi). <span class="pin-etiket">A1</span> değeri <b>1000'in altına</b> inince LED yansın, 1000 ve üstünde sönük olsun.</p>
+@@3011
+Önceki alarmın işaretini ve eşik sayısını değiştirmen yeter.
+@@3012
+Soğuyunca alarm çalıyor, ısınınca susuyor!
+@@3013
+ESP32-S3'in 12 bitlik ADC'si toplam <b>kaç farklı değer</b> okuyabilir?
+@@3015
+2 üzeri 12 = 4096 farklı değer vardır: 0'dan 4095'e kadar. En büyük değer 4095 olsa da değer sayısı 4096'dır.
+@@3016
+Sıcaklıkla parlaklık
+@@3017
+<p>Alarm yerine bir <b>sıcaklık göstergesi</b> yap: <span class="pin-etiket">A1</span> değeri arttıkça LED'in parlaklığı da <b>kademeli</b> artsın. A1 = 0 iken sönük, A1 = 4095 iken tam parlak olsun.</p>
+@@3018
+Potansiyometre dersindeki harita bloğunu hatırla; bu sefer A1'i oku.
+@@3019
+Sıcaklık arttıkça LED de parlıyor!
+@@3020
+Alarm kodunda <b>değilse</b> kolu (<code>else</code>) hiç yazılmazsa ve sıcaklık sonradan düşerse ne olur?
+@@3022
+LED yanıp söner
+@@3023
+LED, kimse söndürmediği için yanık kalır
+@@3024
+Pin bir kez YÜKSEK yapılınca, yeniden DÜŞÜK yapılana kadar öyle kalır. Bu yüzden söndüren bir kol gerekir.
+@@3025
+İki aşamalı alarm
+@@3026
+<p>Üç durum olsun: A1 <b>1500'ün altında</b> LED sönük. <b>1500 ile 2500 arasında</b> LED sabit yansın (uyarı). <b>2500 üstünde</b> LED <b>yanıp sönsün</b> (tehlike).</p>
+@@3027
+Önce en tehlikeli durumu kontrol et. Yanıp sönmek için yak, bekle, söndür, bekle (yaklaşık 250 ms) kullan.
+@@3028
+Sıcaklık düşükken (A1 = 1000) LED sönük olmalı.
+@@3029
+A1 = 2000 iken (uyarı) LED yanmalı.
+@@3030
+A1 = 2000 iken LED sabit yanmalı, yanıp sönmemeli.
+@@3031
+A1 = 3300 iken (tehlike) LED yanıp sönmeli: yak, bekle, söndür, bekle.
+@@3032
+Üç durum da doğru: sönük, sabit uyarı, yanıp sönen tehlike!
+@@3033
+Ters dolan çubuk
+@@3034
+<p>Çubuk <b>tersine</b> çalışsın: pot sola iken <b>8 LED</b> da yansın, pot sağa gittikçe LED'ler <b>teker teker sönsün</b>, tam sağda hiçbiri yanmasın.</p>
+@@3035
+8 eksi hesapladığın seviye ya da harita bloğunun çıkış aralığını 8'den 0'a çevirmek işe yarar.
+@@3036
+Pot sağa gittikçe çubuk boşalıyor!
+@@3037
+<code>map(2048, 0, 4095, 0, 8)</code> sonucu kaçtır?
+@@3038
+2048, 0-4095 aralığının tam ortasıdır. 0-8 aralığında ortası 4 eder.
+@@3039
+Yalnızca 4 LED'lik çubuk
+@@3040
+<p>Çubuğun sadece <b>ilk 4 LED'i</b> (D0-D3) kullanılsın. Pot tam sağdayken 4 LED, ortadayken 2 LED yansın, tam solda hiçbiri yanmasın. Diğer 4 LED hep sönük kalsın.</p>
+@@3041
+Harita bloğunun çıkış aralığı artık 0 ile kaç olmalı? Çubuğun LED sayısını da ayarla.
+@@3042
+D4-D7 LED'leri hiç yanmamalı. Çubuğu 4 LED yap.
+@@3043
+Dört LED'lik çubuk pota göre doluyor!
+@@3044
+LED çubuğu bloğunda seviye <b>3</b> iken hangi LED'ler yanar? (Çubuk D0'dan başlıyor.)
+@@3046
+Yalnızca D3
+@@3049
+Seviye kadar LED soldan başlayarak yanar: 3 LED, yani D0, D1 ve D2. D3 dördüncü LED olduğu için sönük kalır.
+@@3050
+Uyarı LED'i (%75)
+@@3051
+<p>Yalnızca <b>son LED (D7)</b> yansın ve sadece pot <b>%75'in üstüne</b> çıkınca (yaklaşık A0 &gt; 3072). Pot daha azsa <b>hiçbir LED</b> yanmasın. D0-D6 hep sönük kalsın.</p>
+@@3052
+Çubuk bloğu yerine eğer bloğu ve tek pin yazma bloğu kullan.
+@@3053
+A0 = {0} iken D0-D6 sönük olmalı, yalnız D7 yanabilir.
+@@3055
+Pot %75'i geçince uyarı LED'i yanıyor!
+@@3056
+8 LED'lik çubuk için harita bloğunun hedef aralığı neden <b>0-255</b> değil de <b>0-8</b> seçilir?
+@@3057
+Pot yalnızca 8 değer verdiği için
+@@3058
+Çubuk 255 renkli olduğu için
+@@3059
+Çubuk PWM kullanmadığı için delay gerekir
+@@3060
+Çıkan sayı yanacak LED sayısı olmalı ve çubukta 8 LED var
+@@3061
+Çubuk bloğu "kaç LED yansın?" sorusuna sayıyla cevap bekler. En çok 8 LED yanabileceğinden değer 0-8 aralığında olmalıdır.
+@@3063
+<p>Çubuk dolmasın: bunun yerine <b>sadece tek bir LED</b> yansın ve pot çevrildikçe bu ışık soldan sağa <b>gezinsin</b>. Pot tam solda D0, tam sağda D7 yansın, aradaki konumlarda ona denk gelen LED yansın.</p>
+@@3064
+Önce potu 0-7 arası bir sayıya çevir (konum). Sonra her LED için "konum bu LED'e eşitse yak, değilse söndür" yaz.
+@@3065
+A0 = {0} iken tam olarak 1 LED yanmalı, {1} LED yanıyor.
+@@3066
+A0 = {0} iken D{1}{2} yanmalıydı, D{3} yanıyor.
+@@3068
+Işık noktası pot ile birlikte geziniyor!
+@@3069
+<table class="nota">
+  <tr><th>Do</th><th>Re</th><th>Mi</th><th>Fa</th><th>Sol</th><th>La</th><th>Si</th><th>Do'</th></tr>
+  <tr><td>262</td><td>294</td><td>330</td><td>349</td><td>392</td><td>440</td><td>494</td><td>523</td></tr></table>
+@@3071
+4.1 · Buzzer ile melodi
+@@3072
+<h2>Buzzer ile melodi</h2>
+      <p>D8 pinine bir buzzer bağlı. <b>D8 pinine ... Hz ses çal</b> bloğu buzzer'a bir nota çaldırır, <b>sesi sustur</b> bloğu keser.</p>
+      <p>Nota frekansları (Hz):</p>{0}
+      <ol>
+        <li>Bir nota çal (örn. Do = 262).</li>
+        <li><b>300 ms bekle</b>, sonra sesi sustur ve <b>50 ms bekle</b>; yoksa notalar birbirine karışır.</li>
+        <li>Bunu en az 5 nota için tekrarla, örneğin: Do Mi Sol Do' Sol Mi Do.</li>
+      </ol>
+      <p>İpucu: Notalar için tekrarlı kod yazmak yerine ardışık blokları çoğaltabilirsin.</p>
+@@3073
+Buzzer'ı tanı
+@@3074
+<p>Kartın <span class="pin-etiket">D8</span> pinine bir <b>buzzer</b> (ses üreten küçük hoparlör) bağlı. Yeşil halka onu gösteriyor.</p>
+          <div class="kutu bilgi"><b>Frekans nedir?</b> Ses, havanın saniyede kaç kez titreştiğidir. Bu sayıya <b>frekans</b> denir, birimi <b>Hz</b> (hertz). Titreşim ne kadar hızlıysa ses o kadar <i>ince</i> çıkar. Her notanın bir frekansı vardır:
+          <br>Do (C4) = 262 Hz, Re (D4) = 294, Mi (E4) = 330, Fa (F4) = 349, Sol (G4) = 392, La (A4) = 440, Si (B4) = 494.</div>
+          <div class="kutu hedef"><b>Hedef:</b> En az 5 notalı, 4 farklı sesli bir melodi çal.</div>
+@@3075
+Ses çal bloğunu al
+@@3076
+<p><span class="chip ses">Ses ve hareket</span> kategorisini aç ve <span class="chip ses">D8 pinine ... Hz ses çal</span> bloğunu çalışma alanına bırak. Frekansı <b>262</b> (Do) yap.</p>
+          <pre><code>tone(D8, 262);</code></pre>
+          <div class="kutu bilgi"><code>tone(pin, frekans)</code> buzzer'a o frekansta sürekli ses çaldırır. Sen susturana kadar ses devam eder!</div>
+@@3077
+Pin D8 olmalı. Sayı kutusuna tıklayıp 262 yazabilirsin.
+@@3078
+Bekle ve sustur
+@@3079
+<p>Notanın duyulması için <span class="chip akis">300 ms bekle</span> bloğunu altına tak. Sonra <span class="chip ses">D8 pinindeki sesi sustur</span> ve <span class="chip akis">50 ms bekle</span> ekle.</p>
+          <pre><code>tone(D8, 262);
+delay(300);
+noTone(D8);
+delay(50);</code></pre>
+          <div class="kutu bilgi"><code>noTone(pin)</code> sesi keser.</div>
+          <div class="kutu dikkat">Susturup kısa bir an beklemezsen ardışık notalar birbirine karışır ve tek uzun ses gibi duyulur.</div>
+@@3080
+Bekle bloğu Akış kategorisinde. Sıra: çal, bekle, sustur, bekle.
+@@3082
+<p>Dört blokluk grubu seçip kopyala (Ctrl+C, Ctrl+V) ve alt alta ekle. Her kopyada frekansı değiştir. Örnek melodi: <b>Do Mi Sol Do' Sol Mi Do</b>.</p>
+          <p>En az <b>5 nota</b> ve <b>4 farklı frekans</b> olsun. Frekanslar 100-2000 Hz arasında kalsın.</p>
+@@3083
+Do' = 523 Hz. Blokları kopyalamak sıfırdan sürüklemekten hızlıdır.
+@@3084
+Çalıştır ve dinle
+@@3085
+<p>▶ <b>Çalıştır</b>'a bas ve melodini dinle.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Notalar net ayrılsın, melodi baştan sona çalsın.</div>
+@@3086
+Notalar karışıyorsa her notadan sonra sustur ve kısa bekle. Çok az nota çaldıysa blok grubunu daha çok kopyala.
+@@3088
+Sadece {0} nota çaldın. En az 5 nota çal.
+@@3089
+Melodide en az 4 farklı nota olmalı.
+@@3090
+Nota frekansları 100-2000 Hz arasında olmalı (tabloya bak).
+@@3091
+Notalar çok hızlı geçiyor. Her notadan sonra bekle ve sesi sustur.
+@@3092
+Güzel melodi!
+@@3095
+<h2>Servo motor</h2>
+      <p>D5 pinine bir servo bağlı. <b>D5 servosunu ... ° yap</b> bloğu kolu 0 ile 180 derece arasında bir açıya getirir.</p>
+      <ol>
+        <li>Önce kolu <b>0°</b> yap.</li>
+        <li>Kolu 30° adımlarla (30, 60, 90 ... ) <b>180°</b>'ye kadar çevir; her adımda <b>100 ms bekle</b>.</li>
+        <li>Sonra aynı şekilde <b>180°'den 0°'ye</b> geri getir.</li>
+      </ol>
+      <p>İpucu: Bir adım bloğunu (servo + bekle) çoğaltıp açıyı değiştirmek işi hızlandırır. Adımlar 45°'den büyük olmasın.</p>
+@@3096
+Servo motoru tanı
+@@3097
+<p><span class="pin-etiket">D5</span> pinine bir <b>servo motor</b> bağlı. Yeşil halkalı kolu görüyor musun?</p>
+          <div class="kutu bilgi"><b>Servo açısı:</b> Normal motor sürekli döner. Servo ise kolunu senin verdiğin <b>açıya</b> getirip orada durur. Açı <b>0° ile 180°</b> arasındadır: 0° bir uç, 90° orta, 180° öbür uçtur.</div>
+@@3098
+Kolu 0° yap
+@@3099
+<p><span class="chip ses">Ses ve hareket</span> kategorisinden <span class="chip ses">D5 servosunu ... ° yap</span> bloğunu al. Açıyı <b>0</b> yap.</p>
+          <pre><code>servo_D5.write(0);</code></pre>
+          <div class="kutu bilgi"><code>servo.write(açı)</code> kolu o açıya çevirir. Servo kütüphanesini (<code>ESP32Servo.h</code>) biz otomatik ekliyoruz.</div>
+@@3100
+Pin D5 olmalı. Açı kutusuna tıklayıp 0 yaz.
+@@3101
+0°'den 180°'ye süpür
+@@3102
+<p>Servo bloğunun altına <span class="chip akis">100 ms bekle</span> ekle. Sonra bu ikiliyi kopyalayıp açıyı <b>30, 60, 90, 120, 150, 180</b> yap.</p>
+          <pre><code>servo_D5.write(0);
+delay(100);
+servo_D5.write(30);
+delay(100);
+...</code></pre>
+          <div class="kutu dikkat">Servo hareket için zaman ister. Bekleme koymazsan kol hedefe varamadan yeni komut gelir.</div>
+@@3103
+Toplam 7 servo bloğu olmalı: 0, 30, 60, 90, 120, 150, 180. Her açının ardından bir bekle.
+@@3104
+180°'den geri dön
+@@3105
+<p>Aynı şekilde kolu geri getir: <b>150, 120, 90, 60, 30, 0</b>. Her adımda yine 100 ms bekle. Adımlar 45°'den büyük olmasın!</p>
+@@3106
+Blokları yukarıdan kopyalamak işini hızlandırır. Toplam 13 servo bloğu çıkar.
+@@3107
+<p>▶ <b>Çalıştır</b>'a bas ve kolun gidip gelişini izle.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Kol 0°'den 180°'ye gitsin, sonra 0°'ye geri dönsün.</div>
+@@3108
+Kol 180°'ye ulaşmıyorsa son açıyı kontrol et. Hareket kopuksa adımları küçült.
+@@3109
+Servo çok az hareket etti. Kolu küçük adımlarla döndür.
+@@3110
+Kol hiç 0°'ye gelmedi.
+@@3111
+Kol 180°'den 0°'ye geri dönmedi.
+@@3112
+Adımlar çok büyük. Yaklaşık 10° adımlarla ilerle.
+@@3113
+Servo 0'dan 180'e, sonra geri süpürdü!
+@@3115
+4.3 · Park sensörü
+@@3116
+<h2>Park sensörü</h2>
+      <p>D3'e mesafe sensörü, D8'e buzzer bağlı. Çalıştırınca bir engel arabaya adım adım yaklaşır (150, 80, 40, 15 cm; her biri yaklaşık 1 sn).</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> içinde <b>D3 mesafe sensörü (cm)</b> değerini oku.</li>
+        <li>Mesafe <b>100'den küçükse</b> bip: sesi çal (örn. 1000 Hz), mesafeye bağlı bir süre bekle, sustur ve aynı süre tekrar bekle.</li>
+        <li>Bekleme süresi mesafeyle orantılı olsun (örn. <b>mesafe × 4</b> ms): engel yaklaştıkça bip sıklaşır.</li>
+        <li>Mesafe 100 veya daha büyükse sessiz kal (kısa bir bekleme koy).</li>
+      </ol>
+@@3117
+Park sensörünü tanı
+@@3118
+<p><span class="pin-etiket">D3</span> pinindeki <b>mesafe sensörü</b> önündeki engele olan uzaklığı santimetre (cm) olarak ölçer. <span class="pin-etiket">D8</span> pinindeki buzzer ise uyarı verir.</p>
+          <p>Çalıştırınca engel adım adım yaklaşacak: 150, 80, 40, 15 cm. Sahnedeki nesneyi fareyle sürüklemeyi de deneyebilirsin.</p>
+          <div class="kutu bilgi"><b>Plan:</b> Engel uzaksa sessiz kal. Yakınsa bip çal. Yaklaştıkça bip aralığı kısalsın, yani bip <b>sıklaşsın</b>.</div>
+@@3119
+<p>Sensör sürekli ölçmeli. <span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al.</p>
+@@3120
+Mesafeyi oku ve karşılaştır
+@@3121
+<p><span class="chip akis">eğer</span> bloğunu döngüye koy. Koşulu için <span class="chip mantik">karşılaştırma</span> bloğunu al, soluna <span class="chip ses">D3 mesafe sensörü (cm)</span>, sağına <span class="chip sayi">100</span> koy. İşareti <b>&lt;</b> yap.</p>
+          <pre><code>if ((mesafeOlc(D3) &lt; 100)) {
+  ...
+}</code></pre>
+          <div class="kutu bilgi"><code>mesafeOlc(D3)</code> sensörden gelen cm değeridir. Koşul "100 cm'den yakın mı?" sorusunu sorar.</div>
+@@3122
+Eğer bloğu Akış, karşılaştırma Mantık, mesafe bloğu Ses ve hareket kategorisinde.
+@@3123
+Bip çal
+@@3124
+<p>Eğer bloğunun içine sırayla şunları koy: <span class="chip ses">D8 pinine 1000 Hz ses çal</span>, <span class="chip akis">bekle</span>, <span class="chip ses">D8 sesi sustur</span>, <span class="chip akis">bekle</span>.</p>
+          <p>İki bekleme süresi için <span class="chip sayi">aritmetik</span> bloğundan <b>mesafe × 4</b> yap. Mesafe ne kadar küçükse bekleme o kadar kısa, bip o kadar sık olur.</p>
+          <pre><code>tone(D8, 1000);
+delay((mesafeOlc(D3) * 4));
+noTone(D8);
+delay((mesafeOlc(D3) * 4));</code></pre>
+          <div class="kutu bilgi">15 cm için bekleme 60 ms, 80 cm için 320 ms olur. Yaklaştıkça bip hızlanır.</div>
+@@3125
+Mesafe bloğundan üç tane lazım: biri karşılaştırmada, ikisi bekleme sürelerinde. Çarpma işareti aritmetik bloğunun listesinde.
+@@3127
+<p>Eğer bloğuna <b>değilse</b> kolu ekle (mavi dişli) ve içine kısa bir <span class="chip akis">50 ms bekle</span> koy. Uzaktayken buzzer ötmez, döngü rahatça döner.</p>
+          <div class="kutu dikkat">Sessiz durumda bile döngüde küçük bir bekleme olmalı.</div>
+@@3128
+Toplamda üç bekle bloğu olmalı: ikisi bip içinde, biri değilse kolunda.
+@@3129
+<p>▶ <b>Çalıştır</b>'a bas. Engel yaklaşırken bip hızını dinle.</p>
+          <div class="kutu hedef"><b>Hedef:</b> 150 cm'de sessizlik, sonra her adımda daha sık bip.</div>
+@@3130
+Bip sıklaşmıyorsa bekleme süresini sabit sayıya değil, mesafe x 4 ifadesine bağla.
+@@3131
+Engel uzakken (150 cm) buzzer ötmemeli.
+@@3132
+Engel 80 cm yakınına gelince buzzer ötmedi. Koşul: mesafe < 100.
+@@3133
+Engel yaklaştıkça bip sıklaşmalı. Bekleme süresini mesafeye bağla.
+@@3134
+Park sensörün çalışıyor, yaklaştıkça bip sıklaşıyor!
+@@3136
+4.4 · Düğme piyanosu
+@@3137
+<h2>Düğme piyanosu</h2>
+      <p>Piyanonun yedi tuşu D0-D6 pinlerine bağlı; D8'de buzzer var. Tuşa bastığında o notanın sesi çıksın.</p>
+      {0}
+      <ol>
+        <li><b>sürekli tekrarla</b> içinde önce <b>D8'deki sesi sustur</b>.</li>
+        <li>Her tuş için: <b>D0 pini yüksek mi?</b> ise D8'e o notayı çal (D0 = 262, D1 = 294, D2 = 330, D3 = 349, D4 = 392, D5 = 440, D6 = 494).</li>
+      </ol>
+      <p>Kendin de deneyebilirsin: çalıştırdıktan sonra sahnede piyano tuşlarına tıkla.</p>
+@@3138
+Piyanoyu tanı
+@@3139
+<p>Yedi tuşlu piyano <span class="pin-etiket">D0</span>-<span class="pin-etiket">D6</span> pinlerine bağlı. Buzzer <span class="pin-etiket">D8</span> pininde. Tuşlara fareyle tıklayarak basabilirsin.</p>
+          <div class="kutu bilgi"><b>Tuş-nota eşlemesi:</b> D0 = Do 262 Hz, D1 = Re 294, D2 = Mi 330, D3 = Fa 349, D4 = Sol 392, D5 = La 440, D6 = Si 494.</div>
+@@3140
+Önce sesi sustur
+@@3141
+<p><span class="chip akis">sürekli tekrarla</span> bloğu al. İçine <span class="chip ses">D8 pinindeki sesi sustur</span> koy.</p>
+          <pre><code>noTone(D8);</code></pre>
+          <div class="kutu bilgi">Her turun başında susturursak, hiçbir tuşa basılmadığında buzzer sessiz kalır. Tuşu bırakınca ses kesilir.</div>
+@@3142
+Sürekli tekrarla Akış, sustur Ses ve hareket kategorisinde.
+@@3143
+İlk tuş: D0 = Do
+@@3144
+<p><span class="chip akis">eğer</span> bloğunu al. Koşulu için <span class="chip pin">D0 pini yüksek mi?</span> bloğunu tak. İçine <span class="chip ses">D8 pinine 262 Hz ses çal</span> koy.</p>
+          <pre><code>if ((digitalRead(D0) == HIGH)) {
+  tone(D8, 262);
+}</code></pre>
+@@3145
+Pin okuma bloğu Pinler kategorisinde.
+@@3146
+Diğer altı tuşu ekle
+@@3147
+<p>Eğer bloğunu kopyalayıp her tuş için çoğalt, pini ve frekansı değiştir.</p>
+          {0}
+          <p>D1 = 294, D2 = 330, D3 = 349, D4 = 392, D5 = 440, D6 = 494.</p>
+@@3148
+Toplam 7 eğer bloğu ve 7 ses çal bloğu olacak. Kopyalamak sürüklemekten hızlıdır.
+@@3149
+Çalıştır ve çal
+@@3150
+<p>▶ <b>Çalıştır</b>'a bas. Program tuşlara basma senaryosunu kendisi oynatır. Sonra sahnedeki piyano tuşlarına tıklayarak kendin de çal.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Her tuş kendi notasını çalsın, tuşu bırakınca ses kesilsin.</div>
+@@3151
+Yanlış nota çalıyorsa pin ile frekans eşleşmesine bak. Ses kesilmiyorsa döngü başındaki sustur bloğunu kontrol et.
+@@3153
+Tuşu bırakınca ses kesilmeli. Döngünün başında sesi sustur.
+@@3154
+Piyanon hazır, tuşlar doğru notaları çalıyor!
+@@3155
+Bir oktav yukarı
+@@3156
+<p>Buzzer <span class="pin-etiket">D8</span> pininde. Do-Mi-Sol melodisini <b>bir oktav yukarıdan</b> çal: <b>523 Hz, 659 Hz, 784 Hz</b>.</p><p>Her nota en az 150 ms sürsün ve çaldığın hiçbir nota 500 Hz'in altında kalmasın.</p>
+@@3157
+Her nota için: sesi çal, bekle, sustur, kısa bekle. Frekans sayılarını tam yaz.
+@@3158
+Buzzer hiç ötmedi. D8 pinine ses çal.
+@@3159
+Düşük oktavdan nota çaldın. Tüm notalar 500 Hz ve üstünde olmalı.
+@@3160
+Sırayla 523, 659 ve 784 Hz notalarını çalmalısın (şu an {0}/3 tanesi doğru sırada).
+@@3161
+Bazı notalar çok kısa. Her notadan sonra en az 150 ms bekle.
+@@3162
+Melodi bir oktav yukarıdan çalıyor!
+@@3163
+Buzzer'a önce <code>440</code> Hz, sonra <code>880</code> Hz çaldırıyorsun. Hangi ses daha <b>ince</b> duyulur?
+@@3166
+İkisi de aynı
+@@3167
+Hz sesin inceliğini değil, uzunluğunu belirler
+@@3168
+Frekans arttıkça titreşim hızlanır ve ses incelir. 880 Hz, 440 Hz'in iki katıdır; bir oktav yukarıdır.
+@@3170
+<p>Yedi notalık <b>gamı</b> sırayla çal: Do 262, Re 294, Mi 330, Fa 349, Sol 392, La 440, Si 494 Hz.</p><p>Notalar net ayrılsın: her biri en az 120 ms sürsün.</p>
+@@3171
+Bir nota bloğu grubunu kopyalayıp frekansı değiştir. Ya da elle yazıyorsan bir döngü ile frekans dizisini dolaş.
+@@3172
+Gamda 7 notanın hepsi sırayla çalmalı (şu an {0}/7). Tabloya bak: 262, 294, 330, 349, 392, 440, 494.
+@@3173
+Bazı notalar çok kısa. Her nota en az 120 ms sürmeli.
+@@3174
+Gam tam: Do Re Mi Fa Sol La Si!
+@@3175
+<code>tone(D8, 262);</code> komutunu yazdın ama hiç <code>noTone</code> kullanmadın. Ne olur?
+@@3176
+Ses ben susturana (ya da başka frekans verene) kadar sürer
+@@3177
+Ses kendiliğinden 1 saniye sonra kesilir
+@@3178
+Buzzer hiç ses çıkarmaz
+@@3179
+Kart yeniden başlar
+@@3180
+<code>tone(pin, frekans)</code> sürekli ses çaldırır. Susturmak için <code>noTone(pin)</code> gerekir.
+@@3182
+<p>Ambulans sireni yap: iki nota arasında gidip gel. Düşük nota <b>440 Hz</b>, yüksek nota tam <b>iki katı (880 Hz)</b> olsun.</p><p>Bu geçişi en az <b>3 kez</b> tekrarla (toplam en az 6 nota); her nota en az 100 ms sürsün.</p>
+@@3183
+Bir döngü kullanabilirsin: 440 çal, bekle, 880 çal, bekle. Toplam süre 4,5 sn.
+@@3184
+Sadece {0} nota çaldın. Sirenin en az 6 notası (3 gidiş-geliş) olmalı.
+@@3185
+Siren tam iki farklı frekanstan oluşmalı (şu an {0} farklı frekans var).
+@@3186
+Yüksek nota, düşük notanın tam iki katı olmalı (440 ve 880).
+@@3187
+Notalar sırayla değişmeli: düşük, yüksek, düşük, yüksek...
+@@3188
+Bazı notalar çok kısa. Her notada en az 100 ms bekle.
+@@3189
+Siren çalıyor!
+@@3190
+Notalar arasına <code>noTone</code> ve kısa bir <code>delay</code> koymamızın asıl nedeni nedir?
+@@3191
+Buzzer ısınmasın diye
+@@3192
+Frekansı artırmak için
+@@3193
+Ardışık notalar tek uzun ses gibi karışmasın diye
+@@3195
+Notalar arasında kısa bir sessizlik olmazsa aynı frekanstaki ardışık notalar birbirine karışır ve melodi ayırt edilemez.
+@@3196
+Geri sayım bipi
+@@3197
+<p>Roket fırlatma geri sayımı yap: <b>3 kısa bip</b> (her biri 60-300 ms), arkasından <b>1 uzun bip</b> (600 ms veya daha uzun).</p><p>Bipler arasında sessizlik olsun. Uzun bip bitince sesi sustur; uzun bip 2,5 saniyeyi geçmesin.</p>
+@@3198
+Kısa bip: çal, ~150 ms bekle, sustur, ~150 ms bekle. Uzun bip için bekleme süresini büyüt (örn. 800 ms).
+@@3199
+Sadece {0} bip duydum. 3 kısa + 1 uzun = 4 bip gerekli.
+@@3200
+Geri sayım tamam: tik tik tik, uuuu!
+@@3201
+Art arda 3 kısa bip (60-300 ms, aralarında sessizlik) ve ardından 600-2500 ms'lik bir uzun bip bulamadım.
+@@3202
+45° ile 135° arası
+@@3203
+<p><span class="pin-etiket">D5</span> servosunun kolu <b>45°'ye</b> gitsin, sonra <b>135°'ye</b>, sonra tekrar <b>45°'ye</b> dönsün.</p><p>Kol hiçbir zaman 40°'nin altına ya da 140°'nin üstüne çıkmasın.</p>
+@@3204
+Önce servo.write(45), biraz bekle, sonra 135, sonra yine 45. Her hareketten sonra bekle.
+@@3205
+Kol 45°-135° aralığının dışına çıktı (40°-140° sınırını aşmamalı).
+@@3206
+Kol 45° civarına gelmedi.
+@@3207
+Kol 135° civarına ulaşmadı.
+@@3208
+Kol 135°'den 45°'ye geri dönmedi.

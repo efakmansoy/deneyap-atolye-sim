@@ -1,0 +1,5 @@
+Blok eklentisi şablonu (bloklar/<ad>.js):
+  export const tanimlar = [ { type:'dy_ornek', message0:'...', ... } ];
+  export function uret(G, Order) { G.forBlock.dy_ornek = (b, g) => `await sim.bekle(1);\n`; }
+  export const kategori = { kind:'category', name:'Ad', colour: 160, contents:[{kind:'block', type:'dy_ornek'}] };
+Kod async fonksiyon içinde çalışır; sim API'si: sim.yaz/pwmYaz/oku/analogOku/bekle/seri, sim.cihaz (serbest durum).

@@ -1,0 +1,390 @@
+@@2605
+<p>We can't know when the button will be pressed. So the board has to <b>check the button all the time</b>. Open the <span class="chip akis">Flow</span> category and drag the <span class="chip akis">repeat forever</span> block into the workspace.</p>
+          <pre><code>void loop() {
+  ...
+}</code></pre>
+@@2606
+The first block in the Flow category. Drop it in the empty workspace.
+@@2607
+Add the if block
+@@2608
+<p>From <span class="chip akis">Flow</span> again, take the <span class="chip akis">if</span> block and put it <b>inside</b> the <span class="chip akis">repeat forever</span> block.</p>
+          <div class="kutu bilgi">The <b>if</b> block asks a question: if the condition is true, the blocks inside it run.
+          <pre><code>if (koşul) {
+  ...
+}</code></pre></div>
+          <p>Click the <b>⚙ gear</b> icon on top of the block and add the <b>else</b> part too. If the condition is not true, that part runs.</p>
+@@2609
+Move the if block close to the C-shaped gap of the repeat forever block; it snaps in when it fits.
+@@2610
+Plug in the button condition
+@@2611
+<p>Open the <span class="chip dugme">Button</span> category. Plug the <span class="chip dugme">is button D5 pressed?</span> block into the condition slot of the <b>if</b> block.</p>
+          <pre><code>if (digitalRead(D5) == HIGH) {</code></pre>
+          <p>Make sure <span class="pin-etiket">D5</span> is selected as the pin.</p>
+@@2612
+The condition slot is the notch right next to the word "if". The block snaps in there.
+@@2613
+Turn the LED on and off
+@@2614
+<p>From the <span class="chip pin">Pins</span> category, take two <span class="chip pin">set pin</span> blocks. Put <span class="pin-etiket">D2</span> <b>HIGH (1)</b> in the <b>if</b> part and <span class="pin-etiket">D2</span> <b>LOW (0)</b> in the <b>else</b> part.</p>
+          <pre><code>if (digitalRead(D5) == HIGH) {
+  digitalWrite(D2, HIGH);
+} else {
+  digitalWrite(D2, LOW);
+}</code></pre>
+          <div class="kutu dikkat"><b>Careful:</b> Set the pins to D2. Blocks come with D0 by default.</div>
+@@2615
+One block goes in the if part and the other in the else part. Don't forget to set the pin of both to D2.
+@@2616
+Run and press the button
+@@2617
+<p>Press the <b>▶ Run</b> button. While the program runs, <b>press and hold the button</b> in the 3D scene with the mouse, then release it. Watch the LED!</p>
+          <div class="kutu bilgi"><b>Shortcut:</b> The <span class="chip dugme">set pin D2 to [ ]</span> block (Button category) does the whole if / else job by itself.</div>
+          <div class="kutu hedef"><b>Goal:</b> The LED lights up when you press the button and turns off when you release it.</div>
+@@2618
+If the LED follows the button late, make sure the block is inside the repeat forever block.
+@@2620
+The LED stayed off while the button was pressed.
+@@2621
+Great! The LED follows the button.
+@@2623
+2.2 · Two buttons (AND / OR)
+@@2624
+<h2>Two buttons: AND / OR</h2>
+      <p>Two buttons are connected to D5 and D6, and two LEDs to D2 and D3.</p>
+      <ul>
+        <li><b>D2 (AND):</b> lights up only while <b>both buttons</b> are pressed.</li>
+        <li><b>D3 (OR):</b> lights up while <b>at least one</b> of the buttons is pressed.</li>
+      </ul>
+      <p>Use the <b>and / or</b> block from the <b>Logic</b> category; plug two <b>is button pressed?</b> blocks into it.
+      Two <b>set</b> blocks inside <b>repeat forever</b> are enough.</p>
+@@2625
+<p>This time there are <b>two buttons</b> (<span class="pin-etiket">D5</span> blue, <span class="pin-etiket">D6</span> green) and <b>two LEDs</b> (<span class="pin-etiket">D2</span> red, <span class="pin-etiket">D3</span> green).</p>
+          <ul>
+            <li><span class="pin-etiket">D2</span>: lights up when both buttons are pressed (<b>AND</b>).</li>
+            <li><span class="pin-etiket">D3</span>: one of the buttons is enough (<b>OR</b>).</li>
+          </ul>
+@@2626
+What are AND and OR?
+@@2627
+<div class="kutu bilgi"><b>AND:</b> both conditions must be true <i>together</i>. <b>OR:</b> it is enough if <i>one</i> of the conditions is true.
+          <pre><code>(a == HIGH) &amp;&amp; (b == HIGH)   // AND
+(a == HIGH) || (b == HIGH)   // OR</code></pre></div>
+          <p>An example: if "it is raining AND windy", you need an umbrella. If "it is raining OR windy", you put on a jacket.</p>
+@@2628
+<p>From the <span class="chip akis">Flow</span> category, drag the <span class="chip akis">repeat forever</span> block into the workspace. The buttons will be checked all the time.</p>
+@@2629
+Two set blocks
+@@2630
+<p>From the <span class="chip dugme">Button</span> category, take two <span class="chip dugme">set pin [ ] to</span> blocks and stack them inside <b>repeat forever</b>. Make the first one <span class="pin-etiket">D2</span> and the second one <span class="pin-etiket">D3</span>.</p>
+          <pre><code>digitalWrite(D2, ... ? HIGH : LOW);</code></pre>
+          <p>This block sets the pin HIGH or LOW depending on the true / false value that comes into its slot.</p>
+@@2631
+Drop the second block right under the first; the two blocks snap together.
+@@2632
+Plug in the AND / OR blocks
+@@2633
+<p>From the <span class="chip mantik">Logic</span> category, take two <span class="chip mantik">and / or</span> blocks and plug them into the slots of the set blocks. Make D2's one <b>and</b> and D3's one <b>or</b> (using the drop-down list on the block).</p>
+          <pre><code>digitalWrite(D2, (digitalRead(D5) == HIGH) &amp;&amp; (digitalRead(D6) == HIGH) ? HIGH : LOW);</code></pre>
+@@2634
+The small list in the middle of the block lets you choose between "and" and "or".
+@@2635
+Plug in the button questions
+@@2636
+<p>From the <span class="chip dugme">Button</span> category, take four <span class="chip dugme">is button pressed?</span> blocks. Plug them into each and / or block, one with <span class="pin-etiket">D5</span> and one with <span class="pin-etiket">D6</span>.</p>
+          <div class="kutu dikkat"><b>Careful:</b> Make sure the right pin (D5 and D6) is selected in all four blocks. If the same pin appears twice, the result will be wrong.</div>
+@@2637
+To copy a block, click it, then press Ctrl+C and Ctrl+V.
+@@2638
+Run and try it
+@@2639
+<p>Press <b>▶ Run</b>. In the scene, press only the blue one first, then only the green one, and finally both at once with the mouse.</p>
+          <div class="kutu hedef"><b>Goal:</b> <span class="pin-etiket">D3</span> should light up with even one button, and <span class="pin-etiket">D2</span> should light up only when both are pressed.</div>
+@@2640
+If D2 lights up with a single button, you may have set the block to or.
+@@2642
+The D2 (AND) LED is wrong: it should light up only when both buttons are pressed together.
+@@2643
+The D3 (OR) LED is wrong: it should light up when at least one button is pressed.
+@@2644
+Perfect! The AND and OR logic works correctly.
+@@2646
+2.3 · Serial monitor
+@@2647
+<h2>Serial monitor</h2>
+      <p>The serial monitor lets the board send text to the computer. Let's keep printing the state of the button.</p>
+      <ol>
+        <li>Put a <b>write to serial monitor</b> block inside <b>repeat forever</b>.</li>
+        <li>Plug a <b>join</b> block into it: the first piece is <i>"Düğme: "</i>, the second piece is <b>D5 button value (0 / 1)</b>.</li>
+        <li>Then add <b>wait 200 ms</b> so the screen doesn't overflow.</li>
+      </ol>
+      <p>You should see <b>1</b> in the lines when you press the button and <b>0</b> when you release it.</p>
+@@2648
+What is the serial monitor?
+@@2649
+<p>There is a button connected to pin <span class="pin-etiket">D5</span> of the board. We will send the state of the button to the computer as <b>text</b>.</p>
+          <div class="kutu bilgi">The <b>serial monitor</b> is a small screen where the board sends messages to the computer. It is the best way to look at "what is going on inside?" while writing code.
+          <pre><code>Serial.begin(115200);
+Serial.println("Merhaba");</code></pre></div>
+          <p>First press and release the button in the scene to see how it works.</p>
+@@2650
+<p>From the <span class="chip akis">Flow</span> category, drag the <span class="chip akis">repeat forever</span> block into the workspace.</p>
+@@2651
+Write to the serial monitor
+@@2652
+<p>Open the <span class="chip seri">Serial</span> category. Put the <span class="chip seri">write to serial monitor</span> block inside <b>repeat forever</b>.</p>
+@@2653
+The block should sit in the gap inside the repeat forever block.
+@@2654
+Join the text and the button value
+@@2655
+<p>From the <span class="chip analog">Text</span> category, take the <span class="chip analog">join</span> block and plug it into the slot of the <b>write to serial monitor</b> block. Type <i>Düğme: </i> in the first box.</p>
+          <p>Then, from the <span class="chip dugme">Button</span> category, plug the <span class="chip dugme">D5 button value (0 / 1)</span> block into the second slot.</p>
+          <pre><code>Serial.println((String("Düğme: ") + String(digitalRead(D5))));</code></pre>
+          <div class="kutu bilgi"><code>String(...)</code> turns a number into text; <code>+</code> sticks two texts side by side.</div>
+@@2656
+The join block is in the Text category. The pin of the button value block must be D5.
+@@2657
+Wait a little
+@@2658
+<p>From the <span class="chip akis">Flow</span> category, take the <span class="chip akis">wait ms</span> block, put it under the <b>write to serial monitor</b> block and set it to <b>200</b>.</p>
+          <div class="kutu dikkat"><b>Careful:</b> If you don't wait, the board prints thousands of lines per second and the screen overflows.</div>
+@@2659
+Type 200 in the number box of the wait block.
+@@2660
+<p>Press <b>▶ Run</b>. While lines scroll in the serial monitor, <b>press and hold the button</b> in the scene with the mouse, then release it.</p>
+          <div class="kutu hedef"><b>Goal:</b> The lines should be <b>0</b> at first, <b>1</b> while you press, and <b>0</b> again when you release.</div>
+@@2661
+If you never see a 1, check whether the pin of the D5 button value block is D5.
+@@2662
+Not enough lines were written to the serial monitor. Did you use a loop and a wait?
+@@2663
+Each line must end with 0 or 1 (add the D5 button value).
+@@2664
+A 1 never appeared. Make sure you print the value of the button.
+@@2665
+A 1 should be printed for as long as the button is held (every 200 ms).
+@@2666
+The order should be 0...0, 1...1, 0...0.
+@@2667
+Great! You can see the button state in the serial monitor.
+@@2669
+2.4 · Button counter
+@@2670
+<h2>Button counter</h2>
+      <p>A variable is a box that remembers a number. Let's count every press of the button.</p>
+      <ol>
+        <li>In the <b>Variables</b> category, click <b>Create variable…</b> and name it <i>sayac</i>.</li>
+        <li>First (before the loop), <b>set sayac to 0</b>.</li>
+        <li>Inside <b>repeat forever</b>: <b>wait until button D5 is pressed</b>, <b>increase sayac by 1</b>, write the counter to the serial monitor, then <b>wait until button D5 is released</b>.</li>
+      </ol>
+      <p>You should see 1, 2, 3 ... in the serial monitor. (If you don't wait for the release, the counter goes wild!)</p>
+@@2671
+The counter idea
+@@2672
+<p>The board has to <b>remember</b> how many times you pressed the button. We will use a <b>variable</b> for that.</p>
+          <div class="kutu bilgi">A <b>variable</b> is a named box that stores a number. You create the box once, then change the number inside it.
+          <pre><code>int sayac = 0;
+sayac += 1;</code></pre></div>
+          <p>Press the button (<span class="pin-etiket">D5</span>) in the scene once, then let's write the program.</p>
+@@2673
+Create the variable and reset it
+@@2674
+<p>Open the <span class="chip degisken">Variables</span> category, click the <b>Create variable…</b> button and name it <i>sayac</i>. Then put the <span class="chip degisken">set sayac to [ ]</span> block into the workspace; its value should be <b>0</b>.</p>
+          <pre><code>sayac = 0;</code></pre>
+          <p>This block should be <b>outside</b> the loop. The counter is reset only at the start.</p>
+@@2676
+When you create a variable, new blocks appear in the category. Take the "set" block.
+@@2677
+Repeat forever and wait for the press
+@@2678
+<p>From the <span class="chip akis">Flow</span> category, take the <span class="chip akis">repeat forever</span> block and place it under the counter block. Inside it, put the <span class="chip dugme">wait until button D5 is pressed</span> block from the <span class="chip dugme">Button</span> category and select the state <b>pressed</b>.</p>
+          <pre><code>while (digitalRead(D5) != HIGH) {
+  delay(1);
+}</code></pre>
+          <p>The board waits here until the button is pressed.</p>
+@@2679
+The state list in the wait block has pressed and released options. For now you need pressed.
+@@2680
+Increase the counter and print it
+@@2681
+<p>Put the <span class="chip degisken">increase sayac by [1]</span> block under the wait block. Then plug the <span class="chip degisken">sayac</span> value into the <span class="chip seri">write to serial monitor</span> block.</p>
+          <pre><code>sayac += 1;
+Serial.println(sayac);</code></pre>
+@@2683
+Find the increase block in the Variables category. The write to serial monitor block is in the Serial category.
+@@2684
+Wait for the release
+@@2685
+<p>Finally, take one more <span class="chip dugme">wait for button D5</span> block, put it at the bottom and set its state to <b>released</b>.</p>
+          <pre><code>while (digitalRead(D5) != LOW) {
+  delay(1);
+}</code></pre>
+          <div class="kutu dikkat"><b>Careful:</b> Without this block, the counter increases wildly as long as the button stays pressed. The board doesn't know the difference between "one press" and "holding it down"!</div>
+@@2686
+The same block, only the state is different: this time select released.
+@@2687
+Run and press 3 times
+@@2688
+<p>Press <b>▶ Run</b>. Press the button in the scene with the mouse <b>3 times</b>, releasing it each time.</p>
+          <div class="kutu hedef"><b>Goal:</b> The serial monitor should show <b>1, 2, 3</b>.</div>
+@@2689
+If the numbers increase too fast, make sure you added the block that waits for the release.
+@@2690
+The button was pressed 3 times but {0} lines were written. Write once per press; wait for the release.
+@@2691
+The counter should go 1, 2, 3 (start at 0, +1 for each press).
+@@2692
+Great! You counted button presses with a variable.
+@@2695
+<h2>Reflex game</h2>
+      <p>The LED will light up at a random moment. Press the button as soon as it lights up; let's measure how fast you are!</p>
+      <ol>
+        <li><b>Wait 2000 ms</b> (so the player doesn't know when the LED will light up).</li>
+        <li>Set <b>pin D2 HIGH</b> and save the <b>elapsed time (ms)</b> value in the <i>baslangic</i> variable.</li>
+        <li><b>Wait until button D5 is pressed</b>.</li>
+        <li><i>sure</i> = <b>elapsed time</b> − <i>baslangic</i>.</li>
+        <li>Write to the serial monitor: <i>"Tepki: "</i> + sure + <i>" ms"</i> (use join and convert number to text). At the end, turn D2 off.</li>
+      </ol>
+@@2696
+The plan of the game
+@@2697
+<p>Here's the plan: the board waits a bit, turns on the <span class="pin-etiket">D2</span> LED, and measures the time until you press the <span class="pin-etiket">D5</span> button.</p>
+          <div class="kutu bilgi"><b>Measuring time:</b> The board counts milliseconds since it was powered on. If we save the moment the LED lights up and the moment of the press and take the difference, we get your reaction time.
+          <pre><code>baslangic = millis();
+sure = millis() - baslangic;</code></pre></div>
+@@2698
+Wait and turn on the LED
+@@2699
+<p>From the <span class="chip akis">Flow</span> category, take the <span class="chip akis">wait ms</span> block and set it to <b>2000</b>. Under it, put the <span class="chip pin">set pin D2 HIGH (1)</span> block from the <span class="chip pin">Pins</span> category.</p>
+          <pre><code>delay(2000);
+digitalWrite(D2, HIGH);</code></pre>
+@@2700
+The pin must be D2 and the value HIGH. Keep the wait block above the LED block.
+@@2701
+Save the start time
+@@2702
+<p>In the <span class="chip degisken">Variables</span> category, create a variable named <i>baslangic</i> and take the <span class="chip degisken">set baslangic to [ ]</span> block. Plug the <span class="chip analog">elapsed time (ms)</span> block from the <span class="chip analog">Text</span> category into it.</p>
+          <pre><code>baslangic = millis();</code></pre>
+@@2703
+The elapsed time block is in the Text category. Plug it into the slot of the set variable block.
+@@2704
+Wait for the press and calculate the time
+@@2705
+<p>Take the <span class="chip dugme">wait until button D5 is pressed</span> block (<span class="chip dugme">Button</span> category). Under it, assign a new variable named <i>sure</i> and plug a <span class="chip sayi">subtract (−)</span> block from the <span class="chip sayi">Number</span> category into it: <b>elapsed time</b> − <b>baslangic</b>.</p>
+          <pre><code>while (digitalRead(D5) != HIGH) {
+  delay(1);
+}
+sure = millis() - baslangic;</code></pre>
+          <p>Don't forget to select <b>−</b> from the block's operation list.</p>
+@@2706
+The order of subtraction matters: current time minus start time.
+@@2707
+Print the result
+@@2708
+<p>Plug <span class="chip analog">join</span> into the <span class="chip seri">write to serial monitor</span> block: <i>Tepki: </i> + <span class="chip analog">convert number sure to text</span>. Then add one more join and append <i> ms</i> at the end.</p>
+          <pre><code>Serial.println((String((String("Tepki: ") + String(String(sure)))) + String(" ms")));</code></pre>
+          <div class="kutu bilgi">The code looks complicated, but what it does is simple: it sticks the texts end to end.</div>
+          <p>Finally, turn the LED off by setting pin <span class="pin-etiket">D2</span> to <b>LOW</b>.</p>
+@@2709
+You need to convert the number to text before joining it with text.
+@@2711
+<p>Press <b>▶ Run</b>. As soon as the LED lights up, <b>press the button</b> in the scene with the mouse.</p>
+          <div class="kutu hedef"><b>Goal:</b> The serial monitor should show your reaction time (ms).</div>
+@@2712
+If the time looks very strange, check that you saved baslangic right after the LED turned on.
+@@2713
+The LED lit up immediately. Wait a bit first to make the game exciting.
+@@2714
+The measured time ({0} ms) doesn't match the real time (~{1} ms). Save the moment the LED lights up and the moment of the press.
+@@2715
+Your reaction time is {0} ms. Great game!
+@@2718
+<h2>RGB LED: color mixing</h2>
+      <p>There are three tiny lights inside an RGB LED: <b>red (D0)</b>, <b>green (D1)</b>, <b>blue (D2)</b>. By mixing the three you can make any color.</p>
+      <ol>
+        <li>Take the <b>PWM</b> block three times (Pins box).</li>
+        <li>Write <b>255</b> to D0, <b>0</b> to D1, and <b>255</b> to D2.</li>
+        <li>Press ▶ Run. Red + blue = <b>purple</b>!</li>
+      </ol>
+      <p>0 = completely off, 255 = brightest. Try other colors too.</p>
+@@2719
+Get to know the RGB LED
+@@2720
+<p>There are three tiny lights inside the <b>RGB LED</b> in the scene: <b>red</b> (<span class="pin-etiket">D0</span>), <b>green</b> (<span class="pin-etiket">D1</span>) and <b>blue</b> (<span class="pin-etiket">D2</span>). The green ring shows the LED.</p>
+          <div class="kutu bilgi"><b>Color mixing:</b> Painters mix paint, we mix light! Red + blue = purple, red + green = yellow, all three = white. We will set the brightness of each color separately.</div>
+@@2721
+Take the PWM block
+@@2722
+<p>Open the <span class="chip pin">Pins</span> category and drag the <span class="chip pin">PWM</span> block into the workspace.</p>
+          <div class="kutu bilgi"><b>What is PWM?</b> A pin doesn't have to be just on/off. With PWM we write a number between <b>0 and 255</b> to the pin: 0 is off, 255 is brightest, in the middle is half brightness.
+            <pre><code>analogWrite(D0, 255);</code></pre></div>
+@@2723
+The second block in the Pins category. Drop it in the empty workspace.
+@@2724
+Red and blue: full brightness
+@@2725
+<p>There will be three <span class="chip pin">PWM</span> blocks. The first should write <b>255</b> to pin <span class="pin-etiket">D0</span>, the second <b>255</b> to pin <span class="pin-etiket">D2</span>. Stack the blocks one under the other.</p>
+          <pre><code>analogWrite(D0, 255);
+analogWrite(D2, 255);</code></pre>
+@@2726
+Choose the pin name from the drop-down list on the block. You can click the number and type 255.
+@@2727
+Turn off the green
+@@2728
+<p>Set the third <span class="chip pin">PWM</span> block to pin <span class="pin-etiket">D1</span> and make its value <b>0</b>. Keep green off so the color is pure purple.</p>
+          <pre><code>analogWrite(D1, 0);</code></pre>
+@@2729
+The three blocks must have three different pins: D0, D1, D2.
+@@2730
+<p>Press ▶ <b>Run</b> and look at the color of the LED.</p>
+          <div class="kutu hedef"><b>Goal:</b> The RGB LED should light up <b>purple</b>. Then change the numbers and try other colors too!</div>
+@@2731
+For purple: D0 = 255, D1 = 0, D2 = 255.
+@@2732
+Great, you made purple!
+@@2733
+The LED is off. Write 255 to pins D0 and D2.
+@@2734
+For purple, red (D0) and blue (D2) must be fully bright and green (D1) must be off.
+@@2736
+3.2 · Brightness control
+@@2737
+<h2>Smooth blinking (PWM)</h2>
+      <p>PWM sets the brightness by switching the LED on and off very fast. 0 = off, 255 = brightest.</p>
+      <ol>
+        <li>Take the <b>count: i from 0 to 255, by 5</b> loop (Analog box).</li>
+        <li>Put <b>PWM on pin D0</b> inside it and give the <b>i</b> variable as the value.</li>
+        <li>Add <b>wait 20 ms</b> under it. The LED slowly gets brighter.</li>
+        <li>Make a second loop: <b>from 255 to 0</b> (by 5). The LED slowly fades out.</li>
+      </ol>
+@@2738
+<p>This time we won't just turn the LED on <span class="pin-etiket">D0</span> on and off. First it will <b>slowly get brighter</b>, then <b>slowly fade out</b>, just like breathing.</p>
+          <div class="kutu bilgi"><b>PWM:</b> The board switches the pin on and off thousands of times per second. The longer it stays on, the brighter the LED looks. For <code>analogWrite</code> the number is between <b>0-255</b>.</div>
+@@2739
+Take the counting loop
+@@2740
+<p>Open the <span class="chip analog">Analog</span> category and drop the <span class="chip analog">count: i from 0 to 255, by 5</span> loop into the workspace.</p>
+          <div class="kutu bilgi"><code>i</code> is a <b>variable</b>: it starts at 0, increases by 5 every round, and goes up to 255.
+            <pre><code>for (int i = 0; i &lt;= 255; i += 5) {
+  ...
+}</code></pre></div>
+@@2741
+Near the bottom of the Analog category, the loop block that says "count".
+@@2742
+Write PWM, make the value i
+@@2743
+<p>Put the <span class="chip pin">PWM</span> block <b>inside</b> the loop and set the pin to <span class="pin-etiket">D0</span>. Plug the <span class="chip degisken">i</span> block into the value box (at the end of the <span class="chip analog">Analog</span> category).</p>
+          <pre><code>analogWrite(D0, i);</code></pre>
+          <p>This way the brightness goes up by 5 on every round.</p>
+@@2744
+If you drop the i block on top of the number box, it takes its place.
+@@2745
+Add a small wait
+@@2746
+<p>Put the <span class="chip akis">wait 20 ms</span> block under the PWM block, inside the loop.</p>
+          <div class="kutu dikkat">Without a wait, the 52 steps finish in the blink of an eye and you can't see the brightening.</div>
+          <pre><code>delay(20);</code></pre>
+@@2747
+The wait block is in the Flow category; it says 500 by default, so change it to 20.

@@ -1,0 +1,769 @@
+@@5
+Program çalışmıyor: önce Çalıştır'a bas
+@@6
+Telefon bir ağa bağlı değil: ESP32 henüz Wi-Fi'ye bağlanmadı (WiFi.begin) ve softAP açık değil
+@@7
+Sunucu çalışmıyor: server.begin() çağrılmadı
+@@8
+Sunucu cevap vermedi: yol işleyicisi server.send(...) çağırmadı
+@@33
+%1 pinini %2 yap
+@@37
+YÜKSEK (1)
+@@39
+DÜŞÜK (0)
+@@48
+%1 pini yüksek mi?
+@@52
+%1 ms bekle
+@@56
+sürekli tekrarla %1 %2
+@@61
+seri monitöre yaz %1
+@@76
+Akış
+@@79
+Mantık
+@@83
+Sayı
+@@98
+%1 analog değerini oku (0-4095)
+@@99
+analogRead: 12 bitlik ADC, 0 ile 4095 arası sayı verir
+@@101
+%1 sayısını %2 - %3 aralığından %4 - %5 aralığına çevir
+@@106
+map(değer, girdiMin, girdiMax, çıktıMin, çıktıMax)
+@@108
+LED çubuğu: %1 pininden başlayan %2 LED, seviye %3
+@@111
+Seviye kadar LED yanar, diğerleri söner
+@@123
+birleştir %1 ve %2
+@@127
+İki parçayı yan yana birleştirir
+@@129
+%1 sayısını metne çevir
+@@131
+Sayıyı metin yapar
+@@133
+geçen süre (ms)
+@@134
+Program başladığından beri geçen sanal süre (millis)
+@@139
+Sayı: 
+@@140
+Değişkenler
+@@143
+%1 düğmesine basılı mı?
+@@144
+Düğmeye basılıysa doğru
+@@146
+%1 düğme değeri (0 / 1)
+@@147
+Basılıysa 1, değilse 0
+@@149
+%1 düğmesi %2 kadar bekle
+@@151
+basılana
+@@152
+bırakılana
+@@153
+Düğme durumu değişene kadar bekler
+@@155
+%1 pinini %2 değerine eşitle
+@@156
+Mantık değerine göre pini YÜKSEK/DÜŞÜK yapar
+@@161
+Düğme
+@@163
+LCD satır %1 yaz %2
+@@166
+LCD satırına metin/sayı yazar (en çok 16 karakter)
+@@168
+LCD ekranı temizle
+@@169
+LCD ekranı siler
+@@175
+rastgele sayı %1 ile %2 arası (ikisi dahil)
+@@176
+A ile B arasında (ikisi de dahil) rastgele bir tam sayı verir. Örnek: 1 ile 6 arası bir zar atar.
+@@181
+%1 pinine %2 Hz ses çal
+@@188
+%1 servosunu %2 ° yap (0-180)
+@@190
+servo.write(açı)
+@@192
+%1 mesafe sensörü (cm)
+@@193
+Ultrasonik sensörün ölçtüğü mesafe (cm)
+@@202
+Ses ve hareket
+@@229
+VAR
+@@296
+// Blokları ekledikçe karşılığı olan Arduino kodu burada görünür.
+
+void setup() {
+}
+
+void loop() {
+}
+
+@@349
+Yorum '/*' açılmış ama '*/' ile kapatılmamış
+@@352
+Ham metin R"(...)" kapatılmamış: ")" ile bitmeli
+@@356
+Metin (") kapatılmamış: kapanış çift tırnağı eksik
+@@357
+Karakter (') kapatılmamış ya da birden fazla karakter içeriyor
+@@361
+Tanınmayan karakter: '{0}'
+@@362
+#define için bir isim yazmalısın
+@@363
+Parametreli makrolar (#define F(x) ...) bu simülatörde desteklenmiyor; fonksiyon yaz
+@@371
+Fazladan '{0}' var: bunu kapatacak açılmış bir '{1}' yok
+@@372
+'{0}' (satır {1}) açılmış ama '{2}' ile kapatılmamış; burada '{3}' geldi
+@@373
+'{0}' açılmış ama kapatılmamış: '{1}' eksik
+@@424
+ ('{0}' yerine)
+@@425
+'{0}' bu bölümde zaten tanımlanmış
+@@426
+'{0}' ayrılmış bir isimdir, değişken adı olarak kullanılamaz
+@@427
+ Bunu mu demek istedin: {0}?
+@@428
+Dizi bir değer olarak kullanılamaz (köşeli parantezle eleman seç: dizi[0])
+@@429
+Değer döndürmeyen (void) bir fonksiyonun sonucu kullanılamaz
+@@430
+String (metin) {0} değerine dönüştürülemez; sayıya çevirmek için toInt() kullan
+@@431
+mantıksal
+@@432
+sayı
+@@433
+Bu tür değerler (Servo/LCD) böyle kullanılamaz
+@@437
+Dizi yazdırılamaz; elemanlarını tek tek yazdır
+@@443
+{0} yazıya çevrilemez
+@@444
+Değer döndürmeyen bir fonksiyonun sonucu
+@@445
+Bu değer
+@@448
+{0}() fonksiyonu bulunamadı: programda "void {1}() { ... }" olmalı
+@@449
+{0}() fonksiyonu "void {1}()" biçiminde olmalı
+@@451
+'{0}' fonksiyonu zaten tanımlanmış
+@@452
+Bir isim bekleniyordu{0}
+@@453
+, ama '{0}' bulundu
+@@454
+Bir tür bekleniyordu
+@@455
+İşaretçiler (*) bu simülatörde desteklenmiyor
+@@457
+Referanslar (&) bu simülatörde desteklenmiyor; değeri return ile geri döndür
+@@458
+'Servo' tanınmıyor: dosyanın başına #include <ESP32Servo.h> eklemeyi unuttun mu?
+@@459
+'WebServer' tanınmıyor: dosyanın başına #include <WebServer.h> eklemeyi unuttun mu?
+@@460
+'LiquidCrystal_I2C' tanınmıyor: dosyanın başına #include <LiquidCrystal_I2C.h> eklemeyi unuttun mu?
+@@461
+Parametre türü bekleniyordu (ör. int x){0}
+@@462
+Parametrelere varsayılan değer verilemez (void f(int x = 5) desteklenmiyor)
+@@464
+'{0}' bu simülatörde desteklenmiyor
+@@465
+Burada '{0}' beklenmiyordu; fonksiyon ya da değişken tanımı (ör. int sayi = 0;) olmalı
+@@468
+Fonksiyon gövdesi için '{' bekleniyordu
+@@473
+LiquidCrystal_I2C için adres ve boyut gerekir: LiquidCrystal_I2C lcd(0x27, 16, 2);
+@@474
+Değişken türü 'void' olamaz
+@@476
+Dizi için '{ ... }' listesi bekleniyordu
+@@477
+'{0}' dizisinin boyutu belli değil: boyut yaz (ör. int {1}[5]) ya da değerleri ver
+@@478
+Dizinin ilk boyutu dışındakiler yazılmalı
+@@480
+Tek değişkene '{ }' listesi verilemez; dizi tanımlamak için ad[] yaz
+@@483
+'{0}' için kurucu bu şekilde desteklenmiyor
+@@485
+Bu dizi için iç içe { } kullanılamaz
+@@493
+'else' için önce bir 'if' olmalı
+@@496
+do { ... } bloğundan sonra 'while (koşul);' gerekir
+@@498
+'break' yalnızca döngü ya da switch içinde kullanılabilir
+@@500
+'continue' yalnızca döngü içinde kullanılabilir
+@@502
+Bu fonksiyon {0} döndürmeli: 'return değer;' yaz
+@@504
+void fonksiyon değer döndüremez
+@@506
+'{0}' bilinmeyen bir tür ya da komut.{1}
+@@510
+Koşul String olamaz; karşılaştırma kullan (ör. s == "a")
+@@511
+switch yalnızca tamsayı/karakter değerleriyle çalışır
+@@519
+Atamanın sol tarafı bir değişken (ya da dizi elemanı) olmalı
+@@520
+const (sabit) bir değişkene değer atanamaz
+@@521
+Dizinin tamamına işlem uygulanamaz
+@@525
+Dizi bu işlemde kullanılamaz
+@@527
+Servo/LCD/WebServer nesneleri işlemlerde kullanılamaz
+@@529
+String ile sayı '{0}' ile birlikte kullanılamaz; sayıyı String(x) ile metne çevir
+@@532
+String'lerle '{0}' işlemi yapılamaz
+@@535
+'%' (kalan) yalnızca tamsayılarla kullanılabilir
+@@537
+'{0}' işlemi ondalıklı sayılarla yapılamaz
+@@541
+'{0}' yalnızca değişkene uygulanabilir
+@@542
+const (sabit) bir değişken değiştirilemez
+@@544
+İşaretçiler ve adres işleci (* ve &) bu simülatörde desteklenmiyor
+@@548
+Köşeli parantez yalnızca dizilerde (ve String'lerde) kullanılabilir
+@@552
+{0}() {1} değer ister ama {2} değer verilmiş
+@@553
+Bu değerin '{0}' üyesi yok
+@@554
+{0}'in '{1}' diye bir komutu yok{2}
+@@555
+. Bunu mu demek istedin: {0}?
+@@562
+Serial.printf ilk değer olarak biçim metni ("...") ister
+@@566
+{0}() yalnızca bir String değişkenine uygulanabilir
+@@573
+server.on() ilk değer olarak yol ister, ör. server.on("/", anaSayfa);
+@@574
+server.{0}() son değer olarak bir fonksiyonun adını ister (ör. server.on("/", anaSayfa); — sonuna () koyma). Fonksiyonu önce "void anaSayfa() { ... }" diye yazmalısın; "[]() {...}" biçimi desteklenmiyor
+@@575
+'{0}' fonksiyonu "void {1}()" biçiminde olmalı (parametresiz, değer döndürmez)
+@@576
+server.{0}() içine fonksiyonun adını yaz, çağırma: {1} (sonuna () koyma)
+@@581
+: bir değer ya da ifade eksik olabilir
+@@582
+Kod beklenmedik şekilde bitti: ifade yarım kalmış
+@@584
+D{0} diye bir pin yok (D0 - D14 kullanılabilir)
+@@585
+A{0} diye bir pin yok (A0 - A7 kullanılabilir)
+@@590
+'WiFi' tanınmıyor: dosyanın başına #include <WiFi.h> eklemeyi unuttun mu?
+@@592
+'{0}' bir fonksiyondur; çağırmak için {1}() yaz
+@@593
+'{0}' tanımlanmamış: böyle bir değişken ya da fonksiyon yok.{1}
+@@594
+'{0}(...)' bu şekilde kullanılamaz
+@@595
+{0}() fonksiyonunun {1}. değeri bir dizi olmalı
+@@597
+'{0}' diye bir fonksiyon yok.{1}
+@@598
+{0}() sayılarla çalışır
+@@603
+Satır {0}: {1}
+@@604
+Böyle bir pin yok: {0}. D0-D14 (0-14) ve A0-A7 (15-22) pinlerini kullanabilirsin
+@@605
+Sıfıra bölme hatası: tamsayı bölmede bölen 0 olamaz
+@@606
+Sıfıra bölme hatası: kalan (%) işleminde bölen 0 olamaz
+@@607
+Dizi sınırı aşıldı: {0}. eleman istendi ama dizide {1} eleman var (geçerli: 0-{2})
+@@608
+Dizi çok büyük
+@@612
+ledcWrite için önce ledcSetup + ledcAttachPin (ya da ledcAttach) ile bir pin bağlamalısın
+@@616
+Servo kullanılmadan önce servo.attach(pin) ile bir pine bağlanmalı (genellikle setup() içinde)
+@@621
+server.send() yalnızca bir yol işleyicisi (server.on ile bağlanan fonksiyon) içinde çağrılabilir
+@@625
+Kod çevrilemedi (beklenmeyen bir yazım): 
+@@626
+Satır {0}: Fonksiyon kendini sonsuza kadar çağırıyor (özyineleme bitmiyor)
+@@633
+<button class="ipucu-btn">💡 İpucu</button><div class="ipucu kutu ipucu-k" hidden>{0}</div>
+@@635
+✓ Tamamlandı
+@@636
+Yapınca otomatik ilerler
+@@638
+Anladım
+@@4836
+<p>Telefon panelini dene: Çalıştır, sonra <b>Telefon</b> sekmesinde Aç/Kapat.</p>
+@@4838
+LED telefondan yandı!
+@@4839
+LED yanmadı.
+@@644
+LED'i söndür
+@@645
+Bu program LED'i yakıyor. Turuncu işaretli <b>HIGH</b> yerine doğru kelimeyi yaz ki LED <b>sönük</b> kalsın.
+@@647
+HIGH üç virgül üç volt demekti. Sıfır volt için hangi kelime kullanılır?
+@@648
+LED sönük kaldı, tam istediğimiz gibi!
+@@649
+LED hâlâ yanıyor. HIGH yerine LOW yazmayı dene.
+@@650
+Yarım parlaklık
+@@651
+LED şu an tam parlaklıkta. <code>digitalWrite(D0, HIGH)</code> satırını, 0-255 arasında bir değerle çalışan <code>analogWrite</code> ile değiştirip LED'i <b>yarım parlaklığa</b> (128 civarı) getir.
+@@653
+analogWrite(pin, değer) biçiminde yazılır. 255 tam parlaklık, 0 sönük demektir.
+@@654
+Yarım parlaklık tam isabet!
+@@655
+LED parlaklığı %{0}. Yaklaşık %50 olmalı (128).
+@@661
+Hızlı yanıp sönme
+@@662
+LED şu an yarım saniyede bir yanıp sönüyor. İşaretli iki bekleme süresini de değiştirip LED'i <b>çok daha hızlı</b> (her biri 50 ile 150 milisaniye arası) yanıp söndür.
+@@665
+İki yerde de 500 yazıyor. 100 gibi küçük bir sayı yaz.
+@@666
+LED yeterince hızlı yanıp sönmüyor. Bekleme sürelerini küçült.
+@@667
+Çok hızlı yanıp sönüyor, harika!
+@@668
+Bekleme süreleri 50-150 ms arasında olmalı (şu an ~{0} ms).
+@@669
+Kalp atışı ritmi
+@@670
+LED kısa süre yansın, uzun süre sönük kalsın: <b>yanık 150 ms</b>, <b>sönük 850 ms</b> (yaklaşık). İşaretli iki bekleme süresini bunlara göre değiştir.
+@@672
+Birinci delay LED yanıkken, ikinci delay LED sönükken bekler.
+@@673
+LED yeterince değişmedi.
+@@674
+Hem yanma hem sönme süresi ölçülemedi.
+@@675
+Kalp atışı gibi bir ritim yakaladın!
+@@676
+Yanık {0} ms, sönük {1} ms. İstenen: yaklaşık 150 ve 850.
+@@695
+Kütüphane ağına bağlan
+@@696
+Ağ adını <b>Kutuphane</b>, şifreyi <b>kitap2024</b> yap. (Sadece bu ağ kabul ediliyor.)
+@@701
+Tırnakları koruyarak içindeki metinleri değiştir.
+@@702
+Kart ağa bağlanamadı: ağ adı ve şifreyi kontrol et.
+@@703
+Kütüphane ağına bağlandın!
+@@704
+Bağlandı mesajını değiştir
+@@705
+Bağlanınca seri monitöre <b>Hazirim!</b> yazılsın.
+@@708
+"Baglandi!" yazısını "Hazirim!" yap.
+@@709
+Seri monitörde "Hazirim!" görünmedi.
+@@710
+Yeni mesaj yazıldı!
+@@711
+Daha sık nokta (250 ms)
+@@712
+Bağlanırken noktalar daha sık çıksın: bekleme süresini <b>250 ms</b> yap.
+@@713
+while içindeki delay(500) değerini 250 yap.
+@@714
+Yalnızca {0} nokta yazıldı; 250 ms beklemeyle yaklaşık 6 nokta çıkmalı.
+@@715
+Noktalar daha sık geliyor!
+@@724
+Başlığı değiştir
+@@725
+Sayfa başlığı <b>Merhaba Atolye!</b> olsun.
+@@727
+<h1> içindeki yazıyı değiştir.
+@@728
+Sayfada "Merhaba Atolye!" başlığı görünmedi.
+@@729
+Yeni başlık sayfada!
+@@730
+Sarı arka plan
+@@731
+Sayfanın arka planı sarımsı olsun: stil metninin sonuna <code>;background:lightyellow</code> ekle.
+@@733
+text-align:center ifadesinden sonra noktalı virgül ve background:lightyellow yaz.
+@@734
+Sayfa stilinde background:lightyellow görünmedi.
+@@735
+Sayfan artık sarımsı!
+@@736
+Yolu /isik yap
+@@737
+LED yolu <b>/isik</b> olsun: sayfadaki iki bağlantıyı ve <code>server.on</code> satırını değiştir.
+@@740
+/led yazan üç yeri de /isik yap (turuncu işaretliler).
+@@741
+Sayfadaki bağlantılar /isik adresini göstermeli.
+@@742
+/isik?durum=1 isteğinde LED yanmadı; server.on("/isik", ...) yazdın mı?
+@@743
+LED yolu artık /isik!
+@@746
+  <p>Bu sayfa internetsiz, dogrudan ESP32'den geliyor.</p>
+  <a href="/led">LED Degistir</a>
+</body>
+</html>
+)rawliteral";
+
+
+@@750
+Ağ adını değiştir
+@@751
+Ağın adı <b>Atolye-AP</b> olsun.
+@@754
+softAP içindeki ilk metni değiştir.
+@@755
+Ağ adı "{0}"; "Atolye-AP" olmalı.
+@@756
+Ağın adı Atolye-AP oldu!
+@@757
+Yeni şifre
+@@758
+Ağ şifresi <b>deneyap123</b> olsun.
+@@760
+softAP içindeki ikinci metni değiştir.
+@@761
+Şifre "deneyap123" olmalı.
+@@762
+Şifre güncellendi!
+@@763
+Sayfa başlığı
+@@764
+Sayfa başlığı <b>Sinif Agi</b> olsun.
+@@766
+Sayfada "Sinif Agi" başlığı görünmedi.
+@@775
+Hızlı nöbet
+@@776
+Işıklar şu an dört yüz milisaniyede bir değişiyor. İşaretli <b>iki bekleme süresini</b> de değiştirip nöbeti <b>çok hızlandır</b> (her biri 50 ile 150 milisaniye arası).
+@@778
+Küçük süre, hızlı değişim demektir. İki yerde de 100 gibi bir sayı yaz.
+@@779
+Işıklar yeterince hızlı değişmiyor. Bekleme sürelerini küçült.
+@@780
+İki LED aynı anda yandı. Sadece sayıları değiştir, sıraya dokunma.
+@@781
+Çok hızlı bir nöbet, harika!
+@@782
+Kırmızı kısa, yeşil uzun
+@@783
+Bir trafik ışığı düşün: <b>kırmızı yaklaşık 200 ms</b>, <b>yeşil yaklaşık 800 ms</b> yansın. Hangi bekleme hangi LED'e ait? İşaretli yerleri ona göre değiştir.
+@@784
+Birinci delay kırmızı yanıkken, ikinci delay yeşil yanıkken bekler.
+@@785
+İki LED de birkaç kez yanmalı.
+@@786
+Kırmızı ~{0} ms yanıyor, yaklaşık 200 olmalı.
+@@787
+Kırmızı kısa, yeşil uzun: tam istediğimiz gibi!
+@@788
+Yeşil ~{0} ms yanıyor, yaklaşık 800 olmalı.
+@@789
+Hatayı bul
+@@790
+Bu programda bir hata var: bazen <b>iki LED aynı anda yanıyor</b>. İşaretli yerde kırmızı LED söndürülmesi gerekirken yanık bırakılmış. Doğru kelimeyi yazarak hatayı düzelt.
+@@791
+#define KIRMIZI D0
+#define YESIL D1
+
+void setup() {
+  pinMode(KIRMIZI, OUTPUT);
+  pinMode(YESIL, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(YESIL, LOW);
+  digitalWrite(KIRMIZI, HIGH);
+  delay(400);
+  digitalWrite(KIRMIZI, HIGH);  // sönmeli
+  digitalWrite(YESIL, HIGH);
+  delay(400);
+}
+
+@@792
+digitalWrite(KIRMIZI, HIGH);  // sönmeli
+@@793
+Sönük için sıfır volt gerekir. HIGH yerine hangi kelime kullanılır?
+@@794
+İki LED hâlâ aynı anda yanıyor. Kırmızıyı söndüren satırda LOW kullan.
+@@795
+İki LED de sırayla yanıp sönmeli.
+@@796
+Hata düzeldi, LED'ler artık sırayla yanıyor!
+@@798
+Düğmeye basılmadı (senaryo çalışmadı).
+@@799
+Düğmeye basılıyken LED hâlâ yanıyor; sönmesi gerekiyor.
+@@800
+Düğmeye basılmıyorken LED sönük; normalde yanık olmalı.
+@@801
+Düğmeye basılıyken LED sönük kaldı. Pinlerin doğru olduğundan emin ol.
+@@802
+Düğmeyi bıraktığında LED hâlâ yanıyor.
+@@803
+Yeterince satır yazılmadı.
+@@804
+Her satır "Basili" ya da "Birakildi" olmalı.
+@@805
+Düğmeye basılınca "Basili" yazılmalı; hiç görünmedi.
+@@806
+Sıra Birakildi..., Basili..., Birakildi... olmalı. Şu an "Basili" ve "Birakildi" yanlış zamanlarda yazılıyor: koşulu kontrol et.
+@@807
+Doğru! Düğme basılıyken Basili, bırakılınca Birakildi yazıyor.
+@@813
+Ters çalışan lamba
+@@814
+Bu program düğmeye basınca LED'i yakıyor. Onu <b>tersine</b> çevir: LED normalde <b>yanık</b> dursun, düğmeye <b>basılınca sönsün</b>. Turuncu işaretli koşulu değiştirmen yeter.
+@@818
+Düğme basılı değilken pin LOW okunur. Soruyu "basılı değil mi?" diye sormak için HIGH yerine ne yazmalısın?
+@@819
+Harika! LED normalde yanık, düğmeye basınca sönüyor.
+@@820
+Pinleri düzelt
+@@821
+Bu programda düğme ve LED pinleri <b>yanlış yazılmış</b>, o yüzden LED düğmeyi izlemiyor. Düğme <b>D5</b>, LED <b>D2</b> pinindedir. İşaretli iki satırı düzelt.
+@@825
+Sahnedeki düğmenin pin etiketine bak: D5. Sarı LED ise D2 pininde. İki define satırının pinleri yer değiştirmiş.
+@@826
+Süper! Pinler doğru, LED düğmeyi takip ediyor.
+@@827
+Loş gece lambası
+@@828
+LED şu an düğme yokken tamamen sönük. Onu bir <b>gece lambasına</b> çevir: düğmeye basılmıyorken LED <b>loş</b> yansın (0-255 arasında küçük bir değer, örneğin 40), basılınca yine tam parlak olsun. İşaretli satırı <code>analogWrite</code> ile değiştir.
+@@832
+analogWrite(LED, değer) biçiminde yazılır. 0 sönük, 255 tam parlaklık demektir; 40 civarı loş bir ışık verir.
+@@833
+Düğmeye basılmıyorken LED tamamen sönük. Biraz yanık kalmalı (analogWrite ile loş bir değer ver).
+@@834
+Düğme yokken LED çok parlak (%{0}). Loş olmalı: 0-255 arasında küçük bir değer dene.
+@@835
+Düğmeye basılıyken LED tam parlak olmalı; basılınca loş değer yazılmasın.
+@@836
+Gece lambası hazır: düğme yokken loş, basınca tam parlak!
+@@843
+İşaretler karışmış
+@@844
+<span class="pin-etiket">D2</span> LED'i yalnızca <b>iki düğmeye birden</b> basılınca, <span class="pin-etiket">D3</span> LED'i ise <b>en az bir düğmeye</b> basılınca yanmalı. Bu programda iki işaret (<code>&amp;&amp;</code> ve <code>||</code>) yer değiştirmiş. Düzelt.
+@@849
+İkisi birlikte gerekiyorsa VE (iki and işareti), biri yetiyorsa VEYA (iki dik çizgi) kullanılır.
+@@850
+D2 LED'i yalnızca iki düğmeye birlikte basılınca yanmalı. VE işaretini nereye koyduğunu kontrol et.
+@@851
+D3 LED'i düğmelerden en az biri basılıyken yanmalı. VEYA işaretini nereye koyduğunu kontrol et.
+@@852
+Doğru! D2 VE mantığıyla, D3 VEYA mantığıyla çalışıyor.
+@@853
+Hiçbirine basılmıyor
+@@854
+Şimdi <span class="pin-etiket">D2</span> LED'i yalnızca <b>iki düğmeye de basılmıyorken</b> yansın. <span class="pin-etiket">D3</span> LED'i ise eskisi gibi kalsın (en az biri basılıyken yansın). İşaretli koşulu değiştir; <code>!</code> işareti bir ifadeyi tersler.
+@@856
+"A basılı değil VE B basılı değil" demek istiyorsun. Basılı değil için a önüne ünlem koy: !a
+@@857
+Hiçbir düğmeye basılmıyorken D2 sönük kalmış; yanmalı.
+@@858
+Bir düğmeye basılıyorken D2 hâlâ yanıyor; sönmeli.
+@@859
+D3 LED'i eskisi gibi kalmalı: en az bir düğme basılıyken yanmalı.
+@@860
+Güzel! D2 yalnızca hiçbir düğmeye basılmıyorken yanıyor.
+@@861
+Biri ya da öteki
+@@862
+<span class="pin-etiket">D2</span> LED'i, düğmelerden <b>tam olarak birine</b> basılıyken yansın (ikisine birden basılırsa sönsün). <span class="pin-etiket">D3</span> LED'i ise yalnızca <b>iki düğmeye birlikte</b> basılınca yansın. İki satırın koşulunu da değiştir.
+@@864
+Tam olarak biri basılıysa a ile b birbirinden farklıdır: a != b yazabilirsin. D3 için bildiğin VE işaretini kullan.
+@@865
+İki düğmeye birden basılıyken D2 sönük olmalı.
+@@866
+Yalnızca bir düğmeye basılıyken D2 yanmalı.
+@@867
+Hiçbir düğmeye basılmıyorken D2 sönük olmalı.
+@@868
+D3 LED'i yalnızca iki düğmeye birlikte basılınca yanmalı.
+@@869
+Mükemmel! D2 "tam olarak biri", D3 "ikisi birden" mantığıyla çalışıyor.
+@@873
+void loop() {
+  Serial.print("Düğme: ");
+
+@@876
+Yavaş akış
+@@877
+Seri monitör çok hızlı akıyor: saniyede beş satır. Bekleme süresini değiştirip saniyede <b>yaklaşık iki satır</b> yazdır (yani <b>yarım saniyede bir</b>, 500 ms).
+@@878
+#define DUGME D5
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(DUGME, INPUT);
+}
+
+void loop() {
+  Serial.print("Düğme: ");
+  Serial.println(digitalRead(DUGME));
+  delay(200);
+}
+
+@@880
+#define DUGME D5
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(DUGME, INPUT);
+}
+
+void loop() {
+  Serial.print("Düğme: ");
+  Serial.println(digitalRead(DUGME));
+  delay(500);
+}
+
+@@881
+Delay milisaniye ile çalışır. Yarım saniye kaç milisaniyedir?
+@@882
+Çok az satır yazıldı ({0}). Bekleme süresi çok uzun olmasın: yarım saniye (500 ms) yeter.
+@@883
+Satırlar hâlâ çok hızlı akıyor ({0} satır). Bekleme süresini yaklaşık 500 ms yap.
+@@884
+Tam istediğimiz gibi: saniyede iki satır.
+@@885
+Hazırım mesajı
+@@886
+Program başlayınca seri monitöre bir kez <code>Merhaba</code> yazılıyor. İşaretli metni <b>Hazir</b> olarak değiştir (Türkçe harf kullanma). Düğme değerleri yazılmaya devam etsin.
+@@887
+#define DUGME D5
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Merhaba");
+  pinMode(DUGME, INPUT);
+}
+
+void loop() {
+  Serial.print("Düğme: ");
+  Serial.println(digitalRead(DUGME));
+  delay(200);
+}
+
+@@888
+#define DUGME D5
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Hazir");
+  pinMode(DUGME, INPUT);
+}
+
+void loop() {
+  Serial.print("Düğme: ");
+  Serial.println(digitalRead(DUGME));
+  delay(200);
+}
+
+@@889
+Çift tırnak içindeki yazıyı sil, yerine Hazir yaz. Tırnakları silme.
+@@890
+Seri monitöre hiçbir şey yazılmadı.
+@@891
+İlk satır "{0}" olmuş. İlk satır Hazir olmalı.
+@@892
+Hazir'dan sonra her satır düğme değeriyle bitmeli ve yeterince satır olmalı.
+@@893
+Düğmeye basılınca 1 yazılmalı; hiç 1 görünmedi.
+@@894
+Güzel! Önce Hazir, sonra düğme değerleri akıyor.
+@@895
+Yanlış söyleyen monitör
+@@896
+Bu program düğmeye basılıyken <code>Birakildi</code>, bırakılınca <code>Basili</code> yazıyor: tersi! Koşulu düzelt ki düğme <b>basılıyken Basili</b>, <b>bırakılınca Birakildi</b> yazsın.
+@@900
+Düğmeye basılınca pin HIGH olur. Koşul şu an LOW'u soruyor.
+@@906
+Başka sayıdan başla
+@@907
+Sayaç şu an sıfırdan başlıyor ve 1, 2, 3 yazıyor. Başlangıç değerini değiştir ki seri monitörde <b>11, 12, 13</b> yazsın.
+@@911
+İlk basışta sayac bir artıyor. 11 görmek için başlangıçta kutuda kaç olmalı?
+@@912
+3 basış için 3 satır beklenir, {0} satır yazıldı.
+@@913
+Çıktı {0} oldu ama 11, 12, 13 olmalı. Başlangıç değerini ayarla.
+@@914
+Doğru! Sayaç 11, 12, 13 diye ilerledi.
+@@915
+Geri sayım
+@@916
+Sayaç şimdi yukarı sayıyor. Onu <b>geri sayıma</b> çevir: seri monitörde <b>2, 1, 0</b> yazsın. Başlangıç değerini ve artırma satırını birlikte değiştirmen gerekir (iki eksi işareti bir eksiltir).
+@@919
+İlk basışta 2 görmek için başlangıçta 3 olmalı ve her basışta bir eksilmeli: sayac--
+@@920
+Çıktı {0} oldu ama 2, 1, 0 olmalı. Başlangıç değeri ve artırma/eksiltme birlikte uymalı.
+@@921
+Süper! Geri sayım 2, 1, 0 çalıştı.
+@@922
+Çılgın sayaç
+@@923
+Bu sayaç düğmeye <b>bir kez</b> basınca birden çok sayı yazıyor. Hata, düğmenin <b>bırakılmasını bekleyen</b> döngünün koşulunda. İşaretli yeri düzelt ki üç basış için sadece <b>1, 2, 3</b> yazılsın.
+@@925
+While, koşul doğru olduğu sürece bekler. Düğme basılı olduğu sürece beklemek için koşul HIGH mı, LOW mu olmalı?
+@@926
+Düğmeye 3 kez basıldı ama {0} satır yazıldı. Kart düğme basılı kalırken hâlâ sayıyor: bekleme koşulunu kontrol et.
+@@927
+Sayaç 1, 2, 3 diye artmalı.
+@@928
+Tamir edildi! Her basış tam bir kez sayıldı.
+@@936
+Daha çabuk yan
+@@937
+Oyuncu LED'i çok bekliyor: program <b>3 saniye</b> sonra yakıyor. Bekleme süresini değiştir ki LED <b>1 saniye</b> (yaklaşık 1000 ms) sonra yansın.
+@@941
+Bir saniye, bin milisaniyedir.
+@@942
+LED hiç yanmadı.
+@@943
+LED çok erken yandı ({0} ms). Yaklaşık 1000 ms beklemelisin.
+@@944
+LED {0} ms sonra yandı; 1 saniye (1000 ms) olmalı.
+@@945
+Tam 1 saniye sonra yandı, oyun hızlandı!
+@@947
+Program tepki süresini değerlendiriyor: süre <b>500 ms'den azsa</b> <code>HIZLI</code>, değilse <code>YAVAS</code> yazıyor. Hakemi sertleştir: <b>350 ms'lik</b> bir tepki <b>YAVAS</b> sayılsın. İşaretli sınır sayısını değiştir (örneğin 300 yap).

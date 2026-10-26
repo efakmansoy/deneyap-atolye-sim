@@ -1,0 +1,474 @@
+@@3445
+Required for the <code>tone</code> command to work; without it the program will not compile
+@@3446
+To stop the loop from spinning thousands of times per second and needlessly straining the board; the sound still keeps up with the light instantly
+@@3447
+A short wait slows the readings to a reasonable rate (about 50 per second). Since 20 ms feels instant to the human ear, the instrument still plays live.
+@@3448
+Three-position switch
+@@3449
+<p>The pot is on pin <span class="pin-etiket">A0</span> and the servo is on pin <span class="pin-etiket">D5</span>. The servo arm should go to only <b>three positions</b>:</p><ul><li>If the pot value is <b>less than 1365</b>: <b>0°</b></li><li><b>Between 1365 and 2729</b>: <b>90°</b></li><li><b>2730 and above</b>: <b>180°</b></li></ul>
+@@3450
+Don't forget Servo.attach(D5). Read the value in the loop; if the value is < 1365, write(0); otherwise if the value is < 2730, write(90); otherwise write(180).
+@@3451
+With the pot at {0}, the arm should be at {1}° (right now it is {2}).
+@@3452
+The three-position servo switch works!
+@@3453
+In the expression <code>map(analogRead(A0), 0, 4095, 0, 180)</code>, how many degrees is the servo arm when the pot is exactly in the middle (value about 2048)?
+@@3458
+2048 is half of the 0-4095 range. Half of the output range (0-180) is 90. So the arm stops exactly in the middle.
+@@3460
+<p>Run the servo in <b>reverse</b>: as the knob turns right, the arm goes left. At pot 0 the arm should be at <b>180°</b>, at pot 4095 at <b>0°</b>; proportional in between.</p><p>Check: with the pot at 0, 1024, 2048, 4095 the arm should be at 180°, 135°, 90°, 0° respectively (6° tolerance).</p>
+@@3461
+Write map's output range reversed: map(value, 0, 4095, 180, 0).
+@@3462
+Mirror servo ready: knob right, arm left!
+@@3463
+You want the same pot to move the servo only between <b>45° and 135°</b>. What should the last two numbers of <code>map(value, 0, 4095, ?, ?)</code> be?
+@@3466
+The last two numbers of map are the output range. With the pot fully left the result is the first number (45); fully right it is the second number (135).
+@@3467
+Narrow range: 45° - 135°
+@@3468
+<p>Don't let the servo arm open too far and strain: the full knob travel should move the arm only between <b>45° and 135°</b>. At pot 0 it should be 45°, at 2048 it should be 90°, and at 4095 it should be 135°.</p><p>The arm must never go below 40° or above 140°.</p>
+@@3469
+map(value, 0, 4095, 45, 135) solves it in a single line.
+@@3470
+The arm went to {0}°. It must not go outside 40°-140°.
+@@3471
+The arm follows the knob between 45° and 135°!
+@@3472
+What happens if we give the pot value (0-4095) straight to the servo <b>without converting it</b>, like <code>servo.write(analogRead(A0))</code>?
+@@3473
+The servo works much more precisely
+@@3474
+The arm turns the opposite way
+@@3475
+The servo only understands 0-180°; the number quickly exceeds this range, the arm moves over only a tiny part of the knob's travel, then gets stuck at the end
+@@3476
+The servo angle is in the 0-180 range. When the pot value reaches about 180 (4.4% of the knob), the limit is exceeded; the rest of the movement doesn't move the arm at all. That is why you need to scale it down with map.
+@@3477
+Smooth tracking
+@@3478
+<p>The arm should follow the knob <b>smoothly</b>, not <b>instantly</b>. Calculate the target angle with <code>map</code> (0-180), but the arm should move toward the target <b>at most 3°</b> per round.</p><p>Check: there must be no <b>jump bigger than 6°</b> between two consecutive servo commands; about 1.5 seconds after the knob changes, the arm should have reached the target (4° tolerance). The pot goes through 0, 4095, 1024 in order.</p>
+@@3479
+Keep an "aci" variable. Each round: target = map(...); if aci < target then aci = min(aci + 3, target); if aci > target then aci = max(aci - 3, target); then servo.write(aci); delay(20).
+@@3480
+The arm suddenly jumped {0}° → {1}°. Move at most 3° toward the target each round.
+@@3481
+With the pot at {0}, the arm should be at about {1}° after 1.5 s (right now it is {2}). With a 3° step and a 20 ms wait, the arm is fast enough.
+@@3482
+The arm follows the knob smoothly!
+@@3483
+Why is the <code>servo.attach(D5)</code> line written inside <code>setup()</code> instead of <code>loop()</code>?
+@@3484
+Telling the board which pin the servo is connected to once is enough; there is no need to repeat it every round
+@@3485
+If it is not rewritten every round, the servo stops
+@@3486
+It physically connects the signal wire
+@@3487
+It moves the servo to the 90° position at the start
+@@3488
+<code>attach</code> is a setup command: it connects the servo object to the pin. This connection stays valid throughout the program, so it is done once in setup.
+@@3489
+Two fixed lines
+@@3490
+Write <i>Merhaba</i> on <b>line 1</b> of the LCD and <i>Deneyap</i> on <b>line 2</b>. No counter or loop is needed; just use two <b>write LCD line</b> blocks.
+@@3491
+Take two of the same block; set one's line to 2 and change its text. Don't use Turkish characters.
+@@3492
+Nothing has been written on the screen yet. Use the write LCD line blocks.
+@@3493
+Line 1 should say "Merhaba".
+@@3494
+Line 2 should say "Deneyap". Set the second block's line number to 2.
+@@3495
+Both lines are on the screen!
+@@3496
+How many characters can be shown at most on a 16x2 LCD at the same time?
+@@3499
+2 rows x 16 columns = 32 characters. At most 16 characters fit on each line.
+@@3500
+On <b>line 2</b> of the LCD, <b>count down from 5 to 1</b> (5, 4, 3, 2, 1), with each number staying for <b>500 ms</b>. When the countdown ends, line 2 should say <i>Basla</i>.
+@@3501
+In the "count" block set the start to 5, the end to 1 and the step to -1 (look at the "each time" value in the gear).
+@@3502
+No number appeared on line 2. Write the i variable to line 2 of the LCD.
+@@3503
+These numbers appeared on the screen: {0}. Expected: 5, 4, 3, 2, 1.
+@@3504
+When the countdown ends, line 2 should say "Basla".
+@@3505
+Countdown done, "Basla"!
+@@3506
+How many times does the code inside the loop <code>for (int i = 1; i &lt;= 5; i += 1) { ... }</code> run?
+@@3510
+Forever
+@@3511
+i starts at 1 and takes the values 1, 2, 3, 4, 5, including 5: 5 rounds in total.
+@@3512
+Even numbers
+@@3513
+Show <b>even numbers</b> on <b>line 2</b> of the LCD: <b>2, 4, 6, 8, 10</b>. Each number should stay for <b>400 ms</b>. You will need to change the loop's step (how much it increases each time).
+@@3514
+In the "count" block, make the start 2 and the end 10. Set the step to 2 instead of 1.
+@@3515
+These numbers appeared on the screen: {0}. Expected: 2, 4, 6, 8, 10 (step 2).
+@@3516
+Even numbers are on the screen!
+@@3517
+If <code>lcd.print("A");</code> is written after the <code>lcd.setCursor(0, 1);</code> command, where does the letter "A" appear?
+@@3518
+At the start of line 1
+@@3519
+At the end of line 1
+@@3520
+At the end of line 2
+@@3521
+At the start of line 2
+@@3522
+In setCursor(column, row), the row starts from 0: 1 is line 2, and column 0 is the start of the line.
+@@3524
+On <b>line 2</b> of the LCD, show <i>Sayi: 1</i>, <i>Sayi: 2</i> ... <i>Sayi: 5</i> (each for 500 ms). To do this, put the text and the number <b>i</b> side by side with the <b>join</b> block.
+@@3525
+Write "Sayi: " in the first slot of the "join" block in the Text category and plug the i variable into the second slot.
+@@3526
+Nothing like "Sayi: 1" appeared on line 2. Combine the text and the i variable with the join block.
+@@3527
+These numbers appeared on the screen: {0}. Expected: Sayi: 1 ... Sayi: 5.
+@@3528
+Text and number are on the screen together!
+@@3529
+What will we see if we delete the <code>delay(500);</code> line inside the counter loop?
+@@3530
+The screen stays blank
+@@3531
+The numbers change very fast; the last number shows right away and we can't see the ones in between
+@@3532
+The numbers become twice as slow
+@@3534
+Without a wait, the loop finishes in less than a millisecond. The eye can't catch the in-between numbers and only sees the last one.
+@@3536
+This time the curtain should work <b>in reverse</b> (like a sunshade): if the light is <b>greater than 2000</b>, the curtain should <b>close</b> (servo <b>0</b>); when the light is low, it should <b>open</b> (servo <b>180</b>). It is checked by lowering and raising the sun.
+@@3537
+Don't change the condition; swap the servo angles in the "if" and "else" branches.
+@@3538
+The program must watch the light continuously: put all the steps inside repeat forever.
+@@3539
+The servo never moved. Use the {0} write servo block.
+@@3540
+When the light is high, the curtain should close: set the servo to 0.
+@@3541
+When the light is low, the curtain should open: set the servo to 180.
+@@3542
+The reverse-working curtain is ready!
+@@3543
+What range of numbers does <code>analogRead()</code> return by default on the ESP32-S3?
+@@3548
+The ESP32-S3's ADC is 12-bit by default: 2^12 = 4096 values, that is, from 0 to 4095.
+@@3549
+Show the light value
+@@3550
+Let the curtain work normally (180 if greater than 2000, otherwise 0). Also show the <b>light sensor's value</b> (read analog <span class="pin-etiket">{0}</span>) <b>live</b> on <b>line 2</b> of the LCD.
+@@3551
+Plug the read analog block into the text slot of the LCD line 2 block. Keep this LCD block outside the if, inside the loop, so that it always updates.
+@@3552
+When the light is high, the curtain should open: set the servo to 180.
+@@3553
+When the light is low, the curtain should close: set the servo to 0.
+@@3554
+The light value (a number) should appear on line 2 of the LCD.
+@@3555
+With the light at {0}, the screen shows {1}. The screen should show the light value live.
+@@3556
+The curtain works and the light value is on the screen!
+@@3557
+Why is all the code inside <b>repeat forever</b> in the curtain project?
+@@3558
+The servo motor only works inside the loop
+@@3559
+The light can change at any time; the measurement and the decision need to be made again and again
+@@3560
+The LCD screen can't show text without a loop
+@@3561
+Without a loop the board breaks
+@@3562
+The sun can change at any moment. If we measure the light once and stop, the curtain can't see later changes.
+@@3563
+High threshold
+@@3564
+Make the curtain more "stubborn": open it (servo <b>180</b>) if the light is <b>greater than 3000</b>, otherwise keep it closed (servo <b>0</b>). With medium light such as 2500, the curtain must stay <b>closed</b>.
+@@3565
+Change the number 2000 in the comparison block.
+@@3566
+When the light is greater than 3000, the curtain should open (servo 180).
+@@3567
+When the light is 3000 or less, the curtain should be closed (servo 0). Did you set the threshold to 3000?
+@@3568
+The threshold is now 3000, the curtain opens later!
+@@3569
+If we raise the threshold from 2000 to 3000, when does the curtain open?
+@@3570
+With less light, that is, earlier
+@@3571
+With more light, that is, later
+@@3572
+It never opens
+@@3573
+The threshold doesn't affect when it opens
+@@3574
+The curtain opens when light > threshold. When the threshold gets bigger, brighter light is needed to open it.
+@@3575
+Three levels
+@@3576
+Now the curtain should have <b>three positions</b>: closed (servo <b>0</b>) if the light is <b>less than 1000</b>, half open (servo <b>90</b>) if it is <b>between 1000 and 3000</b>, and fully open (servo <b>180</b>) if it is <b>greater than 3000</b>.
+@@3577
+Use the "else if" branch: first check whether it is greater than 3000, then whether it is greater than 1000, and if neither, 0.
+@@3578
+When the light is below 1000, the curtain should be closed (servo 0).
+@@3579
+When the light is between 1000 and 3000, the curtain should be half open (servo 90).
+@@3580
+When the light is above 3000, the curtain should be fully open (servo 180).
+@@3581
+The three-position smart curtain is done!
+@@3584
+<h2>LCD screen</h2>
+      <p>A 16x2-character LCD is connected to your board: 2 lines, and 16 letters fit on each line.</p>
+      <ol>
+        <li>Take the <b>write LCD line 1</b> block from the <b>Screen</b> category and write <i>Merhaba</i> in it.</li>
+        <li>Take one more <b>write LCD line 2</b> block; we will show a <b>counter</b> on this line.</li>
+        <li>Use the <b>count i from 1 to 5</b> block; inside it write the <b>i</b> variable to line 2 and <b>wait 500 ms</b>.</li>
+      </ol>
+      <p>The number should increase on the screen as 1, 2, 3... The text <b>Merhaba</b> should stay on line 1.</p>
+@@3585
+Get to know the LCD screen
+@@3586
+<p>There is a small <b>LCD screen</b> in the scene. It is <b>16x2</b>, that is, 2 lines with 16 letters on each. So far we have only lit LEDs; now the board can answer you with text!</p>
+          <div class="kutu bilgi">On the code side, the screen is managed with a library. We choose the line and write:
+            <pre><code>lcd.setCursor(0, 0);
+lcd.print("Merhaba");</code></pre>
+            Here the first number is the column and the second number is the line (0 = first line).</div>
+@@3587
+Write Merhaba on line 1
+@@3588
+<p>Open the <span class="chip ekran">Screen</span> category and drag the <span class="chip ekran">write LCD line 1</span> block to the workspace. The text inside is already <span class="chip analog">Merhaba</span>.</p>
+@@3589
+The line number in the block should be 1 (it shows as 0 in the code).
+@@3590
+Counter loop
+@@3591
+<p>Take the <span class="chip ekran">count: i from 1 to 5</span> block from the same category and attach it under the <b>Merhaba</b> block.</p>
+          <div class="kutu bilgi">A <b>loop</b> repeats the same job several times. <span class="chip degisken">i</span> is a <b>variable</b>: its value increases by 1 each round.
+            <pre><code>for (int i = 1; i &lt;= 5; i += 1) {
+  ...
+}</code></pre></div>
+@@3592
+The loop block is toward the bottom of the Screen category, the one that says "count".
+@@3593
+Write i on line 2
+@@3594
+<p>Put a second <span class="chip ekran">write LCD line</span> block inside the loop and set its line to <b>2</b>. Plug the <span class="chip degisken">i</span> variable in place of the text.</p>
+          <pre><code>lcd.setCursor(0, 1);
+lcd.print(i);</code></pre>
+@@3595
+First put the LCD block in the loop, then drag the "i" block into its text slot (you can drop it onto the Merhaba text).
+@@3596
+Slow the number down
+@@3597
+<p>Inside the loop, under the LCD block, add <span class="chip akis">wait 500 ms</span>. Otherwise the numbers finish in the blink of an eye!</p>
+          <pre><code>delay(500);</code></pre>
+@@3598
+The wait block must be inside the loop, not outside it.
+@@3599
+<p>Press ▶ <b>Run</b> and watch the screen.</p>
+          <div class="kutu hedef"><b>Goal:</b> the first line should say <i>Merhaba</i> and the second line should count from 1 to 5.</div>
+@@3600
+If the number doesn't change, check that the i block is attached to the LCD block inside the loop.
+@@3602
+You should show a number on line 2 (write the i variable).
+@@3603
+The number should change: set up a loop that counts from 1 to 5 and wait 500 ms each round.
+@@3604
+Great, the counter works on the screen!
+@@3607
+<h2>Project: automatic curtain</h2>
+      <p>Let the room's curtain open and close by itself according to the sun! You can change the light by <b>dragging the sun up and down</b> on the left of the window.
+      The servo motor is connected to pin <b>{0}</b> and the light sensor to pin <b>{1}</b>.</p>
+      <ol>
+        <li>Put the <b>repeat forever</b> block in the workspace.</li>
+        <li>Inside it, measure the light with the <b>{2} read analog</b> block (0-4095).</li>
+        <li><b>if</b> the light is <b>greater than 2000</b> (daylight): <b>{3} write servo 180</b> (curtain open).</li>
+        <li><b>else</b>: <b>{4} write servo 0</b> (curtain closed).</li>
+        <li>Add <b>write LCD line 1</b> to the same conditions: <i>Perde: Acik</i> when open, <i>Perde: Kapali</i> when closed.</li>
+        <li>Add <b>wait 100 ms</b> at the end of the loop and press ▶ Run. Lower and raise the sun and watch the curtain!</li>
+      </ol>
+      <h3>Checklist</h3>
+      <ul>
+        <li>When the light is high, the curtain opens and the LCD says "Perde: Acik"</li>
+        <li>When the light is low, the curtain closes and the LCD says "Perde: Kapali"</li>
+        <li>The program runs continuously; when the light changes, the curtain changes too</li>
+      </ul>
+@@3608
+Get to know the project
+@@3609
+<p>There is a window, a curtain and an LCD in the scene. The <b>servo motor</b> (<span class="pin-etiket">{0}</span>) opens and closes the curtain, and the <b>light sensor</b> (<span class="pin-etiket">{1}</span>) measures the sunlight.</p>
+          <div class="kutu bilgi"><b>Idea:</b> read the light. If there is a lot of light, open the curtain; if there is little, close it. Repeat this forever. Everything you have learned before comes together in this project!</div>
+@@3610
+<p>Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category. The curtain will watch the light continuously.</p>
+          <pre><code>while (true) {
+  ...
+}</code></pre>
+@@3611
+If block and the light condition
+@@3612
+<p>Put the <span class="chip akis">if</span> block inside the loop. Then plug the <span class="chip mantik">comparison</span> block into the condition slot: <span class="chip analog">{0} read analog</span> <b>&gt;</b> <span class="chip sayi">2000</span>.</p>
+          <div class="kutu bilgi"><code>analogRead</code> gives the light as a number between <b>0 and 4095</b>. Big number = lots of light.
+            <pre><code>if ((analogRead({1}) &gt; 2000)) {
+  ...
+}</code></pre></div>
+          <div class="kutu dikkat">With the small gear on the "if" block you can add an <b>else</b> branch.</div>
+@@3613
+The comparison is in the Logic category, and read analog is in the Analog category. Plug the comparison into the if block's condition slot. Click the gear for "else".
+@@3614
+Open and close the curtain
+@@3615
+<p>Use the <span class="chip ses">{0} write servo</span> block from the <span class="chip ses">Sound and motion</span> category <b>twice</b>:</p>
+          <ul><li>In the <b>if</b> branch, angle <b>180</b> (curtain open)</li>
+          <li>In the <b>else</b> branch, angle <b>0</b> (curtain closed)</li></ul>
+          <pre><code>servo_{1}.write(180);</code></pre>
+@@3616
+The servo block's pin must be
+@@3617
+. One should be 180 and the other 0.
+@@3618
+Write the status to the LCD
+@@3619
+<p>Take two <span class="chip ekran">write LCD line 1</span> blocks from the <span class="chip ekran">Screen</span> category; put them next to the servo blocks.</p>
+          <ul><li>When the curtain is open: <span class="chip analog">Perde: Acik</span></li>
+          <li>When the curtain is closed: <span class="chip analog">Perde: Kapali</span></li></ul>
+          <div class="kutu dikkat">Write the text exactly like this. Don't use Turkish characters (ç, ı); the screen can't show them.</div>
+@@3620
+You can click the text box to change the text.
+@@3621
+Short wait and run
+@@3622
+<p>Add <span class="chip akis">wait 100 ms</span> at the end of the loop, then press ▶ <b>Run</b>. Drag the sun up and down and watch the curtain!</p>
+          <pre><code>delay(100);</code></pre>
+          <div class="kutu hedef"><b>Goal:</b> when the light is high the curtain should open and the LCD should say "Perde: Acik"; when the light decreases it should close and say "Perde: Kapali".</div>
+@@3623
+If it doesn't work, check that everything is inside repeat forever and check the 180 / 0 values.
+@@3625
+The program must watch the light continuously: put all the steps inside a repeat forever block and run with ▶.
+@@3626
+The curtain did not open when the light was high: set the servo to 180.
+@@3627
+The curtain did not close when the light was low: set the servo to 0.
+@@3628
+You must write "Perde: Acik" on the LCD when the curtain is open.
+@@3629
+You must write "Perde: Kapali" on the LCD when the curtain is closed.
+@@3630
+Project done! Your curtain opens and closes by itself according to the light.
+@@3631
+The program ended too early. Put the reading and writing jobs inside repeat forever.
+@@3632
+The "{0}" heading should appear on line 1.
+@@3633
+With the sensor at {0}, the temperature (a number) should appear on line 2. Right now: "{1}".
+@@3634
+With the sensor at {0}, the screen shows {1}; about {2} was expected. Conversion: number * 50 / 4095 (the 0-4095 range corresponds to 0-50 °C).
+@@3635
+There is a decimal number on the screen ({0}). The temperature should appear as a whole number.
+@@3637
+The unit ({0}) should appear next to the value. Right now: "{1}".
+@@3638
+With the sensor at {0} (above the threshold {1}), the SICAK! warning should appear on line 2.
+@@3639
+With the sensor at {0}, the threshold has not been exceeded yet, so the SICAK! warning should not appear.
+@@3640
+The screen should follow the sensor live: when the temperature changes, the number should change too.
+@@3641
+The temperature is converted to the right degrees and the warning appears when the threshold is exceeded!
+@@3642
+The button-press scenario did not work. Run the program with ▶.
+@@3643
+A number appears on line 2 of the screen without pressing the button. The die should be rolled only when the button is pressed.
+@@3644
+No number appeared on line 2 at press {0}. When the button is pressed, write a random number to LCD line 2.
+@@3645
+The screen showed {0}; the numbers should be between {1} and {2}. Use random({3}, {4}) (the upper limit is not included).
+@@3646
+The result of roll {0} is {1}; the die should be between {2} and {3}.
+@@3647
+The result did not stay fixed on the screen. The rolling should finish in about 1 second, then the final number should stay on the screen.
+@@3648
+The rolling animation did not appear. When the button is pressed, a few random numbers should appear quickly one after another (write in a loop and wait briefly).
+@@3649
+The animation was too short. The numbers should keep changing until at least {0} ms after the press.
+@@3650
+The same number came up on every roll. Find the result with random number generation.
+@@3651
+{0} never appeared. Make sure you write random({1}, {2}) (the first number is included).
+@@3652
+{0} never appeared. Since the upper limit is not included, you must write random({1}, {2}).
+@@3653
+The die rolls and stops at a random number!
+@@3654
+Show the raw value
+@@3655
+Write <i>Ham deger</i> on <b>line 1</b> of the LCD. On <b>line 2</b>, show the temperature sensor's (<span class="pin-etiket">{0}</span>) <b>raw number</b> (0-4095) live. You don't need to convert it to degrees.
+@@3656
+Plug the read analog value block into the text slot of the LCD line 2 block. Keep everything inside repeat forever and put a short wait at the end.
+@@3657
+The program ended too early. Use repeat forever.
+@@3658
+Line 1 should say "Ham deger".
+@@3659
+The sensor's raw value (a number) should appear on line 2.
+@@3660
+With the sensor at {0}, the screen shows {1}. Old digits may have been left behind: print a few spaces after the number.
+@@3661
+The raw value appears live on the screen!
+@@3662
+<code>2048</code> was read from the sensor (the 0-4095 range corresponds to 0-50 °C). About how many degrees is the temperature?
+@@3663
+About 12 °C
+@@3664
+About 25 °C
+@@3665
+About 41 °C
+@@3667
+2048 is exactly the middle of the 0-4095 range. Since the middle of the 0-50 range is 25, the temperature comes out to about 25 °C (2048 * 50 / 4095 = 25.006).
+@@3668
+Cold warning
+@@3669
+The screen should show the temperature in <b>degrees</b>: <i>Sicaklik</i> on line 1, and the value and <i>C</i> on line 2. When the temperature drops <b>below 10 °C</b>, line 2 should also say <b>SOGUK!</b>; it should not at 10 and above.
+@@3670
+First convert the sensor to degrees. Then check the threshold with less-than instead of greater-than, and show the SOGUK! text only in that case.
+@@3671
+Line 1 should have the "Sicaklik" heading.
+@@3672
+With the sensor at {0}, line 2 should show about {1}; right now: "{2}".
+@@3673
+When the temperature is {0} °C (below 10), the SOGUK! warning should appear.
+@@3674
+When the temperature is {0} °C, the SOGUK! warning should not appear. The threshold is 10: use less-than.
+@@3675
+The cold warning works correctly!
+@@3676
+In the line <code>float sicaklik = ham * 50 / 4095;</code> (<code>ham</code> is an <code>int</code>), what happens if you write <b>50</b> instead of <b>50.0</b>?
+@@3677
+Nothing changes
+@@3678
+Integer division is performed; everything after the decimal point is dropped, giving a result like 25 instead of 25.4
+@@3679
+The temperature is always 0
+@@3680
+When all numbers are integers, C++ performs integer division and drops the decimal part. When you write 50.0, the calculation is done with decimal (float) numbers. (In this line, ham * 50 is first multiplied as integers, then the decimal part is lost when dividing by 4095.)
+@@3681
+Three states
+@@3682
+On line 2, show a status text next to the temperature: <b>below 10 °C</b> <i>SOGUK</i>, <b>between 10-30 °C</b> <i>NORMAL</i>, <b>above 30 °C</b> <i>SICAK</i>. Line 1 should again say <i>Sicaklik</i>.

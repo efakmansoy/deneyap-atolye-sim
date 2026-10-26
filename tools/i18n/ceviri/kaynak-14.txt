@@ -1,0 +1,485 @@
+@@4699
+Toggle çalışıyor: her basış LED'i tersine çeviriyor!
+@@4700
+<code>pinMode(D5, INPUT_PULLUP);</code> kullanıldığında düğmeye <b>basılmıyorken</b> digitalRead ne verir?
+@@4702
+İç pull-up direnci pini 3,3 V'a doğru çeker, bu yüzden boşta HIGH okunur. Düğmeye basılınca pin GND'ye bağlanır ve LOW okunur.
+@@4703
+Ters çalışan bir gösterge yap: LED <b>normalde yansın</b>, düğmeye <b>basılı olduğu sürece sönsün</b>, bırakınca tekrar yansın.
+@@4704
+Düğme boşta HIGH okunur. LED'i yakacak koşul, düğmenin HIGH olduğu durumdur.
+@@4705
+Düğmeyi bırakınca LED tekrar yanmalı.
+@@4706
+Ters mantıklı gösterge çalışıyor!
+@@4707
+INPUT_PULLUP ile bağlanan bir düğmenin iki ucu nereye bağlanır?
+@@4710
+İkisi de aynı pine
+@@4712
+Pull-up direnci kartın içinde olduğu için dışarıdan direnç gerekmez; düğmenin bir ucu pine, diğer ucu GND'ye bağlanır.
+@@4713
+Basış sayacı
+@@4714
+Düğmeye her basışta seri monitöre <b>basış sayısını</b> yazdır: <b>1, 2, 3…</b> (her basış için yalnızca bir satır).
+@@4715
+Basışı yakalayınca sayacı artır, yazdır ve düğme bırakılana kadar bekle.
+@@4716
+Seri monitöre sayı yazılmadı.
+@@4717
+3 basış için 1, 2, 3 yazılmalıydı (şu an: {0}).
+@@4718
+Her basış doğru sayıldı!
+@@4719
+Düğmeye bir kez basıp bırakınca sayaç birden fazla artıyorsa en olası sebep nedir?
+@@4720
+Kartın hafızası dolmuştur
+@@4721
+Düğmenin basılı kaldığı sürece loop() birçok kez basış görür
+@@4722
+Seri monitör bozuktur
+@@4723
+Wi-Fi açıktır
+@@4724
+loop() saniyede binlerce kez döner. Düğme basılı kaldıkça her turda "basıldı" görülür; bu yüzden bırakılana kadar beklemek gerekir.
+@@4725
+Daha sert eşik (25)
+@@4726
+Hafif temaslar (değer yaklaşık <b>30</b>) LED'i değiştirmesin. Eşiği <b>25</b> yap: yalnızca sağlam bir dokunuş (değer ~10) LED'i değiştirsin.
+@@4727
+Eşik değerini tutan sabiti (ESIK) 40 yerine 25 yap.
+@@4728
+Hafif temas (değer 30) LED'i yaktı; eşik 25 olmalı.
+@@4729
+Sağlam dokunuş (değer 10) LED'i yakmadı.
+@@4730
+Eşik 25 oldu: hafif temaslar artık yok sayılıyor!
+@@4731
+ESP32'de parmağını dokunmatik pine değdirince <code>touchRead()</code> değeri nasıl değişir?
+@@4732
+Küçülür (örneğin 70'ten 10'a)
+@@4733
+Büyür
+@@4734
+Negatif olur
+@@4735
+Parmak pinin kapasitansını artırır. ESP32 bunu sayaç olarak ölçer; dokunma arttıkça okunan sayı küçülür. Bu yüzden koşul "değer < eşik" biçimindedir.
+@@4736
+Dokunurken yan, bırakınca sön
+@@4737
+Bu sefer toggle değil: LED <b>sadece parmağın pad'e değdiği sürece</b> yansın, parmak çekilince sönsün.
+@@4738
+Döngüde touchRead(D4) < ESIK ise LED'i yak, değilse söndür.
+@@4739
+Dokunmuyorken LED sönük olmalı.
+@@4740
+Dokunurken LED yanmalı.
+@@4741
+Parmağı çekince LED sönmeli.
+@@4742
+LED yalnızca dokunurken yanıyor!
+@@4743
+Dokunmatik algılama için neden bir eşik değeri (ör. 40) kullanırız?
+@@4744
+Boşta (~70) ile dokunmuşken (~10) okunan değerin ortasında bir sınır çizmek için
+@@4745
+Kartı yavaşlatmak için
+@@4746
+Pin numarasını seçmek için
+@@4747
+LED'in rengini seçmek için
+@@4748
+Ölçülen değer ortama göre biraz oynar. İki durum arasında bir eşik seçersek küçük oynamalar yanlış dokunma sayılmaz.
+@@4749
+Dokunma sayacı
+@@4750
+Pad'e her dokunduğunda seri monitöre <b>kaçıncı dokunuş</b> olduğunu yazdır: <b>1, 2, 3…</b> (değeri değil, sayacı). LED toggle'ı olmasa da olur.
+@@4751
+Bir int sayaç tut; dokunuşu yakalayınca artır, Serial.println(sayac) yaz ve parmak çekilene kadar bekle.
+@@4752
+3 dokunuş için 1, 2, 3 yazılmalıydı (şu an: {0}).
+@@4753
+Dokunuşlar doğru sayılıyor!
+@@4754
+Dokunmatik düğmenin mekanik düğmeye göre bir avantajı nedir?
+@@4755
+Aşınan hareketli parçası yoktur
+@@4756
+Hiç elektrik kullanmaz
+@@4758
+Sadece blokla çalışır
+@@4759
+Kapasitif dokunmatik pad'in hareketli parçası olmadığı için aşınmaz; üstüne cam veya plastik kaplanarak şık paneller yapılabilir.
+@@4761
+9.1 · ESP32 ile tanışma
+@@4762
+<h2>ESP32 ile tanışma</h2>
+      <p>Yeni parkura hoş geldin! Bu modülde kartımızın <b>ESP32</b> beynini tanıyacak, Wi-Fi ve web sayfası yapacak kadar ilerleyeceğiz.</p>
+      <ol>
+        <li>Sahnede gördüğün kırmızı kart <b>Deneyap Kart 1A v2</b>: içinde bir <b>ESP32-S3</b> çipi var, yani ESP32 ailesinden. Pinleri <b>3,3 V</b> ile çalışır; D0 pinine bir LED bağlı.</li>
+        <li>LED'i <b>500 ms</b> yakıp <b>500 ms</b> söndür, sürekli tekrarla.</li>
+        <li>Kartın "ben buradayım" demesi için <b>Seri Monitör</b>'e bir selam yaz: <i>Merhaba ESP32!</i></li>
+      </ol>
+@@4763
+ESP32 ile tanış
+@@4764
+<p>ESP32, hızlı ve <b>Wi-Fi + Bluetooth</b> yerleşik bir çip ailesidir. Sahnedeki Deneyap Kart 1A v2 bu ailenin <b>ESP32-S3</b> çipini taşır; yani burada öğrendiklerin diğer ESP32 kartlarında da geçerlidir. Pinleri <b>3,3 V</b> ile çalışır. Sahnedeki LED <span class="pin-etiket">D0</span> pinine bağlı.</p>
+@@4765
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al. Kart açık kaldığı sürece içindekini tekrar eder.</p>
+@@4766
+LED'i yak ve bekle
+@@4767
+<p><span class="chip pin">D0 pinini YÜKSEK (1) yap</span> bloğunu döngünün içine koy, altına <span class="chip akis">500 ms bekle</span> ekle.</p>
+@@4768
+LED D0 pininde. Bekleme bloğu LED bloğunun altında olmalı.
+@@4769
+LED'i söndür ve bekle
+@@4770
+<p>Şimdi <span class="chip pin">D0 pinini DÜŞÜK (0) yap</span> ve ardından bir <span class="chip akis">500 ms bekle</span> daha ekle.</p>
+@@4771
+Yak, bekle, söndür, bekle: dört blok.
+@@4772
+<p>▶ <b>Çalıştır</b>'a bas. LED saniyede bir yanıp sönecek. <b>Kod</b> görünümünde bloklarının ESP32 C++ karşılığını da incele.</p>
+@@4773
+LED 500 ms yanıp 500 ms sönmeli.
+@@4774
+LED hiç yanmadı. D0 pinini YÜKSEK yaptın mı?
+@@4775
+LED yanıp sönmeli: yak, bekle, söndür, bekle. Sürekli tekrarla içine koydun mu?
+@@4776
+İlk önce LED yanmalı (D0 YÜKSEK).
+@@4777
+Yanma ve sönme süreleri yaklaşık 500 ms olmalı.
+@@4778
+Harika! ESP32'de ilk programın çalışıyor: LED saniyede bir yanıp sönüyor.
+@@4780
+9.2 · LED devresi ve PWM
+@@4781
+<h2>LED devresi ve PWM</h2>
+      <p>LED'i yalnızca yakıp söndürmek yetmez; <b>parlaklığını</b> da ayarlayabiliriz. ESP32'de bunu <b>PWM</b> (ledc) yapar.</p>
+      <ol>
+        <li>LED, <b>220 ohm</b> direnç üzerinden <b>D0</b> pinine bağlıdır (direnç LED'i korur).</li>
+        <li>PWM değeri <b>0 (sönük)</b> ile <b>255 (tam parlak)</b> arasındadır.</li>
+        <li>Parlaklığı yavaşça artırıp azalt: LED <b>nefes alsın</b>.</li>
+      </ol>
+@@4782
+<p>Sahnedeki LED, akımı sınırlayan bir direnç üzerinden <span class="pin-etiket">D0</span> pinine bağlı. Uzun bacak (+) pine, kısa bacak GND tarafına gider.</p>
+@@4783
+<p><span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına al.</p>
+@@4784
+Akış kategorisinde.
+@@4785
+Parlaklığı ayarla
+@@4786
+<p><span class="chip pin">D0 pinine PWM (0-255)</span> bloğunu döngüye koy. Ardına <span class="chip akis">bekle</span> bloğu ekle. Birkaç farklı değerle (ör. 0, 85, 170, 255) tekrarla.</p>
+@@4787
+Parlaklığı 0'dan 255'e çıkarıp sonra geri indir: 0, 85, 170, 255, 170, 85… Her adım arasında kısa bir bekleme (ör. 100 ms).
+@@4788
+<p>▶ <b>Çalıştır</b>'a bas. LED yavaşça parlayıp sönmeli. Kod görünümünde ledc/analogWrite karşılığına bak.</p>
+@@4789
+LED hem parlamalı hem sönmeli; ara parlaklıklar da görünmeli.
+@@4790
+LED hiç tam parlaklığa (255) ulaşmadı.
+@@4791
+Ara parlaklıklar yok: LED yalnızca yanıp sönüyor. 0 ile 255 arasında değerler kullan.
+@@4792
+LED parladıktan sonra tekrar kısılmadı.
+@@4793
+Harika! LED nefes alıyor: parlaklık yavaşça artıp azalıyor.
+@@4795
+9.3 · Düğme ve INPUT_PULLUP
+@@4796
+<h2>Düğme ve INPUT_PULLUP</h2>
+      <p>Düğmeler için dışarıya direnç eklemeye gerek yok: ESP32'nin <b>içindeki pull-up direncini</b> açabiliriz.</p>
+      <ol>
+        <li>Düğmenin bir ucu <b>D5</b> pinine, diğer ucu <b>GND</b>'ye bağlı.</li>
+        <li><b>INPUT_PULLUP</b> ile pin boşta <b>HIGH</b>, düğmeye basılınca <b>LOW</b> okunur (ters mantık).</li>
+        <li>Düğmeye basılınca <b>D0</b> LED'i yansın, bırakınca sönsün.</li>
+      </ol>
+@@4797
+<p>Düğme (<span class="pin-etiket">D5</span>) ve LED (<span class="pin-etiket">D0</span>) hazır. Pull-up sayesinde düğme boşta <b>HIGH</b> okunur; basınca pin GND'ye bağlanıp <b>LOW</b> olur.</p>
+@@4798
+Döngü ve düğme koşulu
+@@4799
+<p><span class="chip akis">sürekli tekrarla</span> içine <span class="chip akis">eğer / değilse</span> bloğu koy. Koşulu <span class="chip pin">D5 düğmesine basılı mı?</span> olsun.</p>
+@@4800
+Düğme kategorisindeki "basılı mı?" bloğunu D5 ile kullan.
+@@4801
+LED'i yak / söndür
+@@4802
+<p>Eğer kolunda <span class="chip pin">D0 pinini YÜKSEK yap</span>, değilse kolunda <span class="chip pin">D0 pinini DÜŞÜK yap</span> olsun.</p>
+@@4803
+Basılıysa yak, değilse söndür.
+@@4804
+<p>▶ <b>Çalıştır</b>'a bas ve sahnedeki düğmeye basılı tut. Kod görünümünde <code>INPUT_PULLUP</code> ile yazılmış hâlini de görebilirsin: orada <code>== LOW</code> koşulu "basıldı" demektir.</p>
+@@4805
+Düğmeye basınca LED yanmalı.
+@@4806
+Düğmeye basmıyorken LED sönük olmalı.
+@@4807
+Düğme bırakılınca LED sönmeli.
+@@4808
+İkinci basışta da LED yanmalı.
+@@4809
+Harika! Düğme çalışıyor: basınca LED yanıyor, bırakınca sönüyor.
+@@4811
+9.4 · Dokunmatik düğme
+@@4812
+// Dokunmatik düğme: pad'e dokununca LED durumu değişsin
+const int ESIK = 40;      // 70 (boşta) ile 10 (dokunmuş) arasında bir sınır
+
+void setup() {
+  pinMode(D0, OUTPUT);
+}
+
+void loop() {
+  // buraya yaz: touchRead(D4) ile pad'i oku
+}
+
+@@4813
+<h2>Dokunmatik düğme</h2>
+      <p>ESP32'nin bazı pinleri <b>dokunmayı hissedebilir</b>: bunlara kapasitif dokunmatik pin denir. Hiç düğme olmadan, parmağınla LED'i kontrol edeceğiz.</p>
+      <ol>
+        <li>Dokunmatik pad <b>D4</b> pinine, LED <b>D0</b> pinine bağlı.</li>
+        <li><code>touchRead(D4)</code> boşta yaklaşık <b>70</b>, parmak değince yaklaşık <b>10</b> verir.</li>
+        <li>Değer <b>40</b>'ın altına inerse dokunulmuş say: her dokunuşta LED durumu <b>tersine dönsün</b>.</li>
+      </ol>
+@@4814
+<p>Sahnedeki mavi kartın bakır pad'i <span class="pin-etiket">D4</span> pinine bağlı. Pad'e basılı tutarak dokunma taklidi yapabilirsin. Boşta okunan değer ~70, dokununca ~10.</p>
+@@4815
+Değeri oku
+@@4816
+<p><code>loop()</code> içinde <code>int deger = touchRead(D4);</code> yaz. İstersen <code>Serial.println(deger)</code> ile değeri izle.</p>
+@@4817
+Serial kullanacaksan setup() içine Serial.begin(115200); eklemeyi unutma.
+@@4818
+Eşikle karşılaştır
+@@4819
+<p><code>if (deger &lt; ESIK)</code> koşulu dokunuşu yakalar. İçinde bir <code>bool acik</code> değişkenini tersine çevir (<code>acik = !acik;</code>) ve LED'e yaz.</p>
+@@4820
+digitalWrite(D0, acik ? HIGH : LOW); biçimini kullanabilirsin.
+@@4821
+Parmak çekilene kadar bekle
+@@4822
+<p>Tek dokunuşta birçok kez saymamak için <code>while (touchRead(D4) &lt; ESIK) { delay(10); }</code> ile parmağın çekilmesini bekle.</p>
+@@4823
+Bu bekleme, 9.3'teki düğme bırakma bekleyişiyle aynı mantıktır.
+@@4824
+<p>▶ <b>Çalıştır</b>'a bas, sahnedeki pad'e dokun. Her dokunuşta LED yanıp sönmeli.</p>
+@@4825
+Dokunuş başına LED durumu bir kez değişmeli.
+@@4827
+Dokunmadan LED yanık olmamalı.
+@@4828
+İlk dokunuştan sonra LED yanmalı. touchRead(D4) < ESIK koşulunu kullandın mı?
+@@4829
+İkinci dokunuşta LED sönmeli (uzun dokunuş tek sayılmalı).
+@@4830
+Üçüncü dokunuşta LED yeniden yanmalı.
+@@4831
+Harika! Parmağınla LED'i açıp kapatıyorsun, hiç düğme yok!
+@@4840
+LED ile başlangıç
+@@4841
+Düğmeler ve girişler
+@@4842
+Analog ve PWM
+@@4843
+Ekran ve proje
+@@4844
+Akıllı projeler
+@@4845
+Doğa ve güvenlik
+@@4847
+ESP32'ye geçiş
+@@4848
+Wi-Fi ve web
+@@4851
+… ({0} satır daha)
+
+@@4875
+Sonraki seviyeye {0} XP kaldı
+@@4882
+🔥 <b>{0}. gün üst üste!</b>
+@@4891
+<b class="serit-baslik">Adım {0}/{1} · {2}</b>{3}<button class="acik-ders">Tam anlatımı aç</button>
+@@4899
+// Kod üretilemedi: 
+@@4917
+Sesli anlatımı dinledin
+@@4918
+Şimdi sıra sende: <b>Görevler</b> sekmesinde kodu değiştirerek dene
+@@4934
+Ses kapalı (altyazı açık)
+@@4938
+<div class="mod-baslik"><span>MODÜL {0} · {1}</span><em>{2}/{3}</em></div>
+@@4947
+Bu dersin hedefini programla: <b>{0}</b>.
+@@4949
+Doğru cevap
+@@4951
+Kodu düzenledin
+@@4952
+Kod görevi tamam
+@@4955
+DERS GÖREVİ
+@@4956
+KOD GÖREVİ
+@@4957
+KODU DEĞİŞTİR
+@@4960
+<p class="g-giris">Kod görevlerinde programı <b>Bloklar</b> ya da <b>Kod</b> (yazıyla) görünümünde değiştir, sonra <b>Denetle</b>'ye bas. "Kodu değiştir" görevlerinde turuncu işaretli yerleri düzenle. Sorularda bir şık seç.</p>
+    <div class="g-ilerleme">{0}</div>
+@@4968
+<button class="g-btn yukle">Kodu editöre yükle</button>
+@@4970
+<button class="g-btn ikinci ipucu">İpucu</button>
+@@4975
+✔ Doğru! 
+@@4978
+Turuncu işaretli yerleri değiştir, sonra Denetle'ye bas
+@@4980
+✘ Önce "Kodu editöre yükle"ye bas, işaretli yerleri değiştir.
+@@4981
+✘ Kodu henüz değiştirmedin: turuncu işaretli yerleri düzenle
+@@4985
+Modül {0} · {1}
+@@4990
+Ders tamamlandı: {0}
+@@4992
+İlk denemede!
+@@4994
+Kodu kendin yazdın
+@@4996
+çalışıyor…
+@@4997
+✘ Kod hatası — 
+@@4999
+ÇALIŞIYOR
+@@5009
+<button class="sec">Seç</button>
+@@5010
+<div class="modal-ust"><h2>{0} {1}</h2><button class="kapat ikon">✕</button></div>
+    <div class="profil-ozet"><div><b>Seviye {2}</b><div class="xp-cubuk buyuk"><div style="width:{3}%"></div></div><small>{4} XP · sonraki seviyeye {5} XP</small></div>
+      <div><b>🔥 {6} gün</b><small>üst üste çalışma serisi</small></div><div><b>{7}/{8}</b><small>ders tamamlandı</small></div></div>
+    <h3>Rozetler <small>{9}/{10}</small></h3><div class="rozetler">{11}</div>
+    <h3>Profiller</h3><div class="profil-liste">{12}</div>
+    <form class="yeni-profil"><input name="ad" maxlength="20" placeholder="Yeni profil adı" aria-label="Yeni profil adı" required>
+      <div class="avatar-sec">{13}</div>
+      <button class="birincil">Profil oluştur</button></form>
+    <div class="hesap-islem"><button id="pDisa">⬇ Profili dışa aktar</button><label class="dosya">⬆ İçe aktar<input id="pIce" type="file" accept="application/json" hidden></label></div>
+    <small class="not">Profiller yalnızca bu cihazda saklanır. Başka cihaza taşımak için dışa aktarıp içe aktarabilirsin.</small>
+@@5014
+"{0}" profili ve tüm ilerlemesi silinsin mi?
+@@5017
+İçe aktarılamadı: 
+@@5031
+İlk Işık
+@@5033
+İlk dersini tamamla
+@@5035
+Isınıyoruz
+@@5039
+Yarı Yolda
+@@5043
+Mühendis
+@@5045
+Tüm dersleri tamamla
+@@5047
+LED Ustası
+@@5049
+Modül 1'i bitir
+@@5051
+Düğme Ustası
+@@5053
+Modül 2'yi bitir
+@@5055
+Analog Büyücü
+@@5057
+Modül 3'ü bitir
+@@5059
+Ses ve Hareket
+@@5061
+Modül 4'ü bitir
+@@5063
+Proje Yöneticisi
+@@5065
+Modül 5'i bitir
+@@5067
+Kod Yazarı
+@@5069
+Elle yazdığın C++ ile bir dersi geç
+@@5071
+Klavye Kahramanı
+@@5073
+Elle yazdığın C++ ile 5 ders geç
+@@5075
+Soru Avcısı
+@@5077
+10 soruyu doğru cevapla
+@@5079
+Tek Atış
+@@5081
+3 dersi ilk denemede geç
+@@5083
+Kod Cerrahı
+@@5085
+3 "kodu değiştir" görevini çöz
+@@5087
+İyi Dinleyici
+@@5089
+5 sesli anlatımı sonuna kadar dinle
+@@5091
+3 Gün Seri
+@@5093
+3 gün üst üste çalış
+@@5095
+Haftalık Seri
+@@5097
+7 gün üst üste çalış
+@@5099
+Gece Kuşu
+@@5101
+Gece 22:00 ile 05:00 arasında bir ders tamamla
+@@5153
+Geçersiz profil dosyası
+@@5159
+Bilinmeyen parça türü: 
+@@5177
+Program sıfırlandı
+@@5178
+Böyle bir pin yok: 
+@@5181
+
+      <div class="t-sahne">
+        <div class="t-durum"><span class="t-ag"></span><span class="bosluk"></span><button class="t-cal birincil">▶ Çalıştır</button><button class="t-dur ikon" title="Durdur">■</button></div>
+        <div class="t-telefon" aria-label="Sanal telefon">
+          <div class="t-kulak"><i></i></div>
+          <div class="t-adres"><button class="t-geri" title="Geri" disabled>‹</button><input class="t-url" spellcheck="false" autocapitalize="off" aria-label="Adres" placeholder="http://192.168.1.42/"><button class="t-git" title="Git">→</button><button class="t-yenile" title="Yenile">↻</button></div>
+          <div class="t-ekran"><iframe class="t-sayfa" sandbox="allow-scripts" title="Telefon ekranı"></iframe><div class="t-bos"></div></div>
+          <div class="t-bilgi"></div>
+          <div class="t-yollar"></div>
+          <div class="t-alt"><b></b></div>
+        </div>
+        <p class="t-ipucu">Önce programı <b>Çalıştır</b>. ESP32 Wi-Fi'ye bağlanıp <code>server.begin()</code> deyince telefondan adrese girebilirsin.</p>
+      </div>
+@@5195
+Henüz bir sayfa yok.<br>Programı çalıştır, sonra adrese git.
+@@5197
+Yükleniyor…
+@@5199
+ESP32 cevap vermedi (4 sn). Programında loop() içinde server.handleClient() çağırıyor musun?
+@@5200
+Bu siteye ulaşılamıyor
+@@5208
+zaman aşımı
+@@5211
+📡 Wi-Fi'ye bağlanıyor…
+@@5212
+📵 ağ yok
+@@5214
+çalışıyor
+@@5218
+Tarayıcı sesi
+@@5220
+Kayıtlı ses

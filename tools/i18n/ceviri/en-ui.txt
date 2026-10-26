@@ -1,0 +1,82 @@
+@@=3B devre ve kod laboratuvarı
+3D circuit and code lab
+@@=Ders listesi
+Lesson list
+@@=Sürükle: döndür · Sağ tuş: kaydır · Tekerlek: yakınlaştır · Parçaya tıkla: etkileşim
+Drag: rotate · Right button: pan · Wheel: zoom · Click a part: interact
+@@=Yakınlaştır
+Zoom in
+@@=Uzaklaştır
+Zoom out
+@@=Sola döndür
+Rotate left
+@@=Sağa döndür
+Rotate right
+@@=Görünümü sıfırla
+Reset view
+@@=Tanı
+Explore
+@@=Kodu yaz
+Write code
+@@=Görevler
+Tasks
+@@=DERS
+LESSON
+@@=KOD
+CODE
+@@=GÖREVLER
+TASKS
+@@=📱 TELEFON
+📱 PHONE
+@@=🔊 Sesli anlat
+🔊 Narrate
+@@=Duraklat
+Pause
+@@=Sonraki cümle
+Next sentence
+@@=Ses
+Sound
+@@=▶ Çalıştır
+▶ Run
+@@=Durdur
+Stop
+@@=Bloklar
+Blocks
+@@=Kod
+Code
+@@=C++ kodunu kopyala
+Copy C++ code
+@@=Çalışma alanını temizle
+Clear workspace
+@@=Arduino C++ kodu
+Arduino C++ code
+@@=✎ Kodu elle düzenledin
+✎ You edited the code by hand
+@@=Bloklardan yeniden üret
+Regenerate from blocks
+@@=SERİ MONİTÖR
+SERIAL MONITOR
+@@=DURDU
+STOPPED
+@@=Dersler
+Lessons
+@@=Genişliği ayarla
+Resize width
+@@=Profil ve rozetler
+Profile and badges
+@@=Üst üste çalışma günü
+Consecutive study days
+@@=Açık/koyu tema
+Light/dark theme
+@@=Misafir
+Guest
+@@=Ders
+Lesson
+@@=Modül 1
+Module 1
+@@=0/20 ders
+0/20 lessons
+@@=DENEYAP ATÖLYE
+DENEYAP WORKSHOP
+@@=Deneyap Atölye
+Deneyap Workshop

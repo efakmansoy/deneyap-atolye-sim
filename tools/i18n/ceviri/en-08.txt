@@ -1,0 +1,442 @@
+@@3209
+The arm swung back and forth between 45° and 135°!
+@@3211
+Turns the arm 90 times per minute
+@@3212
+Moves the arm to the middle position (90°) and holds it there
+@@3213
+Turns the arm for 90 seconds
+@@3214
+Moves the arm to the end position (180°)
+@@3215
+The servo goes to the angle you give it and stops there. 90° is roughly the middle position.
+@@3217
+<p>Make the servo arm <b>wave hello</b>: go up from <b>0° to 90°</b> and come back down to <b>0°</b>. Repeat this <b>3 times</b>.</p><p>Wait at least 200 ms after every move; the arm must not go past 100°.</p>
+@@3218
+Use a counting loop or copied blocks: 0, wait, 90, wait. Repeat 3 times.
+@@3219
+The arm did not move back and forth enough. 3 waves need at least 6 moves.
+@@3220
+The arm went past 100°. Use at most 90° for the wave.
+@@3221
+The arm only went from 0° to 90° {0} times. It needs to be 3 times.
+@@3222
+The moves are too fast. Wait at least 200 ms after every move.
+@@3224
+In what angle range does the arm of a standard servo motor move?
+@@3225
+Unlimited, it turns continuously
+@@3229
+The arm of standard servos like the ones in this workshop moves between 0° and 180°.
+@@3230
+Sweep three times
+@@3231
+<p>Make the arm go from <b>0° to 180°</b> and return to <b>0°</b>; do this for <b>3 rounds</b>.</p><p>Steps must not be larger than 45°, and you must wait at each step.</p>
+@@3232
+Think nested: repeat 3 times { from 0 to 180 step by step, from 180 to 0 step by step }. A step can be 30°.
+@@3233
+The servo moved too little.
+@@3234
+The steps are too big. Move in steps smaller than 45°.
+@@3235
+It only made {0} full rounds. Complete the 0°→180°→0° round 3 times.
+@@3236
+Three full rounds done!
+@@3237
+How does a servo motor <b>know</b> which angle its arm should go to?
+@@3238
+From the width of the short pulses (the PWM signal) it receives
+@@3239
+It turns more the higher the battery voltage is
+@@3240
+By looking at the color of the board
+@@3241
+Only from the pin number it is connected to
+@@3242
+The servo measures the width of the pulses coming from the signal wire; the library produces these pulses according to the angle you give.
+@@3243
+<p>Turn the arm <b>from 0° to 180° very slowly</b>: steps of at most <b>10°</b>, and the sweep must take at least <b>1.5 seconds</b>.</p><p>The arm should start at 0°.</p>
+@@3244
+Write a loop that increases from 0 to 180 in steps of 10 degrees; wait 100 ms at each step (18 steps x 100 ms = 1.8 s).
+@@3245
+The arm did not reach 0°. Set it to 0° first.
+@@3246
+The steps are larger than 10°. Use smaller steps.
+@@3247
+The sweep took {0} ms. It must be at least 1500 ms; wait longer between steps.
+@@3248
+The arm swept slowly!
+@@3249
+You want to move the arm <b>smoothly</b> from 0° to 180°. Which method is correct?
+@@3252
+Write <code>write(180)</code> just once and never wait
+@@3253
+Use <code>write</code> with small angle steps and put a short <code>delay</code> in between
+@@3254
+The servo arm turns at a limited speed. Small steps with waits in between make the motion smooth and controlled.
+@@3255
+How does an ultrasonic distance sensor measure distance?
+@@3256
+From the temperature difference in the air
+@@3257
+By seeing the color of the obstacle
+@@3258
+By sending a sound wave and measuring how long the echo takes to return
+@@3259
+By taking a photo with a camera
+@@3260
+The sensor sends an ultrasonic sound; the sound hits the obstacle and comes back. The longer the return time, the farther away the obstacle is.
+@@3261
+Continuous sound under 20 cm
+@@3262
+<p>If an obstacle is <b>closer than 20 cm</b>, the buzzer (<span class="pin-etiket">D8</span>) should sound <b>continuously</b> (not beep-beep, a steady sound). It should stay silent while the obstacle is far away.</p><p>Scenario: the obstacle is first at 150 cm, then comes closer to 10 cm, then moves away to 150 cm again.</p>
+@@3263
+Read the distance in the loop: if it is less than 20 play tone, otherwise noTone. A single tone is enough, and the delay should not be long.
+@@3264
+The buzzer did not sound when the obstacle came to 10 cm. Condition: distance < 20.
+@@3265
+The sound is choppy. When it is close, play it continuously: don't beep, use a steady tone.
+@@3266
+The sound must stop when the obstacle moves away (noTone).
+@@3267
+Continuous sound when close, silence when far!
+@@3268
+The sensor received an echo after 2000 µs. Sound travels at about <code>0.0343 cm/µs</code> and makes a <b>round trip</b>. How many cm away is the obstacle?
+@@3273
+2000 × 0.0343 = 68.6 cm is the round-trip distance. The distance to the obstacle is half of that: 34.3 cm.
+@@3274
+Three-level warning
+@@3275
+<p>Make a parking warning with three zones:</p><ul><li>Farther than 100 cm: <b>silent</b></li><li>Between 40-100 cm: <b>beep-beep</b> (intermittent)</li><li>Closer than 40 cm: <b>continuous sound</b></li></ul><p>Scenario: the obstacle is at 150 cm, then 70 cm, then 20 cm, and finally 150 cm again.</p>
+@@3276
+Check the close case (< 40) first, then the middle case (< 100): build an if / else if / else chain.
+@@3277
+It should stay silent at 150 cm.
+@@3278
+No beep was heard at 70 cm. Between 40-100 cm it should beep-beep.
+@@3279
+At 70 cm the sound was continuous; in this zone it should be an intermittent beep (play, wait, silence, wait).
+@@3280
+At 20 cm the sound should be continuous; it is being heard in pieces.
+@@3281
+The sound must stop when the obstacle moves away.
+@@3282
+The three-level parking warning is ready!
+@@3283
+Print the distance to the serial monitor
+@@3284
+<p>Print the distance measured by the sensor to the <b>Serial Monitor</b>. As the obstacle comes to 150, 80, 40 and 15 cm, <b>each one</b> of these numbers should appear on the screen in order.</p><p>The line may contain text too (e.g. <code>Mesafe: 80</code>), but the number must be clearly readable.</p>
+@@3285
+Inside repeat forever, read the distance and print it to the serial port. Add a short wait in the loop, otherwise the screen fills up.
+@@3286
+You did not print anything to the serial monitor.
+@@3287
+The value {0} cm did not appear (in order) in the serial monitor. Read the distance continuously and print it.
+@@3288
+The distance values appeared in the serial monitor in order!
+@@3289
+When is the condition <code>mesafeOlc(D3) &lt; 100</code> true?
+@@3290
+When the obstacle is farther than 100 cm
+@@3291
+When the obstacle is closer than 100 cm
+@@3293
+When the sensor is not connected
+@@3294
+<code>&lt;</code> means "less-than". If the measured distance is less than 100, the obstacle is closer than 100 cm.
+@@3295
+<p>Let the buzzer's <b>frequency change with distance</b>: as the obstacle gets closer, the sound should get <b>higher-pitched</b> (frequency increases).</p><p>The sound should play when the obstacle is at 80, 40 and 15 cm, and at each closer stage the frequency must be at least 50 Hz higher than the previous one. Example formula: <code>frequency = 2000 − distance × 10</code>.</p>
+@@3296
+Instead of a fixed number, put a calculation in the tone block's frequency box: two thousand minus distance times 10. As the distance gets smaller, the result gets bigger.
+@@3297
+The buzzer should sound when the obstacle is at 80, 40 and 15 cm.
+@@3298
+The frequency should increase as it gets closer (currently {0} Hz). Link the frequency to the distance.
+@@3300
+The sound got higher as it came closer, reaching {0} Hz!
+@@3301
+We want the beeps to come <b>more often</b> as the obstacle gets closer. Which should the wait time between beeps be?
+@@3304
+A random number
+@@3306
+As the distance gets smaller, the wait should get smaller too. Distance × 4, which is proportional to the distance, does this; 1000 − distance does the opposite.
+@@3307
+Two-key piano
+@@3308
+<p>Use only two keys: the <span class="pin-etiket">D0</span> key plays <b>A (440 Hz)</b>, the <span class="pin-etiket">D1</span> key plays <b>high E (659 Hz)</b>.</p><p>When the keys are released and no key is pressed, the buzzer (<span class="pin-etiket">D8</span>) should be silent.</p>
+@@3309
+noTone at the start of the loop, then one if for D0, one if for D1.
+@@3310
+The buzzer must not sound without a key press.
+@@3311
+Pressing the D0 key should play 440 Hz (currently {0}).
+@@3312
+The sound must stop when D0 is released.
+@@3313
+Pressing the D1 key should play 659 Hz (currently {0}).
+@@3314
+The sound must stop when D1 is released.
+@@3315
+Your two-key piano works!
+@@3316
+On the piano, what value do you get when you read the pin of a key that is pressed?
+@@3319
+On this piano, a pressed key gives HIGH (1) and a released key gives LOW (0); so the condition is <code>digitalRead(D0) == HIGH</code>.
+@@3320
+Upper key has priority
+@@3321
+<p>Sometimes two keys are pressed at the same time. The buzzer can play only one note, so set a rule: <b>if D0 and D2 are pressed together, play D2's note (E, 330 Hz)</b>.</p><p>When only D0 is pressed it should play C (262 Hz); silence when the keys are released.</p>
+@@3322
+The order of the if blocks matters: the tone that runs later overrides the earlier one. Or use "else if".
+@@3323
+When only D0 is pressed it should play 262 Hz (currently {0}).
+@@3324
+When D0 and D2 are pressed together it should play 330 Hz (D2) (currently {0}).
+@@3325
+When D2 is released, D0's note of 262 Hz should keep playing (currently {0}).
+@@3326
+The sound must stop when all keys are released.
+@@3327
+The priority rule works: the upper key wins!
+@@3328
+On the piano, A (A4) is 440 Hz. How many Hz is the A one octave higher (A5)?
+@@3332
+Going up one octave doubles the frequency: 440 × 2 = 880 Hz. 220 Hz is one octave lower.
+@@3333
+Melody key
+@@3334
+<p>When the <span class="pin-etiket">D3</span> key is pressed for <b>a brief moment</b>, the buzzer should automatically play the notes <b>C (262), E (330), G (392)</b> in order.</p><p>Each note must last at least 150 ms. There must be no sound without a key press, and the buzzer must go silent when the melody ends. (The key is released before the melody finishes; the melody must still play to the end.)</p>
+@@3335
+Put the three notes inside the if block that detects the key press: play, wait, silence, short wait.
+@@3336
+When the key is pressed, 262, 330 and 392 Hz should play in order (currently {0}/3 notes correct).
+@@3337
+Some notes are too short. Each note must last at least 150 ms.
+@@3339
+The melody plays with a single key!
+@@3340
+If there is a single buzzer pin (<code>D8</code>) and two keys are pressed at the same time, what do we hear?
+@@3341
+The two notes play mixed together, like a chord
+@@3342
+No sound at all
+@@3343
+The two notes play one after another automatically
+@@3344
+The buzzer can play only one frequency; we hear the note of the last <code>tone</code> command
+@@3345
+A pin produces only one frequency at a time. If you give two tone commands in a row, the last one overrides the first.
+@@3346
+Octave shift key
+@@3347
+<p>Let the <span class="pin-etiket">D6</span> key be a <b>shift key</b>: while D6 is pressed, the D0 key plays <b>one octave higher</b> (high C = 2 × 262 = 524 Hz). When D6 is not pressed, D0 plays normal C (262 Hz).</p><p>Silence when the keys are released.</p>
+@@3348
+Use a multiplier variable: 2 if D6 is pressed, 1 otherwise. Then for D0 use tone(D8, 262 × multiplier).
+@@3349
+While D6 is pressed, D0 should play one octave higher (524 Hz) (currently {0}).
+@@3350
+When D6 is released, D0 should play 262 Hz again (currently {0}).
+@@3351
+The sound must stop when the key is released.
+@@3352
+Your octave shift key works!
+@@3353
+What would happen if the <code>noTone(D8)</code> at the start of the loop were missing?
+@@3354
+No key would work
+@@3355
+The notes would sound higher-pitched
+@@3356
+Even if we release the key, the last note would not stop and would keep playing
+@@3358
+<code>tone</code> keeps making sound. If we don't silence it at the start of each round, the last note keeps playing even after the key is released.
+@@3360
+4.5 · The light-played instrument
+@@3361
+<h2>The light-played instrument</h2>
+      <p>A light sensor (LDR) is connected to pin A0 and a buzzer to pin D8. As the light increases, the buzzer's sound should get <b>higher</b> (frequency rises). You can change the pitch by holding your hand in front of the sensor to cast a shadow.</p>
+      <ol>
+        <li>Inside <b>repeat forever</b>, <b>read the A0 analog value</b> (0-4095).</li>
+        <li>With the <b>map</b> block, convert this number to the <b>200 - 2000 Hz</b> range.</li>
+        <li>Give the result to the <b>play ... Hz sound on pin D8</b> block.</li>
+        <li>Add a short <b>wait 20 ms</b> at the end and press ▶ Run. The light first increases slowly, then gets brighter and brighter; then it gets dark again.</li>
+      </ol>
+@@3362
+Get to know the light-played instrument
+@@3363
+<p>There is an <b>LDR</b> (light sensor) and a <b>buzzer</b> in the scene. The LDR is on pin <span class="pin-etiket">A0</span>, the buzzer on pin <span class="pin-etiket">D8</span>.</p>
+          <div class="kutu bilgi"><b>The more light, the bigger the number:</b> The ESP32-S3's analog reading is 12-bit. So <code>analogRead(A0)</code> gives a number close to 0 in the dark and close to 4095 in very bright light. If you cast a shadow on the sensor with your hand, the number gets smaller.
+          <pre><code>int isik = analogRead(A0);</code></pre></div>
+          <div class="kutu hedef"><b>Goal:</b> As the light increases, the buzzer's frequency should rise; as the light decreases, the sound should get lower. This is an idea similar to the instrument called the <i>theremin</i>, which is played with your hands.</div>
+@@3364
+<p>The light can change at any moment; the board needs to keep looking at the sensor. Drop the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category into the workspace.</p>
+@@3365
+Convert the number to a frequency with map
+@@3366
+<p>Here is the problem: the light number is between <b>0-4095</b>, but our ears comfortably tell apart the range <b>200-2000 Hz</b>. The command that converts a number <b>proportionally</b> from one range to another is <code>map</code>.</p>
+          <p>Take the <span class="chip analog">map</span> block from the <span class="chip analog">Analog</span> category into the workspace. It already has the <span class="pin-etiket">A0</span> reading and the 0-4095 range inside. Change the last two numbers to <b>200</b> and <b>2000</b>.</p>
+          <pre><code>map(analogRead(A0), 0, 4095, 200, 2000)</code></pre>
+          <div class="kutu bilgi"><b>map(value, inMin, inMax, outMin, outMax):</b> In the dark (0) the result is 200, in full light (4095) the result is 2000. In the middle (2048) it comes out to about 1100.</div>
+@@3367
+The map block comes pre-filled. Change the box that says 255 at the end to 2000, and the 0 box before it to 200.
+@@3368
+Give the frequency to the buzzer
+@@3369
+<p>From the <span class="chip ses">Sound and motion</span> category, put the <span class="chip ses">play ... Hz sound on pin D8</span> block inside <b>repeat forever</b>. Instead of a fixed number in the frequency box, plug in the <span class="chip analog">map</span> block from before.</p>
+          <pre><code>tone(D8, map(analogRead(A0), 0, 4095, 200, 2000));</code></pre>
+          <div class="kutu bilgi">Every time the frequency of <code>tone(pin, frequency)</code> changes, the buzzer's sound changes too. When the light changes, the loop runs again and the new frequency is played.</div>
+@@3370
+Drag the map block into the frequency slot of the play sound block. The pin must be D8.
+@@3371
+A small wait in the loop
+@@3372
+<p>Put the <span class="chip akis">wait 20 ms</span> block under the sound block, again inside <b>repeat forever</b>.</p>
+          <pre><code>delay(20);</code></pre>
+          <div class="kutu dikkat">Without a wait, the board reads thousands of times per second and asks for the same sound again and again. 20 ms (50 readings per second) seems instant to the ear, but doesn't tire out the board.</div>
+@@3373
+The wait block's default is 500 ms; make it 20. Keep everything inside repeat forever.
+@@3374
+<p>Press ▶ <b>Run</b>. The program raises the light step by step and finally makes it dark again. The buzzer's pitch should follow the light. You can also drag the sun of the LDR in the scene yourself.</p>
+          <div class="kutu hedef"><b>Goal:</b> As the light increases the sound should get higher, and as the light decreases it should get lower.</div>
+@@3375
+If the sound changes in the opposite direction to the light, check the last two numbers of the map block: the small number must come first, the big number second. If there is no sound at all, check the buzzer pin.
+@@3376
+The buzzer did not sound when the light was {0}. Read the light in the loop and play sound on D8.
+@@3377
+The frequency came out as {0} Hz. It must stay in an audible range (100-5000 Hz); set the output range in the map block to 200-2000.
+@@3378
+The sound does not change with the light. Link the frequency to the light value with the map block instead of a fixed number.
+@@3379
+The sound gets lower as the light increases ({0} → {1} Hz). The map block's output range must go from small to large: 200, 2000.
+@@3380
+When the light went {0} → {1}, the frequency did not rise enough ({2} → {3} Hz). Use a range that is more sensitive to the light.
+@@3381
+When the light decreased again, the sound did not get lower ({0} Hz). The frequency must follow the light live: read the light again in every round.
+@@3382
+Your instrument follows the light: {0} Hz!
+@@3385
+<h2>Servo with a knob</h2>
+      <p>A potentiometer is connected to pin A0 and a servo to pin D5. As you turn the knob, the servo arm should turn <b>in the same proportion</b>: 0° when the knob is fully left, 90° in the middle, and 180° when fully right.</p>
+      <ol>
+        <li>Inside <b>repeat forever</b>, <b>read the A0 analog value</b> (0-4095).</li>
+        <li>With the <b>map</b> block, convert this number to the <b>0 - 180</b> range.</li>
+        <li>Give the result to the <b>set D5 servo to ... °</b> block.</li>
+        <li>Add a short <b>wait 20 ms</b> at the end and press ▶ Run. The knob turns step by step on its own.</li>
+      </ol>
+@@3386
+Knob and servo
+@@3387
+<p>There is a <b>potentiometer</b> (a turnable resistor) and a <b>servo</b> in the scene. The pot is on pin <span class="pin-etiket">A0</span>, the servo on pin <span class="pin-etiket">D5</span>.</p>
+          <div class="kutu bilgi"><b>Two different scales:</b> With <code>analogRead</code>, the pot knob gives <b>0</b> when fully left and <b>4095</b> when fully right. The servo, on the other hand, only wants an angle between <b>0°-180°</b>. We will connect these two scales to each other with <code>map</code>.</div>
+          <div class="kutu hedef"><b>Goal:</b> As you turn the knob, the servo arm should turn in the same proportion: left end 0°, middle 90°, right end 180°.</div>
+@@3388
+<p>The knob can be turned at any moment, so the board needs to read continuously. Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category.</p>
+@@3389
+Convert the knob value to an angle
+@@3390
+<p>Take the <span class="chip analog">map</span> block from the <span class="chip analog">Analog</span> category. The <span class="pin-etiket">A0</span> reading and the 0-4095 range are already inside. Change the last two numbers to <b>0</b> and <b>180</b>.</p>
+          <pre><code>map(analogRead(A0), 0, 4095, 0, 180)</code></pre>
+          <div class="kutu bilgi">The proportion is simple: 4095 values are divided into 180 degrees, so every 22.75 units is about 1°. When the pot is in the middle the value is around 2048 and the result is 90°.</div>
+@@3391
+Change the box that says 255 at the end to 180; leave the box before it as 0.
+@@3392
+Give the angle to the servo
+@@3393
+<p>From the <span class="chip ses">Sound and motion</span> category, put the <span class="chip ses">set D5 servo to ... °</span> block inside <b>repeat forever</b>. Plug the <span class="chip analog">map</span> block into the angle box.</p>
+          <pre><code>servo.write(map(analogRead(A0), 0, 4095, 0, 180));</code></pre>
+          <div class="kutu bilgi"><code>servo.write(angle)</code> turns the arm to that angle. The blocks take care of the servo library and the <code>attach</code> step themselves.</div>
+@@3394
+Drag the map block into the angle slot of the servo block. The pin must be D5.
+@@3395
+Add a short wait
+@@3396
+<p>Put the <span class="chip akis">wait 20 ms</span> block under the servo block, again inside the loop.</p>
+          <pre><code>delay(20);</code></pre>
+          <div class="kutu dikkat">The servo arm takes time to reach its target. Sending commands too often doesn't help: 20 ms (50 commands per second) is both smooth and comfortable.</div>
+@@3397
+Run and turn
+@@3398
+<p>Press ▶ <b>Run</b>. The program turns the knob step by step; the servo arm should follow it. You can also drag the knob in the scene yourself.</p>
+          <div class="kutu hedef"><b>Goal:</b> 0° when the knob is at the left end, 90° in the middle, 180° at the right end.</div>
+@@3399
+If the arm turns the wrong way, the map output was written as 180 - 0; it should be 0 - 180. If the arm doesn't move at all, is the servo pin D5?
+@@3400
+The servo did not move at all. You must write an angle to the D5 servo.
+@@3401
+The servo should go to an angle at every stage. Put the command inside repeat forever.
+@@3402
+The arm is not following the knob. Link the angle to the pot value with the map block instead of a fixed number.
+@@3403
+When the pot is {0} the arm should be about {1}°, but it is {2}°. Map: 0-4095 → 0-180.
+@@3406
+Play in the light, silent in the dark
+@@3407
+<p>The light sensor is on pin <span class="pin-etiket">A0</span>, the buzzer on pin <span class="pin-etiket">D8</span>. If the light is <b>greater than 2000</b> (bright), the buzzer should play <b>880 Hz</b>, otherwise it should be <b>silent</b>.</p><p>Scenario: the light goes low, high, low, high in turn.</p>
+@@3408
+Read the light in the loop. If the reading > 2000, tone(D8, 880), otherwise noTone(D8). Put a short wait at the end.
+@@3409
+When the light is {0} (dark) the buzzer should be silent, but it is playing {1} Hz.
+@@3410
+When the light is {0} (bright) it should play 880 Hz (currently {1}).
+@@3411
+Sound in the light, silence in the dark!
+@@3412
+What is the largest number <code>analogRead(A0)</code> can give on the ESP32-S3 board?
+@@3413
+The board's analog reader (ADC) is 12-bit: it reads 2<sup>12</sup> = 4096 different values, that is from 0 to 4095. (255 is the upper limit of <code>analogWrite</code>.)
+@@3415
+<p>Build a real light instrument: the buzzer frequency should change <b>proportionally</b> to the light value. It should play <b>200 Hz</b> in the dark (0) and <b>2000 Hz</b> in full light (4095); in between should be proportional.</p><p>Check: when the light is 0, 1024, 2048 and 4095, the frequency should be within 30 Hz of the expected one.</p>
+@@3416
+Write the expression map(analogRead(A0), 0, 4095, 200, 2000) in place of the frequency in the tone command. Use delay(20) in the loop.
+@@3417
+When the light is {0} it should play about {1} Hz (currently {2}). Use map(value, 0, 4095, 200, 2000).
+@@3418
+The light instrument in the 200-2000 Hz range is ready!
+@@3419
+About how much does <code>map(2048, 0, 4095, 200, 2000)</code> give?
+@@3420
+About 1100
+@@3421
+About 200
+@@3422
+About 2000
+@@3423
+About 2048
+@@3424
+2048 is roughly the middle of the 0-4095 range. Since the output range is 200-2000, the result is also in the middle, that is around (200 + 2000) / 2 = 1100.
+@@3426
+<p>Make it play in reverse this time: as the light <b>increases</b>, the frequency should <b>drop</b>. It should sound high (treble) in the dark and low (bass) in the light.</p><p>As the light increases through 300, 1500, 2700, 3900, the frequency must drop by <b>at least 100 Hz</b> at each step and stay between 100-5000 Hz.</p>
+@@3427
+Swap the places of map's last two numbers: big number first, small number second. For example map(value, 0, 4095, 2000, 200).
+@@3428
+The buzzer should sound at every light level.
+@@3429
+The frequency should drop as the light increases (by at least 100 Hz). Currently {0} Hz.
+@@3430
+Reverse instrument: {0} Hz. The sound gets lower as the light increases!
+@@3431
+In your instrument you use <code>frequency = map(isik, 0, 4095, 200, 2000)</code>. If you reduce the light by casting a shadow on the LDR with your hand, how does the sound change?
+@@3432
+It becomes higher (treble)
+@@3433
+It becomes lower (bass)
+@@3434
+It doesn't change at all
+@@3436
+When the light decreases, analogRead gives a small number, and map's result gets close to 200 Hz. A low frequency sounds deeper (bass).
+@@3437
+Note steps
+@@3438
+<p>Instead of a continuously sliding sound, build an instrument with <b>four steps</b>. Play these notes depending on the light value:</p><ul><li>Less than 1024: <b>C (262 Hz)</b></li><li>1024-2047: <b>E (330 Hz)</b></li><li>2048-3071: <b>G (392 Hz)</b></li><li>3072 and above: <b>high C (523 Hz)</b></li></ul><p>The light goes 500, 1500, 2500, 3500, then 1500 again; in the last stage it must play E again.</p>
+@@3439
+Build an if / else if chain: if isik < 1024 then 262, else if isik < 2048 then 330, else if isik < 3072 then 392, else 523. You can also solve it using a calculation (isik / 1024).
+@@3440
+When the light is {0} it should play {1} Hz (currently {2}).
+@@3441
+The four-step light instrument is ready: C, E, G, high C!
+@@3442
+At the end of the instrument program's loop there is <code>delay(20)</code>. What is the purpose of this line?
+@@3443
+To raise the sound by 20 Hz
+@@3444
+To heat up and calibrate the light sensor

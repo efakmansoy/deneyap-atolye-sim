@@ -1,0 +1,585 @@
+@@3909
+When the barrier arm is horizontal it is at 0 degrees (closed); when it is raised vertically it is at 90 degrees (open).
+@@3910
+Limit the range of motion
+@@3911
+The servo panel can only turn up to 120 degrees mechanically. Limit the angle to the range <b>0-120</b> instead of 0-180.
+@@3912
+Change the number 180 to 120 in the line map(isik, 0, 4095, 0, 180).
+@@3913
+In full light the servo should be at 120 degrees (right now {0} degrees).
+@@3914
+The solar tracker angle is now limited to 0-120 degrees!
+@@3915
+What does the <code>map(deger, 0, 4095, 0, 180)</code> function do in Arduino/ESP32?
+@@3916
+It proportionally converts a sensor value between 0-4095 into a servo angle between 0-180
+@@3917
+It draws a map of the board
+@@3918
+It finds the GPS location of the sensor
+@@3919
+It multiplies the angle by 4095
+@@3920
+map() sets up a mathematical ratio; it spreads a number from the input range evenly across the target range.
+@@3921
+Reverse tracking
+@@3922
+The mechanism was mounted the other way around! As the light increases, the servo should turn toward 0, not 180. So make the range <b>180, 0</b>.
+@@3923
+Write it as map(isik, 0, 4095, 180, 0).
+@@3924
+In full light the servo should go down to 0 degrees (right now {0} degrees).
+@@3925
+What is the advantage of solar tracking systems over fixed solar panels?
+@@3926
+They catch the sun's rays at a right angle and produce the maximum electricity all day long
+@@3927
+They take up less space
+@@3928
+They produce electricity at night
+@@3929
+They work without a battery
+@@3930
+The energy produced is at its highest when the sun's rays hit the panel at a 90-degree angle.
+@@3931
+Set the charge threshold to 70W
+@@3932
+The charge LED is currently on above 50W. To protect the battery, set the threshold to <b>70 Watts</b>: it should turn on only at 70W and above.
+@@3933
+Change the number 50 to 70 in the condition if (guc >= 50).
+@@3934
+The LED should not be on at 58W; the threshold must be 70W.
+@@3935
+The LED should be on at 78W.
+@@3936
+The charge threshold has been updated to 70 Watts!
+@@3937
+Why is it important to show live power on the LCD in a solar panel station?
+@@3938
+It lets you know when to clean the panel and monitor the electricity being produced right now
+@@3939
+The LCD produces electricity
+@@3940
+It stops the sun from setting
+@@3941
+It keeps the sensor from heating up
+@@3942
+Thanks to the screen, a user or technician can instantly see how much power the panel is producing and how efficient it is.
+@@3943
+Show it in volts
+@@3944
+Show voltage instead of power at the station: convert the 0-4095 light value to the range <b>0-12 Volts</b> and print it on row 2 together with <b>"Volt: "</b>.
+@@3945
+Use map(isik, 0, 4095, 0, 12) and write lcd.print("Volt: ").
+@@3946
+The text "Volt: " should appear on row 2.
+@@3947
+In full light the voltage should show 12 Volts.
+@@3948
+The station now shows the voltage value successfully!
+@@3949
+What is the purpose of the spaces in the line <code>lcd.print(" W   ");</code>?
+@@3950
+They prevent old characters from staying on the screen when the number has fewer digits (100 -> 9)
+@@3951
+They turn off the screen
+@@3952
+They stabilize the voltage
+@@3953
+When going from a 3-digit number to 2 digits, the last digit has to be cleared with a space.
+@@3955
+6.1 · Smart trash can
+@@3956
+<h2>Smart trash can</h2>
+      <p>We are building a hygienic, smart trash can whose lid opens by itself when you bring your hand close!</p>
+      <ol>
+        <li>The distance sensor is on pin <b>D3</b>, and the servo motor that opens and closes the lid is on pin <b>D5</b>.</li>
+        <li>If a hand is closer than <b>20 cm</b>, open the lid to <b>90 degrees</b>.</li>
+        <li>Wait <b>2 seconds (2000 ms)</b> so the trash can be thrown in.</li>
+        <li>Then set the servo to <b>0 degrees</b> to close the lid.</li>
+      </ol>
+@@3957
+<p>The distance sensor (<span class="pin-etiket">D3</span>) measures approaching hands. The servo (<span class="pin-etiket">D5</span>) lifts the lid.</p>
+@@3958
+Forever loop
+@@3959
+<p>Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category.</p>
+@@3960
+Distance condition
+@@3961
+<p>Put an <span class="chip akis">if</span> block inside the loop. Plug <span class="chip mantik">D3 distance &lt; 20</span> into its condition.</p>
+@@3962
+The distance block is in the Sound and motion category.
+@@3963
+Open the lid, wait, and close it
+@@3964
+<p>In the if branch, put <span class="chip ses">D5 servo write 90</span>, below it <span class="chip akis">wait 2000 ms</span>, and below that <span class="chip ses">D5 servo write 0</span>.</p>
+@@3965
+First servo 90, wait 2000 ms, second servo 0.
+@@3966
+<p>Press ▶ <b>Run</b>. When the obstacle gets close to the sensor, the lid will open and close again after 2 seconds.</p>
+@@3967
+Run the program and bring the orange obstacle close to the sensor.
+@@3968
+The servo did not move at all. Did you use the D5 servo write block?
+@@3969
+The lid did not open when the obstacle came within 15 cm. Condition: distance < 20.
+@@3970
+The lid did not close again after opening.
+@@3971
+Great! The smart trash can opens when you get close and closes automatically.
+@@3973
+6.2 · People counter door
+@@3974
+<h2>People counter door</h2>
+      <p>A smart turnstile system that counts the people passing through the door with an ultrasonic sensor, shows the count on the LCD screen, and beeps!</p>
+      <ol>
+        <li>The distance sensor is on <b>D3</b>, the LCD screen is on I2C, and the buzzer is on pin <b>D8</b>.</li>
+        <li>When someone passes through the door (distance &lt; 30 cm), increase the people counter by 1.</li>
+        <li>Play a short beep (1500 Hz, 100 ms) with the buzzer.</li>
+        <li>Show <i>Kisi Sayisi:</i> on LCD row 1 and the counter on row 2.</li>
+        <li>Wait in the loop until the person moves away (as long as distance is &lt; 30).</li>
+      </ol>
+@@3975
+<p>The distance sensor (<span class="pin-etiket">D3</span>), the LCD, and the Buzzer (<span class="pin-etiket">D8</span>) are ready.</p>
+@@3976
+Start screen
+@@3977
+<p>Take <span class="chip ekran">LCD row 1 write</span> and write <span class="chip analog">Kisi Sayisi:</span> in it.</p>
+@@3978
+The first row is row number 0.
+@@3979
+Loop and counter
+@@3980
+<p>Put in <span class="chip akis">repeat forever</span>. Inside it, if distance is &lt; 30, increase the counter by 1.</p>
+@@3981
+You can create a variable and increase its value by 1.
+@@3982
+Sound and write to the screen
+@@3983
+<p>Inside the if, add <span class="chip ses">D8 play tone 1500</span>, <span class="chip akis">wait 100 ms</span>, <span class="chip ses">stop tone</span>. Then write the counter to LCD row 2.</p>
+@@3985
+<p>Press ▶ <b>Run</b>. Watch the counter go up and the screen update as people pass through.</p>
+@@3986
+The number will increase as people pass one by one.
+@@3987
+Row 1 should have the title "Kisi Sayisi:".
+@@3988
+The buzzer did not sound on the passes.
+@@3989
+After 3 people pass, the counter should be 3.
+@@3990
+The turnstile works successfully! The passes were counted and confirmed with sound.
+@@3992
+6.3 · Smart feeder
+@@3993
+<h2>Smart feeder</h2>
+      <p>A smart feeding machine for pets that makes a sound call and opens the food lid when the button is pressed!</p>
+      <ol>
+        <li>The button is on pin <b>D2</b>, the servo motor on <b>D5</b>, and the buzzer on <b>D8</b>.</li>
+        <li>When the button is pressed (D2 HIGH):</li>
+        <li>Play a <b>300 ms</b> food call at <b>1000 Hz</b> with the buzzer.</li>
+        <li>Open the servo lid to <b>90 degrees</b>.</li>
+        <li>Wait <b>1 second (1000 ms)</b> for the food to drop, then close the lid to <b>0 degrees</b>.</li>
+      </ol>
+@@3994
+<p>The button (<span class="pin-etiket">D2</span>), Servo (<span class="pin-etiket">D5</span>), and Buzzer (<span class="pin-etiket">D8</span>) are ready.</p>
+@@3995
+Forever loop and button check
+@@3996
+<p>Put <span class="chip akis">if D2 digital read == 1</span> inside <span class="chip akis">repeat forever</span>.</p>
+@@3998
+The button is on pin D2.
+@@3999
+Play the sound call
+@@4000
+<p>In the if branch, add <span class="chip ses">D8 play tone 1000</span>, <span class="chip akis">wait 300 ms</span>, and <span class="chip ses">stop tone</span>.</p>
+@@4001
+Open and close the lid
+@@4002
+<p>Add <span class="chip ses">D5 servo write 90</span>, <span class="chip akis">wait 1000 ms</span>, and <span class="chip ses">D5 servo write 0</span>.</p>
+@@4004
+<p>Press ▶ <b>Run</b>. When the button is pressed, a sound will play and the lid will open and close.</p>
+@@4005
+Run it and click the button.
+@@4006
+The buzzer did not play the food call when the button was pressed.
+@@4007
+The lid did not open to 90 degrees.
+@@4008
+The lid did not close again after 1 second.
+@@4009
+The feeder works great! It gave a sound alert and dropped the food.
+@@4011
+6.4 · Burglar alarm
+@@4012
+<h2>Burglar alarm</h2>
+      <p>A two-tone emergency siren and flasher LED that kicks in when a light beam or laser is cut!</p>
+      <ol>
+        <li>The light sensor is on <b>A0</b>, the buzzer on <b>D8</b>, and the red LED on pin <b>D0</b>.</li>
+        <li>When the sensor is shaded (light &lt; 1500):</li>
+        <li>Turn on the red LED and play the buzzer at <b>1200 Hz</b>, wait <b>150 ms</b>.</li>
+        <li>Turn off the LED and play the buzzer at <b>800 Hz</b>, wait <b>150 ms</b> (two-tone siren).</li>
+        <li>If the light is normal, the LED should be off and the buzzer silent.</li>
+      </ol>
+@@4013
+<p>The LDR (<span class="pin-etiket">A0</span>), Red LED (<span class="pin-etiket">D0</span>), and Buzzer (<span class="pin-etiket">D8</span>) are ready.</p>
+@@4014
+Forever loop and light condition
+@@4015
+<p>Put in <span class="chip akis">repeat forever</span>. Inside it, plug in an <span class="chip akis">if-else</span> block. Condition: <span class="chip mantik">A0 analog &lt; 1500</span>.</p>
+@@4016
+Add the else arm using the gear.
+@@4017
+Siren and flasher
+@@4018
+<p>In the if branch, add LED HIGH, tone 1200, wait 150 ms; then add LED LOW, tone 800, wait 150 ms.</p>
+@@4019
+Input and Output
+@@4022
+Silence in the else case
+@@4023
+<p>In the else branch, add LED LOW and stop tone.</p>
+@@4024
+The alarm must be silent when the room is bright.
+@@4025
+<p>Press ▶ <b>Run</b>. The alarm will sound when a shadow falls on the light sensor.</p>
+@@4026
+Test the alarm by darkening the sun.
+@@4027
+The buzzer alarm did not sound when the light was cut.
+@@4028
+The red LED did not flash when the light was cut.
+@@4029
+The alarm did not stop when the light returned to normal.
+@@4030
+The burglar alarm works perfectly! The siren sounds and the LED lights up when the light is cut.
+@@4033
+<h2>Parking barrier</h2>
+      <p>A smart parking system that raises the barrier when a vehicle approaches and shows a guidance message on the LCD screen!</p>
+      <ol>
+        <li>The distance sensor is on <b>D3</b>, the barrier servo on <b>D5</b>, and the LCD screen is connected via I2C.</li>
+        <li>When a vehicle approaches (distance &lt; 25 cm):</li>
+        <li>Open the barrier (servo <b>90 degrees</b>) and write <i>Geciniz</i> on LCD row 2.</li>
+        <li>When the vehicle is far away (distance &gt;= 25 cm):</li>
+        <li>Close the barrier (servo <b>0 degrees</b>) and write <i>DUR</i> on LCD row 2.</li>
+      </ol>
+@@4034
+<p>The distance sensor (<span class="pin-etiket">D3</span>), the barrier Servo (<span class="pin-etiket">D5</span>), and the LCD are ready.</p>
+@@4035
+LCD title
+@@4036
+<p>Put <span class="chip ekran">LCD row 1 write</span> at the very start and write <span class="chip analog">Otopark</span> in it.</p>
+@@4037
+Distance and barrier check
+@@4038
+<p>Inside <span class="chip akis">repeat forever</span>, put: if distance &lt; 25, servo 90 and LCD "Geciniz"; else servo 0 and LCD "DUR".</p>
+@@4039
+Use the if-else block.
+@@4040
+<p>Press ▶ <b>Run</b>. When the vehicle approaches, the barrier will rise and the LCD will update.</p>
+@@4041
+Test it by moving the obstacle closer.
+@@4042
+Row 1 should have the title "Otopark".
+@@4043
+The barrier servo did not move at all.
+@@4044
+The barrier did not open when the vehicle approached.
+@@4045
+The barrier did not close when the vehicle moved away.
+@@4046
+The parking barrier works successfully! It opens when a vehicle arrives and closes when it leaves.
+@@4048
+6.6 · Solar tracker
+@@4049
+<h2>Solar tracker</h2>
+      <p>A single-axis solar tracker project that automatically turns the solar panel's angle toward the direction the light comes from!</p>
+      <ol>
+        <li>The light sensor is on <b>A0</b> and the direction servo is on pin <b>D5</b>.</li>
+        <li>Read the light value (0-4095) from analog pin A0.</li>
+        <li>Convert this value into a <b>0-180 degree</b> servo angle with the <b>map</b> block.</li>
+        <li>Write the converted angle to the D5 servo.</li>
+      </ol>
+@@4050
+<p>The LDR (<span class="pin-etiket">A0</span>) follows the sun, and the Servo (<span class="pin-etiket">D5</span>) turns the panel.</p>
+@@4051
+Convert with map and write to the servo
+@@4052
+<p>Put <span class="chip ses">D5 servo write</span> inside the loop. Plug a <span class="chip sayi">map</span> block into its angle: read A0 analog and turn the range 0-4095 into 0-180.</p>
+@@4053
+The map block is in the Number category.
+@@4054
+<p>Press ▶ <b>Run</b>. Move the sun and watch the servo follow the light.</p>
+@@4055
+Complete the test by changing the position of the sun.
+@@4056
+The servo did not follow the light changes.
+@@4057
+At medium light the angle should be ~90 (right now {0}).
+@@4058
+At full brightness the angle should be ~180 (right now {0}).
+@@4059
+Congratulations! The solar panel follows the light precisely.
+@@4061
+6.7 · Solar panel station
+@@4062
+<h2>Solar panel station</h2>
+      <p>A monitoring system that measures the electrical power produced by a solar panel, shows it on the LCD screen, and lights the charge LED when the power is sufficient!</p>
+      <ol>
+        <li>The light sensor is on <b>A0</b>, the LCD screen is on I2C, and the green LED is on pin <b>D0</b>.</li>
+        <li>Read the A0 light value (0-4095) and convert it to <b>0-100 Watts</b> of power.</li>
+        <li>Print <i>Gunes Paneli</i> on LCD row 1 and <i>Guc: [Watt] W</i> on row 2.</li>
+        <li>If the power is <b>50 Watts or above</b>, the green LED should be on (charging active); below that, it should be off.</li>
+      </ol>
+@@4063
+<p>The LDR (<span class="pin-etiket">A0</span>), LCD, and Green LED (<span class="pin-etiket">D0</span>) are ready.</p>
+@@4064
+Write the title
+@@4065
+<p>Use the <span class="chip ekran">LCD row 1 write</span> block to write <span class="chip analog">Gunes Paneli</span>.</p>
+@@4066
+The first row is number 0.
+@@4067
+Power calculation and writing to the screen
+@@4068
+<p>Inside <span class="chip akis">repeat forever</span>, convert the light to the 0-100 range and write it to LCD row 2.</p>
+@@4069
+Charge LED condition
+@@4070
+<p>If power is &gt;= 50, set D0 LED HIGH; otherwise set D0 LED LOW.</p>
+@@4071
+<p>Press ▶ <b>Run</b>. Change the light and observe the power produced and the charging state.</p>
+@@4072
+Test by increasing and decreasing the sunlight.
+@@4073
+Row 1 should have the title "Gunes Paneli".
+@@4074
+Row 2 should have the text "Guc: ".
+@@4075
+The green charge LED did not turn on when the light was high (power >= 50W).
+@@4076
+The green charge LED did not turn off when the light decreased (power < 50W).
+@@4077
+The solar panel station works perfectly! The power is on the screen and the charge LED is active.
+@@4078
+More sensitive watering
+@@4079
+Right now the pot is watered when soil moisture drops below 1500. Let the flower get thirsty a bit sooner: the pump should run when moisture drops <b>below 2000</b>.
+@@4080
+Change the number 1500 in the if condition to 2000. The pump should run when moisture is 1800, and should not run at 3000.
+@@4081
+The pump should not run when the soil is wet (3000).
+@@4082
+The pump did not run at moisture 1800. With a threshold of 2000, 1800 counts as dry.
+@@4083
+The pump did not stop when the soil got wet again (3000).
+@@4084
+The pot is now watered more sensitively with the 2000 threshold!
+@@4085
+What kind of number does the soil moisture sensor we use in this lesson give in wet soil?
+@@4086
+A small number (close to zero)
+@@4087
+It gives no number at all
+@@4088
+The wetter the soil, the better it conducts electricity and the larger the number the sensor gives. In dry soil the number is small, so we water when "moisture < threshold".
+@@4090
+If the pump runs all the time, the pot will flood. While the soil is dry, let the pump run for <b>2 seconds (2000 ms)</b>, then rest for <b>3 seconds (3000 ms)</b>; if the soil is still dry, repeat this cycle.
+@@4091
+In the dry branch: set the pump HIGH, delay(2000), set the pump LOW, delay(3000).
+@@4092
+The pump never ran while the soil was dry.
+@@4093
+The pump never stopped. After watering, you must set the pump LOW and let it rest.
+@@4094
+The pump ran for {0} ms; it should run for 2000 ms.
+@@4095
+If the soil is still dry after resting, the pump should run again.
+@@4097
+The pump runs for 2 s and rests for 3 s: the pot doesn't flood!
+@@4098
+Why is a relay or transistor module used instead of connecting a water pump directly to a board pin?
+@@4099
+A relay makes the pump run more quietly
+@@4101
+The pump draws much more current than a board pin can supply
+@@4102
+Without the module, the moisture sensor doesn't work
+@@4103
+A board pin can supply only a few tens of milliamps. The pump draws hundreds of milliamps; a relay/transistor switches the large current on and off with a small pin signal.
+@@4104
+Write the moisture percentage to the serial monitor
+@@4105
+Gardeners ask "what percent is the moisture?" Convert the moisture value to a <b>0-100 percent</b> range (<code>map</code>) and print it to the serial monitor with <code>Serial.println</code> on every round. (Don't forget <code>Serial.begin(115200);</code> first.)
+@@4106
+int yuzde = map(nem, 0, 4095, 0, 100); Serial.println(yuzde); It should print 100 at fully wet and 50 at half moisture.
+@@4107
+Nothing was printed to the serial monitor. Did you use Serial.println?
+@@4108
+The percentage must not exceed 100; convert the raw sensor number to the 0-100 range with map.
+@@4109
+It should print 100 for fully wet soil (4095).
+@@4110
+It should print 50 when moisture drops to half (2048).
+@@4111
+It should print 25 when moisture drops to a quarter (1024).
+@@4112
+Moisture percentage on the serial monitor: 100 → 50 → 25!
+@@4113
+What happens if we set the threshold to 4000 instead of 1500?
+@@4114
+The soil is counted as "dry" almost all the time and the pump runs almost continuously
+@@4115
+The pump never runs
+@@4116
+The sensor breaks
+@@4117
+The moisture number can be at most 4095. If the threshold is too high, almost every measurement stays below it; the pump runs even when the soil is wet and the pot floods.
+@@4118
+Light the lamp for 5 seconds
+@@4119
+Walking down the corridor takes longer than 2 seconds! When motion is detected, the lamp should stay on for <b>5 seconds (5000 ms)</b>, then turn off.
+@@4120
+Change the delay(2000) wait after turning on the lamp to delay(5000).
+@@4121
+The lamp should be off when there is no motion.
+@@4122
+The lamp went off too early; it should stay on for 5 seconds after motion.
+@@4123
+The lamp did not turn off after 5 seconds.
+@@4124
+The lamp stays on for exactly 5 seconds after motion!
+@@4125
+How does a PIR sensor detect motion?
+@@4126
+It sends a sound wave and listens for the echo
+@@4127
+It detects changes in the infrared heat given off by the human body
+@@4128
+It takes images from a camera and compares them
+@@4129
+It measures the amount of gas in the air
+@@4130
+A PIR (Passive Infrared) sensor notices changes in the heat radiation of its surroundings. When a warm object (a person, an animal) passes in front of it, it sets its output to HIGH.
+@@4131
+Motion counter
+@@4132
+The watchman wants to count every motion. Keep a <b>sayac</b> variable: each time motion is detected, increase the counter by 1 and write it to the serial monitor with <code>Serial.println(sayac)</code>. The lamp should still turn on.
+@@4133
+int sayac = 0; inside the if, sayac += 1; Serial.println(sayac); Serial.begin(115200) must be in setup. While the lamp stays on, the PIR will have gone quiet, so the same motion is not counted twice.
+@@4134
+The counter went past 3: you counted the same motion more than once. Increase the counter only once when motion is detected.
+@@4135
+There were 3 motions but the last number printed is {0}. The counter should go up as 1, 2, 3.
+@@4136
+none
+@@4137
+Motions are being counted: 1, 2, 3!
+@@4138
+Why can a PIR sensor give false signals during the first 30-60 seconds after it is powered on?
+@@4139
+Its battery hasn't charged yet
+@@4140
+The sensor listens to sound first
+@@4141
+The lamp is too bright
+@@4142
+It needs to learn the infrared picture of its surroundings (calibration)
+@@4143
+When a PIR is first turned on, it learns the "normal" heat map of the environment. It is best not to move during this time.
+@@4144
+Slowly fading lamp
+@@4145
+When the lamp suddenly turns off, it dazzles the eyes. When the time is up, the lamp should <b>fade out slowly</b>: reduce the brightness with <code>analogWrite(LAMBA, değer)</code> from 255 toward 0 in small steps (for example 5 at a time, waiting 20 ms at each step).
+@@4147
+The lamp should be at full brightness when motion is detected.
+@@4148
+The lamp did not fade out slowly. You must reduce the brightness from 255 to 0 in small steps.
+@@4149
+The lamp should be completely off in the end.
+@@4150
+The lamp fades out gradually, no more dazzling!
+@@4151
+What is the disadvantage of keeping the lamp on with <code>delay(2000)</code>?
+@@4152
+For those two seconds the board cannot look at anything else; it cannot notice new motion in the meantime
+@@4153
+The lamp burns brighter
+@@4154
+The PIR sensor breaks
+@@4155
+There is no disadvantage
+@@4156
+The program waits during delay(). In more advanced projects, elapsed time is measured with millis() instead; that way the board keeps checking the sensors even while waiting.
+@@4157
+Show Fahrenheit
+@@4158
+Your American friend reads temperature in Fahrenheit. Show the temperature in <b>Fahrenheit</b> on LCD row 1: <code>F = C * 9 / 5 + 32</code>, and add " F" at the end. (20 °C → 68 F)
+@@4159
+int fahr = sic * 9 / 5 + 32; Then write lcd.print(fahr); lcd.print(" F  ");
+@@4160
+Row 1 should show {0} F (right now "{1}"). Formula: C * 9 / 5 + 32.
+@@4161
+The LCD now shows Fahrenheit: 68 → 86 → 50 F!
+@@4162
+What is the difference between <code>Serial.print</code> and <code>Serial.println</code>?
+@@4163
+print prints numbers, println prints text
+@@4164
+println moves to the next line after printing, print does not
+@@4165
+print uses the serial monitor, println uses the LCD
+@@4166
+There is no difference between them
+@@4167
+println ("print line") adds a line break at the end of the text; the next text starts on a new line. Things written one after another with print appear side by side on the same line.
+@@4168
+Temperature warning
+@@4169
+When the temperature <b>goes above 25 °C</b>, the message <b>UYARI: Cok sicak</b> should be written to the serial monitor (<code>Serial.println</code>). At 25 °C and below, this message should not be written.
+@@4170
+if (sic > 25) { Serial.println("UYARI: Cok sicak"); } It should not print at a temperature of 20, and should print at 30.
+@@4171
+No UYARI should be printed when the temperature is 20 °C.
+@@4172
+When the temperature is 30 °C, "UYARI: Cok sicak" should be written to the serial monitor.
+@@4173
+The warning appears when the temperature goes above 25 °C!
+@@4174
+Why do we convert the 0-4095 number from the temperature sensor to the range 0-50 with <code>map</code>?
+@@4175
+To heat the sensor
+@@4176
+To adjust the brightness of the LCD
+@@4177
+To convert the raw number into degrees (°C) that people can understand
+@@4178
+To increase the speed of the board
+@@4179
+The sensor produces a voltage/number, not degrees. map() proportionally converts the raw measurement into a meaningful unit (here 0-50 °C).
+@@4180
+Night / day text
+@@4181
+When the light percentage drops <b>below 30</b>, LCD row 2 should show <b>Gece</b> instead of "Isik: ..."; otherwise it should show <b>Gunduz</b>.
+@@4182
+if (isik < 30) { lcd.print("Gece       "); } else { lcd.print("Gunduz     "); } Add spaces to the end of the texts to erase the old letters.
+@@4183
+When the light is high (100%), row 2 should say "Gunduz".
+@@4184
+When the light is 25%, row 2 should say "Gece".
+@@4185
+The station can tell night from day!
+@@4186
+What are the spaces at the end of a text like <code>lcd.print(" %  ")</code> for?
+@@4187
+To erase the characters left over from an earlier, longer text (for example 100) from the screen
+@@4188
+To make the screen brighter
+@@4189
+To open the serial monitor
+@@4190
+To calculate the temperature
+@@4191
+The LCD writes the new text over the old one. When the number drops from 100 to 25, a space is added at the end so the last digit of "100" does not stay on the screen.

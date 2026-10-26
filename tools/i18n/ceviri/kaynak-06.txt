@@ -1,0 +1,494 @@
+@@2748
+Sönme döngüsü
+@@2749
+<p>Aynısından bir tane daha yap, ama bu sefer <b>255'ten 0'a</b> saysın. Döngü bloğunu bir daha al, <b>başlangıç 255, bitiş 0, adım 5</b> yap. İçine yine <span class="chip pin">PWM</span> (D0, değer <span class="chip degisken">i</span>) ve <span class="chip akis">20 ms bekle</span> koy. İkinci döngüyü ilkinin altına tak.</p>
+          <div class="kutu bilgi">Bitiş başlangıçtan küçükse Blockly adımı otomatik geriye sayar: 255, 250, 245, ...</div>
+@@2750
+İlk döngüyü kopyalamak için bloğa tıkla, Ctrl+C ve Ctrl+V yap, sonra sayıları değiştir.
+@@2751
+<p>▶ <b>Çalıştır</b>'a bas.</p>
+          <div class="kutu hedef"><b>Hedef:</b> LED yavaşça tam parlaklığa çıksın, sonra yavaşça sönsün.</div>
+@@2752
+Parlamıyorsa değerin i olduğundan ve bekleme bloğunun döngü içinde olduğundan emin ol.
+@@2753
+LED yumuşakça parlamıyor. 0'dan 255'e küçük adımlarla say ve her adımda PWM yaz.
+@@2754
+LED en parlak değere (255) kadar çıkmadı.
+@@2755
+Parladıktan sonra yumuşakça sönmeli. 255'ten 0'a sayan ikinci bir döngü ekle.
+@@2756
+Süper! LED yumuşakça parlıyor ve sönüyor.
+@@2759
+<h2>Potansiyometre ile parlaklık</h2>
+      <p>Potansiyometre (pot) çevirdikçe değişen bir sayı verir: <b>0 ile 4095</b> arası. LED ise <b>0 ile 255</b> arası parlaklık anlar. Bu yüzden sayıyı <b>harita</b> bloğu ile küçültürüz.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> bloğunu al.</li>
+        <li>İçine <b>D0 pinine PWM</b> koy.</li>
+        <li>Değer yerine <b>harita</b> bloğunu tak: A0'ı oku, 0-4095 aralığını 0-255'e çevir.</li>
+        <li>Sona <b>10 ms bekle</b> ekle. ▶ Çalıştır'a bas, potu çevir (kendiliğinden de çevrilir).</li>
+      </ol>
+@@2760
+Potansiyometreyi tanı
+@@2761
+<p>Sahnede bir <b>potansiyometre</b> ve bir <b>sarı LED</b> var. Pot, <span class="pin-etiket">A0</span> pinine bağlı. LED ise <span class="pin-etiket">D0</span> pininde.</p>
+          <p>3B sahnede <b>potansiyometre topuzunu fareyle döndür</b>. Program bittiğinde LED'in buna tepki vermesini göreceksin.</p>
+          <div class="kutu bilgi"><b>analogRead:</b> Pot çevrildikçe karta <b>0 ile 4095</b> arası bir sayı gider (12 bit). Tam sol 0, tam sağ 4095.
+            <pre><code>analogRead(A0)</code></pre></div>
+@@2762
+<p>Pot hep değişebilir, o yüzden kartın hep bakması lazım. <span class="chip akis">sürekli tekrarla</span> bloğunu <span class="chip akis">Akış</span> kategorisinden al.</p>
+@@2763
+LED'e PWM yaz
+@@2764
+<p><span class="chip pin">PWM</span> bloğunu döngünün içine koy ve pini <span class="pin-etiket">D0</span> yap.</p>
+          <div class="kutu dikkat"><b>Sorun:</b> Pot 0-4095 verir ama <code>analogWrite</code> sadece 0-255 anlar. Sayıyı küçültmemiz gerek!</div>
+@@2765
+PWM bloğu Pinler kategorisinde. Döngünün ağzına yaklaştır.
+@@2766
+Harita bloğuyla ölçekle
+@@2767
+<p><span class="chip analog">Analog</span> kategorisinden <span class="chip analog">harita</span> bloğunu al ve PWM'in değer kutusuna tak. İçinde zaten <span class="pin-etiket">A0</span> okuması ve 0-4095 → 0-255 var.</p>
+          <div class="kutu bilgi"><b>map:</b> Bir sayıyı bir aralıktan başka aralığa çevirir. Ortadaki 2048, 127 civarına dönüşür.
+            <pre><code>analogWrite(D0, map(analogRead(A0), 0, 4095, 0, 255));</code></pre></div>
+@@2768
+Harita bloğu hazır dolu geliyor; sadece PWM bloğundaki sayının yerine tak.
+@@2769
+Bekle ve çalıştır
+@@2770
+<p>PWM bloğunun altına <span class="chip akis">10 ms bekle</span> ekle, sonra ▶ <b>Çalıştır</b>'a bas. Çalışırken <b>potansiyometre topuzunu fareyle döndür</b>, LED parlaklığı değişsin.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Pot sola gidince LED sönsün, sağa gidince en parlak yansın.</div>
+@@2771
+Bekle bloğunun varsayılanı 500 ms; 10 yap. Hepsi sürekli tekrarla içinde olsun.
+@@2773
+Program çok erken bitti. Her şeyi "sürekli tekrarla" içine koy.
+@@2774
+LED hiç yanmadı. D0 pinine PWM yazıyor musun?
+@@2775
+Pot çevrildikçe LED parlaklığı değişiyor!
+@@2776
+Parlaklık pot ile uyuşmuyor. Harita bloğunda 0-4095 → 0-255 olmalı.
+@@2778
+3.4 · Gece lambası
+@@2779
+<h2>Gece lambası (LDR)</h2>
+      <p>LDR bir ışık sensörüdür. Işık çoksa büyük, karanlıkta küçük bir sayı verir (0-4095). Güneşi sola çekersen karanlık olur.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> içine <b>eğer</b> bloğu koy.</li>
+        <li>Koşul: <b>A0 analog değeri &lt; 1000</b> (karanlık).</li>
+        <li>Doğruysa <b>D0 yüksek</b>, değilse <b>D0 düşük</b> yap (eğer-değilse).</li>
+        <li>▶ Çalıştır. Güneş gidince LED yanmalı!</li>
+      </ol>
+@@2780
+LDR'yi tanı
+@@2781
+<p>Sahnede bir <b>LDR</b> (ışık sensörü) ve <b>sarı LED</b> var. LDR <span class="pin-etiket">A0</span> pininde, LED <span class="pin-etiket">D0</span> pininde.</p>
+          <p>3B sahnede <b>güneşi sürükleyerek</b> LDR'den uzaklaştır, ortam kararsın.</p>
+          <div class="kutu bilgi"><b>Aydınlık ve karanlık:</b> Işık çoksa <code>analogRead</code> büyük sayı (4095'e yakın), karanlıkta küçük sayı (0'a yakın) verir.
+            <pre><code>analogRead(A0)</code></pre></div>
+@@2782
+Sürekli tekrarla ve eğer
+@@2783
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al, içine <span class="chip akis">eğer</span> bloğunu koy.</p>
+          <div class="kutu bilgi">"Değilse" kolunu eklemek için eğer bloğundaki <b>dişli simgesine</b> tıkla ve "değilse"yi içeri sürükle.
+            <pre><code>if (...) {
+  ...
+} else {
+  ...
+}</code></pre></div>
+@@2784
+Eğer bloğu Akış kategorisinin sonunda. Dişli simgesi bloğun sol üstünde.
+@@2785
+Eşik değeri: karanlık mı?
+@@2786
+<p><span class="chip mantik">Mantık</span> kategorisinden <span class="chip mantik">karşılaştır</span> bloğunu eğer'in koşuluna tak. Soldaki yuvaya <span class="chip analog">A0 analog değeri</span>, sağdaki yuvaya <span class="chip sayi">1000</span> koy. İşareti <b>&lt;</b> yap.</p>
+          <div class="kutu bilgi"><b>Eşik değeri:</b> "Karanlık" ile "aydınlık" arasındaki sınır sayıdır. Biz 1000 seçtik: bunun altı karanlık.
+            <pre><code>if (analogRead(A0) &lt; 1000) {</code></pre></div>
+@@2787
+A0 okuma bloğu Analog kategorisinde. Sayı için Sayı kategorisine bak.
+@@2788
+<p>Eğer kolunun içine <span class="chip pin">D0 pinini YÜKSEK (1) yap</span>, değilse kolunun içine <span class="chip pin">D0 pinini DÜŞÜK (0) yap</span> koy. Sona <span class="chip akis">10 ms bekle</span> eklemeyi unutma.</p>
+          <pre><code>digitalWrite(D0, HIGH);
+...
+digitalWrite(D0, LOW);</code></pre>
+@@2789
+İki ayrı pin bloğu lazım: biri karanlıkta yanar, biri aydınlıkta söner.
+@@2790
+<p>▶ <b>Çalıştır</b>'a bas. Sonra 3B sahnede <b>güneşi LDR'den uzaklaştırıp yaklaştır</b>.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Karanlıkta LED yansın, aydınlıkta sönsün. Gece lambası hazır!</div>
+@@2791
+LED hep yanıksa "değilse" kolunda D0 DÜŞÜK olmalı. Hiç yanmıyorsa işaret < mi?
+@@2793
+Program çok erken bitti. "sürekli tekrarla" kullan.
+@@2794
+Karanlıkta LED yandı, aydınlıkta söndü. Gece lambası hazır!
+@@2795
+LED hiç yanmadı. Karanlıkta (değer < 1000) D0'ı yüksek yap.
+@@2796
+LED hep yanık. Işık varken söndürmeyi unutma (değilse kolu).
+@@2797
+Işık varken LED sönük, karanlıkta yanık olmalı.
+@@2799
+3.5 · Sıcaklık göstergesi
+@@2800
+<h2>Sıcaklık alarmı</h2>
+      <p>Sıcaklık sensörü A1 pininden sayı gönderir: sıcaklık arttıkça sayı büyür (0-4095). Yaklaşık <b>2500</b> üstü "çok sıcak" demektir.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> içine <b>eğer-değilse</b> koy.</li>
+        <li>Koşul: <b>A1 analog değeri &gt; 2500</b>.</li>
+        <li>Doğruysa kırmızı alarm LED'i (<b>D0</b>) yansın, değilse sönsün.</li>
+        <li>▶ Çalıştır. Sıcaklık kaydırıcısı sağa gidince alarm çalmalı.</li>
+      </ol>
+@@2801
+Sensörü tanı
+@@2802
+<p>Sahnede bir <b>sıcaklık sensörü</b> (<span class="pin-etiket">A1</span>) ve bir <b>kırmızı alarm LED'i</b> (<span class="pin-etiket">D0</span>) var.</p>
+          <p>3B sahnede <b>sıcaklık kaydırıcısını sürükle</b>: sağa gittikçe ortam ısınır.</p>
+          <div class="kutu bilgi">Sıcaklık arttıkça <code>analogRead(A1)</code> sayısı büyür (0-4095). Yaklaşık <b>2500</b>'ün üstüne "çok sıcak" diyeceğiz. Bu sayı bizim <b>eşik değerimiz</b>.</div>
+@@2803
+Döngü ve eğer-değilse
+@@2804
+<p><span class="chip akis">sürekli tekrarla</span> bloğunun içine <span class="chip akis">eğer</span> bloğunu koy. Dişli simgesiyle "değilse" kolunu da ekle.</p>
+          <pre><code>if (...) {
+  ...
+} else {
+  ...
+}</code></pre>
+@@2805
+İkisi de Akış kategorisinde.
+@@2806
+Koşul: A1 > 2500
+@@2807
+<p><span class="chip mantik">karşılaştır</span> bloğunu eğer'e tak. Sol yuvaya <span class="chip analog">analog değeri</span> bloğunu koy ve pini <span class="pin-etiket">A1</span> yap. Sağ yuvaya <span class="chip sayi">2500</span> yaz, işareti <b>&gt;</b> seç.</p>
+          <pre><code>if (analogRead(A1) &gt; 2500) {</code></pre>
+          <div class="kutu dikkat">Pini A0 bırakma! Sıcaklık sensörü A1'e bağlı.</div>
+@@2808
+Analog okuma bloğundaki pin listesinden A1 seç.
+@@2809
+Alarmı yak ve söndür
+@@2810
+<p>Doğruysa kolunda <span class="chip pin">D0 YÜKSEK</span>, değilse kolunda <span class="chip pin">D0 DÜŞÜK</span> olsun. Sona <span class="chip akis">10 ms bekle</span> ekle.</p>
+@@2811
+Pin bloğunu iki kez alıp birinde değeri DÜŞÜK (0) yap.
+@@2812
+<p>▶ <b>Çalıştır</b>'a bas, sonra <b>sıcaklık kaydırıcısını</b> sağa sola çek.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Sıcaklık yükselince alarm LED'i yansın, soğuyunca sönsün.</div>
+@@2813
+Alarm hiç çalmıyorsa pin A1 mi ve işaret &gt; mü diye bak.
+@@2815
+Sıcak olunca alarm çalıyor, soğuyunca duruyor!
+@@2816
+Alarm hiç çalmadı. A1 > 2500 olunca D0 yüksek olmalı.
+@@2817
+Alarm hep yanık. Soğuyunca D0'ı düşük yap.
+@@2818
+Sıcakken LED yanık, soğukken sönük olmalı.
+@@2820
+3.6 · LED çubuğu
+@@2821
+<h2>LED çubuğu: seviye göstergesi</h2>
+      <p>8 LED'lik çubuk D0'dan D7'ye bağlı. Potu çevirince yanan LED sayısı değişsin (ses seviyesi göstergesi gibi).</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> bloğunu al.</li>
+        <li>İçine <b>LED çubuğu</b> bloğunu koy: D0'dan başlayan <b>8</b> LED.</li>
+        <li>Seviye yerine <b>harita</b> tak: A0 oku, 0-4095 aralığını <b>0-8</b>'e çevir.</li>
+        <li>Sona <b>10 ms bekle</b>. ▶ Çalıştır, potu çevir.</li>
+      </ol>
+@@2822
+Çubuğu tanı
+@@2823
+<p>Sahnede <b>8 LED'lik çubuk</b> var, <span class="pin-etiket">D0</span>'dan <span class="pin-etiket">D7</span>'ye bağlı. Yanında <span class="pin-etiket">A0</span> pininde bir potansiyometre duruyor.</p>
+          <p>Pot çevrildikçe yanan LED sayısı artacak, tıpkı bir ses seviyesi göstergesi gibi. 3B sahnede <b>potun topuzunu fareyle döndürerek</b> sonucu deneyeceksin.</p>
+@@2824
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al. Pot hep okunmalı.</p>
+@@2825
+LED çubuğu bloğu
+@@2826
+<p><span class="chip analog">Analog</span> kategorisinden <span class="chip analog">LED çubuğu</span> bloğunu döngünün içine koy: <span class="pin-etiket">D0</span>'dan başlayan <b>8</b> LED.</p>
+          <div class="kutu bilgi">Blok arkada küçük bir döngü çalıştırır: seviye kadar LED yanar, kalanı söner.
+            <pre><code>for (int i = 0; i &lt; 8; i++) {
+  digitalWrite(D0 + i, i &lt; seviye ? HIGH : LOW);
+}</code></pre></div>
+@@2827
+Bloğun başlangıç pini D0, LED sayısı 8 olsun.
+@@2829
+<p>Seviye yuvasına <span class="chip analog">harita</span> bloğunu tak. Pot 0-4095 verir, çubuk ise 0-8 LED gösterir. Bu yüzden harita bloğunun son sayısını <b>255</b> yerine <b>8</b> yap.</p>
+          <pre><code>map(analogRead(A0), 0, 4095, 0, 8)</code></pre>
+          <div class="kutu dikkat">Sadece son sayıyı değiştir: 0-4095 aynı kalacak, hedef aralık 0-8 olacak.</div>
+@@2830
+Harita bloğunun en sağdaki sayı kutusuna tıkla ve 8 yaz.
+@@2831
+<p>Çubuk bloğunun altına <span class="chip akis">10 ms bekle</span> ekle, ▶ <b>Çalıştır</b>'a bas ve <b>pot topuzunu fareyle döndür</b>.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Pot sola gidince LED'ler sönsün, sağa gittikçe çubuk dolsun.</div>
+@@2832
+Çubuk dolmuyorsa harita bloğundaki son sayının 8 olduğunu kontrol et.
+@@2833
+Hiç LED yanmadı. LED çubuğu bloğuna seviye ver.
+@@2834
+Pot çevrildikçe çubuk dolup boşalıyor!
+@@2835
+Seviye pot ile uyuşmuyor. Harita bloğunda 0-4095 → 0-8 olmalı.
+@@2836
+LED hiç yanmadı. D0 pinine yazdığından emin ol.
+@@2837
+%{0} parlaklıkta olmalıydı (şu an %{1})
+@@2839
+Hiç LED yanmadı. Çubuğa seviye ver.
+@@2840
+A0 = {0} iken {1} LED yanmalıydı, {2} LED yanıyor.
+@@2841
+Sarı yap
+@@2842
+<p>Sarı, kırmızı ve yeşil ışığın karışımıdır. RGB LED <b>sarı</b> yansın: <span class="pin-etiket">D0</span> (kırmızı) ve <span class="pin-etiket">D1</span> (yeşil) tam parlak, <span class="pin-etiket">D2</span> (mavi) sönük olsun.</p>
+@@2843
+Mor için kırmızı + mavi karıştırmıştın. Şimdi hangi iki rengi karıştırmalısın?
+@@2844
+Parlak sarı! Kırmızı + yeşil = sarı.
+@@2845
+Mavi (D2) sönük olmalı, yoksa renk sarıdan uzaklaşır.
+@@2846
+Kırmızı (D0) tam parlak (255) olmalı.
+@@2847
+RGB LED'de <b>kırmızı ve yeşil tam parlak, mavi sönük</b> olursa hangi renk görünür?
+@@2849
+Sarı
+@@2850
+Turkuaz (camgöbeği)
+@@2852
+Işıkta kırmızı + yeşil = sarı. Kırmızı + mavi mor, yeşil + mavi turkuaz, üçü birden beyaz verir.
+@@2853
+Turuncu yap
+@@2854
+<p>Turuncu, kırmızıya biraz yeşil katınca olur. <span class="pin-etiket">D0</span> tam parlak (255), <span class="pin-etiket">D1</span> <b>yarı parlak</b> (yaklaşık 128), <span class="pin-etiket">D2</span> sönük olsun.</p>
+@@2855
+Yeşili tam açarsan sarı olur. Yeşilin değerini 0 ile 255 arasında bir yere koy.
+@@2856
+Turuncu oldu! Yeşili azaltınca renk sarıdan turuncuya kaydı.
+@@2857
+Mavi (D2) sönük kalmalı.
+@@2858
+Yeşil çok parlak, renk sarıya döndü. D1'i yaklaşık 128 yap.
+@@2859
+Yeşil çok az, renk kırmızıya yakın kaldı. D1'i yaklaşık 128 yap.
+@@2861
+Yeşil ışığı söndürür
+@@2862
+Yeşil ışığı tam parlak yapar
+@@2863
+D1 pinini giriş yapar
+@@2864
+LED'in tamamını kapatır
+@@2865
+PWM değeri 0 ise o renk hiç yanmaz. Diğer iki renk (D0, D2) etkilenmez, onlar kendi değerlerine göre yanmaya devam eder.
+@@2866
+Yumuşak beyaz
+@@2867
+<p>Üç rengi de <b>aynı ve orta parlaklıkta</b> (yaklaşık 128) yak. Çıkan renk gözü yormayan soluk bir beyaz olsun.</p>
+@@2868
+Beyaz için üç kanal eşit olmalı. "Orta parlaklık" 0 ile 255 arasının neresi?
+@@2869
+Üç rengin değeri birbirine yakın olmalı, yoksa renkli görünür.
+@@2870
+Çok parlak. Üç değeri de yaklaşık 128 yap.
+@@2871
+Çok sönük. Üç değeri de yaklaşık 128 yap.
+@@2872
+Soluk beyaz! Eşit karışım beyaz, düşük değer ise daha az parlak.
+@@2873
+Bir renk kanalına <code>analogWrite</code> ile 0'dan 255'e kadar yazabiliyoruz. Bir kanal <b>kaç farklı parlaklık düzeyi</b> gösterebilir?
+@@2877
+0 ile 255 arasında 256 sayı vardır (0 da sayılır). Bir RGB LED'in üç kanalı 256 × 256 × 256 farklı renk üretebilir.
+@@2878
+Kırmızı, yeşil, mavi sırayla
+@@2879
+<p>LED sırayla <b>kırmızı, yeşil, mavi</b> yansın. Her renk en az yarım saniye <code>delay(500)</code> kadar görünsün. Renkler saf olmalı: bir renk yanarken diğer ikisi sönük.</p>
+@@2880
+Bir rengi yakınca ötekilerin 0 olduğundan emin ol, sonra bekle ve sıradaki renge geç.
+@@2881
+kırmızı
+@@2882
+yeşil
+@@2883
+Kırmızı, yeşil, mavi sırayla yandı!
+@@2884
+Hiç saf renk görünmedi. Bir renk yanarken diğer ikisi 0 olmalı ve renk en az 250 ms kalmalı (bekle bloğu ekle).
+@@2885
+Sırada eksik ya da yanlış yerde: {0}. Sıra kırmızı, yeşil, mavi olmalı ve her biri bekleme ile görünmeli.
+@@2886
+Üç rengin de PWM değeri <b>128</b> ise LED nasıl görünür?
+@@2888
+Kırmızı
+@@2889
+Soluk beyaz (açık gri)
+@@2890
+Tamamen sönük
+@@2891
+Üç renk eşit karışınca beyaz oluşur. Değer yarım olduğu için parlaklık da yarıdır, yani soluk beyaz.
+@@2892
+<p><span class="pin-etiket">D0</span> LED'i <b>yarım parlaklıkta</b> sabit yak. Tam parlak (255) değil, aralığın ortası.</p>
+@@2893
+0 sönük, 255 tam parlak. Yarısı kaç eder?
+@@2894
+LED sönük. D0 pinine PWM ile bir değer yaz.
+@@2895
+LED çok parlak (%{0}). Yarım parlaklık için yaklaşık 128 yaz.
+@@2896
+LED fazla sönük (%{0}). Yarım parlaklık için yaklaşık 128 yaz.
+@@2897
+Tam yarım parlaklık!
+@@2898
+<b>PWM</b> kısaltması neyin baş harfleridir?
+@@2901
+Pulse Width Modulation (darbe genişliği ayarı)
+@@2903
+PWM, pini çok hızlı açıp kapatır ve açık kalma süresini (darbe genişliğini) değiştirerek parlaklığı ayarlar.
+@@2904
+Sadece parlayıp kal
+@@2905
+<p>LED <b>0'dan 255'e yavaşça parlasın</b> ve tam parlak halde kalsın. Bu sefer geri sönme olmasın.</p>
+@@2906
+Derste yaptığın iki döngüden yalnızca birine ihtiyacın var. Hangisi?
+@@2907
+LED sönmeye başlıyor. Sönme döngüsünü kaldır, parlak kalsın.
+@@2908
+Sonunda LED tam parlak (255) olmalı.
+@@2909
+LED yavaşça parladı ve tam parlak kaldı.
+@@2910
+<code>analogWrite(D0, 64);</code> LED'i yaklaşık yüzde kaç parlaklıkta yakar?
+@@2915
+64 / 255 yaklaşık 0,25 eder. Yani tam parlaklığın dörtte biri, yaklaşık %25.
+@@2916
+Yavaş yavaş sönen LED
+@@2917
+<p>Bu kez LED <b>tam parlak başlasın</b> ve 255'ten 0'a <b>yavaşça sönsün</b>. Sönünce kapalı kalsın (parlama olmasın).</p>
+@@2918
+Döngü 255'ten başlayıp 5'er 5'er azalmalı; her adımda küçük bir bekleme olsun.
+@@2919
+LED tam parlak başlamalı: ilk değer 255 civarı olmalı.
+@@2920
+LED yumuşakça sönmüyor. 255'ten 0'a küçük adımlarla say.
+@@2921
+LED tekrar parlıyor. Sadece sönme olmalı.
+@@2922
+Sonunda LED tamamen sönmeli (0).
+@@2923
+LED tam parlaklıktan yavaşça söndü.
+@@2924
+Parlama döngüsündeki <code>delay(20)</code> kaldırılırsa ne olur?
+@@2925
+LED daha parlak olur
+@@2926
+Parlama o kadar hızlı biter ki gözle fark edilmez
+@@2928
+52 adım birkaç milisaniyede biter. Bekleme, her parlaklık düzeyinin gözümüzün görebileceği kadar süre kalmasını sağlar.
+@@2929
+İki kez nefes al
+@@2930
+<p>LED <b>iki kez</b> art arda yumuşakça parlayıp sönsün (parla, sön, parla, sön). Her seferinde tam parlaklığa (255) çıksın.</p>
+@@2931
+Parlama ve sönme döngülerini ikinci kez tekrarla ya da hepsini bir dış döngünün içine al.
+@@2932
+LED yumuşakça parlamıyor. Küçük adımlarla say.
+@@2933
+LED yumuşakça sönmüyor. 255'ten 0'a sayan bir döngü ekle.
+@@2934
+LED yalnızca {0} kez tam parladı. Parla-sön hareketini iki kez yaptır.
+@@2935
+LED iki kez nefes aldı!
+@@2936
+Ters çalışsın
+@@2937
+<p>Pot <b>sola</b> (değer küçük) giderken LED <b>tam parlak</b>, pot <b>sağa</b> (<span class="pin-etiket">A0</span> büyük) gittikçe LED <b>sönsün</b>. Yani ters orantılı.</p>
+@@2938
+Harita bloğunun çıkış aralığını ters çevirebilirsin ya da 255'ten çıkarma yapabilirsin.
+@@2939
+Pot sağa gittikçe LED sönüyor, ters çalışıyor!
+@@2940
+ESP32-S3'te <code>analogRead</code> çözünürlüğü 12 bittir. Okunabilecek <b>en büyük değer</b> kaçtır?
+@@2942
+12 bit = 2 üzeri 12 = 4096 değer demektir, 0'dan 4095'e kadar. 255 8 bite, 1023 10 bite karşılık gelir.
+@@2943
+En fazla yarı parlak
+@@2944
+<p>LED en fazla <b>yarım parlaklığa</b> çıksın: pot tamamen sağdayken bile LED yarım güçte yansın (yaklaşık 127). Pot sola gidince yine sönsün.</p>
+@@2945
+Harita bloğundaki hedef aralığın üst sınırı 255 yerine ne olmalı?
+@@2946
+LED en fazla yarım parlaklıkta kalıyor!
+@@2947
+Pot değerini LED parlaklığına çevirmek için neden <b>map</b> (harita) kullanırız?
+@@2948
+Okunan aralık (0-4095) ile yazılabilen aralık (0-255) farklı olduğu için
+@@2949
+Pot yavaş olduğu için
+@@2950
+LED yalnızca map ile yandığı için
+@@2951
+map, delay yerine geçtiği için
+@@2952
+<code>map</code> bir sayıyı bir aralıktan başka bir aralığa orantılı çevirir. 4095'i doğrudan analogWrite'a verirsek 255 sınırı aşılır.
+@@2953
+Eşikli lamba
+@@2954
+<p>Parlaklık ayarı yok: pot <b>ortadan (yaklaşık 2048) sağa</b> geçince LED <b>tam parlak</b> yansın, ortadan solda iken <b>sönük</b> kalsın. Pot bir anahtar gibi davransın.</p>
+@@2955
+Bu kez map yerine "eğer … büyükse" kullan. Eşik değeri pot tam ortası olsun.
+@@2956
+Pot ortayı geçince lamba tam yanıyor, solda sönük!
+@@2957
+Pot tam ortadayken <code>analogRead(A0)</code> yaklaşık kaç okur?
+@@2960
+Aralık 0-4095 olduğundan tam ortası yaklaşık 2048'dir. Bu değeri <code>map</code> ile 0-255'e çevirirsen 127 civarı çıkar.
+@@2961
+Üç seviyeli lamba
+@@2962
+<p>Pot aralığını üçe böl. Değer <b>1365'ten küçükse LED sönük</b>, <b>1365 ile 2730 arasında yarım parlak</b> (yaklaşık 128), <b>2730'dan büyükse tam parlak</b> (255) olsun.</p>
+@@2963
+Önce büyük eşiği kontrol eden bir eğer, değilse kolunda ikinci bir eğer kullanabilirsin.
+@@2964
+Üç seviye de doğru: sönük, yarım, tam!
+@@2965
+Gündüz lambası (ters)
+@@2966
+<p>Mantığı ters çevir: ortam <b>aydınlıkken</b> LED <b>yansın</b>, <b>karanlıkta</b> sönsün. (Güneş paneli göstergesi gibi!) Eşik yine 1000 olabilir.</p>
+@@2967
+Karşılaştırma işaretini ters çevirmek yeterli: küçüktür yerine ne?
+@@2968
+Işık varken LED yanıyor, karanlıkta sönüyor!
+@@2969
+Kodda <b>eşik değeri</b> ne işe yarar?
+@@2970
+Işığın rengini seçer
+@@2971
+Karar verirken kullandığımız sınır sayıdır
+@@2972
+LED'in en büyük parlaklığını belirler
+@@2973
+Pinin adını değiştirir
+@@2974
+Eşik, "karanlık mı aydınlık mı?" kararını veren sınırdır. Sensör değeri bu sayının altındaysa bir şey yapar, üstündeyse başka bir şey yapar.
+@@2975
+Daha erken yansın (eşik 2000)
+@@2976
+<p>Lamba akşam alacakaranlığında da yansın: eşik değerini yükselt. A0 değeri <b>2000'in altına</b> düşünce LED yansın, 2000 ve üstünde sönük olsun.</p>
+@@2977
+Karşılaştırma bloğundaki 1000 sayısını değiştir. Hangi sayı 1800'ü "karanlık" sayar ama 2500'ü saymaz?
+@@2978
+Eşik yükseldi, lamba alacakaranlıkta da yanıyor!
+@@2979
+LDR'ye daha çok ışık düştükçe <b>direnci</b> ne olur?
+@@2981
+Değişmez
+@@2982
+Hep 1 kΩ olur
+@@2983
+Azalır
+@@2984
+LDR ışık arttıkça iletkenleşir, direnci düşer. Direnç bölücü bir devrede bu, A0 pinindeki gerilimin (ve okunan sayının) değişmesini sağlar.
+@@2985
+Otomatik parlaklık
+@@2986
+<p>LED artık sadece yanıp sönmesin: ortam ne kadar karanlıksa LED o kadar <b>parlak</b> yansın. A0 = 0 (zifiri karanlık) iken tam parlak (255), A0 = 4095 (çok aydınlık) iken sönük olsun.</p>
+@@2987
+Harita bloğunu kullan: giriş 0-4095, çıkış 255'ten 0'a doğru (ters sıra).
+@@2988
+Karanlıkta daha parlak yanan akıllı lamba!

@@ -1,0 +1,442 @@
+@@3209
+Kol 45° ile 135° arasında gidip geldi!
+@@3211
+Kolu dakikada 90 tur döndürür
+@@3212
+Kolu orta konuma (90°) getirir ve orada tutar
+@@3213
+Kolu 90 saniye boyunca döndürür
+@@3214
+Kolu uç noktaya (180°) getirir
+@@3215
+Servo, verdiğin açıya gider ve orada durur. 90° yaklaşık orta konumdur.
+@@3217
+<p>Servo kolu <b>selam versin</b>: <b>0°'den 90°'ye</b> çıkıp tekrar <b>0°</b>'ye insin. Bunu <b>3 kez</b> tekrarla.</p><p>Her hareketten sonra en az 200 ms bekle; kol 100°'yi geçmesin.</p>
+@@3218
+Bir sayaçlı döngü ya da kopyalanmış bloklar kullan: 0, bekle, 90, bekle. 3 kez tekrar.
+@@3219
+Kol yeterince gidip gelmedi. 3 selam için en az 6 hareket gerekir.
+@@3220
+Kol 100°'yi geçti. Selamda en fazla 90° kullan.
+@@3221
+Kol 0°'den 90°'ye sadece {0} kez çıktı. 3 kez gerekli.
+@@3222
+Hareketler çok hızlı. Her hareketten sonra en az 200 ms bekle.
+@@3224
+Standart bir servo motorun kolu hangi açı aralığında hareket eder?
+@@3225
+Sınırsız, sürekli döner
+@@3229
+Bu atölyedeki gibi standart servoların kolu 0° ile 180° arasında hareket eder.
+@@3230
+Üç tur süpür
+@@3231
+<p>Kol <b>0°'den 180°'ye</b> gidip <b>0°'ye</b> dönsün; bunu <b>3 tur</b> yap.</p><p>Adımlar 45°'den büyük olmasın ve her adımda bekle.</p>
+@@3232
+İç içe düşün: 3 kez tekrarla { 0'dan 180'e adım adım, 180'den 0'a adım adım }. Adım 30° olabilir.
+@@3233
+Servo çok az hareket etti.
+@@3234
+Adımlar çok büyük. 45°'den küçük adımlarla ilerle.
+@@3235
+Sadece {0} tam tur yaptı. 0°→180°→0° turunu 3 kez tamamla.
+@@3236
+Üç tam tur tamam!
+@@3237
+Servo motor kolunun hangi açıya gideceğini <b>nereden</b> bilir?
+@@3238
+Kendisine gelen kısa darbelerin (PWM sinyalinin) genişliğinden
+@@3239
+Pil gerilimi ne kadar yüksekse o kadar döner
+@@3240
+Kartın rengine bakarak
+@@3241
+Sadece bağlı olduğu pin numarasından
+@@3242
+Servo, sinyal kablosundan gelen darbelerin genişliğini ölçer; kütüphane bu darbeleri senin verdiğin açıya göre üretir.
+@@3243
+<p>Kolu <b>0°'den 180°'ye çok yavaş</b> çevir: adımlar en fazla <b>10°</b> olsun ve süpürme en az <b>1,5 saniye</b> sürsün.</p><p>Önce kol 0°'de olsun.</p>
+@@3244
+0'dan 180'e 10'ar derece artan bir döngü yaz; her adımda 100 ms bekle (18 adım x 100 ms = 1,8 sn).
+@@3245
+Kol 0°'ye gelmedi. Önce 0° yap.
+@@3246
+Adımlar 10°'den büyük. Daha küçük adımlar kullan.
+@@3247
+Süpürme {0} ms sürdü. En az 1500 ms olmalı; adımlar arasında daha çok bekle.
+@@3248
+Kol yavaşça süpürdü!
+@@3249
+Kolu 0°'den 180°'ye <b>yumuşak</b> götürmek istiyorsun. Hangisi doğru yöntemdir?
+@@3252
+Yalnızca bir kez <code>write(180)</code> yazıp hiç beklememek
+@@3253
+Küçük açı adımlarıyla <code>write</code> yapıp aralarda kısa <code>delay</code> koymak
+@@3254
+Servo kolu sınırlı hızla döner. Küçük adımlar ve aralarda bekleme, hareketi yumuşak ve kontrollü yapar.
+@@3255
+Ultrasonik mesafe sensörü uzaklığı nasıl ölçer?
+@@3256
+Havadaki ısı farkından
+@@3257
+Engelin rengini görerek
+@@3258
+Ses dalgası gönderip yankının dönme süresini ölçerek
+@@3259
+Kamerayla fotoğraf çekerek
+@@3260
+Sensör ultrasonik bir ses gönderir; ses engele çarpıp geri döner. Dönüş süresi ne kadar uzunsa engel o kadar uzaktadır.
+@@3261
+20 cm altında kesintisiz ses
+@@3262
+<p>Engel <b>20 cm'den yakınsa</b> buzzer (<span class="pin-etiket">D8</span>) <b>kesintisiz</b> ötsün (bip bip değil, sürekli ses). Engel uzaktayken sessiz kalsın.</p><p>Senaryo: engel önce 150 cm'de, sonra 10 cm'ye yaklaşır, sonra tekrar 150 cm'ye uzaklaşır.</p>
+@@3263
+Döngüde mesafeyi oku: 20'den küçükse tone çal, değilse noTone. Tek tone yeter, delay uzun olmasın.
+@@3264
+Engel 10 cm'ye yaklaşınca buzzer ötmedi. Koşul: mesafe < 20.
+@@3265
+Ses kesik kesik geliyor. Yakınken kesintisiz çal: bip yapma, sürekli tone kullan.
+@@3266
+Engel uzaklaşınca ses kesilmeli (noTone).
+@@3267
+Yakınken kesintisiz ses, uzakta sessizlik!
+@@3268
+Sensör 2000 µs sonra yankı aldı. Ses yaklaşık <code>0,0343 cm/µs</code> hızla gider ve <b>gidiş-dönüş</b> yapar. Engel kaç cm uzaktadır?
+@@3273
+2000 × 0,0343 = 68,6 cm gidiş-dönüş yoldur. Engele olan uzaklık bunun yarısı: 34,3 cm.
+@@3274
+Üç kademeli uyarı
+@@3275
+<p>Üç bölgeli park uyarısı yap:</p><ul><li>100 cm'den uzak: <b>sessiz</b></li><li>40-100 cm arası: <b>bip bip</b> (aralıklı)</li><li>40 cm'den yakın: <b>kesintisiz ses</b></li></ul><p>Senaryo: engel 150 cm, sonra 70 cm, sonra 20 cm, sonunda yine 150 cm olur.</p>
+@@3276
+Önce yakın durumu (< 40), sonra orta durumu (< 100) kontrol et: eğer / değilse eğer / değilse zinciri kur.
+@@3277
+150 cm'de sessiz kalmalı.
+@@3278
+70 cm'de bip duyulmadı. 40-100 cm arası bip bip çalmalı.
+@@3279
+70 cm'de ses kesintisiz çıktı; bu bölgede aralıklı bip olmalı (çal, bekle, sustur, bekle).
+@@3280
+20 cm'de ses kesintisiz olmalı; kesik kesik duyuluyor.
+@@3281
+Engel uzaklaşınca ses kesilmeli.
+@@3282
+Üç kademeli park uyarısı hazır!
+@@3283
+Mesafeyi seri monitöre yaz
+@@3284
+<p>Sensörün ölçtüğü mesafeyi <b>Seri Monitör</b>'e yazdır. Engel 150, 80, 40 ve 15 cm'ye geldikçe bu sayıların <b>her biri</b> sırayla ekranda görünsün.</p><p>Satırda yazı da olabilir (örn. <code>Mesafe: 80</code>), ama sayı net okunmalı.</p>
+@@3285
+Sürekli tekrarla içinde mesafeyi oku ve seri porta yaz. Döngüde kısa bir bekleme koy, yoksa ekran dolar.
+@@3286
+Seri monitöre hiçbir şey yazmadın.
+@@3287
+Seri monitörde {0} cm değeri (sırayla) görünmedi. Mesafeyi sürekli oku ve yaz.
+@@3288
+Mesafe değerleri seri monitörde sırayla göründü!
+@@3289
+<code>mesafeOlc(D3) &lt; 100</code> koşulu ne zaman doğrudur?
+@@3290
+Engel 100 cm'den daha uzaktayken
+@@3291
+Engel 100 cm'den daha yakınken
+@@3293
+Sensör bağlı değilken
+@@3294
+<code>&lt;</code> "küçüktür" demektir. Ölçülen mesafe 100'den küçükse engel 100 cm'den yakındır.
+@@3295
+<p>Buzzer'ın <b>frekansı mesafeye göre değişsin</b>: engel yaklaştıkça ses <b>incelsin</b> (frekans artsın).</p><p>Engel 80, 40 ve 15 cm'deyken ses çalsın ve her yakın aşamada frekans bir öncekinden en az 50 Hz yüksek olsun. Örnek formül: <code>frekans = 2000 − mesafe × 10</code>.</p>
+@@3296
+tone bloğunun frekans kutusuna sabit sayı yerine bir hesap koy: 2000 eksi mesafe çarpı 10. Mesafe küçüldükçe sonuç büyür.
+@@3297
+Engel 80, 40 ve 15 cm'deyken buzzer ötmeli.
+@@3298
+Frekans yaklaştıkça artmalı (şu an {0} Hz). Frekansı mesafeye bağla.
+@@3300
+Ses yaklaştıkça incelip {0} Hz oldu!
+@@3301
+Engel yaklaştıkça bip <b>sıklaşsın</b> istiyoruz. Bip arasındaki bekleme süresi hangisi olmalı?
+@@3304
+Rastgele bir sayı
+@@3306
+Mesafe küçüldükçe bekleme de küçülmelidir. Mesafeyle doğru orantılı olan mesafe × 4 bunu sağlar; 1000 − mesafe ise tersini yapar.
+@@3307
+İki tuşlu piyano
+@@3308
+<p>Sadece iki tuşu çalıştır: <span class="pin-etiket">D0</span> tuşu <b>La (440 Hz)</b>, <span class="pin-etiket">D1</span> tuşu <b>Mi' (659 Hz)</b> çalsın.</p><p>Tuşlar bırakılınca ve hiçbir tuşa basılmıyorken buzzer (<span class="pin-etiket">D8</span>) sessiz olsun.</p>
+@@3309
+Döngü başında noTone, sonra D0 için bir eğer, D1 için bir eğer.
+@@3310
+Tuşa basmadan buzzer ötmemeli.
+@@3311
+D0 tuşuna basınca 440 Hz çalmalı (şu an {0}).
+@@3312
+D0 bırakılınca ses kesilmeli.
+@@3313
+D1 tuşuna basınca 659 Hz çalmalı (şu an {0}).
+@@3314
+D1 bırakılınca ses kesilmeli.
+@@3315
+İki tuşlu piyanon çalışıyor!
+@@3316
+Piyanoda bir tuşa basıldığında o tuşun pini okununca hangi değer gelir?
+@@3319
+Bu piyanoda basılan tuş HIGH (1), bırakılan tuş LOW (0) verir; bu yüzden koşul <code>digitalRead(D0) == HIGH</code> olur.
+@@3320
+Üst tuş öncelikli
+@@3321
+<p>Bazen iki tuşa aynı anda basılır. Buzzer tek nota çalabilir, bu yüzden bir kural koy: <b>D0 ve D2 birlikte basılıysa D2'nin notası (Mi, 330 Hz) çalsın</b>.</p><p>Sadece D0 basılıyken Do (262 Hz) çalmalı; tuşlar bırakılınca sessizlik.</p>
+@@3322
+Eğer bloklarının sırası önemli: sonra çalışan tone öncekini ezer. Ya da "değilse eğer" kullan.
+@@3323
+Sadece D0 basılıyken 262 Hz çalmalı (şu an {0}).
+@@3324
+D0 ve D2 birlikte basılıyken 330 Hz (D2) çalmalı (şu an {0}).
+@@3325
+D2 bırakılınca D0'ın 262 Hz notası çalmaya devam etmeli (şu an {0}).
+@@3326
+Tüm tuşlar bırakılınca ses kesilmeli.
+@@3327
+Öncelik kuralı çalışıyor: üst tuş kazanıyor!
+@@3328
+Piyanoda La (A4) 440 Hz. Bir oktav yukarıdaki La (A5) kaç Hz'dir?
+@@3332
+Bir oktav yukarı çıkmak frekansı iki katına çıkarır: 440 × 2 = 880 Hz. 220 Hz ise bir oktav aşağıdır.
+@@3333
+Melodi tuşu
+@@3334
+<p><span class="pin-etiket">D3</span> tuşuna <b>kısa bir an</b> basılınca buzzer otomatik olarak <b>Do (262), Mi (330), Sol (392)</b> notalarını sırayla çalsın.</p><p>Her nota en az 150 ms sürsün. Tuşa basmadan ses çıkmasın ve melodi bitince buzzer sussun. (Tuş melodi bitmeden bırakılır; melodi yine de sonuna kadar çalmalı.)</p>
+@@3335
+Tuşa basıldığını gören eğer bloğunun içine üç nota koy: çal, bekle, sustur, kısa bekle.
+@@3336
+Tuşa basınca 262, 330 ve 392 Hz sırayla çalmalı (şu an {0}/3 nota doğru).
+@@3337
+Bazı notalar çok kısa. Her nota en az 150 ms sürmeli.
+@@3339
+Tek tuşla melodi çalıyor!
+@@3340
+Aynı anda iki tuşa basılırken tek bir buzzer pini (<code>D8</code>) varsa ne duyarız?
+@@3341
+İki nota karışık, akor gibi çalar
+@@3342
+Hiç ses çıkmaz
+@@3343
+İki nota otomatik olarak sırayla çalar
+@@3344
+Buzzer tek frekans çalabilir; en son verilen <code>tone</code> komutunun notası duyulur
+@@3345
+Bir pin aynı anda tek frekans üretir. Peş peşe iki tone komutu verirsen sonuncusu öncekini ezer.
+@@3346
+Oktav kaydırma tuşu
+@@3347
+<p><span class="pin-etiket">D6</span> tuşu <b>kaydırma tuşu</b> olsun: D6 basılıyken D0 tuşu <b>bir oktav yukarıdan</b> çalsın (Do' = 2 × 262 = 524 Hz). D6 basılı değilken D0 normal Do (262 Hz) çalsın.</p><p>Tuşlar bırakılınca sessizlik.</p>
+@@3348
+Bir çarpan değişkeni kullan: D6 basılıysa 2, değilse 1. Sonra D0 için tone(D8, 262 × çarpan).
+@@3349
+D6 basılıyken D0 bir oktav yukarı (524 Hz) çalmalı (şu an {0}).
+@@3350
+D6 bırakılınca D0 yine 262 Hz çalmalı (şu an {0}).
+@@3351
+Tuş bırakılınca ses kesilmeli.
+@@3352
+Oktav kaydırma tuşun çalışıyor!
+@@3353
+Döngünün başındaki <code>noTone(D8)</code> olmasaydı ne olurdu?
+@@3354
+Hiçbir tuş çalışmazdı
+@@3355
+Notalar daha ince çıkardı
+@@3356
+Tuşu bıraksak da son nota susmaz, çalmaya devam ederdi
+@@3358
+<code>tone</code> sürekli ses verir. Her turun başında susturmazsak tuş bırakılsa bile son çalan nota sürer.
+@@3360
+4.5 · Işıkla çalan çalgı
+@@3361
+<h2>Işıkla çalan çalgı</h2>
+      <p>A0 pinine bir ışık sensörü (LDR), D8 pinine bir buzzer bağlı. Işık arttıkça buzzer'ın sesi <b>incelsin</b> (frekans yükselsin). Elini sensörün önüne tutup gölge yaparak ses perdesini oynatabilirsin.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> içinde <b>A0 analog değerini oku</b> (0-4095).</li>
+        <li><b>harita</b> bloğuyla bu sayıyı <b>200 - 2000 Hz</b> aralığına çevir.</li>
+        <li>Sonucu <b>D8 pinine ... Hz ses çal</b> bloğuna ver.</li>
+        <li>Sona kısa bir <b>20 ms bekle</b> koy ve ▶ Çalıştır'a bas. Işık önce az, sonra giderek artar; sonra yine kararır.</li>
+      </ol>
+@@3362
+Işıkla çalan çalgıyı tanı
+@@3363
+<p>Sahnede bir <b>LDR</b> (ışık sensörü) ve bir <b>buzzer</b> var. LDR <span class="pin-etiket">A0</span> pininde, buzzer <span class="pin-etiket">D8</span> pininde.</p>
+          <div class="kutu bilgi"><b>Işık ne kadar çoksa sayı o kadar büyük:</b> ESP32-S3'ün analog okuması 12 bitliktir. Yani <code>analogRead(A0)</code> karanlıkta 0'a yakın, çok aydınlıkta 4095'e yakın bir sayı verir. Elinle sensöre gölge yaparsan sayı küçülür.
+          <pre><code>int isik = analogRead(A0);</code></pre></div>
+          <div class="kutu hedef"><b>Hedef:</b> Işık arttıkça buzzer'ın frekansı yükselsin; ışık azalınca ses pesleşsin. Bu, elinle çalınan <i>theremin</i> adlı çalgıya benzer bir fikirdir.</div>
+@@3364
+<p>Işık her an değişebilir; kartın sensöre sürekli bakması lazım. <span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına bırak.</p>
+@@3365
+Harita ile sayıyı frekansa çevir
+@@3366
+<p>Sorun şu: ışık sayısı <b>0-4095</b> arasında, ama kulağımız rahatça <b>200-2000 Hz</b> arasını ayırt eder. Sayıyı bir aralıktan öbürüne <b>orantılı</b> çeviren komut <code>map</code>.</p>
+          <p><span class="chip analog">Analog</span> kategorisinden <span class="chip analog">harita</span> bloğunu çalışma alanına al. İçinde zaten <span class="pin-etiket">A0</span> okuması ve 0-4095 aralığı var. Son iki sayıyı <b>200</b> ve <b>2000</b> yap.</p>
+          <pre><code>map(analogRead(A0), 0, 4095, 200, 2000)</code></pre>
+          <div class="kutu bilgi"><b>map(değer, girdiMin, girdiMax, çıktıMin, çıktıMax):</b> Karanlıkta (0) sonuç 200, tam ışıkta (4095) sonuç 2000 olur. Ortada (2048) yaklaşık 1100 çıkar.</div>
+@@3367
+Harita bloğu hazır dolu gelir. Sonda 255 yazan kutuyu 2000, ondan önceki 0 kutusunu 200 yap.
+@@3368
+Frekansı buzzer'a ver
+@@3369
+<p><span class="chip ses">Ses ve hareket</span> kategorisinden <span class="chip ses">D8 pinine ... Hz ses çal</span> bloğunu <b>sürekli tekrarla</b> içine koy. Frekans kutusuna sabit sayı yerine az önceki <span class="chip analog">harita</span> bloğunu tak.</p>
+          <pre><code>tone(D8, map(analogRead(A0), 0, 4095, 200, 2000));</code></pre>
+          <div class="kutu bilgi"><code>tone(pin, frekans)</code> frekans her değiştiğinde buzzer'ın sesi de değişir. Işık değişince döngü yeniden döner ve yeni frekans çalınır.</div>
+@@3370
+Harita bloğunu ses çal bloğunun frekans yuvasına sürükle. Pin D8 olmalı.
+@@3371
+Döngüye küçük bir bekleme
+@@3372
+<p><span class="chip akis">20 ms bekle</span> bloğunu ses bloğunun altına, yine <b>sürekli tekrarla</b> içine koy.</p>
+          <pre><code>delay(20);</code></pre>
+          <div class="kutu dikkat">Bekleme olmazsa kart saniyede binlerce kez okuyup aynı sesi yeniden ister. 20 ms (saniyede 50 okuma) kulağa anlık görünür, ama kartı yormaz.</div>
+@@3373
+Bekle bloğunun varsayılanı 500 ms; 20 yap. Hepsi sürekli tekrarla içinde kalsın.
+@@3374
+<p>▶ <b>Çalıştır</b>'a bas. Program ışığı sırayla artırıp sonunda yine karartır. Buzzer'ın ses perdesi ışığı izlemeli. Sahnedeki LDR'nin güneşini kendin de sürükleyebilirsin.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Işık arttıkça ses incelsin, ışık azalınca pesleşsin.</div>
+@@3375
+Ses ışıkla zıt yönde değişiyorsa harita bloğunun son iki sayısını kontrol et: küçük sayı önce, büyük sayı sonra gelmeli. Hiç ses yoksa buzzer pinini kontrol et.
+@@3376
+Işık {0} iken buzzer ötmedi. Döngüde ışığı okuyup D8'e ses çal.
+@@3377
+Frekans {0} Hz çıktı. Duyulur bir aralıkta (100-5000 Hz) kalmalı; harita bloğunda çıktı aralığını 200-2000 yap.
+@@3378
+Ses ışığa göre değişmiyor. Frekansı sabit sayı yerine harita bloğuyla ışık değerine bağla.
+@@3379
+Işık arttıkça ses pesleşiyor ({0} → {1} Hz). Harita bloğunun çıktı aralığı küçükten büyüğe olmalı: 200, 2000.
+@@3380
+Işık {0} → {1} olunca frekans yeterince yükselmedi ({2} → {3} Hz). Işığa daha duyarlı bir aralık kullan.
+@@3381
+Işık yine azalınca ses pesleşmedi ({0} Hz). Frekans canlı olarak ışığı izlemeli: her turda ışığı yeniden oku.
+@@3382
+Çalgın ışığı izliyor: {0} Hz!
+@@3385
+<h2>Topuzla servo</h2>
+      <p>A0 pinine bir potansiyometre, D5 pinine bir servo bağlı. Topuzu çevirdikçe servo kolu <b>aynı oranda</b> dönsün: topuz tam solda iken kol 0°, ortada iken 90°, tam sağda iken 180° olsun.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> içinde <b>A0 analog değerini oku</b> (0-4095).</li>
+        <li><b>harita</b> bloğuyla bu sayıyı <b>0 - 180</b> aralığına çevir.</li>
+        <li>Sonucu <b>D5 servosunu ... ° yap</b> bloğuna ver.</li>
+        <li>Sona kısa bir <b>20 ms bekle</b> koy ve ▶ Çalıştır'a bas. Topuz kendiliğinden adım adım çevrilir.</li>
+      </ol>
+@@3386
+Topuz ve servo
+@@3387
+<p>Sahnede bir <b>potansiyometre</b> (çevirmeli direnç) ve bir <b>servo</b> var. Pot <span class="pin-etiket">A0</span> pininde, servo <span class="pin-etiket">D5</span> pininde.</p>
+          <div class="kutu bilgi"><b>İki farklı ölçek:</b> Pot topuzu tam solda <code>analogRead</code> ile <b>0</b>, tam sağda <b>4095</b> verir. Servo ise yalnızca <b>0°-180°</b> arasında bir açı ister. Bu iki ölçeği birbirine <code>map</code> ile bağlayacağız.</div>
+          <div class="kutu hedef"><b>Hedef:</b> Topuzu çevirdikçe servo kolu aynı oranda dönsün: sol uç 0°, orta 90°, sağ uç 180°.</div>
+@@3388
+<p>Topuz her an çevrilebilir, o yüzden kartın sürekli okuması lazım. <span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al.</p>
+@@3389
+Topuz değerini açıya çevir
+@@3390
+<p><span class="chip analog">Analog</span> kategorisinden <span class="chip analog">harita</span> bloğunu al. İçinde <span class="pin-etiket">A0</span> okuması ve 0-4095 aralığı hazır. Son iki sayıyı <b>0</b> ve <b>180</b> yap.</p>
+          <pre><code>map(analogRead(A0), 0, 4095, 0, 180)</code></pre>
+          <div class="kutu bilgi">Orantı basit: 4095 değer 180 dereceye bölünür, yani her 22,75 birim yaklaşık 1° eder. Pot ortadayken değer 2048 civarıdır ve sonuç 90° çıkar.</div>
+@@3391
+Sondaki 255 yazan kutuyu 180 yap; ondan önceki kutu 0 kalsın.
+@@3392
+Açıyı servoya ver
+@@3393
+<p><span class="chip ses">Ses ve hareket</span> kategorisinden <span class="chip ses">D5 servosunu ... ° yap</span> bloğunu <b>sürekli tekrarla</b> içine koy. Açı kutusuna <span class="chip analog">harita</span> bloğunu tak.</p>
+          <pre><code>servo.write(map(analogRead(A0), 0, 4095, 0, 180));</code></pre>
+          <div class="kutu bilgi"><code>servo.write(açı)</code> kolu o açıya çevirir. Servo kütüphanesini ve <code>attach</code> işlemini bloklar kendisi halleder.</div>
+@@3394
+Harita bloğunu servo bloğunun açı yuvasına sürükle. Pin D5 olmalı.
+@@3395
+Kısa bir bekleme ekle
+@@3396
+<p><span class="chip akis">20 ms bekle</span> bloğunu servo bloğunun altına, yine döngünün içine koy.</p>
+          <pre><code>delay(20);</code></pre>
+          <div class="kutu dikkat">Servo kolunun hedefe varması zaman alır. Çok sık komut göndermek işe yaramaz: 20 ms (saniyede 50 komut) hem akıcı hem rahattır.</div>
+@@3397
+Çalıştır ve çevir
+@@3398
+<p>▶ <b>Çalıştır</b>'a bas. Program topuzu sırayla çevirir; servo kolu onu izlemeli. Kendin de sahnedeki topuzu sürükleyebilirsin.</p>
+          <div class="kutu hedef"><b>Hedef:</b> Topuz sol uçta iken 0°, ortada iken 90°, sağ uçta iken 180° olsun.</div>
+@@3399
+Kol ters yöne dönüyorsa harita çıktısı 180 - 0 yazılmıştır, 0 - 180 olmalı. Kol hiç kıpırdamıyorsa servo pini D5 mi?
+@@3400
+Servo hiç hareket etmedi. D5 servosuna bir açı yazmalısın.
+@@3401
+Servo her aşamada bir açıya gitmeli. Komutu sürekli tekrarla içine koy.
+@@3402
+Kol topuzu izlemiyor. Açıyı sabit sayı yerine harita bloğuyla pot değerine bağla.
+@@3403
+Pot {0} iken kol yaklaşık {1}° olmalı, ama {2}°. Harita: 0-4095 → 0-180.
+@@3406
+Aydınlıkta çal, karanlıkta sus
+@@3407
+<p>Işık sensörü <span class="pin-etiket">A0</span> pininde, buzzer <span class="pin-etiket">D8</span> pininde. Işık <b>2000'den büyükse</b> (aydınlık) buzzer <b>880 Hz</b> çalsın, değilse <b>sussun</b>.</p><p>Senaryo: ışık sırayla az, çok, az, çok olur.</p>
+@@3408
+Döngüde ışığı oku. Eğer okuma > 2000 ise tone(D8, 880), değilse noTone(D8). En sonda kısa bir bekleme koy.
+@@3409
+Işık {0} (karanlık) iken buzzer susmalı, ama {1} Hz çalıyor.
+@@3410
+Işık {0} (aydınlık) iken 880 Hz çalmalı (şu an {1}).
+@@3411
+Aydınlıkta ses, karanlıkta sessizlik!
+@@3412
+ESP32-S3 kartında <code>analogRead(A0)</code> en çok hangi sayıyı verebilir?
+@@3413
+Kartın analog okuyucusu (ADC) 12 bitliktir: 2<sup>12</sup> = 4096 farklı değer okur, yani 0 ile 4095 arası. (255 ise <code>analogWrite</code>'ın üst sınırıdır.)
+@@3415
+<p>Gerçek bir ışık çalgısı yap: buzzer frekansı ışık değeriyle <b>orantılı</b> değişsin. Karanlıkta (0) <b>200 Hz</b>, tam ışıkta (4095) <b>2000 Hz</b> çalsın; arası orantılı olsun.</p><p>Kontrol: ışık 0, 1024, 2048 ve 4095 iken beklenen frekansa 30 Hz yaklaşmalı.</p>
+@@3416
+map(analogRead(A0), 0, 4095, 200, 2000) ifadesini tone komutunun frekans yerine yaz. Döngüde delay(20) kullan.
+@@3417
+Işık {0} iken yaklaşık {1} Hz çalmalı (şu an {2}). map(değer, 0, 4095, 200, 2000) kullan.
+@@3418
+200-2000 Hz aralığında ışıkla çalan çalgı hazır!
+@@3419
+<code>map(2048, 0, 4095, 200, 2000)</code> yaklaşık kaç verir?
+@@3420
+Yaklaşık 1100
+@@3421
+Yaklaşık 200
+@@3422
+Yaklaşık 2000
+@@3423
+Yaklaşık 2048
+@@3424
+2048, 0-4095 aralığının yaklaşık ortasıdır. Çıktı aralığı 200-2000 olduğu için sonuç da ortada, yani (200 + 2000) / 2 = 1100 civarı çıkar.
+@@3426
+<p>Bu sefer ters çalsın: ışık <b>arttıkça</b> frekans <b>düşsün</b>. Karanlıkta yüksek (tiz), aydınlıkta alçak (pes) ses çıksın.</p><p>Işık 300, 1500, 2700, 3900 olarak artarken frekans her adımda <b>en az 100 Hz</b> düşmeli ve 100-5000 Hz arasında kalmalı.</p>
+@@3427
+map'in son iki sayısının yerini değiştir: büyük sayı önce, küçük sayı sonra. Örneğin map(değer, 0, 4095, 2000, 200).
+@@3428
+Her ışık seviyesinde buzzer ötmeli.
+@@3429
+Işık arttıkça frekans düşmeli (en az 100 Hz). Şu an {0} Hz.
+@@3430
+Ters çalgı: {0} Hz. Işık arttıkça ses pesleşiyor!
+@@3431
+Çalgında <code>frekans = map(isik, 0, 4095, 200, 2000)</code> kullanıyorsun. Elinle LDR'ye gölge yaparak ışığı azaltırsan ses nasıl değişir?
+@@3432
+Daha ince (tiz) olur
+@@3433
+Daha kalın (pes) olur
+@@3434
+Hiç değişmez
+@@3436
+Işık azalınca analogRead küçük bir sayı verir, map'in sonucu da 200 Hz'e yaklaşır. Düşük frekans daha kalın (pes) duyulur.
+@@3437
+Nota basamakları
+@@3438
+<p>Sürekli kayan ses yerine <b>dört basamaklı</b> bir çalgı yap. Işık değerine göre şu notalar çalsın:</p><ul><li>1024'ten küçük: <b>Do (262 Hz)</b></li><li>1024-2047: <b>Mi (330 Hz)</b></li><li>2048-3071: <b>Sol (392 Hz)</b></li><li>3072 ve üstü: <b>tiz Do (523 Hz)</b></li></ul><p>Işık önce 500, 1500, 2500, 3500, sonra yine 1500 olur; son aşamada tekrar Mi çalmalı.</p>
+@@3439
+eğer / değilse eğer zinciri kur: isik < 1024 ise 262, değilse isik < 2048 ise 330, değilse isik < 3072 ise 392, değilse 523. Hesabı kullanarak (isik / 1024) da çözebilirsin.
+@@3440
+Işık {0} iken {1} Hz çalmalı (şu an {2}).
+@@3441
+Dört basamaklı ışık çalgısı hazır: Do, Mi, Sol, tiz Do!
+@@3442
+Çalgı programının döngüsünde sonda <code>delay(20)</code> var. Bu satırın amacı hangisidir?
+@@3443
+Sesi 20 Hz yükseltmek
+@@3444
+Işık sensörünü ısıtıp kalibre etmek

@@ -1,0 +1,304 @@
+@@24
+Unknown arena:
+@@43
+PWM %2 (0-255) on pin %1
+@@74
+Pins
+@@85
+Serial
+@@138
+Text
+@@172
+Display
+@@179
+Random
+@@183
+tone(pin, frequency)
+@@185
+stop the sound on pin %1
+@@418
+')' may be missing
+@@419
+'(' was expected
+@@420
+'}' may be missing
+@@421
+']' may be missing
+@@422
+':' may be missing
+@@423
+'{0}' was expected
+@@538
+'-' cannot be applied to a String
+@@549
+',' or ')' may be missing
+@@580
+Unexpected '{0}' here{1}
+@@583
+Unexpected token
+@@637
+Skip
+@@=';' eksik olabilir
+';' may be missing
+@@1212
+The arm must reach both 30° and 150°.
+@@1280
+Notes swapped!
+@@1288
+The piano that never stops
+@@1033
+Pale purple
+@@946
+Strict referee
+@@954
+The strict referee found the 350 ms reaction YAVAS!
+@@955
+Broken stopwatch
+@@1488
+Move to the middle
+@@1564
+Write servo.write(120) instead of servo.write(90).
+@@1589
+The siren tone is 2000 Hz now!
+@@1756
+High-pitched alarm sound
+@@2041
+Turns the LED on
+@@2055
+25 milliseconds
+@@2140
+1.1 · Turn on an LED
+@@2165
+Turn the LED on
+@@2245
+The home page (/) did not respond.
+@@2254
+New route: /merhaba
+@@2290
+Status route: /durum
+@@2275
+"1" (as text)
+@@2277
+Gives an error
+@@2336
+Server object
+@@2338
+Page function
+@@2341
+LED route
+@@2347
+Try it from the phone
+@@2362
+HTML as a raw string
+@@2395
+Fuse
+@@2396
+Servo's resistance
+@@2407
+Lights up
+@@2508
+The compiler gives an error
+@@2579
+What does <code>random(1000, 3000)</code> give?
+@@2694
+2.5 · Reflex game
+@@2710
+Play!
+@@2758
+3.3 · Potentiometer
+@@2828
+Take the level from the pot
+@@2848
+Purple
+@@2851
+White
+@@2887
+Dark blue
+@@2927
+The program does not compile
+@@2980
+Increases
+@@3021
+The program gives an error
+@@3062
+A single LED travels along
+@@3081
+Complete the melody
+@@3126
+Stay silent when far away
+@@3169
+Scale from Do to Si
+@@3181
+Siren sound
+@@3194
+<code>tone</code> gives an error without <code>noTone</code>
+@@3210
+Where does <code>servo.write(90)</code> move the arm?
+@@3216
+Wave hello
+@@3223
+The servo waved hello 3 times!
+@@3250
+Writing 180 <code>write</code> commands in a row without waiting
+@@3251
+Writing <code>servo.write(-180)</code>
+@@3292
+When the obstacle is exactly at 100 cm
+@@3302
+Fixed 500 ms
+@@3303
+1000 − distance ms
+@@3305
+distance × 4 ms
+@@3338
+Silence the sound when the melody ends.
+@@3357
+The program would not compile
+@@3384
+4.6 · Servo with a knob
+@@3404
+The servo follows the knob: {0}°!
+@@3425
+Reversed theremin
+@@3435
+The buzzer goes completely silent
+@@3459
+Mirror servo
+@@3507
+4 times
+@@3508
+5 times
+@@3509
+6 times
+@@3533
+The board gives an error
+@@3535
+Reversed curtain
+@@3583
+5.1 · LCD screen
+@@3606
+5.2 · Project: automatic curtain
+@@3666
+Exactly 50 °C
+@@3754
+Writing random(1, 7)
+@@3755
+Writing random(0, 7)
+@@3756
+Writing random(1, 6)
+@@3757
+Writing random(6, 1)
+@@3760
+5.3 · LCD thermometer
+@@3776
+5.4 · Electronic die
+@@3788
+Rolling animation
+@@3984
+The buzzer is on pin D8.
+@@4003
+The servo is on pin D5.
+@@4021
+The LED is on pin D0.
+@@4032
+6.5 · Parking barrier
+@@4089
+Pulsed watering
+@@4100
+The pins break when they touch water
+@@4229
+The buzzer breaks
+@@4292
+7.2 · Motion-activated lamp
+@@4313
+7.3 · Mini weather station
+@@4395
+Single motor: curved path
+@@4410
+Zigzag: forward and back 3 times
+@@4420
+Left
+@@4445
+180 degrees
+@@4446
+45 degrees
+@@4448
+360 degrees
+@@4453
+The car did not go forward twice.
+@@4473
+Looks at the color of the obstacle
+@@4525
+Must go backward
+@@4539
+8.1 · Robot car: motors
+@@4549
+Stop
+@@4552
+Come back
+@@4574
+Stop and catch your breath
+@@4657
+Being programmable only with blocks
+@@4701
+Undefined, random
+@@4708
+One to the pin, one to GND
+@@4709
+One to the pin, one to 5 V
+@@4711
+One to the pin, one to the LED
+@@4757
+Cannot be read with code
+@@4834
+10.9 · Phone demo
+@@4837
+Turn on the LED from the phone.
+@@4846
+Robot car
+@@4878
+⬆️ <b>Level {0}!</b> You're doing great
+@@4880
+{0} <b>New badge: {1}</b><small>{2}</small>
+@@4923
+🔊 Narrate
+@@4924
+↻ Listen again
+@@4925
+■ Stop
+@@4926
+▶ Resume
+@@4935
+Mute
+@@4943
+{0}/{1} lessons
+@@4976
+✘ Try again.
+@@4998
+Error:
+@@5008
+<em>active</em>
+@@5037
+Complete 5 lessons
+@@5041
+Complete 10 lessons
+@@5105
+Earn 500 XP
+@@5109
+Earn 1500 XP
+@@5147
+Guest
+@@5151
+Player
+@@5176
+Program stopped
+@@5201
+Error ·
+@@5204
+{0} {1} · {2} · {3} bytes
+@@5205
+Error
+@@5207
+ error
+@@556
+'{0}' is a command; add () and ; at the end

@@ -1,0 +1,474 @@
+@@3445
+<code>tone</code> komutunun çalışması için zorunludur; yoksa program derlenmez
+@@3446
+Döngünün saniyede binlerce kez dönüp kartı gereksiz yormasını önlemek; ses yine de ışığa anında yetişir
+@@3447
+Kısa bir bekleme, okumaları makul bir hıza (saniyede ~50) indirir. 20 ms insan kulağı için anlık olduğundan çalgı yine canlı çalışır.
+@@3448
+Üç konumlu anahtar
+@@3449
+<p>Pot <span class="pin-etiket">A0</span> pininde, servo <span class="pin-etiket">D5</span> pininde. Servo kolu yalnızca <b>üç konuma</b> gitsin:</p><ul><li>Pot değeri <b>1365'ten küçükse</b>: <b>0°</b></li><li><b>1365-2729</b> arasında: <b>90°</b></li><li><b>2730 ve üstü</b>: <b>180°</b></li></ul>
+@@3450
+Servo.attach(D5) unutma. Döngüde değeri oku; eğer değer < 1365 ise write(0), değilse eğer değer < 2730 ise write(90), değilse write(180).
+@@3451
+Pot {0} iken kol {1}° olmalı (şu an {2}).
+@@3452
+Üç konumlu servo anahtarı çalışıyor!
+@@3453
+<code>map(analogRead(A0), 0, 4095, 0, 180)</code> ifadesinde pot tam ortadayken (değer yaklaşık 2048) servo kolu kaç derece olur?
+@@3458
+2048, 0-4095 aralığının yarısıdır. Çıktı aralığının (0-180) yarısı da 90'dır. Yani kol tam ortada durur.
+@@3460
+<p>Servoyu <b>ters yönde</b> çalıştır: topuz sağa döndükçe kol sola gitsin. Pot 0 iken <b>180°</b>, pot 4095 iken <b>0°</b> olsun; arası orantılı.</p><p>Kontrol: pot 0, 1024, 2048, 4095 iken sırasıyla 180°, 135°, 90°, 0° (6° tolerans).</p>
+@@3461
+map'in çıktı aralığını ters yaz: map(değer, 0, 4095, 180, 0).
+@@3462
+Ayna servo hazır: topuz sağa, kol sola!
+@@3463
+Aynı potla servoyu yalnızca <b>45° ile 135°</b> arasında gezdirmek istiyorsun. <code>map(değer, 0, 4095, ?, ?)</code> ifadesinin son iki sayısı ne olmalı?
+@@3466
+map'in son iki sayısı çıktı aralığıdır. Pot en solda iken sonuç ilk sayı (45), en sağda iken ikinci sayı (135) olur.
+@@3467
+Dar aralık: 45° - 135°
+@@3468
+<p>Servo kolu çok açılıp zorlanmasın: topuzun tüm hareketi kolu yalnızca <b>45° ile 135°</b> arasında gezdirsin. Pot 0 iken 45°, 2048 iken 90°, 4095 iken 135° olsun.</p><p>Kol hiçbir zaman 40°'nin altına ya da 140°'nin üstüne çıkmasın.</p>
+@@3469
+map(değer, 0, 4095, 45, 135) tek satırda çözer.
+@@3470
+Kol {0}° açısına gitti. 40°-140° dışına çıkmamalı.
+@@3471
+Kol 45°-135° arasında topuzu izliyor!
+@@3472
+Pot değerini (0-4095) <b>hiç çevirmeden</b> doğrudan <code>servo.write(analogRead(A0))</code> diye servoya verirsek ne olur?
+@@3473
+Servo çok daha hassas çalışır
+@@3474
+Kol ters yöne döner
+@@3475
+Servo yalnızca 0-180° anlar; sayı hemen bu aralığı aşar, kol topuzun çok küçük bir kısmında hareket eder, sonra uçta takılı kalır
+@@3476
+Servo açısı 0-180 aralığındadır. Pot değeri yaklaşık 180'e (topuzun %4,4'üne) varınca sınır aşılır; geri kalan hareket kolu hiç kıpırdatmaz. Bu yüzden map ile ölçeği küçültmek gerekir.
+@@3477
+Yumuşak takip
+@@3478
+<p>Kol topuzu <b>anında</b> değil <b>yumuşakça</b> izlesin. Hedef açıyı <code>map</code> ile hesapla (0-180), ama kol her turda hedefe doğru <b>en fazla 3°</b> ilerlesin.</p><p>Kontrol: ardışık iki servo komutu arasında <b>6°'den büyük sıçrama</b> olmamalı; topuz değiştikten yaklaşık 1,5 saniye sonra kol hedefe (4° tolerans) varmış olmalı. Pot sırayla 0, 4095, 1024 olur.</p>
+@@3479
+Bir "aci" değişkeni tut. Her turda: hedef = map(...); aci < hedef ise aci = min(aci + 3, hedef); aci > hedef ise aci = max(aci - 3, hedef); sonra servo.write(aci); delay(20).
+@@3480
+Kol bir anda {0}° → {1}° sıçradı. Her turda hedefe en fazla 3° yaklaş.
+@@3481
+Pot {0} iken kol 1,5 sn sonra yaklaşık {1}° olmalı (şu an {2}). Adım 3° ve bekleme 20 ms ise kol yeterince hızlıdır.
+@@3482
+Kol topuzu yumuşakça takip ediyor!
+@@3483
+<code>servo.attach(D5)</code> satırı neden <code>loop()</code> yerine <code>setup()</code> içine yazılır?
+@@3484
+Servonun hangi pine bağlı olduğunu karta bir kez söylemek yeter; her turda tekrarlamak gerekmez
+@@3485
+Her turda yeniden yazılmazsa servo durur
+@@3486
+Sinyal kablosunu fiziksel olarak bağlar
+@@3487
+Servoyu başlangıçta 90° konumuna getirir
+@@3488
+<code>attach</code> bir ayar komutudur: servo nesnesini pine bağlar. Bu bağlantı program boyunca geçerli kalır, o yüzden setup içinde bir kez yapılır.
+@@3489
+Sabit iki satır
+@@3490
+LCD'nin <b>1. satırına</b> <i>Merhaba</i>, <b>2. satırına</b> <i>Deneyap</i> yaz. Sayaç ve döngü gerekmez; sadece iki <b>LCD satır yaz</b> bloğu kullan.
+@@3491
+Aynı bloktan iki tane al; birinin satırını 2 yap ve yazısını değiştir. Türkçe karakter kullanma.
+@@3492
+Ekrana henüz bir şey yazılmadı. LCD satır yaz bloklarını kullan.
+@@3493
+Satır 1'de "Merhaba" yazmalı.
+@@3494
+Satır 2'de "Deneyap" yazmalı. İkinci bloğun satır numarasını 2 yap.
+@@3495
+İki satır da ekranda!
+@@3496
+16x2 bir LCD ekranda aynı anda en fazla kaç karakter görünür?
+@@3499
+2 satır x 16 sütun = 32 karakter. Her satıra en fazla 16 karakter sığar.
+@@3500
+LCD'nin <b>2. satırında 5'ten 1'e doğru geri say</b> (5, 4, 3, 2, 1), her sayı <b>500 ms</b> kalsın. Geri sayım bitince 2. satırda <i>Basla</i> yazsın.
+@@3501
+"say" bloğunda başlangıcı 5, bitişi 1 yap ve adımı -1 olarak ayarla (dişliden "her seferinde" değerine bak).
+@@3502
+Satır 2'de sayı görünmedi. i değişkenini LCD'nin 2. satırına yaz.
+@@3503
+Ekranda şu sayılar görüldü: {0}. İstenen: 5, 4, 3, 2, 1.
+@@3504
+Geri sayım bitince 2. satırda "Basla" yazmalı.
+@@3505
+Geri sayım tamam, "Basla"!
+@@3506
+<code>for (int i = 1; i &lt;= 5; i += 1) { ... }</code> döngüsünün içindeki kod kaç kez çalışır?
+@@3510
+Sonsuza kadar
+@@3511
+i, 1'den başlayıp 5 dahil olmak üzere 1, 2, 3, 4, 5 değerlerini alır: toplam 5 tur.
+@@3512
+Çift sayılar
+@@3513
+LCD'nin <b>2. satırında çift sayılar</b> görünsün: <b>2, 4, 6, 8, 10</b>. Her sayı <b>400 ms</b> kalsın. Döngünün adımını (her seferinde ne kadar artacağını) değiştirmen gerekecek.
+@@3514
+"say" bloğunda başlangıç 2, bitiş 10 olsun. Adım değerini 1 yerine 2 yap.
+@@3515
+Ekranda şu sayılar görüldü: {0}. İstenen: 2, 4, 6, 8, 10 (adım 2).
+@@3516
+Çift sayılar ekranda!
+@@3517
+<code>lcd.setCursor(0, 1);</code> komutundan sonra <code>lcd.print("A");</code> yazılırsa "A" harfi nerede görünür?
+@@3518
+1. satırın başında
+@@3519
+1. satırın sonunda
+@@3520
+2. satırın sonunda
+@@3521
+2. satırın başında
+@@3522
+setCursor(sütun, satır) içinde satır 0'dan başlar: 1 numarası 2. satırdır, sütun 0 ise satırın başıdır.
+@@3524
+LCD'nin <b>2. satırında</b> <i>Sayi: 1</i>, <i>Sayi: 2</i> ... <i>Sayi: 5</i> yazsın (her biri 500 ms). Bunun için <b>birleştir</b> bloğuyla yazıyı ve <b>i</b> sayısını yan yana getir.
+@@3525
+Metin kategorisindeki "birleştir" bloğunun ilk yuvasına "Sayi: " yaz, ikinci yuvasına i değişkenini tak.
+@@3526
+Satır 2'de "Sayi: 1" gibi bir yazı görünmedi. Yazı ile i değişkenini birleştir bloğuyla birleştir.
+@@3527
+Ekranda şu sayılar görüldü: {0}. İstenen: Sayi: 1 ... Sayi: 5.
+@@3528
+Yazı ve sayı birlikte ekranda!
+@@3529
+Sayaç döngüsünün içindeki <code>delay(500);</code> satırını silersek ne görürüz?
+@@3530
+Ekran boş kalır
+@@3531
+Sayılar çok hızlı değişir; son sayı hemen görünür, ara sayıları göremeyiz
+@@3532
+Sayılar iki kat yavaşlar
+@@3534
+Bekleme olmadan döngü milisaniyeden kısa sürede biter. Göz ara sayıları yakalayamaz, yalnızca sonuncuyu görür.
+@@3536
+Bu sefer perde <b>tersine</b> çalışsın (güneşlik gibi): ışık <b>2000'den büyükse</b> perde <b>kapansın</b> (servo <b>0</b>), ışık düşükken <b>açılsın</b> (servo <b>180</b>). Güneşi indirip çıkarınca denetlenir.
+@@3537
+Koşulu değiştirme; "eğer" ve "değilse" kollarındaki servo açılarını yer değiştir.
+@@3538
+Program ışığı sürekli izlemeli: tüm adımları sürekli tekrarla içine koy.
+@@3539
+Servo hiç hareket etmedi. {0} servo yaz bloğunu kullan.
+@@3540
+Işık yüksekken perde kapanmalı: servoyu 0 yap.
+@@3541
+Işık düşükken perde açılmalı: servoyu 180 yap.
+@@3542
+Ters çalışan perde hazır!
+@@3543
+ESP32-S3'te <code>analogRead()</code> varsayılan olarak hangi aralıkta bir sayı verir?
+@@3548
+ESP32-S3'ün ADC'si varsayılan 12 bitliktir: 2^12 = 4096 değer, yani 0 ile 4095 arası.
+@@3549
+Işık değerini göster
+@@3550
+Perde normal çalışsın (2000'den büyükse 180, değilse 0). Ayrıca LCD'nin <b>2. satırında ışık sensörünün değerini</b> (<span class="pin-etiket">{0}</span> analog oku) <b>canlı</b> göster.
+@@3551
+Analog oku bloğunu LCD satır 2 bloğunun yazı yuvasına tak. Bu LCD bloğu if dışında, döngünün içinde olsun ki hep güncellensin.
+@@3552
+Işık yüksekken perde açılmalı: servoyu 180 yap.
+@@3553
+Işık düşükken perde kapanmalı: servoyu 0 yap.
+@@3554
+LCD'nin 2. satırında ışık değeri (bir sayı) görünmeli.
+@@3555
+Işık {0} iken ekranda {1} yazıyor. Ekran ışık değerini canlı göstermeli.
+@@3556
+Perde çalışıyor ve ışık değeri ekranda!
+@@3557
+Perde projesinde tüm kodun <b>sürekli tekrarla</b> içinde olmasının nedeni nedir?
+@@3558
+Servo motoru yalnızca döngü içinde çalışır
+@@3559
+Işık sürekli değişebilir; ölçümü ve kararı tekrar tekrar yapmak gerekir
+@@3560
+LCD ekran döngü olmadan yazı gösteremez
+@@3561
+Döngü olmazsa kart bozulur
+@@3562
+Güneş istediği an değişebilir. Işığı bir kez ölçüp bırakırsak perde sonraki değişiklikleri göremez.
+@@3563
+Yüksek eşik
+@@3564
+Perde daha "inatçı" olsun: ışık <b>3000'den büyükse</b> açılsın (servo <b>180</b>), aksi halde kapalı (servo <b>0</b>) olsun. 2500 gibi orta ışıkta perde <b>kapalı</b> kalmalı.
+@@3565
+Karşılaştırma bloğundaki 2000 sayısını değiştir.
+@@3566
+Işık 3000'den büyükken perde açılmalı (servo 180).
+@@3567
+Işık 3000 ya da daha azken perde kapalı olmalı (servo 0). Eşik değerini 3000 yaptın mı?
+@@3568
+Eşik 3000 oldu, perde daha geç açılıyor!
+@@3569
+Eşiği 2000'den 3000'e çıkarırsak perde ne zaman açılır?
+@@3570
+Daha az ışıkta, yani daha erken
+@@3571
+Daha çok ışık olunca, yani daha geç
+@@3572
+Hiç açılmaz
+@@3573
+Eşik açılma zamanını etkilemez
+@@3574
+Perde ışık > eşik olunca açılır. Eşik büyüyünce açılmak için daha parlak ışık gerekir.
+@@3575
+Üç kademe
+@@3576
+Perde artık <b>üç konumlu</b> olsun: ışık <b>1000'den küçükse</b> kapalı (servo <b>0</b>), <b>1000 ile 3000 arasındaysa</b> yarı açık (servo <b>90</b>), <b>3000'den büyükse</b> tam açık (servo <b>180</b>).
+@@3577
+"Değilse eğer" kolunu kullan: önce 3000'den büyük mü bak, sonra 1000'den büyük mü, hiçbiri değilse 0.
+@@3578
+Işık 1000'den azken perde kapalı olmalı (servo 0).
+@@3579
+Işık 1000 ile 3000 arasındayken perde yarı açık olmalı (servo 90).
+@@3580
+Işık 3000'den fazlayken perde tam açık olmalı (servo 180).
+@@3581
+Üç konumlu akıllı perde tamam!
+@@3584
+<h2>LCD ekran</h2>
+      <p>Kartına 16x2 karakterlik bir LCD bağlı: 2 satır, her satırda 16 harf sığar.</p>
+      <ol>
+        <li><b>Ekran</b> kategorisinden <b>LCD satır 1 yaz</b> bloğunu al ve içine <i>Merhaba</i> yaz.</li>
+        <li>Bir tane daha <b>LCD satır 2 yaz</b> bloğu al; bu satırda bir <b>sayaç</b> göstereceğiz.</li>
+        <li><b>i değerini 1'den 5'e say</b> bloğunu kullan; içinde satır 2'ye <b>i</b> değişkenini yaz ve <b>500 ms bekle</b>.</li>
+      </ol>
+      <p>Sayı 1, 2, 3... diye ekranda artmalı. Satır 1'de <b>Merhaba</b> yazısı kalsın.</p>
+@@3585
+LCD ekranı tanı
+@@3586
+<p>Sahnede küçük bir <b>LCD ekran</b> var. <b>16x2</b>, yani 2 satır ve her satırda 16 harf sığar. Şimdiye kadar sadece LED yaktık; artık kart sana yazıyla cevap verebilir!</p>
+          <div class="kutu bilgi">Kod tarafında ekran bir kütüphane ile yönetilir. Satırı seçip yazarız:
+            <pre><code>lcd.setCursor(0, 0);
+lcd.print("Merhaba");</code></pre>
+            Burada ilk sayı sütunu, ikinci sayı satırı gösterir (0 = ilk satır).</div>
+@@3587
+Satır 1'e Merhaba yaz
+@@3588
+<p><span class="chip ekran">Ekran</span> kategorisini aç, <span class="chip ekran">LCD satır 1 yaz</span> bloğunu çalışma alanına sürükle. İçindeki yazı zaten <span class="chip analog">Merhaba</span>.</p>
+@@3589
+Bloktaki satır numarası 1 olmalı (kodda 0 olarak görünür).
+@@3590
+Sayaç döngüsü
+@@3591
+<p>Aynı kategoriden <span class="chip ekran">say: i değeri 1'den 5'e</span> bloğunu al ve <b>Merhaba</b> bloğunun altına tak.</p>
+          <div class="kutu bilgi"><b>Döngü</b>, aynı işi birkaç kez tekrarlar. <span class="chip degisken">i</span> bir <b>değişken</b>: her turda değeri 1 artar.
+            <pre><code>for (int i = 1; i &lt;= 5; i += 1) {
+  ...
+}</code></pre></div>
+@@3592
+Döngü bloğu Ekran kategorisinin altlarında, içinde "say" yazan blok.
+@@3593
+Satır 2'ye i yaz
+@@3594
+<p>Döngünün içine ikinci bir <span class="chip ekran">LCD satır yaz</span> bloğu koy ve satırını <b>2</b> yap. Yazının yerine <span class="chip degisken">i</span> değişkenini tak.</p>
+          <pre><code>lcd.setCursor(0, 1);
+lcd.print(i);</code></pre>
+@@3595
+Önce LCD bloğunu döngüye koy, sonra "i" bloğunu onun yazı yuvasına sürükle (Merhaba yazısının üstüne bırakabilirsin).
+@@3596
+Sayıyı yavaşlat
+@@3597
+<p>Döngünün içine, LCD bloğunun altına <span class="chip akis">500 ms bekle</span> ekle. Yoksa sayılar göz açıp kapayana kadar biter!</p>
+          <pre><code>delay(500);</code></pre>
+@@3598
+Bekle bloğu döngünün içinde olmalı, dışında değil.
+@@3599
+<p>▶ <b>Çalıştır</b>'a bas ve ekranı izle.</p>
+          <div class="kutu hedef"><b>Hedef:</b> ilk satırda <i>Merhaba</i> yazsın, ikinci satırda 1'den 5'e sayı saysın.</div>
+@@3600
+Sayı değişmiyorsa i bloğunun döngünün içindeki LCD bloğuna takılı olduğuna bak.
+@@3602
+Satır 2'de bir sayı göstermelisin (i değişkenini yaz).
+@@3603
+Sayı değişmeli: 1'den 5'e sayan döngü kur ve her turda 500 ms bekle.
+@@3604
+Süper, ekranda sayaç çalışıyor!
+@@3607
+<h2>Proje: otomatik perde</h2>
+      <p>Odanın perdesi güneşe göre kendi kendine açılıp kapansın! Pencerenin solundaki <b>güneşi yukarı-aşağı sürükleyerek</b> ışığı değiştirebilirsin.
+      Servo motor <b>{0}</b> pinine, ışık sensörü <b>{1}</b> pinine bağlı.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> bloğunu çalışma alanına koy.</li>
+        <li>İçinde <b>{2} analog oku</b> bloğunu kullanarak ışığı ölç (0-4095).</li>
+        <li><b>eğer</b> ışık <b>2000'den büyükse</b> (gün ışığı): <b>{3} servo yaz 180</b> (perde açık).</li>
+        <li><b>değilse</b>: <b>{4} servo yaz 0</b> (perde kapalı).</li>
+        <li>Aynı koşullara <b>LCD satır 1 yaz</b> ekle: açıkken <i>Perde: Acik</i>, kapalıyken <i>Perde: Kapali</i>.</li>
+        <li>Döngünün sonuna <b>100 ms bekle</b> ekle ve ▶ Çalıştır'a bas. Güneşi indir-çıkar, perdeyi izle!</li>
+      </ol>
+      <h3>Kontrol listesi</h3>
+      <ul>
+        <li>Işık yüksekken perde açılıyor ve LCD "Perde: Acik" diyor</li>
+        <li>Işık düşükken perde kapanıyor ve LCD "Perde: Kapali" diyor</li>
+        <li>Program sürekli çalışıyor, ışık değişince perde de değişiyor</li>
+      </ul>
+@@3608
+Projeyi tanı
+@@3609
+<p>Sahnede bir pencere, perde ve LCD var. Perdeyi <b>servo motor</b> (<span class="pin-etiket">{0}</span>) açıp kapatır, güneşin ışığını <b>ışık sensörü</b> (<span class="pin-etiket">{1}</span>) ölçer.</p>
+          <div class="kutu bilgi"><b>Fikir:</b> ışığı oku. Işık çoksa perde aç, azsa kapat. Bunu hep tekrarla. Daha önce öğrendiklerinin hepsi bu projede bir arada!</div>
+@@3610
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al. Perde sürekli ışığı izleyecek.</p>
+          <pre><code>while (true) {
+  ...
+}</code></pre>
+@@3611
+Eğer bloğu ve ışık koşulu
+@@3612
+<p>Döngünün içine <span class="chip akis">eğer</span> bloğunu koy. Sonra koşul yuvasına <span class="chip mantik">karşılaştırma</span> bloğunu tak: <span class="chip analog">{0} analog oku</span> <b>&gt;</b> <span class="chip sayi">2000</span>.</p>
+          <div class="kutu bilgi"><code>analogRead</code> ışığı <b>0 ile 4095</b> arasında bir sayı olarak verir. Büyük sayı = çok ışık.
+            <pre><code>if ((analogRead({1}) &gt; 2000)) {
+  ...
+}</code></pre></div>
+          <div class="kutu dikkat">"Eğer" bloğundaki küçük dişli ile <b>değilse</b> kolunu ekleyebilirsin.</div>
+@@3613
+Karşılaştırma Mantık kategorisinde, analog oku Analog kategorisinde. Karşılaştırmayı eğer bloğunun koşul yuvasına tak. "Değilse" için dişliye tıkla.
+@@3614
+Perdeyi aç ve kapat
+@@3615
+<p><span class="chip ses">Ses ve hareket</span> kategorisinden <span class="chip ses">{0} servo yaz</span> bloğunu <b>iki kez</b> kullan:</p>
+          <ul><li><b>Eğer</b> kolunda açı <b>180</b> (perde açık)</li>
+          <li><b>Değilse</b> kolunda açı <b>0</b> (perde kapalı)</li></ul>
+          <pre><code>servo_{1}.write(180);</code></pre>
+@@3616
+Servo bloğunun pini 
+@@3617
+ olmalı. Birinin açısı 180, diğerinin 0.
+@@3618
+LCD'ye durumu yaz
+@@3619
+<p><span class="chip ekran">Ekran</span> kategorisinden iki <span class="chip ekran">LCD satır 1 yaz</span> bloğu al; servo bloklarının yanına koy.</p>
+          <ul><li>Perde açıkken: <span class="chip analog">Perde: Acik</span></li>
+          <li>Perde kapalıyken: <span class="chip analog">Perde: Kapali</span></li></ul>
+          <div class="kutu dikkat">Yazıyı tam böyle yaz. Türkçe karakter (ç, ı) kullanma, ekran onları göstermez.</div>
+@@3620
+Metin kutusuna tıklayıp yazıyı değiştirebilirsin.
+@@3621
+Kısa bekle ve çalıştır
+@@3622
+<p>Döngünün sonuna <span class="chip akis">100 ms bekle</span> ekle, sonra ▶ <b>Çalıştır</b>'a bas. Güneşi aşağı yukarı sürükleyip perdeyi izle!</p>
+          <pre><code>delay(100);</code></pre>
+          <div class="kutu hedef"><b>Hedef:</b> ışık yüksekken perde açılsın ve LCD "Perde: Acik" desin; ışık azalınca kapansın ve "Perde: Kapali" yazsın.</div>
+@@3623
+Çalışmıyorsa her şeyin sürekli tekrarla içinde olduğunu ve 180 / 0 değerlerini kontrol et.
+@@3625
+Program ışığı sürekli izlemeli: tüm adımları bir sürekli tekrarla bloğunun içine koy ve ▶ ile çalıştır.
+@@3626
+Işık yüksekken perde açılmadı: servoyu 180 yap.
+@@3627
+Işık düşükken perde kapanmadı: servoyu 0 yap.
+@@3628
+Perde açıkken LCD'ye "Perde: Acik" yazmalısın.
+@@3629
+Perde kapalıyken LCD'ye "Perde: Kapali" yazmalısın.
+@@3630
+Proje tamam! Perden ışığa göre kendi kendine açılıp kapanıyor.
+@@3631
+Program çok erken bitti. Okuma ve yazma işlerini sürekli tekrarla içine koy.
+@@3632
+1. satırda "{0}" başlığı görünmeli.
+@@3633
+Sensör {0} iken 2. satırda sıcaklık (bir sayı) görünmeli. Şu an: "{1}".
+@@3634
+Sensör {0} iken ekranda {1} yazıyor; beklenen yaklaşık {2}. Dönüşüm: sayı * 50 / 4095 (0-4095 aralığı 0-50 °C'ye denk).
+@@3635
+Ekranda ondalık sayı var ({0}). Sıcaklık tam sayı olarak görünmeli.
+@@3637
+Değerin yanında birim ({0}) görünmeli. Şu an: "{1}".
+@@3638
+Sensör {0} iken (eşik {1} üstü) 2. satırda SICAK! uyarısı görünmeli.
+@@3639
+Sensör {0} iken henüz eşik aşılmadı, SICAK! uyarısı çıkmamalı.
+@@3640
+Ekran sensörü canlı izlemeli: sıcaklık değişince sayı da değişmeli.
+@@3641
+Sıcaklık doğru dereceye çevriliyor ve eşik aşılınca uyarı çıkıyor!
+@@3642
+Düğmeye basma senaryosu çalışmadı. Programı ▶ ile çalıştır.
+@@3643
+Düğmeye basmadan ekranın 2. satırında sayı görünüyor. Zar yalnızca düğmeye basılınca atılmalı.
+@@3644
+{0}. basışta 2. satırda sayı görünmedi. Düğmeye basınca LCD satır 2'ye rastgele sayı yaz.
+@@3645
+Ekranda {0} göründü; sayılar {1}-{2} arasında olmalı. random({3}, {4}) kullan (üst sınır dahil değildir).
+@@3646
+{0}. atışın sonucu {1}; zar {2}-{3} arasında olmalı.
+@@3647
+Sonuç ekranda sabit kalmadı. Yuvarlanma yaklaşık 1 saniyede bitmeli, sonra son sayı ekranda kalmalı.
+@@3648
+Yuvarlanma animasyonu görünmedi. Düğmeye basınca birkaç rastgele sayı hızla art arda görünmeli (döngü içinde yaz ve kısa bekle).
+@@3649
+Animasyon çok kısa sürdü. Sayılar basıştan en az {0} ms sonrasına kadar değişmeli.
+@@3650
+Her atışta aynı sayı çıktı. Sonucu rastgele sayı üretimiyle bul.
+@@3651
+{0} hiç görünmedi. random({1}, {2}) yazdığından emin ol (ilk sayı dahil).
+@@3652
+{0} hiç görünmedi. Üst sınır dahil olmadığı için random({1}, {2}) yazmalısın.
+@@3653
+Zar yuvarlanıp rastgele bir sayıda duruyor!
+@@3654
+Ham değeri göster
+@@3655
+LCD'nin <b>1. satırına</b> <i>Ham deger</i> yaz. <b>2. satırda</b> sıcaklık sensörünün (<span class="pin-etiket">{0}</span>) <b>ham sayısını</b> (0-4095) canlı göster. Dereceye çevirmene gerek yok.
+@@3656
+Analog değeri oku bloğunu LCD satır 2 bloğunun yazı yuvasına tak. Hepsi sürekli tekrarla içinde olsun, sonuna kısa bir bekleme koy.
+@@3657
+Program çok erken bitti. Sürekli tekrarla kullan.
+@@3658
+1. satırda "Ham deger" yazmalı.
+@@3659
+2. satırda sensörün ham değeri (bir sayı) görünmeli.
+@@3660
+Sensör {0} iken ekranda {1} yazıyor. Eski haneler kalmış olabilir: sayının arkasına birkaç boşluk yazdır.
+@@3661
+Ham değer ekranda canlı görünüyor!
+@@3662
+Sensörden <code>2048</code> okundu (0-4095 aralığı 0-50 °C'ye denk). Sıcaklık yaklaşık kaç derecedir?
+@@3663
+Yaklaşık 12 °C
+@@3664
+Yaklaşık 25 °C
+@@3665
+Yaklaşık 41 °C
+@@3667
+2048, 0-4095 aralığının tam ortasıdır. 0-50 aralığının ortası da 25 olduğundan sıcaklık yaklaşık 25 °C bulunur (2048 * 50 / 4095 = 25,006).
+@@3668
+Soğuk uyarısı
+@@3669
+Ekran sıcaklığı <b>derece</b> olarak göstersin: 1. satırda <i>Sicaklik</i>, 2. satırda değer ve <i>C</i>. Sıcaklık <b>10 °C'nin altına</b> inince 2. satırda ayrıca <b>SOGUK!</b> yazsın; 10 ve üstünde yazmasın.
+@@3670
+Önce sensörü dereceye çevir. Sonra eşiği büyüktür yerine küçüktür ile kontrol et ve SOGUK! yazısını yalnızca bu durumda göster.
+@@3671
+1. satırda "Sicaklik" başlığı olmalı.
+@@3672
+Sensör {0} iken 2. satırda yaklaşık {1} yazmalı; şu an: "{2}".
+@@3673
+Sıcaklık {0} °C iken (10 altı) SOGUK! uyarısı çıkmalı.
+@@3674
+Sıcaklık {0} °C iken SOGUK! uyarısı çıkmamalı. Eşik 10: küçüktür kullan.
+@@3675
+Soğuk uyarısı doğru çalışıyor!
+@@3676
+<code>float sicaklik = ham * 50 / 4095;</code> satırında (<code>ham</code> bir <code>int</code>) <b>50.0</b> yerine <b>50</b> yazılırsa ne olur?
+@@3677
+Hiçbir şey değişmez
+@@3678
+Tamsayı bölme yapılır; virgülden sonrası atılır, 25,4 yerine 25 gibi sonuç çıkar
+@@3679
+Sıcaklık hep 0 çıkar
+@@3680
+Her sayı tamsayı olunca C++ tamsayı bölmesi yapar ve ondalık kısmı atar. 50.0 yazınca işlem ondalıklı (float) sayılarla yapılır. (Bu satırda ham * 50 önce tamsayı olarak çarpılır, sonra 4095'e bölünürken ondalık kısım kaybolur.)
+@@3681
+Üç durum
+@@3682
+2. satırda sıcaklığın yanında bir durum yazısı olsun: <b>10 °C altı</b> <i>SOGUK</i>, <b>10-30 °C arası</b> <i>NORMAL</i>, <b>30 °C üstü</b> <i>SICAK</i>. 1. satırda yine <i>Sicaklik</i> yazsın.

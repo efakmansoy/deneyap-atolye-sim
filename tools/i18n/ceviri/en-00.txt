@@ -1,0 +1,697 @@
+@@5
+Program is not running: press Run first
+@@6
+The phone is not on a network: the ESP32 has not joined Wi-Fi yet (WiFi.begin) and softAP is off
+@@7
+The server is not running: server.begin() was not called
+@@8
+The server did not respond: the route handler did not call server.send(...)
+@@33
+set %1 to %2
+@@37
+HIGH (1)
+@@39
+LOW (0)
+@@48
+is %1 high?
+@@52
+wait %1 ms
+@@56
+repeat forever %1 %2
+@@61
+write to serial monitor %1
+@@76
+Flow
+@@79
+Logic
+@@83
+Number
+@@98
+read analog value of %1 (0-4095)
+@@99
+analogRead: 12-bit ADC, returns a number from 0 to 4095
+@@101
+map number %1 from range %2 - %3 to range %4 - %5
+@@106
+map(value, inMin, inMax, outMin, outMax)
+@@108
+LED bar: %2 LEDs starting at pin %1, level %3
+@@111
+As many LEDs light up as the level; the others turn off
+@@123
+join %1 and %2
+@@127
+Joins two pieces side by side
+@@129
+convert number %1 to text
+@@131
+Turns a number into text
+@@133
+elapsed time (ms)
+@@134
+Virtual time since the program started (millis)
+@@139
+Number:
+@@140
+Variables
+@@143
+is button %1 pressed?
+@@144
+True if the button is pressed
+@@146
+button %1 value (0 / 1)
+@@147
+1 if pressed, otherwise 0
+@@149
+wait until button %1 is %2
+@@151
+pressed
+@@152
+released
+@@153
+Waits until the button state changes
+@@155
+set pin %1 to the value %2
+@@156
+Sets the pin HIGH/LOW according to a logic value
+@@161
+Button
+@@163
+LCD row %1 write %2
+@@166
+Writes text/number to an LCD row (at most 16 characters)
+@@168
+clear LCD screen
+@@169
+Clears the LCD screen
+@@175
+random number from %1 to %2 (both included)
+@@176
+Gives a random whole number between A and B (both included). Example: 1 to 6 rolls a die.
+@@181
+play %2 Hz sound on pin %1
+@@188
+set servo %1 to %2 ° (0-180)
+@@190
+servo.write(angle)
+@@192
+distance sensor %1 (cm)
+@@193
+Distance measured by the ultrasonic sensor (cm)
+@@202
+Sound and motion
+@@296
+// The Arduino code for your blocks appears here as you add them.
+
+void setup() {
+}
+
+void loop() {
+}
+
+@@349
+Comment opened with '/*' but not closed with '*/'
+@@352
+Raw string R"(...)" is not closed: it must end with ")"
+@@356
+String (") is not closed: the closing double quote is missing
+@@357
+Character (') is not closed or contains more than one character
+@@361
+Unrecognized character: '{0}'
+@@362
+You must write a name after #define
+@@363
+Macros with parameters (#define F(x) ...) are not supported in this simulator; write a function instead
+@@371
+Extra '{0}': there is no open '{1}' for it to close
+@@372
+'{0}' (line {1}) was opened but not closed with '{2}'; found '{3}' here
+@@373
+'{0}' was opened but not closed: '{1}' is missing
+@@424
+ (instead of '{0}')
+@@425
+'{0}' is already defined in this scope
+@@426
+'{0}' is a reserved word and cannot be used as a variable name
+@@427
+ Did you mean: {0}?
+@@428
+An array cannot be used as a single value (pick an element with square brackets: array[0])
+@@429
+The result of a function that returns no value (void) cannot be used
+@@430
+A String (text) cannot be converted to {0}; use toInt() to convert it to a number
+@@431
+boolean
+@@432
+number
+@@433
+This kind of value (Servo/LCD) cannot be used this way
+@@437
+An array cannot be printed; print its elements one by one
+@@443
+{0} cannot be converted to text
+@@444
+The result of a function that returns no value
+@@445
+This value
+@@448
+Function {0}() not found: the program must contain "void {1}() { ... }"
+@@449
+Function {0}() must have the form "void {1}()"
+@@451
+Function '{0}' is already defined
+@@452
+A name was expected{0}
+@@453
+, but found '{0}'
+@@454
+A type was expected
+@@455
+Pointers (*) are not supported in this simulator
+@@457
+References (&) are not supported in this simulator; return the value with return
+@@458
+'Servo' is not recognized: did you forget #include <ESP32Servo.h> at the top of the file?
+@@459
+'WebServer' is not recognized: did you forget #include <WebServer.h> at the top of the file?
+@@460
+'LiquidCrystal_I2C' is not recognized: did you forget #include <LiquidCrystal_I2C.h> at the top of the file?
+@@461
+A parameter type was expected (e.g. int x){0}
+@@462
+Parameters cannot have default values (void f(int x = 5) is not supported)
+@@464
+'{0}' is not supported in this simulator
+@@465
+Unexpected '{0}' here; expected a function or variable definition (e.g. int number = 0;)
+@@468
+'{' was expected for the function body
+@@473
+LiquidCrystal_I2C needs an address and a size: LiquidCrystal_I2C lcd(0x27, 16, 2);
+@@474
+A variable cannot have type 'void'
+@@476
+A '{ ... }' list was expected for the array
+@@477
+The size of array '{0}' is unknown: give a size (e.g. int {1}[5]) or give the values
+@@478
+All sizes except the first dimension of the array must be written
+@@480
+A single variable cannot be given a '{ }' list; write name[] to define an array
+@@483
+This form of constructor is not supported for '{0}'
+@@485
+Nested { } cannot be used for this array
+@@493
+'else' must come after an 'if'
+@@496
+A 'while (condition);' is needed after a do { ... } block
+@@498
+'break' can only be used inside a loop or switch
+@@500
+'continue' can only be used inside a loop
+@@502
+This function must return {0}: write 'return value;'
+@@504
+A void function cannot return a value
+@@506
+'{0}' is an unknown type or command.{1}
+@@510
+A condition cannot be a String; use a comparison (e.g. s == "a")
+@@511
+switch only works with integer/character values
+@@519
+The left side of an assignment must be a variable (or an array element)
+@@520
+A const (constant) variable cannot be assigned a value
+@@521
+The operation cannot be applied to a whole array
+@@525
+An array cannot be used in this operation
+@@527
+Servo/LCD/WebServer objects cannot be used in operations
+@@529
+A String and a number cannot be combined with '{0}'; convert the number to text with String(x)
+@@532
+The '{0}' operation cannot be done on Strings
+@@535
+'%' (remainder) can only be used with integers
+@@537
+The '{0}' operation cannot be done with decimal numbers
+@@541
+'{0}' can only be applied to a variable
+@@542
+A const (constant) variable cannot be changed
+@@544
+Pointers and the address operator (* and &) are not supported in this simulator
+@@548
+Square brackets can only be used with arrays (and Strings)
+@@552
+{0}() wants {1} values but {2} were given
+@@553
+This value has no member '{0}'
+@@554
+{0} has no command called '{1}'{2}
+@@555
+. Did you mean: {0}?
+@@562
+Serial.printf expects a format string ("...") as its first value
+@@566
+{0}() can only be applied to a String variable
+@@573
+server.on() expects a path as its first value, e.g. server.on("/", homePage);
+@@574
+server.{0}() expects the name of a function as its last value (e.g. server.on("/", homePage); — do not put () after it). Write the function first as "void homePage() { ... }"; the "[]() {...}" form is not supported
+@@575
+Function '{0}' must have the form "void {1}()" (no parameters, returns nothing)
+@@576
+Write the name of the function inside server.{0}(), do not call it: {1} (do not put () after it)
+@@581
+: a value or expression may be missing
+@@582
+The code ended unexpectedly: an expression is unfinished
+@@584
+There is no pin D{0} (D0 - D14 are available)
+@@585
+There is no pin A{0} (A0 - A7 are available)
+@@590
+'WiFi' is not recognized: did you forget #include <WiFi.h> at the top of the file?
+@@592
+'{0}' is a function; write {1}() to call it
+@@593
+'{0}' is not defined: there is no such variable or function.{1}
+@@594
+'{0}(...)' cannot be used this way
+@@595
+Value {1} of {0}() must be an array
+@@597
+There is no function called '{0}'.{1}
+@@598
+{0}() works with numbers
+@@603
+Line {0}: {1}
+@@604
+There is no such pin: {0}. You can use pins D0-D14 (0-14) and A0-A7 (15-22)
+@@605
+Division by zero: the divisor cannot be 0 in integer division
+@@606
+Division by zero: the divisor cannot be 0 in a remainder (%) operation
+@@607
+Array index out of range: element {0} was requested but the array has {1} elements (valid: 0-{2})
+@@608
+Array is too large
+@@612
+For ledcWrite you must first attach a pin with ledcSetup + ledcAttachPin (or ledcAttach)
+@@616
+A servo must be attached to a pin with servo.attach(pin) before use (usually inside setup())
+@@621
+server.send() can only be called inside a route handler (a function attached with server.on)
+@@625
+The code could not be translated (unexpected syntax):
+@@626
+Line {0}: The function calls itself forever (the recursion never ends)
+@@633
+<button class="ipucu-btn">💡 Hint</button><div class="ipucu kutu ipucu-k" hidden>{0}</div>
+@@635
+✓ Completed
+@@636
+Moves on automatically when you do it
+@@638
+Got it
+@@4836
+<p>Try the phone panel: Run, then use On/Off in the <b>Phone</b> tab.</p>
+@@4838
+The LED turned on from the phone!
+@@4839
+The LED did not turn on.
+@@644
+Turn the LED off
+@@645
+This program turns the LED on. Write the right word in place of the orange-marked <b>HIGH</b> so the LED stays <b>off</b>.
+@@647
+HIGH meant three point three volts. Which word is used for zero volts?
+@@648
+The LED stayed off, exactly as we wanted!
+@@649
+The LED is still on. Try writing LOW instead of HIGH.
+@@650
+Half brightness
+@@651
+The LED is at full brightness right now. Replace the <code>digitalWrite(D0, HIGH)</code> line with <code>analogWrite</code>, which works with a value from 0-255, to bring the LED to <b>half brightness</b> (around 128).
+@@653
+It is written as analogWrite(pin, value). 255 is full brightness, 0 is off.
+@@654
+Half brightness, spot on!
+@@655
+LED brightness is {0}%. It should be about 50% (128).
+@@661
+Fast blinking
+@@662
+The LED currently blinks every half second. Change both of the marked wait times to make the LED blink <b>much faster</b> (each between 50 and 150 milliseconds).
+@@665
+Both say 500. Write a small number like 100.
+@@666
+The LED is not blinking fast enough. Make the wait times smaller.
+@@667
+It blinks very fast, great!
+@@668
+The wait times must be between 50-150 ms (currently ~{0} ms).
+@@669
+Heartbeat rhythm
+@@670
+Make the LED light up briefly and stay off for a long time: <b>on for 150 ms</b>, <b>off for 850 ms</b> (approximately). Change the two marked wait times accordingly.
+@@672
+The first delay waits while the LED is on, the second while the LED is off.
+@@673
+The LED has not changed enough.
+@@674
+Could not measure both the on time and the off time.
+@@675
+You got a heartbeat-like rhythm!
+@@676
+On {0} ms, off {1} ms. Wanted: about 150 and 850.
+@@695
+Connect to the Library network
+@@696
+Set the network name to <b>Kutuphane</b> and the password to <b>kitap2024</b>. (Only this network is accepted.)
+@@701
+Change the texts inside while keeping the quotation marks.
+@@702
+The board could not connect to the network: check the network name and password.
+@@703
+You connected to the Library network!
+@@704
+Change the connected message
+@@705
+When connected, print <b>Hazirim!</b> to the serial monitor.
+@@708
+Change the text "Baglandi!" to "Hazirim!".
+@@709
+"Hazirim!" did not appear in the serial monitor.
+@@710
+The new message was printed!
+@@711
+Dots more often (250 ms)
+@@712
+Make the dots appear more often while connecting: set the wait time to <b>250 ms</b>.
+@@713
+Change the delay(500) value inside the while loop to 250.
+@@714
+Only {0} dots were printed; with a 250 ms wait about 6 dots should appear.
+@@715
+The dots come more often!
+@@724
+Change the heading
+@@725
+Make the page heading <b>Merhaba Atolye!</b>.
+@@727
+Change the text inside <h1>.
+@@728
+The heading "Merhaba Atolye!" did not appear on the page.
+@@729
+The new heading is on the page!
+@@730
+Yellow background
+@@731
+Make the page background yellowish: add <code>;background:lightyellow</code> to the end of the style text.
+@@733
+After text-align:center write a semicolon and background:lightyellow.
+@@734
+background:lightyellow did not appear in the page style.
+@@735
+Your page is yellowish now!
+@@736
+Make the path /isik
+@@737
+Make the LED path <b>/isik</b>: change the two links on the page and the <code>server.on</code> line.
+@@740
+Change all three places that say /led to /isik (the orange-marked ones).
+@@741
+The links on the page must point to /isik.
+@@742
+The LED did not turn on for the request /isik?durum=1; did you write server.on("/isik", ...)?
+@@743
+The LED path is now /isik!
+@@750
+Change the network name
+@@751
+Make the network name <b>Atolye-AP</b>.
+@@754
+Change the first text inside softAP.
+@@755
+The network name is "{0}"; it must be "Atolye-AP".
+@@756
+The network name is now Atolye-AP!
+@@757
+New password
+@@758
+Make the network password <b>deneyap123</b>.
+@@760
+Change the second text inside softAP.
+@@761
+The password must be "deneyap123".
+@@762
+Password updated!
+@@763
+Page title
+@@764
+Make the page title <b>Sinif Agi</b>.
+@@766
+The heading "Sinif Agi" did not appear on the page.
+@@775
+Fast seizure
+@@776
+The lights currently change every four hundred milliseconds. Change <b>both wait times</b> to make the seizure <b>much faster</b> (each between 50 and 150 milliseconds).
+@@778
+A small time means a fast change. Write a number like 100 in both places.
+@@779
+The lights are not changing fast enough. Make the wait times smaller.
+@@780
+Both LEDs were on at the same time. Only change the numbers, do not touch the order.
+@@781
+A very fast seizure, great!
+@@782
+Red short, green long
+@@783
+Think of a traffic light: <b>red for about 200 ms</b>, <b>green for about 800 ms</b>. Which wait belongs to which LED? Change the marked places accordingly.
+@@784
+The first delay waits while red is on, the second while green is on.
+@@785
+Both LEDs must turn on several times.
+@@786
+Red is on for ~{0} ms, it should be about 200.
+@@787
+Red short, green long: exactly as we wanted!
+@@788
+Green is on for ~{0} ms, it should be about 800.
+@@789
+Find the bug
+@@790
+This program has a bug: sometimes <b>both LEDs are on at once</b>. At the marked place the red LED should be turned off but is left on. Fix the bug by writing the right word.
+@@791
+#define KIRMIZI D0
+#define YESIL D1
+
+void setup() {
+  pinMode(KIRMIZI, OUTPUT);
+  pinMode(YESIL, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(YESIL, LOW);
+  digitalWrite(KIRMIZI, HIGH);
+  delay(400);
+  digitalWrite(KIRMIZI, HIGH);  // should turn off
+  digitalWrite(YESIL, HIGH);
+  delay(400);
+}
+
+@@792
+digitalWrite(KIRMIZI, HIGH);  // should turn off
+@@793
+Off needs zero volts. Which word is used instead of HIGH?
+@@794
+Both LEDs are still on at the same time. Use LOW on the line that turns red off.
+@@795
+Both LEDs must blink in turn.
+@@796
+Bug fixed, the LEDs now light up in turn!
+@@798
+The button was not pressed (the scenario did not run).
+@@799
+The LED is still on while the button is pressed; it should turn off.
+@@800
+The LED is off while the button is not pressed; normally it should be on.
+@@801
+The LED stayed off while the button was pressed. Make sure the pins are correct.
+@@802
+The LED is still on when you release the button.
+@@803
+Not enough lines were written.
+@@804
+Every line must be "Basili" or "Birakildi".
+@@805
+"Basili" should be printed when the button is pressed; it never appeared.
+@@806
+The order should be Birakildi..., Basili..., Birakildi... Right now "Basili" and "Birakildi" are printed at the wrong times: check the condition.
+@@807
+Correct! It prints Basili while the button is held and Birakildi when released.
+@@813
+Reversed lamp
+@@814
+This program turns the LED on when the button is pressed. <b>Reverse</b> it: the LED should normally be <b>on</b> and <b>turn off</b> when the button is <b>pressed</b>. Changing the orange-marked condition is enough.
+@@818
+When the button is not pressed the pin reads LOW. What should you write instead of HIGH to ask "is it not pressed?"
+@@819
+Great! The LED is normally on and turns off when you press the button.
+@@820
+Fix the pins
+@@821
+In this program the button and LED pins are <b>written wrong</b>, so the LED does not follow the button. The button is on pin <b>D5</b> and the LED on <b>D2</b>. Fix the two marked lines.
+@@825
+Look at the pin label of the button in the scene: D5. The yellow LED is on D2. The pins of the two define lines are swapped.
+@@826
+Great! The pins are right and the LED follows the button.
+@@827
+Dim night light
+@@828
+The LED is completely off right now when there is no button press. Turn it into a <b>night light</b>: while the button is not pressed the LED should glow <b>dimly</b> (a small value between 0-255, for example 40), and be fully bright again when pressed. Replace the marked line with <code>analogWrite</code>.
+@@832
+It is written as analogWrite(LED, value). 0 is off, 255 is full brightness; around 40 gives a dim light.
+@@833
+The LED is completely off while the button is not pressed. It should stay slightly on (give a dim value with analogWrite).
+@@834
+The LED is too bright with no button press ({0}%). It should be dim: try a small value between 0-255.
+@@835
+The LED should be fully bright while the button is pressed; the dim value must not be written when pressed.
+@@836
+Night light ready: dim with no button, fully bright when pressed!
+@@843
+The signs are mixed up
+@@844
+The <span class="pin-etiket">D2</span> LED should light only when <b>both buttons</b> are pressed, and the <span class="pin-etiket">D3</span> LED when <b>at least one button</b> is pressed. In this program the two operators (<code>&amp;&amp;</code> and <code>||</code>) are swapped. Fix them.
+@@849
+If both are required use AND (two ampersands); if one is enough use OR (two vertical bars).
+@@850
+The D2 LED should light only when both buttons are pressed. Check where you put the AND operator.
+@@851
+The D3 LED should light while at least one of the buttons is pressed. Check where you put the OR operator.
+@@852
+Correct! D2 works with AND logic and D3 with OR logic.
+@@853
+None pressed
+@@854
+Now the <span class="pin-etiket">D2</span> LED should light only while <b>neither button is pressed</b>. The <span class="pin-etiket">D3</span> LED stays as before (lit while at least one is pressed). Change the marked condition; the <code>!</code> sign reverses an expression.
+@@856
+You mean "A is not pressed AND B is not pressed". To say not pressed, put an exclamation mark before a: !a
+@@857
+D2 stayed off while no button was pressed; it should be on.
+@@858
+D2 is still on while a button is pressed; it should be off.
+@@859
+The D3 LED should stay as before: on while at least one button is pressed.
+@@860
+Nice! D2 lights only while no button is pressed.
+@@861
+One or the other
+@@862
+The <span class="pin-etiket">D2</span> LED should light while <b>exactly one</b> of the buttons is pressed (off if both are pressed). The <span class="pin-etiket">D3</span> LED should light only when <b>both buttons</b> are pressed together. Change the conditions of both lines.
+@@864
+If exactly one is pressed, a and b are different from each other: you can write a != b. For D3 use the AND operator you know.
+@@865
+D2 should be off when both buttons are pressed.
+@@866
+D2 should be on while only one button is pressed.
+@@867
+D2 should be off while no button is pressed.
+@@868
+The D3 LED should light only when both buttons are pressed together.
+@@869
+Perfect! D2 works as "exactly one", D3 as "both".
+@@876
+Slow stream
+@@877
+The serial monitor streams too fast: five lines per second. Change the wait time so it prints <b>about two lines per second</b> (that is, <b>one every half second</b>, 500 ms).
+@@881
+Delay works in milliseconds. How many milliseconds is half a second?
+@@882
+Too few lines were printed ({0}). The wait should not be too long: half a second (500 ms) is enough.
+@@883
+The lines are still streaming too fast ({0} lines). Make the wait about 500 ms.
+@@884
+Exactly what we wanted: two lines per second.
+@@885
+Ready message
+@@886
+When the program starts it prints <code>Merhaba</code> once to the serial monitor. Change the marked text to <b>Hazir</b> (do not use Turkish letters). Keep printing the button values.
+@@889
+Delete the text inside the double quotes and write Hazir instead. Do not delete the quotes.
+@@890
+Nothing was printed to the serial monitor.
+@@891
+The first line is "{0}". The first line must be Hazir.
+@@892
+After Hazir every line must end with the button value and there must be enough lines.
+@@893
+1 should be printed when the button is pressed; no 1 ever appeared.
+@@894
+Nice! First Hazir, then the button values stream.
+@@895
+The monitor that lies
+@@896
+This program prints <code>Birakildi</code> while the button is pressed and <code>Basili</code> when it is released: the opposite! Fix the condition so it prints <b>Basili while pressed</b> and <b>Birakildi when released</b>.
+@@900
+The pin is HIGH when the button is pressed. The condition is currently asking about LOW.
+@@906
+Start from another number
+@@907
+The counter currently starts from zero and prints 1, 2, 3. Change the starting value so the serial monitor prints <b>11, 12, 13</b>.
+@@911
+The counter increases by one on the first press. What should it hold at the start to see 11?
+@@912
+3 lines are expected for 3 presses, but {0} lines were printed.
+@@913
+The output was {0} but it should be 11, 12, 13. Adjust the starting value.
+@@914
+Correct! The counter went 11, 12, 13.
+@@915
+Countdown
+@@916
+The counter now counts up. Turn it into a <b>countdown</b>: the serial monitor should print <b>2, 1, 0</b>. You need to change the starting value and the increment line together (two minus signs decrement by one).
+@@919
+To see 2 on the first press it must be 3 at the start and decrease with every press: sayac--
+@@920
+The output was {0} but it should be 2, 1, 0. The starting value and the increment/decrement must match.
+@@921
+Great! The countdown 2, 1, 0 worked.
+@@922
+Crazy counter
+@@923
+This counter prints several numbers for <b>one</b> press of the button. The bug is in the condition of the loop that <b>waits for the button to be released</b>. Fix the marked place so that only <b>1, 2, 3</b> are printed for three presses.
+@@925
+While waits as long as the condition is true. To wait while the button is held, should the condition be HIGH or LOW?
+@@926
+The button was pressed 3 times but {0} lines were printed. The board keeps counting while the button is held: check the wait condition.
+@@927
+The counter should go 1, 2, 3.
+@@928
+Fixed! Every press was counted exactly once.
+@@936
+Light up sooner
+@@937
+The player waits too long for the LED: the program lights it after <b>3 seconds</b>. Change the wait time so the LED lights after <b>1 second</b> (about 1000 ms).
+@@941
+One second is a thousand milliseconds.
+@@942
+The LED never turned on.
+@@943
+The LED turned on too early ({0} ms). You should wait about 1000 ms.
+@@944
+The LED turned on after {0} ms; it should be 1 second (1000 ms).
+@@945
+It lit up after exactly 1 second, the game got faster!
+@@947
+The program evaluates the reaction time: if the time is <b>less than 500 ms</b> it prints <code>HIZLI</code>, otherwise <code>YAVAS</code>. Make the referee stricter: a reaction of <b>350 ms</b> should count as <b>YAVAS</b>. Change the marked limit number (for example make it 300).

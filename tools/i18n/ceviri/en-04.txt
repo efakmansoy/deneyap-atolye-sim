@@ -1,0 +1,498 @@
+@@2335
+<h2>Your first web page</h2>
+      <p>We are turning the ESP32 into a <b>web server</b>: when you open the board's address in your phone's browser, the page will come from inside the board!</p>
+      <ol>
+        <li>Create a server object with <code>WebServer server(80);</code> (port 80 is the standard for the web).</li>
+        <li>Write a <code>void anaSayfa()</code> function for the home page: send the HTML text with <code>server.send(200, "text/html", ...)</code>.</li>
+        <li>Turn the LED on/off with the links <code>/led?durum=1</code> and <code>/led?durum=0</code>.</li>
+        <li>Open the page in the Phone tab and tap the links!</li>
+      </ol>
+@@2337
+<p><code>WebServer server(80);</code> is already at the top of the code. The phone comes to this door (port 80) and talks to the board.</p>
+@@2339
+<p>Write the function that sends the page: <code>void anaSayfa() { server.send(200, "text/html", s); }</code>. <b>200</b> means "success", and <code>text/html</code> means "this is a web page". The function needs a name, because <code>server.on</code> refers to it by that name.</p>
+@@2340
+You can build the HTML text piece by piece with String s and +=.
+@@2342
+<p>Inside <code>void ledYolu()</code>, look at the value of <code>server.arg("durum")</code>: if it is <code>"1"</code>, turn the LED on, otherwise turn it off. Then send the page again.</p>
+@@2343
+A handler that sends no reply makes the phone say "no response".
+@@2344
+Register the routes and start
+@@2345
+<p>At the end of <code>setup()</code>, write <code>server.on("/", anaSayfa);</code>, <code>server.on("/led", ledYolu);</code> and <code>server.begin();</code>. Put <code>server.handleClient();</code> inside <code>loop()</code>.</p>
+@@2346
+Write anaSayfa without parentheses, not server.on("/", anaSayfa())!
+@@2348
+<p>Press ▶ <b>Run</b>, then switch to the <b>📱 PHONE</b> tab. The page will open; tap the <b>LED Ac</b> and <b>LED Kapat</b> links.</p>
+@@2349
+Run first; wait a few seconds until the board connects.
+@@2352
+The home page did not reach the phone: do you have server.on("/", anaSayfa), server.begin(), and server.handleClient() inside loop()?
+@@2353
+The reply does not look like an HTML page.
+@@2354
+The LED did not turn on for the /led?durum=1 request.
+@@2355
+The LED did not turn off for the /led?durum=0 request.
+@@2356
+Great! The ESP32 became a web server: the page opened and the LED blinked from the phone.
+@@2358
+10.3 · Your own Wi-Fi network
+@@2359
+<h2>Your own Wi-Fi network</h2>
+      <p>No modem? No problem! The ESP32 can create <b>its own Wi-Fi network</b> (softAP). We will connect your phone to this network and open a web page without internet.</p>
+      <ol>
+        <li>Create the network with <code>WiFi.softAP("Deneyap-ESP32", "12345678")</code> (the password must be at least 8 characters).</li>
+        <li><code>WiFi.softAPIP()</code> is the board's address on this network: <b>192.168.4.1</b>.</li>
+        <li>Write the page's HTML as a raw string with <code>R"rawliteral(...)rawliteral"</code>; no need to escape quotes.</li>
+        <li>Open the page in the Phone tab and tap the LED link.</li>
+      </ol>
+@@2360
+Two modes: join or create
+@@2361
+<p>So far we used <code>WiFi.begin()</code> to join an existing network. <code>WiFi.softAP()</code> makes the board act like a modem: phones connect to it.</p>
+@@2363
+<p>Write the page inside <code>const char* SAYFA = R"rawliteral( ...HTML... )rawliteral";</code>. With this format you do not need to escape the quotes inside the HTML.</p>
+@@2364
+Put the definition at the top of the code, before the functions.
+@@2365
+Route functions
+@@2366
+<p><code>anaSayfa()</code> sends the page. <code>ledYolu()</code> flips a <code>bool ledAcik</code> variable, turns the LED on or off accordingly, and sends the page again.</p>
+@@2368
+Create the network and start the server
+@@2369
+<p>In <code>setup()</code>, create the network with <code>WiFi.softAP(...)</code>, print the address with <code>Serial.println(WiFi.softAPIP());</code>, register the routes, and call <code>server.begin();</code>. Don't forget <code>server.handleClient();</code> inside <code>loop()</code>.</p>
+@@2370
+There is NO WiFi.begin() in this lesson; you are creating the network.
+@@2371
+<p>Press ▶ <b>Run</b> and open the page in the <b>📱 PHONE</b> tab. Turn the LED on/off with the <b>LED Degistir</b> link.</p>
+@@2372
+You should see 192.168.4.1 in the serial output.
+@@2374
+The network was not created: call WiFi.softAP("name", "password").
+@@2375
+The network needs a name.
+@@2376
+The password must be at least 8 characters.
+@@2377
+softAPIP() was not printed to the serial monitor: Serial.println(WiFi.softAPIP());
+@@2378
+The page did not reach the phone: do you have server.begin() and server.handleClient() inside loop()?
+@@2379
+The LED should turn on after the /led request.
+@@2380
+Great! You created your own Wi-Fi network and turned on the LED from your phone!
+@@2381
+Module 2 · Buttons and variables
+@@2382
+To check the button <b>continuously</b>, which section should the <code>digitalRead(D5)</code> code go in?
+@@2383
+Inside <code>setup()</code>
+@@2384
+On the <code>include</code> line
+@@2385
+Inside <code>loop()</code>
+@@2386
+At the very end of the program, after <code>return</code>
+@@2387
+<code>setup()</code> runs only once; <code>loop()</code> repeats continuously. Since we don't know when the button will be pressed, the reading is done inside loop.
+@@2388
+Reverse logic
+@@2389
+This time the LED should be <b>on normally</b>, <b>turn off when the button is pressed</b>, and turn on again when released. <span class="pin-etiket">D5</span> is the button, <span class="pin-etiket">D2</span> is the LED.
+@@2390
+In the if / else block, try swapping HIGH and LOW. Or use the <b>not</b> block that inverts the button value.
+@@2391
+Correct! The LED does the opposite of the button.
+@@2392
+One end of the button is connected to 3.3 V and the other end to pin D5. So that pin D5 does not stay <b>undefined</b> when the button is not pressed, we connect the pin to ground (GND) with a large resistor. What is this resistor called?
+@@2393
+Pull-up resistor
+@@2394
+Pull-down resistor
+@@2397
+The resistor connecting the pin to GND keeps the pin LOW when the button is not pressed. This is called a pull-down. A pull-up pulls the pin toward 3.3 V.
+@@2398
+Tap briefly, light for one second
+@@2399
+A <b>brief tap</b> on the button should be enough: the LED turns on, stays on for exactly <b>1 second</b> (1000 ms), and then turns off. Releasing the button must not turn the LED off right away.
+@@2400
+If the button is pressed: turn the LED on, <b>wait 1000 ms</b>, turn the LED off.
+@@2401
+The LED must not turn on without pressing the button.
+@@2402
+The LED did not turn on when the button was tapped.
+@@2403
+The LED turned off right after the button was released. It should stay on for 1 second.
+@@2404
+The LED stayed on for more than 1 second. Make the wait 1000 ms, then turn the LED off.
+@@2405
+Great! The LED lit for exactly 1 second on every tap.
+@@2406
+<code>if (digitalRead(D5) == HIGH) { digitalWrite(D2, LOW); } else { digitalWrite(D2, HIGH); }</code><br>In this code, what does the LED do when the button is <b>pressed</b>?
+@@2408
+Blinks
+@@2409
+Nothing happens, the code gives an error
+@@2410
+Turns off
+@@2411
+When the condition (button pressed) is true, <code>digitalWrite(D2, LOW)</code> runs, so the LED turns off. When it is not pressed, the else part turns the LED on.
+@@2412
+Blink while held down
+@@2413
+<b>As long as you hold</b> the button, the LED should <b>blink</b> quickly (200 ms on, 200 ms off). When you release the button, the LED should stay off.
+@@2414
+If the button is pressed: LED HIGH, wait 200 ms, LED LOW, wait 200 ms. Otherwise set the LED to LOW.
+@@2415
+The LED did not blink while the button was pressed. You need all the steps: turn on, wait, turn off, wait.
+@@2416
+The LED is blinking too fast. Wait 200 ms between each on and off.
+@@2417
+The LED stayed on after the button was released; it should be off.
+@@2418
+Great! The LED blinks while the button is pressed.
+@@2419
+In C++, which logic operation does the <code>&amp;&amp;</code> sign perform?
+@@2420
+OR: one being true is enough
+@@2421
+AND: both must be true
+@@2422
+NOT: inverts the result
+@@2423
+Equality check
+@@2424
+<code>&amp;&amp;</code> means AND: the result is true if both conditions are true together. <code>||</code> is used for OR and <code>!</code> for NOT.
+@@2425
+Light up if none is pressed
+@@2426
+The <span class="pin-etiket">D2</span> LED should be on only <b>while neither button is pressed</b>. It should turn off as soon as one of the buttons is pressed. (Don't use the <span class="pin-etiket">D3</span> LED.)
+@@2427
+"Neither is pressed" is the opposite of "D5 or D6 is pressed". Think of the <b>not</b> block in the Logic category.
+@@2428
+Correct! D2 is on only while no button is pressed.
+@@2429
+Which expression means "<b>neither button is pressed</b>"? (LOW = not pressed)
+@@2434
+Both must be LOW, so AND (<code>&amp;&amp;</code>) is used. The third option means "at least one is not pressed".
+@@2435
+Priority button
+@@2436
+Let the <span class="pin-etiket">D6</span> button have <b>priority</b>. The D3 LED should be on while D6 is pressed. The D2 LED should be on only <b>while D5 is pressed and D6 is not pressed</b>.
+@@2437
+D3 simply follows the D6 button. For D2 use the and block: D5 pressed AND D6 NOT pressed.
+@@2438
+The D3 LED should follow the D6 button: on while D6 is pressed, off otherwise.
+@@2439
+D2 should be on only when D5 is pressed and D6 is not pressed.
+@@2440
+Nice! D6 always comes first, and D5 lights D2 only when it is alone.
+@@2441
+Suppose button a is pressed (<code>1</code>) and button b is not pressed (<code>0</code>). What are the results of <code>a &amp;&amp; b</code> and <code>a || b</code>, respectively?
+@@2442
+1 and 1
+@@2443
+1 and 0
+@@2444
+0 and 1
+@@2445
+0 and 0
+@@2446
+For AND both must be 1; here b is 0, so the result is 0. For OR one being 1 is enough, so the result is 1.
+@@2447
+Report on the serial monitor
+@@2448
+As long as both buttons are pressed <b>at the same time</b>, print <code>IKISI</code> to the serial monitor and <b>wait 200 ms</b> after each print. Print nothing when only one button is pressed or when none is pressed.
+@@2449
+Condition: D5 pressed AND D6 pressed. Put the write to serial monitor block and the wait block inside the condition.
+@@2450
+Nothing was written to the serial monitor. It should print IKISI when both buttons are pressed.
+@@2451
+IKISI should be printed only while both buttons are pressed; do not print at other times.
+@@2452
+While the buttons stay pressed, one line should be printed every 200 ms.
+@@2453
+There are too many lines. Wait 200 ms after printing, and print only while both buttons are pressed.
+@@2454
+Perfect! The serial monitor printed only while both buttons were pressed together.
+@@2455
+One or the other (XOR)
+@@2456
+The <span class="pin-etiket">D2</span> LED should be on while <b>exactly one</b> of the buttons is pressed. It should turn off if <b>both</b> are pressed or if none is pressed. (Don't use the <span class="pin-etiket">D3</span> LED.)
+@@2457
+Combine the ideas "at least one is pressed" AND "NOT both are pressed". The Logic category has the and, or, and not blocks.
+@@2458
+Very good! This logic is called "exclusive or" (XOR).
+@@2459
+What does the line <code>Serial.begin(115200);</code> do?
+@@2460
+Puts the board to sleep for 115200 ms
+@@2461
+Clears the text on the serial monitor
+@@2462
+Starts serial communication at 115200 baud
+@@2463
+Makes pin D5 an input
+@@2464
+Serial communication between the board and the computer starts with this line. The speed (baud) must be the same on both sides; 115200 is also selected in the serial monitor.
+@@2465
+As soon as the program starts, print <code>Hazir</code> to the serial monitor <b>once</b> (before the loop). Then keep printing the <b>D5 button value (0 / 1)</b> every 200 ms as before.
+@@2466
+Put the serial block that writes "Hazir" <b>outside</b> the repeat forever block, above it. Keep the block that writes the button value inside the loop.
+@@2467
+The first line should be "Hazir". This text must be printed before the loop.
+@@2468
+"Hazir" should be printed only once; put it outside the repeat forever block.
+@@2469
+After Hazir, every line should end with the button value (0 or 1), and there should be enough lines.
+@@2470
+Nice! First Hazir, then the button values.
+@@2471
+What is the difference between <code>Serial.println("Merhaba");</code> and <code>Serial.print("Merhaba");</code>?
+@@2472
+<code>println</code> moves to a new line after printing, <code>print</code> does not
+@@2473
+<code>print</code> prints the text twice
+@@2474
+There is no difference between them
+@@2475
+<code>println</code> can only print numbers
+@@2476
+"ln" means end of line (line). After println the next text starts on the line below; with print the texts flow side by side.
+@@2478
+Print words instead of numbers: print <code>Basili</code> <b>while the button is pressed</b> and <code>Birakildi</code> <b>while it is not pressed</b>. Wait 200 ms after each print again.
+@@2479
+Use the if / else block: print one text if pressed, the other text if not. Don't use Turkish letters (ı, ş).
+@@2480
+Not enough lines were printed. Use a loop and a 200 ms wait.
+@@2481
+Too many lines were printed. Add a 200 ms wait to the loop.
+@@2482
+It always prints "Basili". It should print "Birakildi" when the button is released.
+@@2483
+The order should be Birakildi..., Basili..., Birakildi...
+@@2484
+Great! You printed meaningful words instead of numbers.
+@@2485
+The code has <code>Serial.println(String("Değer: ") + String(digitalRead(D5)));</code>. What does <code>String(digitalRead(D5))</code> do?
+@@2486
+Makes the button pressed
+@@2487
+Increases the reading speed of pin D5
+@@2488
+Makes pin D5 an output
+@@2489
+Converts the 0 / 1 number that was read into text, so it can be joined with the text
+@@2490
+Text and a number cannot be added directly. We first convert the number to text with <code>String(...)</code>, then place them side by side with <code>+</code>.
+@@2491
+Print only on change
+@@2492
+Don't flood the screen: write to the serial monitor only when the button's state <b>changes</b>. Print <code>Basildi</code> once when pressed and <code>Birakildi</code> once when released. There should be exactly 2 lines in total.
+@@2493
+Store the button's <b>previous</b> state in a variable. If the current state differs from the previous one, print, then update the variable.
+@@2494
+{0} lines were printed but there should be 2: one when pressed, one when released. Print only when the state changes.
+@@2495
+The first line should be "Basildi".
+@@2496
+The second line should be "Birakildi".
+@@2497
+Great! You caught the state change.
+@@2498
+Measure how long it is held
+@@2499
+Measure the time from the moment the button is pressed until it is released, in <b>milliseconds</b>, and print it to the serial monitor <b>once</b> when released (e.g. <code>Sure: 1500</code>).
+@@2500
+Wait until pressed, save the <b>elapsed time (ms)</b> to a variable. Wait until released, then subtract the saved value from the current time.
+@@2501
+No time was written to the serial monitor.
+@@2502
+Print the time only once, when the button is released.
+@@2503
+The printed time ({0}) does not match the real time (~{1} ms). Subtract the press time from the release time.
+@@2504
+Great! The button was held for {0} ms.
+@@2505
+What happens if the line <code>int sayac = 0;</code> is written at the very start of <code>loop()</code>?
+@@2506
+The counter increases twice as fast
+@@2507
+The counter is reset on every loop, so it can never increase
+@@2509
+The counter goes down from 0 into negatives
+@@2510
+Loop runs from the beginning on every pass. If you reset the counter inside it, the previous value is lost. The initial value is given before the loop.
+@@2511
+Start from 5
+@@2512
+Let the counter's starting value be <b>5</b>. Increase it by 1 on each button press and print it to the serial monitor: <b>6, 7, 8</b>. (Don't forget to wait for the release.)
+@@2513
+Set the counter variable to 5 before the loop. The rest is the same as the solution in the lesson.
+@@2514
+The button was pressed 3 times but {0} lines were printed. Print once per press and wait for the release.
+@@2515
+The counter should go 6, 7, 8. The starting value should be 5.
+@@2516
+Correct! The counter started from 5 and went 6, 7, 8.
+@@2517
+If we <b>don't wait for the button to be released</b>, why does the counter increase very fast with a single press?
+@@2518
+Loop runs very fast; as long as the button is held down, it counts on every pass
+@@2519
+The button breaks and always reads HIGH
+@@2520
+The serial monitor prints the number twice
+@@2521
+The counter variable grows by itself
+@@2522
+The board runs thousands of loops per second. One press looks "pressed" for hundreds of loops; if we don't wait for the release, the counter increases on every loop.
+@@2523
+Two by two
+@@2524
+On each press the counter should <b>increase by 2</b> and be printed to the serial monitor: <b>2, 4, 6</b>.
+@@2525
+Change the 1 in the increase block.
+@@2526
+3 lines are expected for 3 presses, but {0} lines were printed. Make sure you wait for the release.
+@@2527
+The output should be 2, 4, 6. The counter should start at 0 and increase by 2 on each press.
+@@2528
+Great! The counter increases two by two.
+@@2529
+Which expression does the same job as <code>sayac += 1;</code>?
+@@2534
+<code>+=</code> adds to the variable: <code>sayac += 1</code> is the same as <code>sayac = sayac + 1</code>. <code>==</code> compares and cannot assign a value.
+@@2535
+End on the 3rd press
+@@2536
+Print the counter on the first two presses (<b>1</b>, <b>2</b>). On the <b>3rd press</b> print <code>BITTI</code> instead of the number. There should be exactly 3 lines in total.
+@@2537
+After increasing the counter, use if / else: is the counter 3? If yes, print BITTI, otherwise print the counter.
+@@2538
+3 lines are expected, but {0} lines were printed. Print once per press and wait for the release.
+@@2539
+The first two lines should be 1 and 2.
+@@2540
+On the 3rd press, BITTI should be printed instead of the number.
+@@2541
+Great! You made something else happen when the counter reached a certain value.
+@@2542
+If the value of the <code>sayac</code> variable is 5 and the line <code>sayac = sayac - 1;</code> runs, what does <code>sayac</code> become?
+@@2543
+First the right side is calculated: 5 - 1 = 4. Then the result is written back into the <code>sayac</code> box.
+@@2544
+Time between two presses
+@@2545
+Measure the time between the <b>starts</b> of two presses: save the time on the first press, and on the second press subtract it from the current time and print it to the serial monitor (e.g. <code>Aralik: 1100</code>). The result should be a single line.
+@@2546
+Wait until pressed, store the <b>elapsed time (ms)</b> in the variable, wait for the release, wait for the next press, and print the difference.
+@@2547
+Print only a single line: the time between the two presses, on the second press.
+@@2548
+The printed time ({0}) does not match the real interval (~{1} ms). It should be the second press time minus the first press time.
+@@2549
+Great! The time between the two presses is {0} ms.
+@@2550
+What does the <code>millis()</code> function return?
+@@2551
+What time it is (hour:minute)
+@@2552
+How many ms the D5 button was held down
+@@2553
+The milliseconds elapsed since the board started running
+@@2554
+The pin's voltage in millivolts
+@@2555
+<code>millis()</code> gives the milliseconds elapsed since the board was powered on (or reset). Durations are measured by taking the difference between two moments.
+@@2556
+Wait three seconds
+@@2557
+Let's make the game a bit harder: the LED should turn on <b>3 seconds (3000 ms) after</b> the program starts. When the button is pressed, the LED should turn off.
+@@2558
+Enter 3000 in the wait block, then set pin D2 to HIGH. To turn the LED off, wait for the button to be pressed.
+@@2559
+The LED turned on too early ({0} ms). You must wait 3000 ms.
+@@2560
+The LED turned on too late ({0} ms). You must wait exactly 3000 ms.
+@@2561
+The LED should turn off when the button is pressed.
+@@2562
+Correct! The LED turned on after exactly 3 seconds and turned off when pressed.
+@@2563
+A player's reaction time is measured like this: <code>baslangic = millis();</code> was written when the LED turned on. When the button is pressed, the <code>millis()</code> value is 5350. If the <code>baslangic</code> value is 5000, how many ms is the reaction time?
+@@2568
+Time = current time - start time = 5350 - 5000 = 350 ms.
+@@2569
+Fast or slow?
+@@2570
+Measure and evaluate the reaction time: if the time is <b>less than 500 ms</b>, print <code>HIZLI</code> to the serial monitor, otherwise print <code>YAVAS</code>. You don't have to print the time.
+@@2571
+Add an if / else to the time calculation from the previous lesson: if time &lt; 500 then HIZLI, otherwise YAVAS.
+@@2574
+The reaction time is ~{0} ms; this counts as {1}. Check the comparison.
+@@2577
+The reaction time is ~{0} ms; the serial monitor should have shown {1}.
+@@2578
+Correct! A reaction of {0} ms counted as {1}.
+@@2580
+Always the value 2000
+@@2581
+A random integer between 1000 and 3000 (3000 excluded)
+@@2582
+Always the average number between 1000 and 3000
+@@2583
+Waits 1000 ms, then waits 3000 ms
+@@2584
+<code>random(alt, üst)</code> produces a random number that includes the lower bound and excludes the upper bound. This way, nobody knows when the LED will turn on.
+@@2585
+Early press penalty
+@@2586
+Let's catch cheaters: if the button is pressed during the first <b>2 seconds</b> (before the LED turns on), print <code>ERKEN</code> to the serial monitor and the LED should <b>never turn on</b>. If it is not pressed, the game turns the LED on as usual.
+@@2587
+Instead of one long wait, split the 2 seconds into small steps (e.g. 20 ms waits) and check the button at each step. If it is pressed, print ERKEN and end the program.
+@@2588
+The LED turned on even though the button was pressed early. The LED should never turn on after an early press.
+@@2589
+The button was pressed early but ERKEN was not printed to the serial monitor. You must also check the button during the wait.
+@@2590
+Great! The cheating player got the ERKEN warning.
+@@2591
+Two rounds, best score
+@@2592
+Play the game for <b>two rounds</b>. In each round wait 1 second, turn on the LED, measure the reaction time, and turn off the LED. After the two rounds, print the <b>shortest</b> time to the serial monitor <b>once</b> (e.g. <code>En iyi: 260</code>).
+@@2593
+Let a variable <i>en_iyi</i> start as a very large number (e.g. 9999). In each round, if the measured time is smaller than en_iyi, assign it to en_iyi. You can use a loop or copy the steps twice to count the rounds.
+@@2594
+The LED turned on {0} times; it should turn on twice for two rounds (turn it off after each round).
+@@2595
+The second round was not completed. In each round the LED must turn on and you must wait until the button is pressed.
+@@2596
+The best time was not printed to the serial monitor.
+@@2597
+Print a single line only after the two rounds: the best (shortest) time.
+@@2598
+The printed value ({0}) does not match the best time (~{1} ms). Print the smaller of the two times.
+@@2599
+Great! Your best reaction time is {0} ms.
+@@2601
+2.1 · Button and LED
+@@2602
+<h2>Button and LED</h2>
+      <p>A <b>button</b> is connected to pin D5 and an <b>LED</b> to pin D2. When you press the button, the pin becomes <b>HIGH (1)</b>.</p>
+      <ol>
+        <li>From the <b>Button</b> category, put an <b>if / else</b> block inside <b>repeat forever</b>.</li>
+        <li>Plug the <b>is button D5 pressed?</b> block into the condition.</li>
+        <li>If pressed, set <b>pin D2 to HIGH</b>, otherwise to <b>LOW</b>.</li>
+      </ol>
+      <p>Hint: one block is enough too: <b>set pin D2 to [is button D5 pressed?]</b>.</p>
+      <p>Click the button with the mouse (hold it down) and watch the LED!</p>
+@@2603
+<p>In the scene there is a <b>button</b> (<span class="pin-etiket">D5</span>) and a <b>yellow LED</b> (<span class="pin-etiket">D2</span>). This time <b>you</b> will control the board, not us!</p>
+          <div class="kutu bilgi"><b>How is a button read?</b> When the button is pressed, pin D5 becomes 3.3 V, which is <code>HIGH</code> (1). When it is not pressed, it stays <code>LOW</code> (0). The board reads this with <code>digitalRead(D5)</code>.</div>
+          <p>Press and hold the button with the mouse in the 3D scene. You will see the button being pushed. The LED does not light up yet, because there is no program.</p>
+@@2604
+Repeat forever

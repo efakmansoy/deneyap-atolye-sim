@@ -1,0 +1,578 @@
+@@950
+Your reaction time is about 350 ms. For it to count as HIZLI the time must be below the limit; make the limit smaller than 350 so that 350 ms counts as slow.
+@@951
+Neither HIZLI nor YAVAS was printed to the serial monitor.
+@@952
+Your reaction time is about {0} ms but the referee said HIZLI. Make the limit smaller than this time.
+@@953
+YAVAS was not printed.
+@@956
+This game prints nonsense numbers instead of the real reaction time. There are two bugs: the condition of the loop that waits for the button and the calculation of the time. Find and fix the two marked places.
+@@961
+To wait until the button is pressed, you must stay in the loop while the button is NOT pressed (LOW). The elapsed time is the current time minus the start time.
+@@962
+The reaction time was not printed to the serial monitor.
+@@963
+The printed time ({0}) does not match the real reaction (~{1} ms). Check the wait condition and the time calculation.
+@@964
+The stopwatch is fixed: your reaction time is {0} ms.
+@@967
+The program ended too early. Everything must stay inside loop.
+@@968
+When {0} = {1} the LED should be {2}, but it is {3}.
+@@969
+on
+@@970
+off
+@@971
+on
+@@972
+off
+@@973
+When the pot is {0} the LED should be {1} bright, it is {2} right now.
+@@974
+When the pot is {0}, {1} LEDs should be on, but {2} LEDs are on.
+@@1006
+Make turquoise
+@@1007
+The LED is purple right now. Change the two marked values to get <b>turquoise</b> (green + blue): red <b>off</b>, green <b>fully bright</b>, blue stays the same.
+@@1016
+Set red (D0) to 0 and green (D1) to 255. Leave blue (D2) as it is.
+@@1019
+It's turquoise! A mix of green and blue is exactly this color.
+@@1020
+Red (D0) must be off, otherwise the color moves away from turquoise.
+@@1021
+Green (D1) must be fully bright (255).
+@@1022
+Blue (D2) must stay fully bright (255).
+@@1023
+Turn it orange
+@@1024
+The LED is yellow right now. Orange is made by adding a little green to red. Cut the marked <b>green value</b> in half (about <b>128</b>).
+@@1027
+The green channel is controlled by D1. Write 128 instead of 255.
+@@1029
+It's orange! Lowering the green shifted yellow to orange.
+@@1030
+Green is still too bright ({0}), the color is yellow. Set D1 to about 128.
+@@1031
+Green is too low ({0}), the color is close to red. Set D1 to about 128.
+@@1032
+Red (D0) must be fully bright and blue (D2) must stay off.
+@@1034
+The purple is too bright and tiring to look at. Change <b>both marked values</b>: red and blue should be at <b>half brightness</b> (about <b>128</b>) and green should stay off.
+@@1036
+Both say 255. Make both 128; do not touch green (D1).
+@@1039
+Green (D1) must stay off.
+@@1040
+Still too bright (red {0}, blue {1}). Make both about 128.
+@@1041
+Too dim (red {0}, blue {1}). Make both about 128.
+@@1042
+A pale purple! When you reduce the values the color stays the same, only the brightness drops.
+@@1043
+Red and blue must be close to each other.
+@@1049
+Fast breathing
+@@1050
+The LED breathes slowly. Make it glow and fade much faster by reducing the marked <b>wait times</b> (each between <b>2 and 10 milliseconds</b>).
+@@1052
+Both delay lines say 20. Write a small number like 5.
+@@1053
+The LED did not take enough steps.
+@@1054
+Time between steps is ~{0} ms, still slow. Bring the wait time to 10 ms or less.
+@@1055
+The wait is too short; the glow and fade finish in the blink of an eye. Wait at least 2 ms.
+@@1056
+Fast breathing! Shortening the wait sped up the animation.
+@@1057
+Dim breathing
+@@1058
+The LED currently rises to full brightness. Change the marked numbers: the LED should rise to at most <b>half brightness</b> (about <b>128</b>) and then fade out again.
+@@1061
+Make the upper limit of the first loop (i <= 255) and the start of the second loop (int i = 255) 128.
+@@1062
+No PWM was ever written to pin D0.
+@@1063
+The LED rises to a brightness of {0}, which is too high. Write 128 instead of 255 in both the glow and fade loops.
+@@1064
+The LED rises to a brightness of only {0}, which is too low. The peak value should be around 128.
+@@1065
+The LED should both glow and fade smoothly. Use the same peak value in both loops.
+@@1066
+A dim breath! You cut the peak brightness in half.
+@@1067
+Quick-fading LED
+@@1068
+The LED should glow smoothly but fade <b>faster</b>. Increase the <b>step size</b> in the fade loop (<code>i -= 5</code>) from 5 to <b>15</b>. Leave the glow loop as it is.
+@@1070
+Write 15 instead of 5 in the i -= 5 expression at the end of the fade loop.
+@@1071
+The glow must stay smooth: do not touch the first loop (i += 5).
+@@1072
+The fade is still slow. Write i -= 15 in the fade loop.
+@@1073
+The step is too big, the fade does not look smooth. Use a value around 15.
+@@1074
+The glow is smooth, the fade is fast. The step size controls the speed!
+@@1078
+Old habit: one thousand twenty-three
+@@1079
+This program was written for an older Arduino board: there the pot gives at most <b>1023</b>. On our board it gives <b>4095</b>. Fix the marked number so the LED glows correctly over the whole range of the pot.
+@@1081
+On this board analogRead reads from 0 to 4095. The upper limit of the first range of map must be this too.
+@@1082
+The pot now works correctly over the whole range!
+@@1083
+Limit the top brightness
+@@1084
+The LED gets too bright at the end of the pot. To avoid straining the eyes, make the brightest value <b>100 instead of 255</b>. With the pot fully right the LED should be at about 40 percent brightness.
+@@1086
+The last number in the map command is the largest value that will be written to the LED.
+@@1087
+With the pot fully right the LED glows at {0}, which is too high. Make the last number of the map command 100.
+@@1088
+With the pot fully right the LED glows at {0}, too dim. The last number should be around 100.
+@@1089
+With the pot fully left the LED should be off. Do not touch the leading 0 value.
+@@1090
+The brightness is safely limited. The pot still works smoothly.
+@@1091
+With the pot in the middle, the brightness should be about half of the fully-right brightness.
+@@1092
+Reversed pot
+@@1093
+When the pot goes right the LED should go dark, and when it goes left it should glow brightest. Swap the <b>two numbers of the target range</b> in the <code>map</code> command.
+@@1094
+The last two numbers of map are the target range. Put the small number last and the big number first: 255, 0.
+@@1095
+The reversed pot is ready! Fully bright on the left, off on the right.
+@@1100
+Turn on earlier
+@@1101
+The lamp currently turns on only when it is very dark. Make it turn on in evening dimness too: raise the <b>threshold</b> from 1000 to <b>2500</b>.
+@@1103
+Change the number 1000 inside the if. The lamp should turn on when the reading drops below 2500.
+@@1105
+A night light that also turns on in dimness!
+@@1106
+Brightness indicator
+@@1107
+This program turns on in the dark. We want the opposite: the LED should turn on when the environment is <b>bright</b> and turn off in the dark. Change the comparison sign.
+@@1108
+Use the greater-than (>) sign instead of the less-than (<) sign.
+@@1109
+You made an indicator that is on in the light and off in the dark!
+@@1110
+Don't let the night light hurt your eyes! In the dark the LED should not be fully bright but <b>dim</b> (about <b>80</b>). Also set the threshold to <b>2000</b> so it kicks in during evening dimness.
+@@1111
+There are two changes: make the threshold in the if 2000, and write 80 instead of 255 in the analogWrite line for the on state.
+@@1112
+When the environment is bright (LDR 3500) the LED should be off.
+@@1113
+When LDR is 1700 the LED should have been on. The threshold should be 2000.
+@@1114
+In the dark the LED should have been on.
+@@1115
+The LED is too bright ({0}). While on, the analogWrite value should be about 80.
+@@1116
+A dim and comfortable night light!
+@@1117
+The LED is too dim. Make the analogWrite value about 80.
+@@1120
+More sensitive alarm
+@@1121
+The alarm only sounds when it is very hot. Make it sound at a milder temperature: lower the <b>threshold</b> from 2500 to <b>1800</b>.
+@@1124
+Change the number 2500 inside the if. The smaller the threshold, the earlier the alarm sounds.
+@@1126
+The alarm is more sensitive now!
+@@1127
+Wrong pin
+@@1128
+In this program the alarm is connected to pin <b>D1</b>, but the red alarm LED in the scene is on pin <b>D0</b>. Change every place that says <b>D1</b> to <b>D0</b> so the alarm works.
+@@1129
+D1 appears in three places in the code: in pinMode and in two digitalWrite lines. Change them all to D0.
+@@1130
+Right pin, right alarm! If the pin number is wrong the program runs but the LED does not respond.
+@@1131
+Cold alarm
+@@1132
+This time the alarm should protect against <b>cold</b>, like a frost warning. The LED should turn on when the sensor value drops <b>below 800</b> and stay off when it is warmer. Change the comparison sign and the threshold.
+@@1134
+Use less-than (<) instead of greater-than (>) and write 800 instead of 2500.
+@@1136
+The cold alarm is ready! You made a reversed alarm with the less-than sign.
+@@1141
+Always at least one LED
+@@1142
+Even with the pot fully left, the bar's <b>first LED should be on</b>, so one extra LED is on at every level. Change the comparison sign.
+@@1143
+Use less-than-or-equal (<=) instead of less-than (<).
+@@1145
+One extra LED is on at every level!
+@@1146
+Four-LED indicator
+@@1147
+Use only the <b>first 4 LEDs</b> of the bar: with the pot fully right at most 4 LEDs should light. Change the last number of the <code>map</code> command.
+@@1149
+The last number of map sets the maximum number of LEDs that can be on. Write 4 instead of 8.
+@@1150
+The four-LED indicator is ready!
+@@1151
+Sensitive pot
+@@1152
+The bar should <b>fill completely</b> at exactly half way on the pot. That is, with the pot at <b>2048</b> all 8 LEDs should be on. Fix the upper limit of the pot reading in the <code>map</code> command.
+@@1154
+The first range of map is the pot reading. Write 2048 instead of 4095; the bar fills when a smaller number is reached.
+@@1155
+Sensitive pot! The bar filled at the halfway point.
+@@1158
+The scenario did not finish, try again.
+@@1159
+Pressing key {0} should play {1} Hz (it is {2} now).
+@@1161
+When key {0} is released the sound should stop, but the buzzer is still beeping.
+@@1163
+// Measure the distance in centimeters
+long mesafeOlc(int pin) {
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pin, LOW);
+  pinMode(pin, INPUT);
+  return pulseIn(pin, HIGH, 30000) / 58;
+}
+
+
+@@1174
+Change the start of the melody
+@@1175
+The melody currently starts with Do-Mi-Sol. Change the <b>first three numbers</b> in the list: the melody should start with <b>Sol (392), La (440), Si (494)</b>. Everything else stays the same.
+@@1177
+The first three numbers inside the curly braces should be 392, 440, 494 in order. Do not delete the commas.
+@@1178
+The melody is playing incomplete, do not break the list: there must be 7 notes.
+@@1179
+Note {0} should be {1} Hz (it is {2} Hz now).
+@@1180
+The melody now starts with Sol-La-Si!
+@@1181
+Slow melody
+@@1182
+The notes go by too fast. Make every note last <b>at least 500 ms</b> (half a second); all 7 notes should still play.
+@@1184
+The delay after the tone command waits as long as the note should last. Write a bigger number instead of 300, for example 600.
+@@1185
+Only {0} notes played, there should be 7.
+@@1186
+The shortest note lasts {0} ms. Every note must be at least 500 ms.
+@@1187
+The notes got too long, do not go over 900 ms.
+@@1188
+The melody now plays slow and heavy!
+@@1189
+Short melody, long breath
+@@1190
+Shorten the melody so it plays <b>only the first 4 notes</b>, and make the silence between notes <b>150-300 ms</b>.
+@@1193
+The loop plays as many notes as it runs. The silence is the delay after noTone.
+@@1194
+{0} notes played, it must be exactly 4. Change how many times the loop runs.
+@@1195
+The silence between notes is {0} ms. It must be 150-300 ms.
+@@1196
+You got a 4-note, airy melody!
+@@1203
+Narrowed motion
+@@1204
+The arm currently swings between <b>0°</b> and <b>180°</b>. Change the ends: the arm should swing between <b>30°</b> and <b>150°</b>.
+@@1209
+Change the angles inside the two write commands: one should be 30 and the other 150.
+@@1210
+The servo did not move enough.
+@@1211
+The arm went to an angle outside 30° and 150° ({0}°). The ends must be exactly 30 and 150.
+@@1213
+The arm swings between 30° and 150°!
+@@1214
+Slow sweep
+@@1215
+The arm sweeps too fast. Move the arm from 0° to 180° in steps of <b>at most 12°</b> and in a total of <b>at least 1.5 seconds</b>. (You will need to change two numbers.)
+@@1219
+If the step gets smaller the number of steps grows. With 10° steps there are 18 steps; waiting 100 ms at each step takes 1.8 seconds.
+@@1220
+The arm did not reach 0°.
+@@1221
+The arm did not reach 180°.
+@@1222
+The largest step is {0}°. It must not exceed 12°, make the step smaller.
+@@1223
+The sweep took {0} ms, it must be at least 1500 ms. Increase the wait between steps.
+@@1224
+The arm now sweeps slow and smooth!
+@@1225
+Four waves
+@@1226
+The arm currently swings twice between <b>0°</b> and <b>180°</b>. Change it to swing <b>4 times</b> between <b>60°</b> and <b>120°</b>. You will need to change three places.
+@@1230
+The 2 in the loop sets how many times it repeats. The angles should be 60 and 120.
+@@1231
+The arm went outside 60° and 120° ({0}°). Only these two angles should be used.
+@@1232
+The arm swung {0} times. It should be 4 times.
+@@1233
+The arm waved four times!
+@@1234
+// Measure the distance in centimeters
+long mesafeOlc(int pin) {
+
+@@1241
+Shorten the warning distance
+@@1242
+The buzzer currently beeps when an obstacle is closer than <b>100 cm</b>. Change the threshold: it should beep only for obstacles closer than <b>30 cm</b>. (At 60 cm it must be silent, at 20 cm it must beep.)
+@@1246
+The 100 in the condition means "closer than how many centimeters". Choose a number smaller than 60 and larger than 20, for example 30.
+@@1247
+The buzzer must not beep when the obstacle is at 150 cm.
+@@1248
+The buzzer is still beeping with the obstacle at 60 cm. The threshold must be smaller than 60.
+@@1249
+The buzzer did not beep with the obstacle at 20 cm. The threshold must be larger than 20.
+@@1250
+Your parking sensor now warns only within 30 cm!
+@@1251
+High-pitched, frantic alarm
+@@1252
+Make the beep <b>higher-pitched</b> (between 1800-2500 Hz) and <b>more frequent</b>: with the obstacle at 20 cm there should be about 10 beeps per second or more. You will need to reduce the multiplier in the wait time.
+@@1256
+Make the frequency greater than 1000, for example 2000. Change the multiplier 4 in the two delays to 2; the wait halves and the beeps become twice as frequent.
+@@1257
+The buzzer did not beep with the obstacle at 20 cm.
+@@1258
+The beep frequency is {0} Hz. It must be between 1800-2500 Hz.
+@@1259
+There are {0} beeps per second, there must be at least 9. Reduce the wait multiplier.
+@@1260
+You made a high-pitched, frantic alarm!
+@@1261
+Sound that rises as you approach
+@@1262
+Currently every beep is the same <b>1000 Hz</b>. Make the beep frequency <b>depend on the distance</b> instead of a fixed number: the sound should get <b>higher</b> as the obstacle gets closer. Keep the frequency between 100-5000 Hz.
+@@1264
+You need an expression that grows as cm shrinks. For example 2000 - cm * 10: it gives 1200 at 80 cm and 1850 Hz at 15 cm.
+@@1265
+A beep must be heard at every distance stage (80, 40 and 15 cm).
+@@1266
+The frequency must stay between 100-5000 Hz.
+@@1267
+Frequencies are 80 cm: {0}, 40 cm: {1}, 15 cm: {2} Hz. It must rise as you approach (at least 100 Hz per step).
+@@1268
+As the obstacle gets closer the sound gets higher and sharper!
+@@1275
+Swap the keys
+@@1276
+Key D0 currently plays Do (262 Hz), key D5 plays La (440 Hz). <b>Swap</b> the two notes: key D0 should play <b>La (440)</b> and key D5 <b>Do (262)</b>.
+@@1279
+Change the number on the D0 line to 440 and the one on the D5 line to 262. Do not touch the pin numbers.
+@@1281
+Tuning
+@@1282
+Three keys of the piano are out of tune! Using the note table, fix the frequencies of keys <b>D1 (Re 294)</b>, <b>D4 (Sol 392)</b> and <b>D6 (Si 494)</b>.
+@@1286
+Re = 294, Sol = 392, Si = 494 Hz. Replace the wrong number on each line with the right one.
+@@1287
+The piano is tuned, all keys are correct!
+@@1289
+On this piano the sound <b>does not stop</b> when you release a key! Replace the problematic line at the start of the loop with the right command that silences the sound (the buzzer is on pin D8).
+@@1292
+The command that silences the sound is called noTone. Write the buzzer pin inside it.
+@@1293
+The sound now stops when you release the key!
+@@1312
+Narrow the frequency range
+@@1313
+The instrument currently plays between <b>200 Hz</b> and <b>2000 Hz</b>. Change the range: in the dark (0) it should play <b>500 Hz</b> and in full light (4095) <b>1500 Hz</b>. You only need to change the two numbers inside map.
+@@1316
+The last two numbers of map are the output range: first the lowest frequency, then the highest. Write 500 and 1500.
+@@1318
+When the light is {0} it should play about {1} Hz (it is {2} now).
+@@1319
+The instrument now plays in the 500-1500 Hz range!
+@@1320
+Fast response
+@@1321
+This instrument responds <b>late</b> to light: when the light changes the sound only changes a quarter of a second later. Speed up the response: after the light changes, the sound should change <b>within 70 ms</b>. You only need to change the wait time.
+@@1323
+The wait at the end of the loop sets how often the board looks at the light. Write a much smaller number than 200, for example 20.
+@@1324
+When the light became {0}, the sound did not reach about {1} Hz. Do not break the map, only change the wait.
+@@1325
+When the light changed, the sound changed after {0} ms. It must be within 70 ms; shorten the wait.
+@@1326
+The instrument reacts to light instantly!
+@@1327
+Put a ceiling on the sound
+@@1328
+On a sunny day the instrument beeps too high and hurts the ears. Change the <b>tone</b> command: the frequency must never exceed <b>1200 Hz</b>, but at the low end it should still follow the light as before. (<code>constrain(x, min, max)</code> limits a number.)
+@@1331
+Give tone constrain(frequency, 200, 1200) instead of the frequency. That way the result never exceeds 1200.
+@@1332
+A sound must be made at every light level.
+@@1333
+The frequency came out {0} Hz. It must not exceed 1200 Hz.
+@@1334
+In low light the instrument must follow the light ({0} → {1} Hz). Only apply the upper limit.
+@@1335
+In bright light the sound must reach 1200 Hz (it is {0} Hz now).
+@@1336
+You put a ceiling on the sound: it never exceeds 1200 Hz!
+@@1342
+Narrow range of motion
+@@1343
+The arm currently moves between <b>0°</b> and <b>180°</b> with the knob. Narrow the range: with the knob fully left the arm should be at <b>45°</b>, fully right at <b>135°</b> (90° in the middle).
+@@1346
+The last two numbers of map are the output range. Write 45 and 135 instead of 0 and 180; do not touch the first two numbers (0, 4095).
+@@1347
+The servo did not move at all.
+@@1348
+When the pot is {0} the arm should be at about {1}° (it is {2} now).
+@@1351
+The arm now moves between 45°-135°!
+@@1352
+Reverse direction
+@@1353
+As the knob turns right the arm also goes right. <b>Reverse the direction</b>: with the knob fully left the arm should be at <b>180°</b>, fully right at <b>0°</b>.
+@@1355
+Write the output range of map in reverse: first 180, then 0.
+@@1356
+The direction is reversed: knob right, arm left!
+@@1357
+Safe limit
+@@1358
+The servo arm is hitting an obstacle: it must not open beyond <b>120°</b>. At low values it should follow the knob as before, but the arm must never exceed <b>120°</b>. (<code>constrain(x, min, max)</code> limits a number.)
+@@1361
+Give servo.write constrain(aci, 0, 120) instead of aci. The limit clips the angle that will be written.
+@@1362
+The arm went to an angle of {0}°. It must not exceed 120°.
+@@1363
+The servo must go to an angle at every stage.
+@@1364
+When the pot is 500 the arm should be at about {0}° (it is {1}° now). At low values it should follow the knob.
+@@1365
+When the pot is 2048 the arm should be at about 90° (it is {0}° now).
+@@1366
+With the pot fully right the arm should stop at 120° (it is {0}° now).
+@@1367
+The arm stops at 120°, it does not hit the obstacle!
+@@1380
+Change the text
+@@1381
+The first line of the screen says <b>Merhaba</b>. Change the marked text to <b>Selam</b>. Do not delete the quotation marks!
+@@1384
+The text is inside the double quotes. Only change the letters.
+@@1385
+Nothing has been written to the screen yet.
+@@1386
+The screen says Selam!
+@@1387
+Line 1 should say "Selam". Change the text inside the quotes.
+@@1388
+The counter currently counts from one to five. Change the three marked places so it counts <b>backwards from five to one</b>: the start, the condition and the step.
+@@1393
+Start at five, stop before i drops below one (i greater than or equal to one) and decrease by one every turn (i, minus minus).
+@@1394
+No number appeared on line 2.
+@@1395
+The countdown works: 5, 4, 3, 2, 1!
+@@1396
+The numbers appeared on the screen in this order: {0}. Wanted: 5, 4, 3, 2, 1.
+@@1397
+Move the number to the right
+@@1398
+The number on the second line appears at the far left. Change the marked column number to move the number to the <b>far right</b> of the line (the fifteenth column). Also change the text on the first line to <b>Selam</b>.
+@@1400
+Columns start at zero and there are sixteen columns. The rightmost column number is fifteen.
+@@1401
+Line 1 should say "Selam".
+@@1402
+The number still appears at the start of the line. Increase the first number of setCursor.
+@@1403
+The number is in the right corner, Selam is on top. Great!
+@@1404
+The number should appear in the far right corner of the line (column 15).
+@@1413
+Open only in very bright light
+@@1414
+The curtain currently opens when the light is greater than two thousand. Change the marked number: the curtain should open <b>only in very bright light</b> (three thousand and above). It should stay closed in medium light (about two thousand five hundred).
+@@1416
+The larger the threshold, the more light is needed to open the curtain. Choose a threshold larger than two thousand five hundred and smaller than three thousand five hundred, for example 3000.
+@@1417
+The program must keep monitoring the light, do not break the loop.
+@@1418
+The curtain did not open in very bright light. The threshold must not be too large (something like 3000).
+@@1419
+In medium light (2500) the curtain still opens. Make the threshold larger than 2500.
+@@1420
+The curtain now opens only in very bright light!
+@@1421
+Half-open curtain
+@@1422
+The curtain opens completely in light (one hundred eighty degrees). Make the marked angle <b>ninety</b> and change the screen text to <b>Perde: Yari</b>. In the dark it should keep closing as before.
+@@1426
+The number in the parentheses of the write command is the angle of the servo. You only need to change the word Acik in the text.
+@@1427
+The program must keep monitoring the light.
+@@1428
+In light the curtain should open to about ninety degrees.
+@@1429
+In light the screen should say "Perde: Yari".
+@@1430
+In the dark the curtain should close and the screen should say Kapali. Do not touch this part.
+@@1431
+The curtain opens halfway and the screen shows it correctly!
+@@1432
+Reversed curtain
+@@1433
+This curtain opens when there is light. We want the <b>opposite</b>: it should <b>open when the environment is dark</b> and close in light. Reverse the comparison sign.
+@@1435
+The greater-than sign and the less-than sign are the opposite of each other. In the dark the number is small.
+@@1436
+In the dark the curtain should open (servo 180). Reverse the comparison sign.
+@@1437
+In light the curtain should close (servo 0).
+@@1438
+When the curtain is open the screen should say "Perde: Acik".
+@@1439
+The curtain works reversed: it opens in the dark and closes in light!
+@@1452
+Make the threshold 25
+@@1453
+The warning currently appears above <b>30 °C</b>. Change the marked number to move the warning to above <b>25 °C</b>. That way it says SICAK! even in a mild environment like 28 °C.
+@@1455
+Change the thirty in the comparison to twenty-five. Do not change the sign or the variable name.
+@@1456
+The warning now appears above 25 °C!
+@@1457
+Show a whole number
+@@1458
+The screen shows the temperature with decimals like <b>36.6</b>. Show it as a <b>whole number</b> (like <b>37</b>, without anything after the point). Change the number of decimal places on the marked line.
+@@1460
+The second number in the print command says how many digits to write after the point. If you write zero there are no decimal places.
+@@1461
+The temperature appears as a whole number!
+@@1463
+A friend wants to see the temperature in <b>Fahrenheit</b> (°F). The conversion is: <code>F = C * 1.8 + 32</code>. Extend the formula, raise the warning threshold to <b>86</b> (30 °C = 86 °F) and make the unit <b>F</b> in both texts.
+@@1469
+Add * 1.8 + 32 to the end of the formula. Make the threshold 86. Change the letter C inside the quotes to F, do not change the number of spaces.
+@@1470
+The temperature appears in Fahrenheit and the warning works correctly!
+@@1477
+Eight-sided die
+@@1478
+This die gives a number between 1-6. The game table needs an <b>eight-sided</b> die: the numbers should be between <b>1-8</b>. Remember that the upper limit is not included!

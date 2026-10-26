@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Deneyap Atölye</title>
+<link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+<div id="uygulama">
+  <header id="ust">
+    <button id="menu" class="ikon" title="Ders listesi">☰</button>
+    <div class="marka">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="8" y="8" width="16" height="16" rx="3" fill="none" stroke="#2dd4bf" stroke-width="2"/><circle cx="16" cy="16" r="3" fill="#fbbf24"/><path d="M12 8V3M16 8V3M20 8V3M12 29v-5M16 29v-5M20 29v-5M3 12h5M3 16h5M3 20h5M24 12h5M24 16h5M24 20h5" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><b>DENEYAP ATÖLYE</b><small>3B devre ve kod laboratuvarı</small></div>
+    </div>
+    <nav class="yol"><span id="yolModul">Modül 1</span><i>›</i><b id="yolDers">Ders</b></nav>
+    <span class="bosluk"></span>
+    <div class="ilerleme"><span id="ilerlemeYazi">0/20 ders</span><div class="cubuk"><div id="ilerlemeDolu"></div></div></div>
+    <button id="xpKutu" class="xp-kutu"><span id="seviyeNo">Sv 1</span><div class="xp-cubuk"><div id="xpDolu"></div></div><span id="xpYazi">0 XP</span></button>
+    <span id="seriGun" class="seri-gun" title="Üst üste çalışma günü">🔥 0</span>
+    <button id="profilBtn" class="profil-btn" title="Profil ve rozetler"><span id="profilAvatar">🦊</span><span id="profilAd">Misafir</span></button>
+    <button id="dilBtn" class="ikon" title="English">EN</button>
+    <button id="tema" class="ikon" title="Açık/koyu tema">◐</button>
+  </header>
+
+  <div id="govde">
+    <nav id="kenar" aria-label="Dersler"></nav>
+
+    <section id="orta">
+      <div id="sahneKap">
+        <canvas id="sahne"></canvas>
+        <div id="sahneIpucu">Sürükle: döndür · Sağ tuş: kaydır · Tekerlek: yakınlaştır · Parçaya tıkla: etkileşim</div>
+        <div id="arac">
+          <button data-a="yakin" title="Yakınlaştır">+</button>
+          <button data-a="uzak" title="Uzaklaştır">−</button>
+          <hr />
+          <button data-a="sol" title="Sola döndür">↺</button>
+          <button data-a="sag" title="Sağa döndür">↻</button>
+          <button data-a="ev" title="Görünümü sıfırla">⌂</button>
+        </div>
+        <div id="evre">
+          <button data-sekme="ders" class="evre-btn"><i>1</i>Tanı</button>
+          <button data-sekme="kod" class="evre-btn"><i>2</i>Kodu yaz</button>
+          <button data-sekme="gorev" class="evre-btn"><i>3</i>Görevler</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="ayirac" title="Genişliği ayarla"></div>
+
+    <aside id="panel">
+      <div class="sekmeler" role="tablist">
+        <button data-sekme="ders" class="sekme aktif">DERS</button>
+        <button data-sekme="kod" class="sekme">KOD</button>
+        <button data-sekme="gorev" class="sekme">GÖREVLER <span id="gorevSay"></span></button>
+        <button data-sekme="telefon" class="sekme" id="sekmeTelefonBtn" hidden>📱 TELEFON</button>
+      </div>
+
+      <div id="sesliBar" hidden>
+        <button id="sOynat" class="birincil">🔊 Sesli anlat</button><button id="sDuraklat" class="ikon" title="Duraklat" disabled>⏸</button><button id="sAtla" class="ikon" title="Sonraki cümle" disabled>⏭</button><button id="sSes" class="ikon" title="Ses">🔊</button>
+        <div id="altyazi" aria-live="polite"></div><div class="sesli-ilerleme"><div id="sesliIlerleme"></div></div>
+      </div>
+
+      <div id="sekmeDers" class="icerik aktif"><div id="anlatim"></div></div>
+
+      <div id="sekmeKod" class="icerik">
+        <div id="kodArac">
+          <button id="calistir" class="birincil">▶ Çalıştır</button>
+          <button id="durdur" class="ikon" title="Durdur">■</button>
+          <div class="seg"><button id="gBlok" class="aktif">Bloklar</button><button id="gKod">Kod</button></div>
+          <span class="bosluk"></span>
+          <button id="kodKopyala" class="ikon" title="C++ kodunu kopyala">⧉</button>
+          <button id="sifirla" class="ikon" title="Çalışma alanını temizle">↺</button>
+        </div>
+        <div id="sonuc"></div>
+        <div id="kodAlan">
+          <div id="blokAlan"></div>
+          <div id="editor" hidden><pre id="kodIsaret" aria-hidden="true"></pre><pre id="kod" aria-hidden="true"></pre><textarea id="kodYaz" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Arduino C++ kodu"></textarea><div id="modEtiket" hidden>✎ Kodu elle düzenledin <button id="yenidenUret">Bloklardan yeniden üret</button></div></div>
+        </div>
+        <div id="seriKutu"><div class="seri-ust"><b>SERİ MONİTÖR</b><span id="seriDurum">DURDU</span></div><pre id="seri"></pre></div>
+      </div>
+
+      <div id="sekmeGorev" class="icerik"><div id="gorevler"></div></div>
+
+      <div id="sekmeTelefon" class="icerik"></div>
+    </aside>
+  </div>
+</div>
+<div id="toastlar" aria-live="polite"></div>
+<div id="modal" hidden><div id="modalIcerik" class="modal-kutu"></div></div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

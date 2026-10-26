@@ -1,0 +1,583 @@
+@@4401
+Araba kavis çizip dönmedi. Yalnız sol motor çalışınca araba yön değiştirir.
+@@4402
+2 saniye sonra motoru durdurmayı unutma.
+@@4403
+Tek motorla araba kavis çizerek sağa döndü!
+@@4404
+Aynı motorun hem ileri hem geri pini aynı anda YÜKSEK yapılırsa ne olur?
+@@4405
+Motor dönmez; iki yön birbirini götürür
+@@4406
+Motor iki kat hızlı döner
+@@4407
+Motor ileri döner
+@@4408
+Motor geri döner
+@@4409
+Motor sürücü iki yön pinini karşılaştırır. İkisi aynıysa (ikisi de 0 ya da ikisi de 1) motorun uçlarında gerilim farkı oluşmaz ve motor durur.
+@@4411
+Araba <b>1 saniye ileri</b>, sonra <b>1 saniye geri</b> gitsin; bunu <b>3 kez</b> tekrarla. Her adımdan sonra dur() ile motorları durdur.
+@@4412
+for (int i = 0; i < 3; i++) { ileri(); delay(1000); dur(); geri(); delay(1000); dur(); } döngüsünü kur.
+@@4415
+Her ileri hareketin ardından aynı süre geri gelmeli; araba başladığı yere dönmeli.
+@@4416
+Araba duvara çarptı.
+@@4417
+Üç kez ileri-geri yaptın, araba başladığı yerde!
+@@4418
+Sol motor ileri, sağ motor dururken araba hangi yöne kavis çizer?
+@@4419
+Sağa (sol tekerlek ileri iter, sağ tekerlek yerinde kalır)
+@@4421
+Düz ileri gider
+@@4422
+Olduğu yerde geri gider
+@@4423
+Sol tekerlek sağ tekerlekten hızlı döndüğü için araba sağ tekerleğin etrafında sağa doğru döner.
+@@4424
+Araba başladığı noktaya dönmedi ({0} cm uzakta).
+@@4425
+Araba başladığı yöne bakmıyor ({0} derece sapma).
+@@4426
+Sola doğru kare
+@@4427
+Araba şu an kareyi <b>sağa</b> dönerek çiziyor. Kareyi <b>sola</b> dönerek çiz: araba yukarı (+y) tarafa doğru gitsin ve yine başladığı yere dönsün.
+@@4428
+Dönüş fonksiyonunu saga() yerine sola() yap. Süreleri değiştirme.
+@@4429
+Araba yeterince yol almadı. Kareyi 4 kenar boyunca çizmelisin.
+@@4430
+Araba sola (yukarı) dönmedi. Sola dönmek için sol motor geri, sağ motor ileri çalışmalı.
+@@4431
+Araba sola doğru kare çizip başladığı yere döndü!
+@@4432
+Araba olduğu yerde sağa dönmek için motorlar nasıl çalışmalı?
+@@4433
+Sol motor ileri, sağ motor geri
+@@4434
+Sol motor geri, sağ motor ileri
+@@4435
+İki motor da ileri
+@@4436
+İki motor da dursun
+@@4437
+Sol tekerlek ileri, sağ tekerlek geri dönerse araba saat yönünde (sağa) kendi etrafında döner. Tersi sola döndürür.
+@@4438
+Büyük kare (35 cm kenar)
+@@4439
+Kare şu an 25 cm kenarlı. Kenar uzunluğunu <b>35 cm</b> yap (tekerlekler 25 cm/s ile döner: 35 cm için <b>1400 ms</b> ileri git). Dönüşler 90 derece kalsın.
+@@4440
+İleri giderken kullanılan delay(1000) değerini 1400 yap; dönüş süresine dokunma.
+@@4441
+Araba toplam {0} cm gitti; 35 cm kenarlı karede yaklaşık 140 cm gitmeli.
+@@4442
+Kare yeterince büyük değil: kenar 35 cm olmalı.
+@@4443
+35 cm kenarlı büyük kareyi tamamladın!
+@@4444
+Dönüş süresini (delay) 2 katına çıkarırsak araba kaç derece döner?
+@@4447
+90 derece, ama daha yavaş
+@@4449
+Dönme hızı sabit olduğu için dönme açısı süreyle orantılıdır: 380 ms yaklaşık 90 derece, 760 ms yaklaşık 180 derecedir.
+@@4450
+U dönüşü
+@@4451
+Araba <b>1 saniye ileri</b> gitsin, <b>olduğu yerde 180 derece</b> dönsün (760 ms), sonra <b>1 saniye daha</b> ileri gitsin ve dursun. Araba başladığı noktaya, ters yöne bakarak varmalı.
+@@4452
+ileri(); delay(1000); saga(); delay(760); ileri(); delay(1000); dur(); sırasını yaz.
+@@4454
+Araba ters yöne bakmıyor ({0} derece). 180 derece dönmek için yaklaşık 760 ms gerekir.
+@@4455
+Araba başladığı noktaya geri dönmedi. İki ileri süresi eşit olmalı.
+@@4456
+Sonunda motorları durdur.
+@@4457
+U dönüşü başarılı: araba geri döndü!
+@@4458
+Kare çizerken her dönüşten sonra neden kısa bir dur() ve bekleme koyuyoruz?
+@@4459
+Araba ilerlerken ataletle kaymasın, dönüş temiz başlasın diye
+@@4460
+Pil boşalmasın diye
+@@4461
+Sensörlerin açılması için
+@@4462
+Kod daha hızlı derlensin diye
+@@4463
+Hareket halindeki araba aniden yön değiştirirse savrulur. Kısa bir duruş, dönüşlerin tutarlı ve tekrarlanabilir olmasını sağlar.
+@@4464
+Daha erken fren: 40 cm
+@@4465
+Araba engele 30 cm kala geri dönüyor. Daha güvenli olması için <b>40 cm</b>'den yakın olduğunda tepki versin.
+@@4466
+mesafeOlc(D4) < 30 koşulundaki 30 sayısını 40 yap.
+@@4467
+Araba engele yaklaşınca hiç geri gitmedi. D1 ve D3 pinlerini YÜKSEK yapan geri() çağrısı var mı?
+@@4468
+Araba engele çok yaklaşınca geri gitti (x = {0}). 40 cm'de tepki vermeli.
+@@4469
+Araba engele 40 cm kala geri dönüyor!
+@@4470
+Ultrasonik sensör engelin mesafesini nasıl ölçer?
+@@4471
+Ses dalgası gönderir, yankı dönene kadar geçen süreyi ölçer
+@@4472
+Kameradan görüntü alır
+@@4474
+Engelin sıcaklığını ölçer
+@@4475
+Sensör yüksek frekanslı bir ses darbesi yollar. Ses engele çarpıp döner; gidiş-dönüş süresinden mesafe cm olarak hesaplanır.
+@@4476
+Geri giderken buzzer uyarısı
+@@4477
+Araba engelden kaçarken <b>D8</b> pinindeki buzzer <b>1000 Hz</b> uyarı sesi çalsın. Yol açıkken buzzer sussun (noTone).
+@@4478
+Engel koşulunun içine tone(D8, 1000); else kısmına noTone(D8); ekle.
+@@4479
+Buzzer hiç çalmadı. Engel yakınken tone(D8, 1000) kullan.
+@@4480
+Buzzer hiç susmadı. Yol açılınca noTone(D8) çağır.
+@@4481
+Buzzer 1000 Hz çalmadı.
+@@4482
+Araba engelden kaçmadı (geri gitmedi).
+@@4483
+Araba engele çarptı.
+@@4484
+Engel yakınken buzzer uyarı veriyor!
+@@4485
+Engelden kaçmadan önce araba neden önce geri gider, sonra döner?
+@@4486
+Dönerken engele sürtmemek için önce biraz uzaklaşmak gerekir
+@@4487
+Geri gitmek daha hızlı olduğu için
+@@4488
+Sensör yalnızca geriyi ölçtüğü için
+@@4489
+Pil tasarrufu için
+@@4490
+Araba engele yakınken yerinde dönerse gövdesi engele çarpabilir. Geri çekilmek dönmek için boşluk açar.
+@@4491
+Kaçarken LED yansın
+@@4492
+Araba engelden kaçarken <b>D7</b> pinindeki LED yansın, yol açıkken sönsün.
+@@4493
+Engel koşulunda digitalWrite(D7, HIGH); else kısmında digitalWrite(D7, LOW); yaz. D7 için pinMode(D7, OUTPUT); unutma.
+@@4494
+D7 LED'i hiç yanmadı.
+@@4495
+LED yandıktan sonra sönmedi. Yol açılınca digitalWrite(D7, LOW) yaz.
+@@4496
+LED engel yakınken yanıp yol açılınca sönüyor!
+@@4497
+Tek bir ultrasonik sensör araba için hangi sınırlamayı getirir?
+@@4498
+Yalnızca baktığı doğrultudaki engeli görür, yan taraftakini göremez
+@@4499
+Yalnızca siyah engelleri görür
+@@4500
+Gece çalışmaz
+@@4501
+Yalnızca 5 cm altını ölçer
+@@4502
+Sensör dar bir ışın gibi çalışır; arabanın yanındaki engel görülmez. Bu yüzden araba dönerken kenar köşelere çarpabilir.
+@@4503
+Düzeltirken buzzer
+@@4504
+Araba çizgiyi düzeltmek için döndüğünde <b>D8</b> buzzer <b>800 Hz</b> çalsın, düz giderken sussun. Araba yine çizgiyi izlemeye devam etmeli.
+@@4505
+sola() ve saga() çağrılarının yanına tone(D8, 800); ekle; ileri() olan else kolunda noTone(D8); yaz.
+@@4506
+Buzzer hiç susmadı: düz giderken noTone(D8) çağır.
+@@4507
+Araba çizgiyi izleyip ilerlemedi.
+@@4508
+Araba çizgiden çıktı. Önce çizgi izleme kodu çalışmalı.
+@@4509
+Buzzer düzeltme anlarında çalıyor, araba çizgide!
+@@4510
+Çizgi izleyen sensör (siyah çizgi üstünde) dijital olarak ne okur?
+@@4511
+Çizgi üstünde 1 (HIGH), beyaz zeminde 0 (LOW)
+@@4512
+Her zaman 0
+@@4513
+Çizgi üstünde 0, beyaz zeminde 1
+@@4514
+Sıcaklık değeri
+@@4515
+Bu derste sensörler siyah çizgi üstündeyken 1, beyaz zeminde 0 verir. Siyah yüzey ışığı az yansıttığı için sensör çizgiyi böyle ayırt eder.
+@@4516
+Seri monitörden sensörleri izle
+@@4517
+Her döngüde sol ve sağ sensör değerini seri monitöre yazdır (Serial.begin(9600) ile başlat; Serial.println ile sol, sonra sağ değeri yaz). Araba yine çizgiyi izlesin.
+@@4518
+setup içine Serial.begin(9600); ekle. loop içinde sensörleri okuduktan sonra Serial.println(sol); Serial.println(sag); yaz.
+@@4519
+Seri monitöre yalnızca {0} satır yazıldı. Her döngüde iki değer yazmalısın.
+@@4520
+Seri monitörde hem 0 hem 1 görünmeli (sensör değerleri).
+@@4521
+Sensör değerleri seri monitörde akıyor, araba çizgide!
+@@4522
+Sol sensör çizgiyi görürse araba hangi yöne düzeltme yapmalı?
+@@4523
+Sola; çizgi arabanın solundadır
+@@4524
+Sağa; çizgiden kaçmalı
+@@4526
+Durmalı ve beklemeli
+@@4527
+Sol sensör siyahı görüyorsa çizgi arabanın solunda demektir. Araba sola dönerek çizgiyi iki sensörün ortasına geri alır.
+@@4528
+Düzeltirken LED yansın
+@@4529
+Araba sola ya da sağa düzeltme yaptığında <b>D7</b> LED yansın; düz giderken sönsün. Araba çizgiyi izlemeye devam etmeli.
+@@4530
+pinMode(D7, OUTPUT); ekle. sola/saga kollarında digitalWrite(D7, HIGH); ileri() kolunda digitalWrite(D7, LOW); yaz.
+@@4531
+LED yandıktan sonra hiç sönmedi (düz giderken digitalWrite(D7, LOW)).
+@@4532
+LED düzeltme anlarında yanıyor!
+@@4533
+Çizgi izleyen arabada kontrol döngüsünün (delay) çok uzun olması ne soruna yol açar?
+@@4534
+Araba iki ölçüm arasında çizgiyi kaçırabilir
+@@4535
+Araba daha hızlı gider
+@@4536
+Hiçbir şey olmaz
+@@4537
+Araba her ölçümden sonra delay süresi boyunca görmeden ilerler. Süre uzunsa çizgi sensörlerin altından çıkıp gider.
+@@4540
+<h2>Robot araba: motorlar</h2>
+      <p>İki DC motorlu robot arabanı sürmeyi öğreniyoruz: ileri, geri ve dur!</p>
+      <ol>
+        <li>Her motorun <b>iki yön pini</b> vardır: sol motor <b>D0 (ileri)</b> ve <b>D1 (geri)</b>, sağ motor <b>D2 (ileri)</b> ve <b>D3 (geri)</b>.</li>
+        <li>Araba <b>2 saniye ileri</b> gitsin.</li>
+        <li>Sonra <b>dur</b> ve yarım saniye bekle.</li>
+        <li>Ardından <b>1 saniye geri</b> gel ve motorları durdur.</li>
+      </ol>
+@@4541
+Arabayı tanı
+@@4542
+<p>Arabanın iki tekerleği iki ayrı DC motorla döner. Her motor bir <b>motor sürücü</b> üzerinden iki pinle yönetilir: ileri pini ve geri pini.</p><p>Sol motor: <span class="pin-etiket">D0</span> ileri, <span class="pin-etiket">D1</span> geri. Sağ motor: <span class="pin-etiket">D2</span> ileri, <span class="pin-etiket">D3</span> geri.</p>
+@@4543
+İleri: iki motoru çalıştır
+@@4544
+<p><span class="chip pin">Pinler</span> kategorisinden <span class="chip pin">pinini yap</span> bloğunu al: <b>D0 → YÜKSEK</b>. Sonra <b>D2 → YÜKSEK</b> yap. İki geri pini (D1, D3) DÜŞÜK kalsın.</p>
+@@4545
+İki blok: D0 YÜKSEK (1) ve D2 YÜKSEK (1).
+@@4546
+2 saniye yürüsün
+@@4547
+<p>Motorlar çalışırken araba ilerler. <span class="chip akis">Akış</span> kategorisinden <span class="chip akis">ms bekle</span> bloğunu ekle ve <b>2000</b> yaz.</p>
+@@4548
+1 saniye = 1000 ms; 2 saniye için 2000 yaz.
+@@4550
+<p>Durmak için <b>D0</b> ve <b>D2</b> pinlerini <b>DÜŞÜK</b> yap (dört pin de DÜŞÜK olsun). Sonra yarım saniye bekle.</p>
+@@4551
+D0 DÜŞÜK (0) ve D2 DÜŞÜK (0) bloklarını ekle.
+@@4553
+<p>Geri gitmek için bu kez <b>geri pinleri</b> çalıştır: <b>D1 → YÜKSEK</b> ve <b>D3 → YÜKSEK</b>. 1 saniye bekle, sonra tüm pinleri DÜŞÜK yap.</p>
+@@4554
+Geri pinleri D1 ve D3 tür.
+@@4555
+<p>▶ <b>Çalıştır</b>'a bas. Araba ileri gidip duracak, sonra geri gelecek.</p>
+@@4556
+Çalıştırdıktan sonra kontrol sonucu görünür.
+@@4557
+Araba ileri gittikten sonra geri gelmedi. Geri gitmek için D1 ve D3 pinlerini YÜKSEK yap.
+@@4558
+Program bitince motorları durdurmayı unutma (tüm pinleri DÜŞÜK yap).
+@@4559
+Harika! Araba ileri gitti, durdu ve geri geldi.
+@@4561
+8.2 · Robot araba: dönüşler
+@@4562
+<h2>Robot araba: dönüşler</h2>
+      <p>İki motoru zıt yönde çalıştırarak arabayı olduğu yerde döndürüyoruz ve bir <b>kare</b> çizdiriyoruz.</p>
+      <ol>
+        <li><b>Sağa dönüş:</b> sol motor ileri, sağ motor geri.</li>
+        <li><b>Sola dönüş:</b> sol motor geri, sağ motor ileri.</li>
+        <li>Tam güçte araba yaklaşık <b>380 ms</b>'de 90 derece döner.</li>
+        <li>Kare: 4 kez { <b>1 saniye ileri</b> (25 cm), <b>sağa 90 derece dön</b> } yap.</li>
+      </ol>
+@@4563
+Dönmek için zıt yön
+@@4564
+<p>Araba düz giderken iki tekerlek de aynı yöne döner. <b>Olduğu yerde sağa dönmek</b> için sol tekerlek ileri, sağ tekerlek geri döner. Sola dönmek için tersi.</p>
+@@4565
+İleri 1 saniye
+@@4566
+<p>Önce 25 cm gideceğiz: <span class="chip pin">D0</span> ve <span class="chip pin">D2</span> pinlerini YÜKSEK yap, <span class="chip akis">1000 ms bekle</span>.</p>
+@@4567
+D0 YÜKSEK, D2 YÜKSEK, 1000 ms bekle.
+@@4568
+Sağa 90 derece
+@@4569
+<p>Sağa dönmek için <b>D0 → YÜKSEK</b>, <b>D1 → DÜŞÜK</b>, <b>D2 → DÜŞÜK</b>, <b>D3 → YÜKSEK</b> yap ve <b>380 ms</b> bekle.</p>
+@@4570
+Sol motor ileri (D0), sağ motor geri (D3).
+@@4571
+Dört kere tekrarla
+@@4572
+<p>Kare 4 kenardan oluşur. <span class="chip akis">Akış</span> kategorisinden <span class="chip akis">tekrarla</span> bloğunu al, <b>4</b> yaz ve ileri + dönüş bloklarını içine koy.</p>
+@@4573
+Tekrarla bloğunun içine pin yazan blokları sürükle.
+@@4575
+<p>Her dönüşten sonra tüm pinleri <b>DÜŞÜK</b> yap ve <b>200 ms</b> bekle. Araba savrulmadan bir sonraki kenara başlasın.</p>
+@@4576
+Tekrar bloğunun içinde 3 bekleme olmalı: ileri, dönüş, dur.
+@@4577
+<p>▶ <b>Çalıştır</b>'a bas. Araba kare çizip başladığı yere dönmeli.</p>
+@@4578
+Dönüş 380 ms, ileri 1000 ms olmalı.
+@@4579
+Araba yeterince yol almadı. Kareyi dört kenar boyunca çizmelisin.
+@@4580
+Araba sağa dönmedi. Sağa dönmek için sol motor ileri, sağ motor geri çalışmalı.
+@@4581
+Araba {0} cm gitti; her kenar 1 saniye (25 cm) olmalı.
+@@4582
+Harika! Araba kareyi çizip başladığı noktaya döndü.
+@@4584
+8.3 · Robot araba: engelden kaçan
+@@4585
+<h2>Engelden kaçan araba</h2>
+      <p>Arabanın burnundaki ultrasonik sensörle önündeki engele olan uzaklığı ölçüyoruz. Engel yakınsa araba geri çekilip dönerek kaçıyor!</p>
+      <ol>
+        <li>Mesafe sensörü <b>D4</b> pinindedir. Motor pinleri: D0, D1 (sol), D2, D3 (sağ).</li>
+        <li>Engel <b>30 cm</b>'den yakınsa: <b>400 ms geri</b> git, sonra <b>380 ms sağa</b> dön (yaklaşık 90 derece).</li>
+        <li>Yol açıksa: <b>ileri</b> git.</li>
+        <li>Kontrolü her <b>50 ms</b>'de bir tekrarla.</li>
+      </ol>
+@@4586
+Sensör araba burnunda
+@@4587
+<p>Ultrasonik sensör (<span class="pin-etiket">D4</span>) arabanın önüne bakar ve önündeki engele kaç cm kaldığını ölçer. Arenadaki dikdörtgen engele çarpmadan dolaşacağız.</p>
+@@4588
+Sürekli kontrol et
+@@4589
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al; kontrolleri onun içinde yapacağız.</p>
+@@4590
+Engel yakın mı?
+@@4591
+<p>Döngünün içine <span class="chip akis">eğer</span> bloğu koy (değilse koluyla). Koşuluna <span class="chip mantik">D4 mesafe sensörü &lt; 30</span> tak.</p>
+@@4592
+Mesafe bloğu Ses ve hareket kategorisindedir; karşılaştırma bloğu Mantık kategorisindedir.
+@@4593
+Geri git ve dön
+@@4594
+<p>Eğer koluna: <b>D1 ve D3 → YÜKSEK</b> (geri), D0 ve D2 DÜŞÜK, <b>400 ms bekle</b>; sonra <b>D0 ve D3 → YÜKSEK</b> (sağa dön), D1 ve D2 DÜŞÜK, <b>380 ms bekle</b>.</p>
+@@4595
+Geri: D1 + D3. Sağa dönüş: D0 + D3.
+@@4596
+Yol açıksa ileri
+@@4597
+<p>Değilse koluna <b>D0 ve D2 → YÜKSEK</b> (ileri), D1 ve D3 DÜŞÜK. Döngünün sonuna <b>50 ms bekle</b> ekle.</p>
+@@4598
+ileri için D0 ve D2 YÜKSEK olmalı.
+@@4599
+<p>▶ <b>Çalıştır</b>'a bas. Araba engele yaklaşınca geri çekilip dönecek ve çarpmadan dolaşacak.</p>
+@@4600
+Araba 15 saniye boyunca engele çarpmadan dolaşmalı.
+@@4601
+Araba neredeyse hiç ilerlemedi. Yol açıkken ileri gitmelisin (D0 ve D2 YÜKSEK).
+@@4602
+Araba duvara ya da engele çarptı. Engele daha uzaktan tepki ver, geri çekilmeyi ihmal etme.
+@@4603
+Araba engelden yalnızca {0} kez geri çekildi. Mesafe < 30 olunca geri gitmelidir.
+@@4604
+Araba kaçtıktan sonra yoluna devam etmedi.
+@@4605
+Harika! Araba engele çarpmadan dolaşıyor.
+@@4607
+8.4 · Robot araba: çizgi izleyen
+@@4608
+<h2>Çizgi izleyen araba</h2>
+      <p>Arabanın altındaki iki çizgi sensörü siyah çizgiyi arar. Çizgi hangi sensörün altına girerse araba o yöne dönerek çizgiyi geri bulur!</p>
+      <ol>
+        <li>Sol çizgi sensörü <b>D5</b>, sağ çizgi sensörü <b>D6</b> pinindedir. Siyah çizgi üstünde <b>1</b>, beyaz zeminde <b>0</b> okurlar.</li>
+        <li>Sol sensör çizgiyi görürse: <b>sola</b> dön.</li>
+        <li>Sağ sensör çizgiyi görürse: <b>sağa</b> dön.</li>
+        <li>İkisi de görmüyorsa (çizgi ortada): <b>ileri</b> git.</li>
+        <li>Kontrolü her <b>50 ms</b>'de bir tekrarla.</li>
+      </ol>
+@@4609
+Çizgi sensörleri
+@@4610
+<p>Arabanın burnunun altında iki sensör vardır: <span class="pin-etiket">D5</span> solda, <span class="pin-etiket">D6</span> sağda. Çizgi (4 cm) ikisinin <b>ortasından</b> geçerken ikisi de beyazı görür.</p>
+@@4611
+Sürekli kontrol
+@@4612
+Sol sensör çizgide mi?
+@@4613
+<p>Döngüye <span class="chip akis">eğer</span> bloğu koy ve <b>değilse eğer</b> + <b>değilse</b> kollarını ekle. İlk koşula <span class="chip pin">D5 pini yüksek mi?</span>, ikinci koşula <span class="chip pin">D6 pini yüksek mi?</span> tak.</p>
+@@4614
+Pinler kategorisindeki "pini yüksek mi?" bloğu sensörü okur.
+@@4615
+Sola dön
+@@4616
+<p>İlk koluna <b>sola dönüş</b>: <b>D0 → DÜŞÜK</b>, <b>D1 → YÜKSEK</b>, <b>D2 → YÜKSEK</b>, <b>D3 → DÜŞÜK</b>.</p>
+@@4617
+Sol motor geri (D1), sağ motor ileri (D2).
+@@4618
+Sağa dön ve ileri git
+@@4619
+<p>İkinci koluna <b>sağa dönüş</b> (D0 YÜKSEK, D3 YÜKSEK), değilse koluna <b>ileri</b> (D0 ve D2 YÜKSEK) yaz. Döngü sonuna <b>50 ms bekle</b> koy.</p>
+@@4620
+Sağa dönüş: sol motor ileri (D0), sağ motor geri (D3).
+@@4621
+<p>▶ <b>Çalıştır</b>'a bas. Araba siyah çizgiyi izleyerek parkuru dolaşmalı.</p>
+@@4622
+Araba çizgiden çıkıyorsa dönüş yönlerini kontrol et.
+@@4623
+Araba neredeyse hiç ilerlemedi. Çizgi ortadayken ileri gitmelisin.
+@@4624
+Araba duvara çarptı; çizgiden çıkmış olmalı. Sol sensör çizgiyi görürse sola, sağ sensör görürse sağa dönmelisin.
+@@4625
+Araba çizgiden {0} cm uzaklaştı. Dönüş yönlerini ve kontrol aralığını kontrol et.
+@@4626
+Araba çizgiyi izleyerek yalnızca {0} cm gitti; en az 300 cm gitmeli.
+@@4627
+Harika! Araba çizgiyi bırakmadan parkuru dolaştı.
+@@4628
+Hızlı yanıp sön (250 ms)
+@@4629
+<span class="pin-etiket">D0</span> LED'i daha hızlı yanıp söndür: <b>250 ms yansın</b>, <b>250 ms sönsün</b>, sürekli tekrar etsin.
+@@4630
+İki bekleme süresini de 250 yap.
+@@4631
+LED yeterince yanıp sönmedi.
+@@4632
+Yanma ve sönme süreleri yaklaşık 250 ms olmalı.
+@@4633
+LED saniyede iki kez yanıp sönüyor!
+@@4634
+ESP32 pinlerinin çalışma gerilimi (HIGH seviyesi) yaklaşık kaçtır?
+@@4636
+ESP32 pinleri 3,3 V ile çalışır. Üstüne 5 V verirsen kart zarar görebilir; bu yüzden sensör ve modüllerin gerilimine dikkat edilir.
+@@4637
+Tam 3 kez yanıp sön
+@@4638
+<span class="pin-etiket">D0</span> LED'i <b>tam 3 kez</b> yanıp sönsün: her seferinde <b>200 ms yansın</b>, <b>200 ms sönsün</b>. Sonra dursun ve <b>sönük</b> kalsın.
+@@4639
+Kodu loop() yerine setup() içine yaz ya da bir for döngüsü kullan. loop() sonsuza kadar tekrarlar!
+@@4640
+LED {0} kez yandı, tam 3 kez yanmalı.
+@@4641
+Son yanıştan sonra LED sönük kalmalı.
+@@4642
+<code>Serial.begin(115200);</code> satırındaki 115200 neyi belirler?
+@@4643
+Kartın saat hızını (Hz)
+@@4644
+Seri haberleşme hızını (baud)
+@@4645
+LED parlaklığını
+@@4646
+Wi-Fi kanalını
+@@4647
+115200, kart ile bilgisayar arasındaki haberleşme hızıdır (baud). Seri Monitör de aynı hıza ayarlı olmalı, yoksa yazılar bozuk görünür.
+@@4648
+Seri monitörde say
+@@4649
+Her <b>1 saniyede</b> bir seri monitöre bir sayı yazdır: <b>1, 2, 3, 4…</b> diye birer birer artsın.
+@@4650
+Bir sayaç değişkeni oluştur, her turda 1 artır ve Serial.println ile yazdır; sonra delay(1000).
+@@4651
+Seri monitörde yeterince sayı yok (her saniye bir sayı gerekir).
+@@4652
+Sayılar 1'den başlayıp birer birer artmalı.
+@@4653
+Seri monitör saniyede bir sayıyor!
+@@4654
+Aşağıdakilerden hangisi ESP32'yi klasik Arduino Uno'dan ayıran en önemli özelliktir?
+@@4655
+Wi-Fi ve Bluetooth'un kartın üzerinde hazır olması
+@@4656
+LED'lerin daha parlak yanması
+@@4658
+Hiç bellek içermemesi
+@@4659
+ESP32 çift çekirdekli, hızlı ve kablosuz haberleşmesi dahili bir karttır. Wi-Fi ile web sayfası sunmak bu yüzden mümkün olur.
+@@4660
+LED'i sürekli <b>yarım parlaklıkta</b> yak: PWM değeri 255'in yarısı, yani yaklaşık <b>128</b> olsun ve hiç değişmesin.
+@@4661
+ledcWrite(D0, 128) ya da analogWrite(D0, 128) yaz; yanıp sönme döngüsü kurma.
+@@4662
+LED'e hiç değer yazılmadı.
+@@4663
+LED yaklaşık yarı parlaklıkta (128/255) olmalı (şu an %{0}).
+@@4664
+LED hiçbir an yarıdan fazla parlak olmamalı.
+@@4665
+LED yarım parlaklıkta sabit yanıyor!
+@@4666
+LED'in önüne direnç koymamızın asıl nedeni nedir?
+@@4667
+LED'in rengini değiştirmek
+@@4668
+Akımı sınırlayıp LED'i ve pini korumak
+@@4669
+Kartı hızlandırmak
+@@4670
+Wi-Fi sinyalini güçlendirmek
+@@4671
+LED akımı sınırlamaz; dirençsiz bağlanırsa fazla akım çekip yanabilir. Genelde 220 ile 330 ohm arası bir direnç kullanılır.
+@@4672
+LED'in tam parlaklığa ulaşma süresini kısalt: LED <b>600 ms içinde</b> en parlak hâline gelsin. Sonra yavaşça sönmesi yine sürebilir.
+@@4673
+Parlaklık adımları arasındaki bekleme süresini (örneğin 20 ms) 5 ms yap.
+@@4674
+LED parlaklığı kademeli değişmedi.
+@@4675
+LED hiçbir zaman tam parlaklığa ulaşmadı.
+@@4676
+Tam parlaklığa {0} ms'de ulaştı. 600 ms içinde ulaşmalı.
+@@4677
+LED çok hızlı bir nefes alıyor!
+@@4678
+8 bit PWM çözünürlüğünde (ledcAttach(D0, 5000, 8)) LED'e yazılabilecek en büyük değer nedir?
+@@4680
+8 bit demek 2^8 = 256 farklı değer demektir: 0 ile 255 arası. 255 tam parlaklık, 0 ise söndürmek anlamına gelir.
+@@4681
+LED'i sırayla üç kademeden geçir ve tekrarla: <b>kısık (~30)</b>, <b>orta (~120)</b>, <b>parlak (255)</b>. Her kademe <b>500 ms</b> sürsün.
+@@4682
+loop() içinde üç kez ledcWrite (ya da analogWrite) çağır, aralarına delay(500) koy.
+@@4683
+Kısık (~30), orta (~120) ve parlak (255) kademelerinin üçü de görünmeli.
+@@4684
+Her kademe yaklaşık 500 ms sürmeli.
+@@4685
+Üç kademeli parlaklık çalışıyor!
+@@4686
+PWM ile LED'in parlaklığı nasıl değişir?
+@@4687
+Pinin gerilimi 0 ile 3,3 V arasında yavaşça ayarlanır
+@@4688
+Pin çok hızlı açılıp kapanır; açık kalma oranı parlaklığı belirler
+@@4689
+LED'in rengi değişir
+@@4690
+Direnç değeri değişir
+@@4691
+PWM pini saniyede binlerce kez açıp kapatır. Açık kalma oranı (görev döngüsü) büyüdükçe göz ortalama parlaklığı daha yüksek algılar.
+@@4692
+Bas-bırak anahtarı (toggle)
+@@4693
+Düğmeye <b>her basışta</b> LED'in durumu değişsin: bir basış yakar, bir sonraki söndürür. Düğmeyi basılı tutsan bile <b>tek</b> basış sayılsın.
+@@4694
+Bir bool değişken tut (acik = !acik). Basışı yakaladıktan sonra düğme bırakılana kadar bekle (while).
+@@4695
+Düğmeye basmadan LED yanık olmamalı.
+@@4696
+1. basıştan sonra LED yanmalı.
+@@4697
+2. basıştan sonra LED sönmeli (düğmeyi uzun tutsan da tek basış sayılmalı).
+@@4698
+3. basıştan sonra LED yeniden yanmalı.

@@ -1,0 +1,485 @@
+@@4699
+Toggle works: every press flips the LED!
+@@4700
+When you use <code>pinMode(D5, INPUT_PULLUP);</code>, what does digitalRead return while the button is <b>not pressed</b>?
+@@4702
+The internal pull-up resistor pulls the pin up toward 3.3 V, so it reads HIGH when idle. When you press the button, the pin is connected to GND and reads LOW.
+@@4703
+Make a reverse-logic indicator: the LED should be <b>on normally</b>, <b>turn off while the button is held down</b>, and turn on again when you release it.
+@@4704
+When idle, the button reads HIGH. The condition that turns the LED on is the button being HIGH.
+@@4705
+The LED should turn on again when you release the button.
+@@4706
+The reverse-logic indicator works!
+@@4707
+Where do the two ends of a button wired with INPUT_PULLUP connect?
+@@4710
+Both to the same pin
+@@4712
+The pull-up resistor is inside the board, so no external resistor is needed; one end of the button goes to the pin and the other end to GND.
+@@4713
+Press counter
+@@4714
+Every time you press the button, print the <b>press count</b> to the serial monitor: <b>1, 2, 3…</b> (only one line per press).
+@@4715
+When you catch a press, increase the counter, print it, and wait until the button is released.
+@@4716
+Nothing was printed to the serial monitor.
+@@4717
+For 3 presses, 1, 2, 3 should have been printed (currently: {0}).
+@@4718
+Every press was counted correctly!
+@@4719
+If the counter goes up more than once when you press and release the button a single time, what is the most likely cause?
+@@4720
+The board's memory is full
+@@4721
+As long as the button stays pressed, loop() sees the press many times
+@@4722
+The serial monitor is broken
+@@4723
+Wi-Fi is on
+@@4724
+loop() runs thousands of times per second. While the button stays pressed, every pass sees "pressed"; that is why you need to wait until it is released.
+@@4725
+Stricter threshold (25)
+@@4726
+Light touches (value around <b>30</b>) should not change the LED. Set the threshold to <b>25</b>: only a firm touch (value ~10) should change the LED.
+@@4727
+Change the constant that holds the threshold (ESIK) from 40 to 25.
+@@4728
+A light touch (value 30) turned the LED on; the threshold should be 25.
+@@4729
+A firm touch (value 10) did not turn the LED on.
+@@4730
+The threshold is 25 now: light touches are ignored!
+@@4731
+On the ESP32, how does the <code>touchRead()</code> value change when you touch a touch pin with your finger?
+@@4732
+It gets smaller (for example from 70 to 10)
+@@4733
+It gets bigger
+@@4734
+It becomes negative
+@@4735
+Your finger increases the pin's capacitance. The ESP32 measures this as a count; the more you touch, the smaller the number it reads. That is why the condition has the form "value < threshold".
+@@4736
+On while touching, off when released
+@@4737
+This time it is not a toggle: the LED should be on <b>only while your finger touches the pad</b> and turn off when you lift your finger.
+@@4738
+In the loop, if touchRead(D4) < ESIK turn the LED on, otherwise turn it off.
+@@4739
+The LED should be off when you are not touching.
+@@4740
+The LED should be on while you touch.
+@@4741
+The LED should turn off when you lift your finger.
+@@4742
+The LED is on only while touching!
+@@4743
+Why do we use a threshold value (e.g. 40) for touch sensing?
+@@4744
+To draw a boundary halfway between the idle reading (~70) and the touched reading (~10)
+@@4745
+To slow the board down
+@@4746
+To choose the pin number
+@@4747
+To choose the LED's color
+@@4748
+The measured value varies a little depending on the surroundings. If we pick a threshold between the two states, small variations are not counted as false touches.
+@@4749
+Touch counter
+@@4750
+Every time you touch the pad, print <b>which touch it is</b> to the serial monitor: <b>1, 2, 3…</b> (the counter, not the value). The LED toggle is optional.
+@@4751
+Keep an int counter; when you catch a touch, increase it, write Serial.println(sayac), and wait until the finger is lifted.
+@@4752
+For 3 touches, 1, 2, 3 should have been printed (currently: {0}).
+@@4753
+Touches are counted correctly!
+@@4754
+What is an advantage of a touch button over a mechanical button?
+@@4755
+It has no moving part to wear out
+@@4756
+It uses no electricity at all
+@@4758
+It works only with blocks
+@@4759
+A capacitive touch pad has no moving parts, so it does not wear out; you can even cover it with glass or plastic to make sleek panels.
+@@4761
+9.1 · Meet the ESP32
+@@4762
+<h2>Meet the ESP32</h2>
+      <p>Welcome to the new track! In this module you will get to know the <b>ESP32</b> brain of our board, and go far enough to build Wi-Fi and a web page.</p>
+      <ol>
+        <li>The red board you see in the scene is the <b>Deneyap Kart 1A v2</b>: it has an <b>ESP32-S3</b> chip inside, so it is from the ESP32 family. Its pins work at <b>3.3 V</b>; an LED is connected to pin D0.</li>
+        <li>Turn the LED on for <b>500 ms</b> and off for <b>500 ms</b>, repeat forever.</li>
+        <li>So the board can say "I'm here", write a greeting to the <b>Serial Monitor</b>: <i>Merhaba ESP32!</i></li>
+      </ol>
+@@4763
+Meet the ESP32
+@@4764
+<p>The ESP32 is a fast chip family with <b>Wi-Fi + Bluetooth</b> built in. The Deneyap Kart 1A v2 in the scene carries an <b>ESP32-S3</b> chip from this family; so what you learn here also applies to other ESP32 boards. Its pins work at <b>3.3 V</b>. The LED in the scene is connected to pin <span class="pin-etiket">D0</span>.</p>
+@@4765
+<p>Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category. It repeats whatever is inside it as long as the board is on.</p>
+@@4766
+Turn the LED on and wait
+@@4767
+<p>Put the <span class="chip pin">set pin D0 to HIGH (1)</span> block inside the loop and add <span class="chip akis">wait 500 ms</span> below it.</p>
+@@4768
+The LED is on pin D0. The wait block should be below the LED block.
+@@4769
+Turn the LED off and wait
+@@4770
+<p>Now <span class="chip pin">set pin D0 to LOW (0)</span> and then add another <span class="chip akis">wait 500 ms</span>.</p>
+@@4771
+On, wait, off, wait: four blocks.
+@@4772
+<p>Press ▶ <b>Run</b>. The LED will blink once per second. In the <b>Code</b> view, also take a look at the ESP32 C++ equivalent of your blocks.</p>
+@@4773
+The LED should be on for 500 ms and off for 500 ms.
+@@4774
+The LED never turned on. Did you set pin D0 to HIGH?
+@@4775
+The LED should blink: on, wait, off, wait. Did you put them inside repeat forever?
+@@4776
+The LED should turn on first (D0 HIGH).
+@@4777
+The on and off times should be about 500 ms.
+@@4778
+Great! Your first program on the ESP32 works: the LED blinks once per second.
+@@4780
+9.2 · LED circuit and PWM
+@@4781
+<h2>LED circuit and PWM</h2>
+      <p>Just turning the LED on and off is not enough; we can also adjust its <b>brightness</b>. On the ESP32, <b>PWM</b> (ledc) does this.</p>
+      <ol>
+        <li>The LED is connected to pin <b>D0</b> through a <b>220 ohm</b> resistor (the resistor protects the LED).</li>
+        <li>The PWM value is between <b>0 (off)</b> and <b>255 (full brightness)</b>.</li>
+        <li>Slowly raise and lower the brightness: let the LED <b>breathe</b>.</li>
+      </ol>
+@@4782
+<p>The LED in the scene is connected to pin <span class="pin-etiket">D0</span> through a current-limiting resistor. The long leg (+) goes to the pin and the short leg goes to the GND side.</p>
+@@4783
+<p>Bring the <span class="chip akis">repeat forever</span> block into the workspace.</p>
+@@4784
+It is in the Flow category.
+@@4785
+Set the brightness
+@@4786
+<p>Put the <span class="chip pin">PWM (0-255) on pin D0</span> block in the loop. Then add a <span class="chip akis">wait</span> block after it. Repeat with a few different values (e.g. 0, 85, 170, 255).</p>
+@@4787
+Raise the brightness from 0 to 255 and then bring it back down: 0, 85, 170, 255, 170, 85… Add a short wait between steps (e.g. 100 ms).
+@@4788
+<p>Press ▶ <b>Run</b>. The LED should slowly brighten and fade. In the Code view, look at the ledc/analogWrite equivalent.</p>
+@@4789
+The LED should both brighten and fade; in-between brightness levels should be visible too.
+@@4790
+The LED never reached full brightness (255).
+@@4791
+There are no in-between brightness levels: the LED just blinks. Use values between 0 and 255.
+@@4792
+The LED did not dim again after brightening.
+@@4793
+Great! The LED is breathing: the brightness slowly rises and falls.
+@@4795
+9.3 · Button and INPUT_PULLUP
+@@4796
+<h2>Button and INPUT_PULLUP</h2>
+      <p>You do not need to add an external resistor for buttons: we can turn on the ESP32's <b>internal pull-up resistor</b>.</p>
+      <ol>
+        <li>One end of the button is connected to pin <b>D5</b>, the other end to <b>GND</b>.</li>
+        <li>With <b>INPUT_PULLUP</b>, the pin reads <b>HIGH</b> when idle and <b>LOW</b> when the button is pressed (reverse logic).</li>
+        <li>When the button is pressed, the <b>D0</b> LED should turn on, and when released, it should turn off.</li>
+      </ol>
+@@4797
+<p>The button (<span class="pin-etiket">D5</span>) and the LED (<span class="pin-etiket">D0</span>) are ready. Thanks to the pull-up, the button reads <b>HIGH</b> when idle; when pressed, the pin is connected to GND and becomes <b>LOW</b>.</p>
+@@4798
+Loop and button condition
+@@4799
+<p>Put an <span class="chip akis">if / else</span> block inside <span class="chip akis">repeat forever</span>. Make the condition <span class="chip pin">is button D5 pressed?</span></p>
+@@4800
+Use the "is pressed?" block from the Button category with D5.
+@@4801
+Turn the LED on / off
+@@4802
+<p>In the if branch, <span class="chip pin">set pin D0 to HIGH</span>; in the else branch, <span class="chip pin">set pin D0 to LOW</span>.</p>
+@@4803
+If pressed, turn on; otherwise, turn off.
+@@4804
+<p>Press ▶ <b>Run</b> and hold down the button in the scene. In the Code view you can also see the <code>INPUT_PULLUP</code> version: there, the <code>== LOW</code> condition means "pressed".</p>
+@@4805
+The LED should turn on when you press the button.
+@@4806
+The LED should be off when you are not pressing the button.
+@@4807
+The LED should turn off when the button is released.
+@@4808
+The LED should turn on on the second press too.
+@@4809
+Great! The button works: the LED turns on when you press it and off when you release it.
+@@4811
+9.4 · Touch button
+@@4812
+// Touch button: the LED state changes when you touch the pad
+const int ESIK = 40;      // a boundary between 70 (idle) and 10 (touched)
+
+void setup() {
+  pinMode(D0, OUTPUT);
+}
+
+void loop() {
+  // write here: read the pad with touchRead(D4)
+}
+
+@@4813
+<h2>Touch button</h2>
+      <p>Some ESP32 pins can <b>sense touch</b>: these are called capacitive touch pins. You will control the LED with your finger, without any button at all.</p>
+      <ol>
+        <li>The touch pad is connected to pin <b>D4</b> and the LED to pin <b>D0</b>.</li>
+        <li><code>touchRead(D4)</code> gives about <b>70</b> when idle and about <b>10</b> when a finger touches it.</li>
+        <li>If the value drops below <b>40</b>, count it as a touch: on every touch the LED state should <b>flip</b>.</li>
+      </ol>
+@@4814
+<p>The copper pad of the blue board in the scene is connected to pin <span class="pin-etiket">D4</span>. You can simulate a touch by holding the pad down. The idle reading is ~70, and ~10 when touched.</p>
+@@4815
+Read the value
+@@4816
+<p>Write <code>int deger = touchRead(D4);</code> inside <code>loop()</code>. If you like, watch the value with <code>Serial.println(deger)</code>.</p>
+@@4817
+If you will use Serial, don't forget to add Serial.begin(115200); in setup().
+@@4818
+Compare with the threshold
+@@4819
+<p>The condition <code>if (deger &lt; ESIK)</code> catches the touch. Inside it, flip a <code>bool acik</code> variable (<code>acik = !acik;</code>) and write it to the LED.</p>
+@@4820
+You can use the form digitalWrite(D0, acik ? HIGH : LOW);
+@@4821
+Wait until the finger is lifted
+@@4822
+<p>So you don't count many times for a single touch, wait for the finger to be lifted with <code>while (touchRead(D4) &lt; ESIK) { delay(10); }</code>.</p>
+@@4823
+This wait uses the same logic as waiting for the button release in 9.3.
+@@4824
+<p>Press ▶ <b>Run</b> and touch the pad in the scene. The LED should toggle on every touch.</p>
+@@4825
+The LED state should change once per touch.
+@@4827
+The LED should not be on without touching.
+@@4828
+The LED should be on after the first touch. Did you use the touchRead(D4) < ESIK condition?
+@@4829
+The LED should turn off on the second touch (a long touch should count as one).
+@@4830
+The LED should turn on again on the third touch.
+@@4831
+Great! You turn the LED on and off with your finger, with no button at all!
+@@4840
+Getting started with LEDs
+@@4841
+Buttons and inputs
+@@4842
+Analog and PWM
+@@4843
+Display and project
+@@4844
+Smart projects
+@@4845
+Nature and safety
+@@4847
+Moving to the ESP32
+@@4848
+Wi-Fi and web
+@@4851
+… ({0} more lines)
+
+@@4875
+{0} XP to the next level
+@@4882
+🔥 <b>{0} days in a row!</b>
+@@4891
+<b class="serit-baslik">Step {0}/{1} · {2}</b>{3}<button class="acik-ders">Open full explanation</button>
+@@4899
+// Could not generate code:
+@@4917
+You listened to the audio explanation
+@@4918
+Now it's your turn: try it by changing the code in the <b>Tasks</b> tab
+@@4934
+Sound off (captions on)
+@@4938
+<div class="mod-baslik"><span>MODULE {0} · {1}</span><em>{2}/{3}</em></div>
+@@4947
+Program this lesson's goal: <b>{0}</b>.
+@@4949
+Correct answer
+@@4951
+You edited the code
+@@4952
+Code task done
+@@4955
+LESSON TASK
+@@4956
+CODE TASK
+@@4957
+CHANGE THE CODE
+@@4960
+<p class="g-giris">In code tasks, change the program in the <b>Blocks</b> or <b>Code</b> (text) view, then press <b>Check</b>. In "Change the code" tasks, edit the places marked in orange. For questions, pick an option.</p>
+    <div class="g-ilerleme">{0}</div>
+@@4968
+<button class="g-btn yukle">Load code into editor</button>
+@@4970
+<button class="g-btn ikinci ipucu">Hint</button>
+@@4975
+✔ Correct!
+@@4978
+Change the places marked in orange, then press Check
+@@4980
+✘ First press "Load code into editor", then change the marked places.
+@@4981
+✘ You haven't changed the code yet: edit the places marked in orange
+@@4985
+Module {0} · {1}
+@@4990
+Lesson complete: {0}
+@@4992
+First try!
+@@4994
+You wrote the code yourself
+@@4996
+running…
+@@4997
+✘ Code error —
+@@4999
+RUNNING
+@@5009
+<button class="sec">Select</button>
+@@5010
+<div class="modal-ust"><h2>{0} {1}</h2><button class="kapat ikon">✕</button></div>
+    <div class="profil-ozet"><div><b>Level {2}</b><div class="xp-cubuk buyuk"><div style="width:{3}%"></div></div><small>{4} XP · {5} XP to the next level</small></div>
+      <div><b>🔥 {6} days</b><small>day streak</small></div><div><b>{7}/{8}</b><small>lessons completed</small></div></div>
+    <h3>Badges <small>{9}/{10}</small></h3><div class="rozetler">{11}</div>
+    <h3>Profiles</h3><div class="profil-liste">{12}</div>
+    <form class="yeni-profil"><input name="ad" maxlength="20" placeholder="New profile name" aria-label="New profile name" required>
+      <div class="avatar-sec">{13}</div>
+      <button class="birincil">Create profile</button></form>
+    <div class="hesap-islem"><button id="pDisa">⬇ Export profile</button><label class="dosya">⬆ Import<input id="pIce" type="file" accept="application/json" hidden></label></div>
+    <small class="not">Profiles are stored only on this device. To move one to another device, export it and then import it.</small>
+@@5014
+Delete the profile "{0}" and all of its progress?
+@@5017
+Could not import:
+@@5031
+First Light
+@@5033
+Complete your first lesson
+@@5035
+Warming Up
+@@5039
+Halfway There
+@@5043
+Engineer
+@@5045
+Complete all lessons
+@@5047
+LED Master
+@@5049
+Finish Module 1
+@@5051
+Button Master
+@@5053
+Finish Module 2
+@@5055
+Analog Wizard
+@@5057
+Finish Module 3
+@@5059
+Sound and Motion
+@@5061
+Finish Module 4
+@@5063
+Project Manager
+@@5065
+Finish Module 5
+@@5067
+Code Writer
+@@5069
+Pass a lesson with C++ you wrote by hand
+@@5071
+Keyboard Hero
+@@5073
+Pass 5 lessons with C++ you wrote by hand
+@@5075
+Question Hunter
+@@5077
+Answer 10 questions correctly
+@@5079
+One Shot
+@@5081
+Pass 3 lessons on the first try
+@@5083
+Code Surgeon
+@@5085
+Solve 3 "change the code" tasks
+@@5087
+Good Listener
+@@5089
+Listen to 5 audio explanations to the end
+@@5091
+3-Day Streak
+@@5093
+Study 3 days in a row
+@@5095
+Weekly Streak
+@@5097
+Study 7 days in a row
+@@5099
+Night Owl
+@@5101
+Complete a lesson between 22:00 and 05:00
+@@5153
+Invalid profile file
+@@5159
+Unknown part type:
+@@5177
+Program reset
+@@5178
+There is no such pin:
+@@5181
+
+      <div class="t-sahne">
+        <div class="t-durum"><span class="t-ag"></span><span class="bosluk"></span><button class="t-cal birincil">▶ Run</button><button class="t-dur ikon" title="Stop">■</button></div>
+        <div class="t-telefon" aria-label="Virtual phone">
+          <div class="t-kulak"><i></i></div>
+          <div class="t-adres"><button class="t-geri" title="Back" disabled>‹</button><input class="t-url" spellcheck="false" autocapitalize="off" aria-label="Address" placeholder="http://192.168.1.42/"><button class="t-git" title="Go">→</button><button class="t-yenile" title="Refresh">↻</button></div>
+          <div class="t-ekran"><iframe class="t-sayfa" sandbox="allow-scripts" title="Phone screen"></iframe><div class="t-bos"></div></div>
+          <div class="t-bilgi"></div>
+          <div class="t-yollar"></div>
+          <div class="t-alt"><b></b></div>
+        </div>
+        <p class="t-ipucu">First <b>Run</b> the program. Once the ESP32 connects to Wi-Fi and calls <code>server.begin()</code>, you can enter the address from the phone.</p>
+      </div>
+@@5195
+There is no page yet.<br>Run the program, then go to the address.
+@@5197
+Loading…
+@@5199
+The ESP32 did not respond (4 s). Are you calling server.handleClient() inside loop() in your program?
+@@5200
+This site can't be reached
+@@5208
+timed out
+@@5211
+📡 Connecting to Wi-Fi…
+@@5212
+📵 no network
+@@5214
+running
+@@5218
+Browser voice
+@@5220
+Recorded voice

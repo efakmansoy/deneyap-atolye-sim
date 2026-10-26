@@ -1,0 +1,475 @@
+@@3683
+Eğer / değilse eğer / değilse zinciri kur: önce 30'dan büyük mü, sonra 10'dan küçük mü bak, geri kalanı NORMAL olsun.
+@@3687
+Sıcaklık {0} °C iken 2. satırda yalnızca {1} yazmalı; şu an: "{2}".
+@@3688
+Üç durum da doğru: SOGUK, NORMAL, SICAK!
+@@3689
+Ekranda <code>36.6 C</code> yazıyor. Sıcaklık 9,8'e düşünce program yalnızca <code>9.8 C</code> yazdırırsa (arkaya boşluk koymazsa) LCD'de ne görünür?
+@@3691
+36.6 C aynen kalır
+@@3692
+Ekran boşalır
+@@3693
+9.8 CC: eski yazıdan bir C harfi kalır
+@@3694
+LCD yeni yazıyı eskisinin üstüne yazar, kalan harfleri silmez. "36.6 C" 6 karakterdir, "9.8 C" 5 karakter: son karakter (C) olduğu gibi kalır. Bu yüzden satır sonuna boşluk yazdırırız ya da ekranı temizleriz.
+@@3695
+En yüksek sıcaklık
+@@3696
+1. satırda <b>Simdi: </b> ve anlık sıcaklık, 2. satırda <b>Max: </b> ve şimdiye kadar ölçülen <b>en yüksek</b> sıcaklık (°C) görünsün. Max değeri hiç düşmemeli. Bunun için bir <b>değişken</b> tut ve yalnızca daha yüksek değer gelince güncelle.
+@@3697
+Döngünün dışında (üstte) bir değişken tanımla. Döngüde: sıcaklık değişkenden büyükse değişkene ata. Sonra ikisini de ekrana yaz.
+@@3698
+1. satır "Simdi: ..." ile, 2. satır "Max: ..." ile başlamalı.
+@@3699
+Sensör {0} iken 1. satırda yaklaşık {1} yazmalı.
+@@3700
+Şimdiye kadarki en yüksek sıcaklık {0} °C; 2. satırda {1} görünüyor. Max yalnızca büyüyebilir.
+@@3701
+sayı yok
+@@3702
+En yüksek sıcaklık hafızada tutuluyor!
+@@3703
+En yüksek sıcaklığı tutan değişken neden <b>loop()</b> içinde değil de <b>dışında</b> (üstte) tanımlanır?
+@@3704
+Loop içinde değişken tanımlanamaz
+@@3705
+Loop her turda yeniden başlar; içeride tanımlanan değişken her turda sıfırlanır ve eski rekoru unuturdu
+@@3706
+Dışarıdaki değişkenler daha hızlıdır
+@@3707
+Ekran yalnızca global değişkenleri yazabilir
+@@3708
+loop() her turda baştan çalışır. İçinde tanımlanan değişken her tur yeniden yaratılır ve önceki değerini kaybeder. Rekoru hatırlamak için değişken loop() dışında (global) tanımlanır.
+@@3709
+Tek atış
+@@3710
+Önce animasyonsuz basit zar yap: <span class="pin-etiket">{0}</span> düğmesine <b>basınca</b> LCD'nin <b>2. satırında 1-6 arası rastgele bir sayı</b> görünsün ve düğmeyi bırakınca ekranda kalsın. Düğmeye basmadan sayı görünmesin.
+@@3711
+Eğer düğmeye basılıysa: LCD satır 2 yaz, rastgele sayı (1 ile 6 arası, ikisi dahil). Basış kısa sürer; sonuna biraz bekleme koy.
+@@3712
+Arduino'da <code>random(1, 7)</code> hangi sayıları üretir?
+@@3717
+random(a, b) alt sınırı (a) dahil eder, üst sınırı (b) dahil etmez. Zar için 1 ile 6 arası istediğimizden üst sınıra 7 yazarız. Rastgele sayı bloğu bu +1 işini senin yerine yapar: kutulara 1 ve 6 yazarsın.
+@@3718
+İki zar
+@@3719
+İki zar birden atılsın: düğmeye basınca LCD'nin <b>2. satırında iki sayı</b> görünsün (örneğin <i>3  5</i>). İki zar <b>birbirinden bağımsız</b> olmalı, ikisi de 1-6 arası olmalı.
+@@3720
+İki ayrı rastgele sayı üret (iki değişken ya da iki blok). Aralarına boşluk yazdırarak ekrana ikisini birden yaz.
+@@3721
+{0}. atışta 2. satırda {1} sayı var; iki zar için tam iki sayı görünmeli.
+@@3722
+{0}. atışta ekranda {1} var; her zar 1-6 arası olmalı.
+@@3723
+ ve 
+@@3724
+İki zar hep aynı geldi. Her zar için ayrı bir rastgele sayı üret.
+@@3725
+Her iki zar da değişmeli. İkisini de rastgele üret.
+@@3726
+İki zar da rastgele atılıyor!
+@@3727
+Zar atma kodunda düğme için <code>while (digitalRead(D5) == HIGH) { delay(10); }</code> satırı ne işe yarar?
+@@3728
+Düğmeye basılana kadar bekler
+@@3729
+Düğme bırakılana kadar bekler; böylece basılı tutunca zar tekrar tekrar atılmaz
+@@3730
+LCD ekranı temizler
+@@3731
+Zarı daha hızlı yuvarlar
+@@3732
+Döngü, düğme YÜKSEK (basılı) olduğu sürece döner ve 10 ms bekler. Düğme bırakılınca koşul yanlış olur ve döngüden çıkılır. Böylece tek basış tek atış sayılır.
+@@3733
+Atış sayacı
+@@3734
+Animasyonlu zarı hazırla (ya da basit tutabilirsin). <b>1. satırda</b> kaç kez atıldığı yazsın: <i>Atis: 1</i>, <i>Atis: 2</i> ... <b>2. satırda</b> o atışın sonucu (1-6) görünsün. Düğmeye bir kez basmak sayacı yalnızca <b>bir</b> artırmalı.
+@@3735
+Döngünün dışında bir sayaç değişkeni tut. Her basışta sayacı bir artır ve 1. satıra yazdır. Basışın tekrar sayılmaması için biraz bekle.
+@@3736
+1. satır "Atis: ..." ile başlamalı.
+@@3737
+{0}. basıştan sonra 1. satırda {1} yazıyor; {2} olmalı. Bir basış sayacı yalnızca bir kez artırmalı.
+@@3738
+{0}. atışta 2. satırda 1-6 arası sonuç görünmeli.
+@@3739
+Her atışta aynı sonuç çıktı. Rastgele sayı kullan.
+@@3740
+Atış sayacı doğru artıyor, sonuç yanında!
+@@3741
+Adil bir zarda art arda iki kez <b>6</b> gelme olasılığı kaçtır?
+@@3746
+İki atış birbirinden bağımsızdır. Her birinde 6 gelme olasılığı 1/6 olduğundan ikisinin birden olasılığı 1/6 * 1/6 = 1/36 olur.
+@@3747
+En iyi atış
+@@3748
+<b>1. satırda</b> şimdiye kadar gelen <b>en yüksek</b> zar yazsın (<i>En iyi: 5</i>), <b>2. satırda</b> son atışın sonucu görünsün. Her basışta yeni bir zar atılır; en iyi değer yalnızca daha yüksek sayı gelince değişir.
+@@3749
+Zarı bir değişkene al. Değişken, saklanan rekordan büyükse rekoru güncelle. Sonra ikisini de ekrana yaz.
+@@3750
+1. satır "En iyi: ..." ile başlamalı.
+@@3751
+{0}. atıştan sonra en iyi sonuç {1} olmalı ama 1. satırda {2} yazıyor. Rekoru yalnızca daha yüksek sayı gelince güncelle.
+@@3752
+En iyi atış hafızada tutuluyor!
+@@3753
+Zarın <b>hiç 6 göstermemesine</b> (yalnızca 1-5 gelmesine) yol açan hata hangisidir?
+@@3758
+random(1, 6) üst sınırı (6) dahil etmez ve yalnızca 1-5 üretir. Zar için üst sınıra 7 yazılır. Rastgele sayı bloğunda ise B kutusuna 6 yazarsın, +1 işi bloğun içindedir.
+@@3761
+<h2>LCD termometre</h2>
+    <p>Sıcaklık sensörü <b>{0}</b> pininden 0-4095 arası bir sayı gönderir. Bu sayıyı <b>°C</b> olarak LCD'de göstereceğiz. Sanal sensörün kaydırıcısı 0 °C'yi 0'a, 50 °C'yi 4095'e eşler. Sıcaklık eşiği <b>30 °C</b>.</p>
+    <ol>
+      <li><b>LCD satır 1 yaz</b> bloğuyla başlığı yaz: <i>Sicaklik</i> (Türkçe karakter kullanma).</li>
+      <li><b>sürekli tekrarla</b> içinde <b>harita</b> bloğuyla sayıyı çevir: {1} oku, 0-4095 aralığını <b>0-50</b>'ye dönüştür.</li>
+      <li><b>LCD satır 2 yaz</b> ile sonucu <b>birleştir</b> bloğunu kullanarak <i> C</i> yazısıyla yan yana göster (sonuna boşluklar bırak).</li>
+      <li><b>eğer</b> sıcaklık <b>30'dan büyükse</b> aynı satıra <i> C SICAK!</i>, <b>değilse</b> normal yazıyı yaz.</li>
+      <li>Sonuna <b>200 ms bekle</b> koy ve ▶ Çalıştır. Kaydırıcıyı sağa sola çek.</li>
+    </ol>
+    <h3>Kontrol listesi</h3>
+    <ul>
+      <li>1. satırda başlık, 2. satırda sıcaklık (°C) görünüyor</li>
+      <li>Kaydırıcıyı oynatınca değer canlı değişiyor</li>
+      <li>30 °C üstünde 2. satırda SICAK! uyarısı çıkıyor, altında çıkmıyor</li>
+    </ul>
+@@3762
+<p>Sahnede bir <b>sıcaklık sensörü</b> (<span class="pin-etiket">{0}</span>) ve <b>16x2 LCD</b> var. Sensörün altındaki mavi <b>kaydırıcıyı</b> sürükleyerek ortamı ısıtıp soğutabilirsin.</p>
+        <div class="kutu bilgi"><b>Dönüşüm:</b> Kartın analog girişi <b>0-4095</b> arası sayı okur. Bu sahnedeki sensör 0 °C'yi <b>0</b>'a, 50 °C'yi <b>4095</b>'e eşler. Yani
+          <pre><code>sicaklik = analogRead({1}) * 50.0 / 4095.0;</code></pre>
+          2048 okunursa sıcaklık yaklaşık 25 °C'dir. (Gerçek sensörlerde dönüşüm formülü, sensörün veri sayfasına göre değişir.)</div>
+@@3763
+Başlığı yaz
+@@3764
+<p><span class="chip ekran">Ekran</span> kategorisinden <span class="chip ekran">LCD satır 1 yaz</span> bloğunu çalışma alanına koy ve yazıyı <span class="chip analog">Sicaklik</span> yap. Bu bloğu <b>sürekli tekrarla'nın dışına</b>, en üste koyacaksın: başlık bir kez yazılır.</p>
+        <pre><code>lcd.setCursor(0, 0);
+lcd.print("Sicaklik");</code></pre>
+@@3765
+<p>Sıcaklık hep değişebilir, bu yüzden ölçüm tekrarlanmalı. <span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al ve başlık bloğunun altına tak.</p>
+        <pre><code>while (true) {
+  ...
+}</code></pre>
+@@3766
+Sayıyı dereceye çevir
+@@3767
+<p><span class="chip ekran">Ekran</span> kategorisinden bir <span class="chip ekran">LCD satır yaz</span> bloğunu döngüye koy ve satırını <b>2</b> yap. Yazı yuvasına <span class="chip degisken">birleştir</span> bloğunu (Metin), onun ilk yuvasına da <span class="chip analog">harita</span> bloğunu (Analog) tak.</p>
+        <ul><li>harita: <b>{0} analog oku</b>, girdi <b>0 - 4095</b>, çıktı <b>0 - 50</b></li>
+        <li>birleştir'in ikinci yuvası: <span class="chip analog"> C          </span> (başında bir boşluk, sonunda on boşluk)</li></ul>
+        <div class="kutu bilgi">Blokların ürettiği kod:
+          <pre><code>lcd.setCursor(0, 1);
+lcd.print((String(map(analogRead({1}), 0, 4095, 0, 50)) + String(" C          ")));</code></pre>
+          <code>map</code> tam sayı verir, yani 36,6 yerine 36 görünür. Ondalık göstermek için kod dersinde <code>float</code> kullanırız. Sondaki boşluklar eski yazıdan kalan harfleri siler: LCD yeni yazıyı eskisinin üstüne yazar, ama silmez.</div>
+        <div class="kutu dikkat">Harita bloğundaki pini A0 bırakma! Sıcaklık sensörü {2}'e bağlı. Son sayı 255 değil <b>50</b> olmalı.</div>
+@@3768
+Önce LCD bloğuna birleştir, birleştir bloğuna haritayı tak. Harita bloğunun içindeki analog oku bloğunun pinini A1 yap.
+@@3769
+Sıcak uyarısı
+@@3770
+<p><span class="chip akis">eğer</span> bloğunu döngüye koy, dişlisiyle <b>değilse</b> kolunu ekle. Koşul: <span class="chip mantik">karşılaştırma</span> ile <b>sıcaklık &gt; 30</b> (sıcaklığı yine <span class="chip analog">harita</span> bloğuyla hesapla).</p>
+        <ul><li><b>Eğer</b> kolunda: LCD satır 2, yazısı <span class="chip analog"> C SICAK!   </span></li>
+        <li><b>Değilse</b> kolunda: önceki LCD bloğu (<span class="chip analog"> C          </span>)</li></ul>
+        <pre><code>if (map(analogRead({0}), 0, 4095, 0, 50) &gt; 30) {
+  lcd.setCursor(0, 1);
+  lcd.print((String(map(...)) + String(" C SICAK!   ")));
+} else {
+  lcd.setCursor(0, 1);
+  lcd.print((String(map(...)) + String(" C          ")));
+}</code></pre>
+        <div class="kutu bilgi">Her iki yazının uzunluğu aynı olsun (sondaki boşluklarla): böylece uyarı kalkınca eski <i>SICAK!</i> harfleri ekranda artık kalmaz.</div>
+@@3771
+Önceki LCD bloğunu değilse koluna sürükle, bir kopyasını (Ctrl+C, Ctrl+V) eğer koluna koy ve yazıyı SICAK! yap.
+@@3772
+<p>Döngünün sonuna <span class="chip akis">200 ms bekle</span> ekle, sonra ▶ <b>Çalıştır</b>'a bas. Kaydırıcıyı sağa çekip <b>30 °C</b>'yi geçince uyarıyı izle!</p>
+        <pre><code>delay(200);</code></pre>
+        <div class="kutu hedef"><b>Hedef:</b> 1. satırda <i>Sicaklik</i>, 2. satırda sıcaklık °C olarak canlı görünsün; 30 °C üstünde yanında <i>SICAK!</i> çıksın.</div>
+@@3773
+Değer değişmiyorsa tüm okuma-yazma bloklarının sürekli tekrarla içinde olduğunu kontrol et.
+@@3774
+Termometre hazır: sıcaklık °C olarak görünüyor, 30 °C üstünde uyarı çıkıyor!
+@@3777
+<h2>Elektronik zar</h2>
+    <p>Düğmeye bastıkça LCD'de bir zar yuvarlansın: sayılar hızla değişsin, sonunda <b>1 ile 6 arası</b> rastgele bir sayıda dursun. Düğme <b>{0}</b> pinine bağlı.</p>
+    <ol>
+      <li><b>sürekli tekrarla</b> içinde <b>eğer {1} düğmesine basılı mı</b> koşulunu kur.</li>
+      <li>Eğerin içinde <b>say (1'den 10'a)</b> döngüsü kur: her turda <b>LCD satır 2</b>'ye <b>rastgele sayı (1 ile 6 arası)</b> yaz ve <b>70 ms bekle</b>.</li>
+      <li>Döngüden sonra <b>{2} düğmesi bırakılana kadar bekle</b> bloğunu ekle; tek basış tek atış olsun.</li>
+      <li>İstersen en başa <b>LCD satır 1</b> ile <i>Zar At</i> başlığını yaz.</li>
+      <li>▶ Çalıştır ve düğmeye bas!</li>
+    </ol>
+    <h3>Kontrol listesi</h3>
+    <ul>
+      <li>Düğmeye basmadan zar atılmıyor</li>
+      <li>Basınca sayılar hızla değişiyor (yuvarlanma)</li>
+      <li>Son sayı 1-6 arası ve ekranda sabit kalıyor; her atış farklı olabiliyor</li>
+    </ul>
+@@3778
+<p>Sahnede bir <b>düğme</b> (<span class="pin-etiket">{0}</span>) ve <b>16x2 LCD</b> var. Düğmeye basınca pin YÜKSEK okunur. Programımız bu anı yakalayıp zar atacak.</p>
+        <div class="kutu bilgi"><b>Rastgelelik:</b> Bilgisayar sayıları aslında hesapla üretir. <code>random()</code> komutu bu hesabı öyle karıştırır ki sonuç tahmin edilemez görünür. ESP32'nin kendi rastgele sayı üretecini kullandığı için ek bir hazırlık (<code>randomSeed</code>) gerekmez.</div>
+@@3779
+Düğmeye basılınca
+@@3780
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al, içine <span class="chip akis">eğer</span> bloğunu koy. Koşula <span class="chip dugme">{0} düğmesine basılı mı?</span> bloğunu (Düğme) tak.</p>
+        <pre><code>if (digitalRead({1}) == HIGH) {
+  ...
+}</code></pre>
+@@3781
+Düğme bloğundaki pin listesinden D5 seç. Eğer ve sürekli bloğu Akış kategorisinde.
+@@3782
+Rastgele sayı bloğu
+@@3783
+<p><span class="chip sayi">Rastgele</span> kategorisini aç ve <span class="chip sayi">rastgele sayı 1 ile 6 arası (ikisi dahil)</span> bloğunu çalışma alanına çıkar. Varsayılan değerler zar için hazır: <b>1</b> ve <b>6</b>.</p>
+        <div class="kutu bilgi">C++'ta karşılığı:
+          <pre><code>random(1, 7)</code></pre>
+          Arduino'da <code>random(a, b)</code> alt sınırı dahil eder, <b>üst sınırı dahil etmez</b>. 1-6 arası sayı için üst sınıra 7 yazılır. Blokta bu +1'i sen düşünmezsin; kutulara 1 ve 6 yazarsın.</div>
+@@3784
+Rastgele kategorisinin ilk bloğu. Kutular zaten 1 ve 6.
+@@3785
+Sayıyı ekrana yaz
+@@3786
+<p><span class="chip ekran">Ekran</span> kategorisinden <span class="chip ekran">LCD satır yaz</span> bloğunu eğer bloğunun içine koy, satırını <b>2</b> yap. Yazı yuvasına rastgele sayı bloğunu tak.</p>
+        <pre><code>lcd.setCursor(0, 1);
+lcd.print(random(1, 7));</code></pre>
+@@3787
+Rastgele sayı bloğunu LCD bloğunun üstündeki "Merhaba" yazısının üzerine bırakabilirsin.
+@@3789
+<p>Tek sayı yetmez; zar <b>yuvarlansın</b>! LCD bloğunu <span class="chip sayi">say: i değeri 1'den 10'a</span> döngüsünün içine al ve döngüye <span class="chip akis">70 ms bekle</span> ekle. Sayı 10 kez, her 70 ms'de bir değişir; son sayı ekranda kalır.</p>
+        <pre><code>for (int i = 1; i &lt;= 10; i += 1) {
+  lcd.setCursor(0, 1);
+  lcd.print(random(1, 7));
+  delay(70);
+}</code></pre>
+        <div class="kutu bilgi">Göz 70 ms'lik değişimleri akıcı bir "titreme" gibi görür. Sayıyı ve süreyi değiştirerek yuvarlanmayı uzatıp kısaltabilirsin.</div>
+@@3790
+Döngü bloğu hem Ekran hem Rastgele kategorisinde. LCD ve bekle blokları döngünün içinde olmalı.
+@@3791
+Düğme bırakılana kadar bekle
+@@3792
+<p>Düğmeye basılı tutulursa zar durmadan tekrar atılır. <span class="chip dugme">D5 düğmesi bırakılana kadar bekle</span> bloğunu (Düğme) döngüden sonra, <b>eğer bloğunun içine</b> koy ve seçeneği <b>bırakılana</b> yap.</p>
+        <pre><code>while (digitalRead({0}) != LOW) {
+  delay(1);
+}</code></pre>
+        <div class="kutu dikkat">Bu bloğu <b>say</b> döngüsünün içine koyma; döngünün hemen altına, eğer'in içine koy. İstersen en başa <span class="chip ekran">LCD satır 1 yaz</span> ile <i>Zar At</i> başlığı da ekle.</div>
+@@3793
+Bloktaki pin D5 ve ikinci seçenek "bırakılana" olmalı.
+@@3794
+Çalıştır ve zar at
+@@3795
+<p>▶ <b>Çalıştır</b>'a bas. Sonra 3B sahnedeki <b>düğmeye kısa bas</b> ve LCD'yi izle. Birkaç kez at!</p>
+        <div class="kutu hedef"><b>Hedef:</b> Her basışta sayılar kısa süre hızla değişsin, sonra 1-6 arası bir sayıda dursun. Farklı atışlarda farklı sayılar gelsin.</div>
+@@3796
+Sayı hiç değişmiyorsa LCD bloğunun say döngüsünün içinde olduğuna ve rastgele sayı bloğunun LCD bloğuna takılı olduğuna bak.
+@@3797
+Zarın yuvarlanıp rastgele bir sayıda duruyor. Bol şans!
+@@3798
+Daha geniş algılama mesafesi
+@@3799
+Çöp kovası şu an 20 cm yaklaşınca açılıyor. Algılama mesafesini <b>35 cm</b> yap: el 30 cm uzaktayken de kapak açılsın.
+@@3800
+Koşuldaki 20 sayısını 35 ile değiştir.
+@@3801
+El 30 cm mesafedeyken kapak açılmadı. Eşiği 35 cm yaptın mı?
+@@3802
+Kapak artık 35 cm mesafeden algılıyor!
+@@3803
+Ultrasonik mesafe sensörünün ölçüm prensibi nedir?
+@@3804
+Ses dalgası gönderip yankının dönüş süresini hesaplamak
+@@3805
+Lazer ışığıyla sıcaklığı ölçmek
+@@3806
+Manyetik alan değişimini algılamak
+@@3807
+Ortamdaki havanın nemini ölçmek
+@@3808
+HC-SR04 ses dalgası gönderir, dalga cisme çarpıp döner. Gidiş-dönüş süresinden mesafe hesaplanır.
+@@3809
+Kapağı daha uzun açık tut
+@@3810
+Çöp atmak için 2 saniye az geldi! Kapak açıldıktan sonra <b>4 saniye (4000 ms)</b> açık kalsın, sonra kapansın.
+@@3811
+Kapağı açtıktan sonraki delay(2000) beklemesini delay(4000) yap.
+@@3812
+Kapak hiç kapanmadı.
+@@3813
+Kapak çok erken kapandı ({0} sn sonra). 4000 ms açık kalmalı.
+@@3814
+Kapak 4 saniye boyunca açık kalıyor!
+@@3815
+Servo motorun 0 derece ve 90 derece olması ne anlama gelir?
+@@3816
+Motorun dönüş hızını belirler
+@@3817
+Motor milinin duracağı açısal konumu belirler
+@@3818
+Motora giden elektrik voltajını belirler
+@@3819
+Sensörün çalışma süresini belirler
+@@3820
+Servo motorlar DC motor gibi sonsuz dönmez; 0-180 derece arasında belirtilen açıda sabit durur.
+@@3821
+Bip tonunu kalınlaştır
+@@3822
+Kapıdan geçen her kişi için çalan ses şu an 1500 Hz. Sesi daha tok ve kalın bir tona çevir: <b>600 Hz</b> yap.
+@@3823
+tone(D8, 1500) fonksiyonundaki 1500 sayısını 600 yap.
+@@3824
+Buzzer hiç çalmadı.
+@@3825
+Buzzer 600 Hz çalmadı (şu an {0} Hz).
+@@3826
+Geçiş sesi 600 Hz oldu!
+@@3827
+Turnikeden geçen bir kişinin birden fazla kez sayılmaması için kodda ne kullanılır?
+@@3828
+Kişi uzaklaşana kadar (mesafe < 30) bekleyen bir döngü
+@@3829
+Kartı kapatıp açmak
+@@3830
+Ses çalmayı durdurmak
+@@3831
+Ekranı sıfırlamak
+@@3832
+Kişi sensörün önündeyken sayacın sürekli artmaması için uzaklaşana kadar (mesafe normalleşene kadar) beklenir.
+@@3833
+Kapasite uyarısı (5 kişi)
+@@3834
+Oda kapasitesi 2 kişi! Kişi sayısı <b>2 veya daha fazla</b> olduğunda LCD 1. satırda <b>"DOLU!"</b> yazsın. 2'den azken "Kisi Sayisi:" kalsın.
+@@3835
+sayac >= 2 ise lcd.print("DOLU!       ") yazdır.
+@@3836
+2 kişi geçtikten sonra 1. satırda DOLU! yazmalı.
+@@3837
+Kapasite aşılınca DOLU! uyarısı göründü!
+@@3838
+LCD 1602 ekranında ikinci satırın başına gitmek için hangi komut kullanılır?
+@@3843
+setCursor(sütun, satır) indeksleri 0'dan başlar: sütun 0 ilk sütun, satır 1 ikinci satırdır.
+@@3844
+Daha fazla yem dök
+@@3845
+Kapak şu an 90 derece açılıyor. Büyük porsiyon için kapağı <b>150 dereceye</b> kadar aç!
+@@3846
+servo.write(90) komutundaki açıyı 150 yap.
+@@3847
+Servo 150 dereceye açılmadı.
+@@3848
+Yem haznesi 150 derece açıldı, bol mama döküldü!
+@@3849
+Yem vericide butona basıldığında ses çalmanın faydası nedir?
+@@3850
+Evcil hayvanın mama vaktini sesle öğrenmesini (şartlanmasını) sağlar
+@@3851
+Servo motorun elektriğini artırır
+@@3852
+Kartın hafızasını temizler
+@@3853
+Yemin daha hızlı dökülmesini sağlar
+@@3854
+Bip sesi hayvan için sesli bir çağrıdır; mama döküldüğünü duyar duymaz kaba gelir.
+@@3855
+Yem dökülme süresi
+@@3856
+Yemin yavaş dökülmesi için kapak açıldıktan sonra <b>2 saniye (2000 ms)</b> açık beklesin, sonra kapansın.
+@@3857
+Kapak açıldıktan sonraki bekleme süresini delay(2000) yap.
+@@3858
+Servo açılıp kapanmadı.
+@@3859
+Kapak sadece {0} sn açık kaldı. 2000 ms beklemeli.
+@@3860
+Kapak 2 saniye boyunca açık bekledi!
+@@3861
+Düğmeye basılı tutulduğunda mamanın sürekli dökülmesini engellemek için ne yapılır?
+@@3862
+Düğme bırakılana kadar bekleyen while döngüsü kullanılır
+@@3863
+Pili çıkarmak gerekir
+@@3864
+Buzzer sesini kısmak gerekir
+@@3865
+Servo açısını 0 yapmak yeterlidir
+@@3866
+while (digitalRead(D2) == HIGH) delay(20); satırı kullanıcı elini çekene kadar programı bekletir.
+@@3867
+Hassas alarm eşiği
+@@3868
+Alarm şu an ışık 1500'ün altına inince çalıyor. Daha hassas yap: ışık <b>2200'ün</b> altına indiğinde (hafif bir gölgede bile) alarm devreye girsin.
+@@3869
+if (analogRead(A0) < 1500) koşulundaki 1500 sayısını 2200 yap.
+@@3870
+Işık 1800 iken alarm çalmadı. Eşik 2200 yapıldığında 1800 de alarm vermelidir.
+@@3871
+Hassas alarm devrede: hafif gölgede bile ötüyor!
+@@3872
+LDR ışık sensörü karanlıkta analogRead ile nasıl bir değer üretir?
+@@3873
+Küçük bir sayı (0'a yakın)
+@@3874
+Büyük bir sayı (4095'e yakın)
+@@3875
+Her zaman tam 2048
+@@3876
+Negatif bir sayı
+@@3877
+Atölyedeki simülasyonda LDR aydınlıkta yüksek değer (4095), karanlıkta/gölgede düşük değer (0) üretir.
+@@3878
+Hızlı siren
+@@3879
+Siren tonlarının bekleme sürelerini 150 ms yerine <b>60 ms</b> yap; ambulans gibi çok hızlı çalsın!
+@@3880
+Siren içindeki delay(150) satırlarını delay(60) yap.
+@@3881
+Siren yeterince hızlı çalmadı. Bekleme sürelerini 60 ms yaptın mı?
+@@3882
+Hızlı siren alarmı başarıyla çalışıyor!
+@@3883
+Bir LED'i alarm durumunda yakıp normalde söndürmek için hangi komutlar kullanılır?
+@@3884
+digitalWrite(D0, HIGH) ve digitalWrite(D0, LOW)
+@@3885
+analogRead(D0) ve analogWrite(D0)
+@@3886
+tone(D0) ve noTone(D0)
+@@3888
+Dijital çıkış HIGH olunca LED yanar, LOW olunca söner.
+@@3889
+Bariyer açılma mesafesini artır
+@@3890
+Bariyer araç 25 cm yakına gelince açılıyor. Güvenlik için aracı daha uzaktan, <b>45 cm</b> mesafeden algılayıp aç.
+@@3891
+if (mesafeOlc(D3) < 25) koşulundaki 25 sayısını 45 yap.
+@@3892
+Araç 35 cm mesafedeyken bariyer açılmadı. Eşiği 45 yaptın mı?
+@@3893
+Bariyer artık 45 cm mesafeden algılayıp erken açılıyor!
+@@3894
+LCD ekranda "DUR" yazdıktan sonra sonuna boşluk bırakmanın ("DUR         ") amacı nedir?
+@@3895
+Önceki uzun yazıdan ("Geciniz") kalan harfleri silmek
+@@3896
+Ekranın parlaklığını artırmak
+@@3897
+Kartın hızını ayarlamak
+@@3898
+Yazının rengini değiştirmek
+@@3899
+LCD print önceki karakterlerin üstüne yazar. Boşluk bırakılmazsa "Geciniz" yazısının sonundaki "iz" harfleri ekranda kalır ("DURiniz").
+@@3900
+Araç yaklaşınca 2. satırda "Geciniz" yerine <b>"Hos Geldiniz"</b> yazsın. Araç yokken yine <b>"DUR"</b> yazsın.
+@@3901
+lcd.print("Geciniz     ") satırını lcd.print("Hos Geldiniz") yap.
+@@3902
+Araç yaklaşınca ekranda "Hos Geldiniz" yazmalı.
+@@3903
+Ekranda Hos Geldiniz mesajı görüntülendi!
+@@3904
+Bariyer kapalıyken servo kaç derece, açıkken kaç derece olmalıdır?
+@@3905
+Kapalıyken 0 derece, açıkken 90 derece
+@@3906
+Kapalıyken 180 derece, açıkken 360 derece
+@@3907
+Kapalıyken 500, açıkken 1000
+@@3908
+Her zaman 45 derece

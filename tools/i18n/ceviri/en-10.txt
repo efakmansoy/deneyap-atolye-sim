@@ -1,0 +1,475 @@
+@@3683
+Build an if / else if / else chain: first check whether it is greater than 30, then whether it is less than 10, and let everything else be NORMAL.
+@@3687
+When the temperature is {0} °C, line 2 should show only {1}; right now it shows: "{2}".
+@@3688
+All three cases are correct: SOGUK, NORMAL, SICAK!
+@@3689
+The screen shows <code>36.6 C</code>. When the temperature drops to 9.8, what appears on the LCD if the program prints only <code>9.8 C</code> (without adding trailing spaces)?
+@@3691
+36.6 C stays exactly as it is
+@@3692
+The screen goes blank
+@@3693
+9.8 CC: one C letter is left over from the old text
+@@3694
+The LCD writes the new text over the old one and does not erase the leftover characters. "36.6 C" is 6 characters and "9.8 C" is 5: the last character (C) stays as it was. That is why we print spaces at the end of the line or clear the screen.
+@@3695
+Highest temperature
+@@3696
+Line 1 should show <b>Simdi: </b> and the current temperature, and line 2 should show <b>Max: </b> and the <b>highest</b> temperature measured so far (°C). The Max value must never go down. To do this, keep a <b>variable</b> and update it only when a higher value arrives.
+@@3697
+Define a variable outside the loop (at the top). In the loop: if the temperature is greater than the variable, assign it to the variable. Then print both on the screen.
+@@3698
+Line 1 must start with "Simdi: ..." and line 2 with "Max: ...".
+@@3699
+When the sensor reads {0}, line 1 should show about {1}.
+@@3700
+The highest temperature so far is {0} °C; line 2 shows {1}. Max can only go up.
+@@3701
+no number
+@@3702
+The highest temperature is kept in memory!
+@@3703
+Why is the variable that holds the highest temperature defined <b>outside</b> (at the top) instead of inside <b>loop()</b>?
+@@3704
+Variables cannot be defined inside loop
+@@3705
+Loop starts over on every pass; a variable defined inside would be reset each time and forget the old record
+@@3706
+Variables outside are faster
+@@3707
+The screen can only print global variables
+@@3708
+loop() runs from the start on every pass. A variable defined inside it is created again each time and loses its previous value. To remember the record, the variable is defined outside loop() (global).
+@@3709
+Single roll
+@@3710
+First make a simple dice without animation: when you <b>press</b> the <span class="pin-etiket">{0}</span> button, a <b>random number from 1 to 6</b> should appear on <b>line 2</b> of the LCD and stay on the screen after you release the button. No number should appear without pressing the button.
+@@3711
+If the button is pressed: write to LCD line 2 a random number (from 1 to 6, both included). A press is short; add a short wait at the end.
+@@3712
+Which numbers does <code>random(1, 7)</code> produce in Arduino?
+@@3717
+random(a, b) includes the lower bound (a) but not the upper bound (b). Since we want 1 to 6 for a dice, we write 7 as the upper bound. The random number block does this +1 for you: you just type 1 and 6 in the boxes.
+@@3718
+Two dice
+@@3719
+Roll two dice at once: when the button is pressed, <b>two numbers</b> should appear on <b>line 2</b> of the LCD (for example <i>3  5</i>). The two dice must be <b>independent of each other</b>, and both must be between 1 and 6.
+@@3720
+Generate two separate random numbers (two variables or two blocks). Print both on the screen with a space between them.
+@@3721
+On roll {0}, line 2 has {1} numbers; exactly two numbers should appear for two dice.
+@@3722
+On roll {0}, the screen shows {1}; each die must be between 1 and 6.
+@@3723
+ and
+@@3724
+Both dice came out the same. Generate a separate random number for each die.
+@@3725
+Both dice must change. Generate both randomly.
+@@3726
+Both dice are rolled randomly!
+@@3727
+In the dice code, what does the line <code>while (digitalRead(D5) == HIGH) { delay(10); }</code> do for the button?
+@@3728
+Waits until the button is pressed
+@@3729
+Waits until the button is released, so holding it down does not roll the dice again and again
+@@3730
+Clears the LCD screen
+@@3731
+Rolls the dice faster
+@@3732
+The loop keeps running and waits 10 ms as long as the button is HIGH (pressed). When the button is released the condition becomes false and the loop ends. This way one press counts as one roll.
+@@3733
+Roll counter
+@@3734
+Get the animated dice ready (or keep it simple). <b>Line 1</b> should show how many times it has been rolled: <i>Atis: 1</i>, <i>Atis: 2</i> ... <b>Line 2</b> should show the result of that roll (1-6). Pressing the button once must increase the counter by only <b>one</b>.
+@@3735
+Keep a counter variable outside the loop. On each press, increase the counter by one and print it on line 1. Wait a little so the press is not counted twice.
+@@3736
+Line 1 must start with "Atis: ...".
+@@3737
+After press {0}, line 1 shows {1}; it should be {2}. One press must increase the counter only once.
+@@3738
+On roll {0}, line 2 should show a result from 1 to 6.
+@@3739
+The same result came out every roll. Use a random number.
+@@3740
+The roll counter increases correctly, and the result is next to it!
+@@3741
+What is the probability of rolling a <b>6</b> twice in a row with a fair dice?
+@@3746
+The two rolls are independent of each other. The probability of a 6 on each is 1/6, so the probability of both is 1/6 * 1/6 = 1/36.
+@@3747
+Best roll
+@@3748
+<b>Line 1</b> should show the <b>highest</b> dice value so far (<i>En iyi: 5</i>), and <b>line 2</b> should show the result of the last roll. A new dice is rolled on every press; the best value changes only when a higher number comes up.
+@@3749
+Put the dice into a variable. If the variable is greater than the stored record, update the record. Then print both on the screen.
+@@3750
+Line 1 must start with "En iyi: ...".
+@@3751
+After roll {0}, the best result should be {1} but line 1 shows {2}. Update the record only when a higher number comes up.
+@@3752
+The best roll is kept in memory!
+@@3753
+Which mistake causes the dice to <b>never show 6</b> (only 1-5 come up)?
+@@3758
+random(1, 6) does not include the upper bound (6) and produces only 1-5. For a dice, the upper bound is written as 7. In the random number block, you type 6 in box B, because the +1 is built into the block.
+@@3761
+<h2>LCD thermometer</h2>
+    <p>The temperature sensor sends a number from 0 to 4095 through pin <b>{0}</b>. We will show this number on the LCD in <b>°C</b>. The virtual sensor's slider maps 0 °C to 0 and 50 °C to 4095. The temperature threshold is <b>30 °C</b>.</p>
+    <ol>
+      <li>Write the title with the <b>write to LCD line 1</b> block: <i>Sicaklik</i> (do not use Turkish characters).</li>
+      <li>Inside <b>repeat forever</b>, convert the number with the <b>map</b> block: read {1} and convert the range 0-4095 to <b>0-50</b>.</li>
+      <li>With <b>write to LCD line 2</b>, show the result next to the text <i> C</i> using the <b>join</b> block (leave spaces at the end).</li>
+      <li><b>If</b> the temperature is <b>greater than 30</b>, write <i> C SICAK!</i> on the same line; <b>otherwise</b> write the normal text.</li>
+      <li>Add <b>wait 200 ms</b> at the end and press ▶ Run. Drag the slider left and right.</li>
+    </ol>
+    <h3>Checklist</h3>
+    <ul>
+      <li>The title shows on line 1 and the temperature (°C) on line 2</li>
+      <li>The value changes live when you move the slider</li>
+      <li>Above 30 °C the SICAK! warning appears on line 2, and it does not appear below</li>
+    </ul>
+@@3762
+<p>The scene has a <b>temperature sensor</b> (<span class="pin-etiket">{0}</span>) and a <b>16x2 LCD</b>. You can heat and cool the room by dragging the blue <b>slider</b> under the sensor.</p>
+        <div class="kutu bilgi"><b>Conversion:</b> The board's analog input reads a number from <b>0-4095</b>. The sensor in this scene maps 0 °C to <b>0</b> and 50 °C to <b>4095</b>. So
+          <pre><code>sicaklik = analogRead({1}) * 50.0 / 4095.0;</code></pre>
+          if 2048 is read, the temperature is about 25 °C. (For real sensors, the conversion formula depends on the sensor's datasheet.)</div>
+@@3763
+Write the title
+@@3764
+<p>From the <span class="chip ekran">Display</span> category, place the <span class="chip ekran">write to LCD line 1</span> block in the workspace and set the text to <span class="chip analog">Sicaklik</span>. You will put this block <b>outside repeat forever</b>, at the very top: the title is written only once.</p>
+        <pre><code>lcd.setCursor(0, 0);
+lcd.print("Sicaklik");</code></pre>
+@@3765
+<p>The temperature can keep changing, so the measurement must repeat. From the <span class="chip akis">Flow</span> category, take the <span class="chip akis">repeat forever</span> block and attach it under the title block.</p>
+        <pre><code>while (true) {
+  ...
+}</code></pre>
+@@3766
+Convert the number to degrees
+@@3767
+<p>From the <span class="chip ekran">Display</span> category, put a <span class="chip ekran">write to LCD line</span> block in the loop and set its line to <b>2</b>. Plug the <span class="chip degisken">join</span> block (Text) into the text slot, and plug the <span class="chip analog">map</span> block (Analog) into its first slot.</p>
+        <ul><li>map: <b>read analog {0}</b>, input <b>0 - 4095</b>, output <b>0 - 50</b></li>
+        <li>second slot of join: <span class="chip analog"> C          </span> (one space at the start, ten spaces at the end)</li></ul>
+        <div class="kutu bilgi">The code the blocks generate:
+          <pre><code>lcd.setCursor(0, 1);
+lcd.print((String(map(analogRead({1}), 0, 4095, 0, 50)) + String(" C          ")));</code></pre>
+          <code>map</code> gives a whole number, so you see 36 instead of 36.6. To show decimals we use <code>float</code> in the code lesson. The spaces at the end erase leftover letters from the old text: the LCD writes the new text over the old one, but does not erase it.</div>
+        <div class="kutu dikkat">Do not leave the pin on A0 in the map block! The temperature sensor is connected to {2}. The last number must be <b>50</b>, not 255.</div>
+@@3768
+First attach join to the LCD block, then attach map to the join block. Set the pin of the read analog block inside the map block to A1.
+@@3769
+Hot warning
+@@3770
+<p>Put the <span class="chip akis">if</span> block in the loop and use its gear to add the <b>else</b> branch. Condition: use <span class="chip mantik">compare</span> to make <b>temperature &gt; 30</b> (calculate the temperature with the <span class="chip analog">map</span> block again).</p>
+        <ul><li>In the <b>if</b> branch: LCD line 2, with the text <span class="chip analog"> C SICAK!   </span></li>
+        <li>In the <b>else</b> branch: the previous LCD block (<span class="chip analog"> C          </span>)</li></ul>
+        <pre><code>if (map(analogRead({0}), 0, 4095, 0, 50) &gt; 30) {
+  lcd.setCursor(0, 1);
+  lcd.print((String(map(...)) + String(" C SICAK!   ")));
+} else {
+  lcd.setCursor(0, 1);
+  lcd.print((String(map(...)) + String(" C          ")));
+}</code></pre>
+        <div class="kutu bilgi">Make both texts the same length (with trailing spaces): this way, when the warning goes away, no leftover <i>SICAK!</i> letters stay on the screen.</div>
+@@3771
+Drag the previous LCD block into the else branch, put a copy of it (Ctrl+C, Ctrl+V) into the if branch, and change the text to SICAK!.
+@@3772
+<p>Add <span class="chip akis">wait 200 ms</span> at the end of the loop, then press ▶ <b>Run</b>. Drag the slider to the right and watch the warning when it passes <b>30 °C</b>!</p>
+        <pre><code>delay(200);</code></pre>
+        <div class="kutu hedef"><b>Goal:</b> Line 1 shows <i>Sicaklik</i>, line 2 shows the temperature live in °C; above 30 °C, <i>SICAK!</i> appears next to it.</div>
+@@3773
+If the value does not change, check that all the read and write blocks are inside repeat forever.
+@@3774
+The thermometer is ready: the temperature shows in °C and a warning appears above 30 °C!
+@@3777
+<h2>Electronic dice</h2>
+    <p>Each time you press the button, a dice should roll on the LCD: the numbers change quickly and finally stop on a random number <b>from 1 to 6</b>. The button is connected to pin <b>{0}</b>.</p>
+    <ol>
+      <li>Inside <b>repeat forever</b>, build the condition <b>if button {1} is pressed</b>.</li>
+      <li>Inside the if, build a <b>count (from 1 to 10)</b> loop: on each pass, write a <b>random number (from 1 to 6)</b> to <b>LCD line 2</b> and <b>wait 70 ms</b>.</li>
+      <li>After the loop, add the <b>wait until button {2} is released</b> block; one press should be one roll.</li>
+      <li>If you like, write the title <i>Zar At</i> at the very beginning with <b>LCD line 1</b>.</li>
+      <li>Press ▶ Run and press the button!</li>
+    </ol>
+    <h3>Checklist</h3>
+    <ul>
+      <li>The dice is not rolled without pressing the button</li>
+      <li>When pressed, the numbers change quickly (rolling)</li>
+      <li>The final number is between 1 and 6 and stays fixed on the screen; each roll can be different</li>
+    </ul>
+@@3778
+<p>The scene has a <b>button</b> (<span class="pin-etiket">{0}</span>) and a <b>16x2 LCD</b>. When the button is pressed, the pin reads HIGH. Our program will catch that moment and roll the dice.</p>
+        <div class="kutu bilgi"><b>Randomness:</b> Computers actually produce numbers by calculation. The <code>random()</code> command mixes this calculation so well that the result looks unpredictable. Since the ESP32 uses its own random number generator, no extra setup (<code>randomSeed</code>) is needed.</div>
+@@3779
+When the button is pressed
+@@3780
+<p>From the <span class="chip akis">Flow</span> category, take the <span class="chip akis">repeat forever</span> block and put the <span class="chip akis">if</span> block inside it. Plug the <span class="chip dugme">is button {0} pressed?</span> block (Button) into the condition.</p>
+        <pre><code>if (digitalRead({1}) == HIGH) {
+  ...
+}</code></pre>
+@@3781
+Choose D5 from the pin list in the button block. The if and forever blocks are in the Flow category.
+@@3782
+Random number block
+@@3783
+<p>Open the <span class="chip sayi">Random</span> category and bring the <span class="chip sayi">random number from 1 to 6 (both included)</span> block into the workspace. The default values are already set for a dice: <b>1</b> and <b>6</b>.</p>
+        <div class="kutu bilgi">In C++ it is:
+          <pre><code>random(1, 7)</code></pre>
+          In Arduino, <code>random(a, b)</code> includes the lower bound but <b>not the upper bound</b>. For a number from 1 to 6, you write 7 as the upper bound. In the block you do not need to think about this +1; you just type 1 and 6 in the boxes.</div>
+@@3784
+The first block of the Random category. The boxes are already 1 and 6.
+@@3785
+Show the number on the screen
+@@3786
+<p>From the <span class="chip ekran">Display</span> category, put the <span class="chip ekran">write to LCD line</span> block inside the if block and set its line to <b>2</b>. Plug the random number block into the text slot.</p>
+        <pre><code>lcd.setCursor(0, 1);
+lcd.print(random(1, 7));</code></pre>
+@@3787
+You can drop the random number block onto the "Merhaba" text on top of the LCD block.
+@@3789
+<p>One number is not enough; the dice should <b>roll</b>! Put the LCD block inside the <span class="chip sayi">count: i value from 1 to 10</span> loop and add <span class="chip akis">wait 70 ms</span> to the loop. The number changes 10 times, once every 70 ms; the last number stays on the screen.</p>
+        <pre><code>for (int i = 1; i &lt;= 10; i += 1) {
+  lcd.setCursor(0, 1);
+  lcd.print(random(1, 7));
+  delay(70);
+}</code></pre>
+        <div class="kutu bilgi">The eye sees changes every 70 ms as a smooth "flicker". You can make the rolling longer or shorter by changing the count and the time.</div>
+@@3790
+The loop block is in both the Display and Random categories. The LCD and wait blocks must be inside the loop.
+@@3791
+Wait until the button is released
+@@3792
+<p>If the button is held down, the dice keeps rolling again and again. Put the <span class="chip dugme">wait until button D5 is released</span> block (Button) after the loop, <b>inside the if block</b>, and set the option to <b>released</b>.</p>
+        <pre><code>while (digitalRead({0}) != LOW) {
+  delay(1);
+}</code></pre>
+        <div class="kutu dikkat">Do not put this block inside the <b>count</b> loop; put it right below the loop, inside the if. If you like, also add the <i>Zar At</i> title at the beginning with <span class="chip ekran">write to LCD line 1</span>.</div>
+@@3793
+The pin in the block must be D5 and the second option must be "released".
+@@3794
+Run and roll the dice
+@@3795
+<p>Press ▶ <b>Run</b>. Then <b>press the button briefly</b> in the 3D scene and watch the LCD. Roll a few times!</p>
+        <div class="kutu hedef"><b>Goal:</b> On each press, the numbers change quickly for a short time, then stop on a number from 1 to 6. Different rolls should give different numbers.</div>
+@@3796
+If the number never changes, check that the LCD block is inside the count loop and that the random number block is plugged into the LCD block.
+@@3797
+Your dice rolls and stops on a random number. Good luck!
+@@3798
+Wider detection distance
+@@3799
+The trash can currently opens when something comes within 20 cm. Set the detection distance to <b>35 cm</b>: the lid should open even when a hand is 30 cm away.
+@@3800
+Change the number 20 in the condition to 35.
+@@3801
+The lid did not open with a hand at 30 cm. Did you set the threshold to 35 cm?
+@@3802
+The lid now detects from 35 cm away!
+@@3803
+What is the measuring principle of the ultrasonic distance sensor?
+@@3804
+Sending a sound wave and calculating the return time of the echo
+@@3805
+Measuring temperature with laser light
+@@3806
+Detecting changes in a magnetic field
+@@3807
+Measuring the humidity of the air around it
+@@3808
+The HC-SR04 sends a sound wave, which hits the object and returns. The distance is calculated from the round-trip time.
+@@3809
+Keep the lid open longer
+@@3810
+2 seconds is too short for throwing trash! After the lid opens, it should stay open for <b>4 seconds (4000 ms)</b>, then close.
+@@3811
+Change the delay(2000) wait after opening the lid to delay(4000).
+@@3812
+The lid never closed.
+@@3813
+The lid closed too early (after {0} s). It should stay open for 4000 ms.
+@@3814
+The lid stays open for 4 seconds!
+@@3815
+What does it mean for a servo motor to be at 0 degrees or 90 degrees?
+@@3816
+It sets the speed of the motor
+@@3817
+It sets the angular position where the motor shaft will stop
+@@3818
+It sets the electrical voltage going to the motor
+@@3819
+It sets the working time of the sensor
+@@3820
+Servo motors do not spin endlessly like DC motors; they hold steady at the given angle between 0 and 180 degrees.
+@@3821
+Make the beep deeper
+@@3822
+The sound played for each person passing through the door is currently 1500 Hz. Change it to a fuller, deeper tone: make it <b>600 Hz</b>.
+@@3823
+Change the number 1500 in the tone(D8, 1500) function to 600.
+@@3824
+The buzzer never played.
+@@3825
+The buzzer did not play 600 Hz (it is {0} Hz right now).
+@@3826
+The passing sound is now 600 Hz!
+@@3827
+What is used in the code so that a person passing through the turnstile is not counted more than once?
+@@3828
+A loop that waits until the person moves away (distance < 30)
+@@3829
+Turning the board off and on
+@@3830
+Stopping the sound
+@@3831
+Resetting the screen
+@@3832
+So the counter does not keep increasing while the person is in front of the sensor, the program waits until they move away (until the distance returns to normal).
+@@3833
+Capacity warning (5 people)
+@@3834
+The room capacity is 2 people! When the number of people is <b>2 or more</b>, the LCD should show <b>"DOLU!"</b> on line 1. When it is less than 2, "Kisi Sayisi:" should stay.
+@@3835
+If sayac >= 2, print lcd.print("DOLU!       ").
+@@3836
+After 2 people pass, line 1 should show DOLU!.
+@@3837
+The DOLU! warning appeared when the capacity was exceeded!
+@@3838
+Which command is used to go to the start of the second line on an LCD 1602 screen?
+@@3843
+setCursor(column, row) indexes start at 0: column 0 is the first column, and row 1 is the second line.
+@@3844
+Dispense more food
+@@3845
+The lid currently opens 90 degrees. For a large portion, open the lid up to <b>150 degrees</b>!
+@@3846
+Change the angle in the servo.write(90) command to 150.
+@@3847
+The servo did not open to 150 degrees.
+@@3848
+The food hopper opened 150 degrees and plenty of food was dispensed!
+@@3849
+What is the benefit of playing a sound when the button is pressed on the food dispenser?
+@@3850
+It helps the pet learn (get conditioned to) feeding time by sound
+@@3851
+It increases the servo motor's electricity
+@@3852
+It clears the board's memory
+@@3853
+It makes the food drop faster
+@@3854
+The beep is an audible call for the animal; it comes running as soon as it hears the food being dispensed.
+@@3855
+Food dispensing time
+@@3856
+To make the food drop slowly, after the lid opens it should wait <b>2 seconds (2000 ms)</b> open, then close.
+@@3857
+Set the wait time after the lid opens to delay(2000).
+@@3858
+The servo did not open and close.
+@@3859
+The lid stayed open for only {0} s. It should wait 2000 ms.
+@@3860
+The lid waited open for 2 seconds!
+@@3861
+What do you do to stop food from being dispensed continuously when the button is held down?
+@@3862
+Use a while loop that waits until the button is released
+@@3863
+You have to remove the battery
+@@3864
+You have to turn down the buzzer volume
+@@3865
+Setting the servo angle to 0 is enough
+@@3866
+The line while (digitalRead(D2) == HIGH) delay(20); holds the program until the user lifts their hand.
+@@3867
+Sensitive alarm threshold
+@@3868
+The alarm currently sounds when the light drops below 1500. Make it more sensitive: the alarm should activate when the light drops below <b>2200</b> (even in a slight shadow).
+@@3869
+Change the number 1500 in the condition if (analogRead(A0) < 1500) to 2200.
+@@3870
+The alarm did not sound when the light was 1800. With the threshold at 2200, 1800 should also trigger the alarm.
+@@3871
+The sensitive alarm is active: it beeps even in a slight shadow!
+@@3872
+What kind of value does an LDR light sensor produce with analogRead in the dark?
+@@3873
+A small number (close to 0)
+@@3874
+A large number (close to 4095)
+@@3875
+Always exactly 2048
+@@3876
+A negative number
+@@3877
+In the workshop simulation, the LDR produces a high value (4095) in light and a low value (0) in dark/shadow.
+@@3878
+Fast siren
+@@3879
+Change the wait times of the siren tones from 150 ms to <b>60 ms</b>; make it play very fast like an ambulance!
+@@3880
+Change the delay(150) lines in the siren to delay(60).
+@@3881
+The siren did not play fast enough. Did you set the wait times to 60 ms?
+@@3882
+The fast siren alarm works successfully!
+@@3883
+Which commands are used to turn an LED on in an alarm state and off normally?
+@@3884
+digitalWrite(D0, HIGH) and digitalWrite(D0, LOW)
+@@3885
+analogRead(D0) and analogWrite(D0)
+@@3886
+tone(D0) and noTone(D0)
+@@3888
+When a digital output is HIGH the LED turns on, and when it is LOW it turns off.
+@@3889
+Increase the barrier opening distance
+@@3890
+The barrier opens when a vehicle comes within 25 cm. For safety, detect the vehicle from farther away, at <b>45 cm</b>, and open.
+@@3891
+Change the number 25 in the condition if (mesafeOlc(D3) < 25) to 45.
+@@3892
+The barrier did not open with a vehicle at 35 cm. Did you set the threshold to 45?
+@@3893
+The barrier now detects from 45 cm and opens early!
+@@3894
+After writing "DUR" on the LCD screen, what is the purpose of leaving spaces at the end ("DUR         ")?
+@@3895
+To erase the leftover letters from the earlier longer text ("Geciniz")
+@@3896
+To increase the screen brightness
+@@3897
+To adjust the board's speed
+@@3898
+To change the color of the text
+@@3899
+LCD print writes over the previous characters. If no spaces are left, the "iz" letters at the end of "Geciniz" stay on the screen ("DURiniz").
+@@3900
+When a vehicle approaches, line 2 should show <b>"Hos Geldiniz"</b> instead of "Geciniz". When there is no vehicle, it should show <b>"DUR"</b> again.
+@@3901
+Change the line lcd.print("Geciniz     ") to lcd.print("Hos Geldiniz").
+@@3902
+When a vehicle approaches, the screen should show "Hos Geldiniz".
+@@3903
+The Hos Geldiniz message was displayed!
+@@3904
+How many degrees should the servo be when the barrier is closed, and how many when it is open?
+@@3905
+0 degrees when closed, 90 degrees when open
+@@3906
+180 degrees when closed, 360 degrees when open
+@@3907
+500 when closed, 1000 when open
+@@3908
+Always 45 degrees

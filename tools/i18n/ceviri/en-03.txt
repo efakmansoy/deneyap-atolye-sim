@@ -1,0 +1,574 @@
+@@2050
+The LED is blinking fast!
+@@2051
+How long does <code>delay(250);</code> make the program wait?
+@@2052
+250 seconds
+@@2053
+2.5 seconds
+@@2054
+0.25 seconds
+@@2056
+delay() works in milliseconds. Since 1000 ms = 1 s, 250 ms = a quarter (0.25) of a second.
+@@2057
+Heartbeat rhythm
+@@2058
+Make the LED stay on for a long time and off for a short time: <span class="pin-etiket">D0</span> <b>on for 800 ms</b>, <b>off for 200 ms</b>. Repeat this rhythm forever.
+@@2059
+The two wait blocks will now hold different numbers. Which one is the on time and which is the off time?
+@@2060
+The LED only changed {0} times. Inside the loop, do: turn on, wait, turn off, wait.
+@@2061
+The LED should stay on for about 800 ms. Set the wait after turning it on to 800.
+@@2062
+The LED should stay off for about 200 ms. Set the wait after turning it off to 200.
+@@2063
+You made a rhythm with a long on time and a short off time!
+@@2064
+While the LED is blinking, what happens if we delete the <code>delay()</code> line that comes <b>after</b> the turn-off command?
+@@2065
+The LED never turns on
+@@2066
+The LED stays on; the moment it is off is too short for the eye to notice
+@@2067
+The board gives an error and stops
+@@2068
+The LED blinks twice as slowly
+@@2069
+The time between turning off and the next turn-on becomes very short, so the LED looks like it is almost always on.
+@@2070
+Delayed start
+@@2071
+When the program starts, the LED should wait <b>off for 1 second</b>; <b>then</b> <span class="pin-etiket">D0</span> should start blinking forever, 500 ms on and 500 ms off.
+@@2072
+Something that happens only once (the first wait) must be OUTSIDE the loop, before it.
+@@2073
+The LED turned on too early. Wait 1000 ms before the loop.
+@@2074
+The LED turned on after {0} ms; it should be about 1000 ms.
+@@2075
+After the first wait, the LED should keep blinking (repeat forever).
+@@2076
+After it starts, the on and off times should be about 500 ms.
+@@2077
+It waited one second, then started blinking!
+@@2078
+How many seconds does one blink of the LED (500 ms on + 500 ms off) take?
+@@2079
+0.5 seconds
+@@2080
+2 seconds
+@@2081
+5 seconds
+@@2082
+1 second
+@@2083
+500 ms + 500 ms = 1000 ms = 1 second. So the LED blinks once per second.
+@@2084
+Exactly five times
+@@2085
+Make the <span class="pin-etiket">D0</span> LED blink <b>exactly 5 times</b> (<b>300 ms on, 300 ms off</b>) and then stay <b>off</b>. Use a counted loop, not an endless one.
+@@2086
+Put the on-wait-off-wait four blocks inside the "count i from 1 to 5" block.
+@@2087
+The LED turned on {0} times; it should turn on exactly 5 times.
+@@2088
+The LED should be off at the end.
+@@2089
+The on and off times should be about 300 ms.
+@@2090
+It blinked five times and stopped. Great!
+@@2091
+After <code>digitalWrite(D0, HIGH);</code> and <code>digitalWrite(D1, LOW);</code> run, which LED turns on?
+@@2092
+Both turn on
+@@2093
+Only the red LED connected to D0
+@@2094
+Only the green LED connected to D1
+@@2095
+Both stay off
+@@2096
+D0 is 3.3 V, so the red LED turns on; D1 is 0 V, so the green LED stays off.
+@@2097
+Fast shift change
+@@2098
+This time the red (<span class="pin-etiket">D0</span>) and green (<span class="pin-etiket">D1</span>) LEDs should swap turns every <b>200 ms</b>. <b>Both</b> must never be on at the same time.
+@@2099
+Change the 400 value in the wait blocks to 200. First turn off the LED that is on, then turn on the other.
+@@2100
+Both LEDs must keep taking turns (repeat forever).
+@@2101
+Both LEDs turned on at the same time. First turn one off, then turn the other on.
+@@2102
+The turns should swap about every 200 ms. Check your wait blocks.
+@@2103
+A fast and steady shift change!
+@@2104
+The two-LED program has two <code>delay(400);</code> calls in the loop. About how many milliseconds does one pass of the loop take?
+@@2109
+The wait times add up: 400 + 400 = 800 ms. The digitalWrite commands take microseconds, so they can be ignored.
+@@2110
+Green goes first
+@@2111
+Change the order: the <b>green LED</b> (<span class="pin-etiket">D1</span>) turns on first, then <b>300 ms</b> later the red one (<span class="pin-etiket">D0</span>) turns on, and they keep taking turns like this. Never both at once.
+@@2112
+Pay attention to which pin you set HIGH and which LOW in the first round. The wait is 300 ms.
+@@2113
+The green LED (D1) never turned on.
+@@2114
+The first LED to turn on must be green (D1). Red should turn on later.
+@@2115
+Both LEDs must keep taking turns.
+@@2116
+The turns should swap about every 300 ms.
+@@2117
+Green started, red followed. Just as requested!
+@@2118
+After the program writes <code>digitalWrite(D1, HIGH)</code>, what happens to the green LED if it <b>never writes anything to D1 again</b>?
+@@2119
+It turns off by itself after a few seconds
+@@2120
+It stays on; the pin stays HIGH until a new value is written
+@@2121
+The red LED turns off
+@@2122
+It starts blinking
+@@2123
+A pin keeps its last state until a new value is written to it. To turn the LED off, you need to write LOW.
+@@2124
+Add some darkness in between
+@@2125
+Add a short <b>darkness</b> between turns: one LED stays on for <b>400 ms</b>, then <b>both stay off for 100 ms</b>, then the other stays on for 400 ms... and so on forever.
+@@2126
+Turn off the LED that is on, wait 100 ms, then turn on the other one. This wait is the moment when both LEDs are off.
+@@2127
+There is no moment when both are off between turns. Turn off, wait 100 ms, then turn on the other.
+@@2128
+The gap when both LEDs are off together should be about 100 ms.
+@@2129
+Each LED should stay on for about 400 ms.
+@@2130
+Darkness in between, a great shift pattern!
+@@2131
+Three rounds and stop
+@@2132
+Make the red (<span class="pin-etiket">D0</span>) and green (<span class="pin-etiket">D1</span>) LEDs take turns <b>exactly 3 times</b> (each lights up 3 times for <b>300 ms</b>). At the end, <b>both</b> should be <b>off</b>. Use a <b>count</b> loop instead of repeat forever.
+@@2133
+Inside the count loop, put these in order: red on, wait, red off, green on, wait, green off.
+@@2134
+Both LEDs must turn on.
+@@2135
+Red turned on {0} times, green {1} times; both must turn on exactly 3 times.
+@@2136
+Both LEDs must be off at the end. Turn off the LED from the last round too.
+@@2137
+Each LED should stay on for about 300 ms.
+@@2138
+They took turns for three rounds and stopped!
+@@2141
+<h2>Turn on an LED</h2>
+      <p>An LED is connected to pin D0. Drag the <b>set pin D0 HIGH</b> block into the workspace and press ▶ Run.</p>
+@@2142
+Get to know the circuit
+@@2143
+<p>In the 3D scene there is a <b>Deneyap Board</b> and a <b>breadboard</b>. The red wire from the board's <span class="pin-etiket">D0</span> pin goes to the <b>red LED</b> on the breadboard.</p>
+          <p>You can rotate the scene with the mouse and zoom with the wheel. The green ring points at the LED.</p>
+          <div class="kutu bilgi"><b>What is a pin?</b> The metal legs on the edge of the board are called <i>pins</i>. Each pin can output 0 V (<code>LOW</code>) or 3.3 V (<code>HIGH</code>). The LED turns on when 3.3 V arrives.</div>
+@@2144
+Open the Pins category
+@@2145
+<p>In the toolbox on the left, click the <span class="chip pin">Pins</span> category. The blinking green frame shows where to look.</p>
+@@2146
+The toolbox is the list with colored stripes on the left of the workspace. The first one is the orange "Pins" category.
+@@2147
+Drag the block into the workspace
+@@2148
+<p>Pick up the <span class="chip pin">set pin D0 HIGH (1)</span> block and drop it into the white workspace.</p>
+          <p>As soon as you drop the block, its equivalent appears in the <b>Arduino C++</b> panel at the bottom right. Look at what was written:</p>
+          <pre><code>digitalWrite(D0, HIGH);</code></pre>
+          <div class="kutu bilgi"><code>digitalWrite(pin, value)</code> writes <code>HIGH</code> or <code>LOW</code> to a pin. We added the <code>pinMode(D0, OUTPUT)</code> line for you: it tells the board that D0 is an output.</div>
+@@2149
+Make sure the D0 and HIGH (1) choices on the block are unchanged. Drop the block in an empty spot of the workspace, not anywhere else.
+@@2150
+Run the program
+@@2151
+<p>Press the <b>▶ Run</b> button at the bottom left. The command in your program runs on the board and pin D0 becomes 3.3 V.</p>
+          <div class="kutu hedef"><b>Goal:</b> make the LED in the 3D scene turn on and see the <i>✔ LED is on!</i> message.</div>
+@@2152
+If the LED does not turn on, make sure the pin is D0 and the value is HIGH (1).
+@@2155
+LED is on!
+@@2156
+D0 is still low. Set the pin HIGH.
+@@2157
+led-yanip-son
+@@2158
+1.2 · Blinking LED
+@@2159
+<h2>Blinking LED</h2>
+      <p>Set the LED <b>high</b>, <b>wait 500 ms</b>, set it <b>low</b>, then <b>wait 500 ms</b> again.
+      Put these four blocks inside the <b>repeat forever</b> block.</p>
+@@2160
+Get to know the goal
+@@2161
+<p>Again there is a red LED connected to pin <span class="pin-etiket">D0</span>. This time we will not just turn the LED on once: it will <b>blink</b>, just like a warning lamp.</p>
+          <div class="kutu bilgi"><b>Plan:</b> turn on, wait a bit, turn off, wait a bit. Then repeat this forever. Without waits the eye cannot see the blinking, because the board is very fast!</div>
+@@2162
+Get the repeat forever block
+@@2163
+<p>Open the <span class="chip akis">Flow</span> category and drop the <span class="chip akis">repeat forever</span> block into the workspace.</p>
+          <div class="kutu bilgi">This block runs everything inside it again and again without stopping. Its equivalent on the board:
+            <pre><code>while (true) {
+  ...
+}</code></pre></div>
+@@2164
+The first block of the Flow category. Just drop it in an empty spot of the workspace.
+@@2166
+<p>Drag the <span class="chip pin">set pin D0 HIGH (1)</span> block <b>inside</b> the <span class="chip akis">repeat forever</span> block.</p>
+          <pre><code>digitalWrite(D0, HIGH);</code></pre>
+@@2167
+Bring the block close to the mouth of the loop; you will see a shadow where they will snap together.
+@@2168
+Wait
+@@2169
+<p>Attach the <span class="chip akis">wait 500 ms</span> block right below the block that turns the LED on.</p>
+          <div class="kutu bilgi"><code>delay</code> makes the board wait for the given time. The time is in <b>milliseconds</b>: 1000 ms = 1 second, so 500 ms = half a second.
+            <pre><code>delay(500);</code></pre></div>
+@@2170
+The wait block is in the Flow category. It must be inside the loop, below the LED block.
+@@2171
+Turn off and wait again
+@@2172
+<p>Now do the opposite: add a <span class="chip pin">set pin D0 LOW (0)</span> block (change the choice on the block), then attach one more <span class="chip akis">wait</span> block. The order should be:</p>
+          <pre><code>digitalWrite(D0, HIGH);
+delay(500);
+digitalWrite(D0, LOW);
+delay(500);</code></pre>
+          <div class="kutu dikkat">The second wait is very important: without it the LED's off time would be zero and it would look like it is always on.</div>
+@@2173
+There will be two pin blocks: one HIGH, one LOW. You can pick the value from the dropdown on the block.
+@@2174
+Run
+@@2175
+<p>Press ▶ <b>Run</b> and watch the LED's rhythm.</p>
+          <div class="kutu hedef"><b>Goal:</b> the LED should be on for half a second and off for half a second, and keep repeating this.</div>
+@@2176
+The on and off times should be between 0.3 and 1.2 seconds. Check your wait values.
+@@2177
+The LED only changed {0} times. Add a loop and waits.
+@@2178
+Great, the LED is blinking!
+@@2179
+On/off times should be between 0.3 and 1.2 s.
+@@2181
+1.3 · Two LEDs in turn
+@@2182
+<h2>Two LEDs in turn</h2>
+      <p>One LED is connected to D0 and another to D1. While one is on, the other should be off; they swap roles every 400 ms (use <i>repeat forever</i>).</p>
+@@2183
+Two LEDs, two pins
+@@2184
+<p>This time there are two LEDs: the <b>red</b> one is connected to <span class="pin-etiket">D0</span> and the <b>green</b> one to <span class="pin-etiket">D1</span>. Each pin controls its own LED.</p>
+          <div class="kutu bilgi"><b>Goal:</b> they should take turns like a traffic light. While one is on, the other <b>must be off</b>.</div>
+@@2185
+Build the loop
+@@2186
+<p>From the <span class="chip akis">Flow</span> category, put the <span class="chip akis">repeat forever</span> block into the workspace. Just like in the previous lesson, everything will go inside it.</p>
+@@2187
+The first block of the Flow category.
+@@2188
+First round: red turns on
+@@2189
+<p>Attach these inside the loop in order:</p>
+          <ol><li><span class="chip pin">set pin D0 HIGH</span></li>
+          <li><span class="chip pin">set pin D1 LOW</span> (choose pin D1, value 0)</li></ol>
+          <pre><code>digitalWrite(D0, HIGH);
+digitalWrite(D1, LOW);</code></pre>
+@@2190
+Take the same block twice; in one, set the pin to D1 and the value to LOW (0).
+@@2191
+Wait 400 ms
+@@2192
+<p>Add the <span class="chip akis">wait 400 ms</span> block below the two pin blocks. Don't forget to change the number on the block from 500 to 400.</p>
+          <pre><code>delay(400);</code></pre>
+@@2193
+You can click the number and type the new value.
+@@2194
+Second round: green turns on
+@@2195
+<p>Swap the roles: set <span class="chip pin">pin D0 LOW</span>, <span class="chip pin">pin D1 HIGH</span>, then again <span class="chip akis">wait 400 ms</span>.</p>
+          <div class="kutu dikkat"><b>Order matters!</b> First turn off the LED that is on, then turn on the other. Otherwise both will be on for a moment.</div>
+@@2196
+There should be four pin blocks and two wait blocks in total.
+@@2197
+<p>Press ▶ <b>Run</b> and watch the two LEDs swap turns.</p>
+          <div class="kutu hedef"><b>Goal:</b> the red and green LEDs should light up in turn, and never both at once.</div>
+@@2198
+If both are on, check that the turn-off block comes before the turn-on block.
+@@2200
+Both LEDs should change a few times.
+@@2201
+Perfect, they light up in turn!
+@@2202
+#include <WiFi.h>
+
+const char* ssid = "Atolye";
+const char* sifre = "12345678";
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(D0, OUTPUT);
+  // write here: connect with WiFi.begin(ssid, sifre)
+}
+
+void loop() {
+}
+
+@@2204
+#include <WiFi.h>
+#include <WebServer.h>
+
+WebServer server(80);
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(D0, OUTPUT);
+  // write here: set up your own network with WiFi.softAP(...)
+}
+
+void loop() {
+  // write here: server.handleClient()
+}
+
+@@2205
+Connect to another network
+@@2206
+This time connect to the school network: network name <b>Okul</b>, password <b>deneyap24</b>. After connecting, print the IP address to the serial monitor.
+@@2207
+Change the values inside the quotes of the ssid and sifre variables.
+@@2209
+Could not connect to the network (status {0}). The network name should be "Okul" and the password "deneyap24".
+@@2210
+The IP address was not printed to the serial monitor.
+@@2211
+You connected to the school network!
+@@2213
+The board successfully connected to a Wi-Fi network
+@@2214
+The board created a new network
+@@2215
+The password was entered wrong
+@@2216
+The serial monitor is open
+@@2217
+WL_CONNECTED shows that the board has connected to the access point and received an IP address. Until it connects, the status has another value.
+@@2218
+Blink the LED while connecting
+@@2219
+While connecting, the <span class="pin-etiket">D0</span> LED should <b>blink every 500 ms</b> (a waiting indicator light). Once connected, the LED should stay <b>on continuously</b>.
+@@2220
+Inside the while loop, flip a bool variable and write it to the LED. After leaving the loop, write digitalWrite(D0, HIGH).
+@@2221
+The board did not connect: did you call WiFi.begin(ssid, sifre)?
+@@2222
+The LED did not blink while connecting.
+@@2223
+The LED should stay on once connected.
+@@2224
+The LED blinks while connecting and stays on once connected!
+@@2225
+Why might the ESP32 not find some Wi-Fi networks (e.g. 5 GHz)?
+@@2226
+It only supports 2.4 GHz networks
+@@2227
+It cannot read passwords
+@@2228
+It only connects to open networks
+@@2229
+It only works with a cable
+@@2230
+The ESP32 on these boards only works on the 2.4 GHz band. If you use your phone as a hotspot, you must choose 2.4 GHz.
+@@2231
+Print the signal strength
+@@2232
+After connecting, print the signal strength (<code>WiFi.RSSI()</code>) to the serial monitor together with the text <b>RSSI: </b>. Example: <i>RSSI: -55</i>.
+@@2234
+The board did not connect to the network.
+@@2235
+"RSSI: " followed by a number did not appear in the serial monitor.
+@@2236
+Signal strength in the serial monitor!
+@@2237
+Why do we use <code>delay(500)</code> in the connection loop (<code>while (WiFi.status() != WL_CONNECTED)</code>)?
+@@2238
+To avoid keeping the board constantly busy and to give the connection time
+@@2239
+To hide the password
+@@2240
+To turn on the LED
+@@2241
+To close the serial monitor
+@@2242
+Connecting takes seconds. Short waits do not strain the board; also, we can show progress by printing a dot on each round.
+@@2243
+The page's <b>&lt;h1&gt;</b> heading should say <b>Deneyap Atolyesi</b> (you can delete the Merhaba part).
+@@2244
+Change the line "<h1>Merhaba Deneyap!</h1>" inside anaSayfa().
+@@2246
+The page does not have the "Deneyap Atolyesi" heading.
+@@2247
+The new heading shows on the page!
+@@2248
+If the server sends code <b>404</b> when the browser asks for a page, what does it mean?
+@@2249
+The requested page was not found
+@@2250
+Everything is fine
+@@2251
+The server was restarted
+@@2252
+The password is wrong
+@@2253
+200 means success, while 404 means there is no page at that address. With server.onNotFound you can give a custom response for this case.
+@@2255
+Add a new address: when <b>/merhaba</b> is opened, it should return <b>Selam!</b> as plain text (<code>text/plain</code>). Write a separate <code>void</code> function for the route handler.
+@@2256
+Write void merhaba() { server.send(200, "text/plain", "Selam!"); } and add server.on("/merhaba", merhaba); inside setup.
+@@2258
+The /merhaba route did not respond with 200; did you add server.on("/merhaba", ...)?
+@@2259
+The response does not contain the text "Selam!".
+@@2260
+The /merhaba route works!
+@@2261
+Why must the <code>server.handleClient();</code> line be inside <code>loop()</code>?
+@@2262
+To keep checking for incoming requests and answer them
+@@2263
+To connect to Wi-Fi
+@@2264
+To make the page prettier
+@@2265
+handleClient() handles the pending request on each call. Since loop keeps running, requests from a phone or browser get answered right away.
+@@2266
+Page not found (404)
+@@2267
+When a nonexistent address is requested (like <code>/xyz</code>), return the text <b>Sayfa yok!</b> with code <b>404</b>. Hint: <code>server.onNotFound(...)</code>.
+@@2268
+Write void bulunamadi() { server.send(404, "text/plain", "Sayfa yok!"); } and add server.onNotFound(bulunamadi); inside setup.
+@@2270
+The /xyz request was not answered.
+@@2271
+Expected 404 for /xyz (received: {0}).
+@@2272
+The 404 response must contain "Sayfa yok!".
+@@2273
+Your 404 page is ready!
+@@2274
+What does <code>server.arg("durum")</code> return at the address <code>/led?durum=1</code>?
+@@2278
+The values after the question mark in the address are arguments. server.arg("durum") gives this value as text; when comparing, you compare it with "1".
+@@2279
+The name of the Wi-Fi network you create should be <b>Sinif-AP</b> (the password can stay the same).
+@@2280
+Change the first text inside WiFi.softAP("Deneyap-ESP32", ...).
+@@2281
+The network was not created: call WiFi.softAP(...).
+@@2282
+The network name is "{0}"; it should be "Sinif-AP".
+@@2283
+The network's name is now Sinif-AP!
+@@2284
+What is the difference between Station mode and Access Point (AP) mode?
+@@2285
+Station connects to an existing network, AP creates its own network
+@@2286
+Station creates a network, AP connects
+@@2287
+They are the same
+@@2288
+AP is only for Bluetooth
+@@2289
+With WiFi.begin() the board becomes a client (station) that connects to a modem. With WiFi.softAP() the board acts like a modem itself and broadcasts a network.
+@@2291
+Add a new address: the <b>/durum</b> address should return the text <b>ACIK</b> if the LED is on and <b>KAPALI</b> if it is off (<code>text/plain</code>).
+@@2292
+Write server.send(200, "text/plain", ledAcik ? "ACIK" : "KAPALI"); based on the ledAcik variable. Don't forget to add server.on("/durum", ...).
+@@2294
+The /durum route did not respond; did you add server.on("/durum", ...)?
+@@2295
+When the LED is off, /durum should say "KAPALI".
+@@2296
+When the LED is turned on with /led, /durum should say "ACIK".
+@@2297
+The status route responds correctly!
+@@2298
+What is the default IP address when the ESP32 creates its own network (softAP)?
+@@2302
+The ESP32's address on its own network is usually 192.168.4.1. You connect your phone to this network and open this address in the browser.
+@@2303
+Create an open network (no password)
+@@2304
+Create a <b>passwordless</b> network for guests: network name <b>Misafir</b>, <b>no password</b>. (Only for play; use a password in real projects!)
+@@2305
+Give softAP only the network name: WiFi.softAP("Misafir");
+@@2306
+The network was not created.
+@@2307
+The network name is "{0}"; it should be "Misafir".
+@@2308
+This network should not have a password.
+@@2309
+The guest network is on air without a password (be careful in real life)!
+@@2310
+How many characters must the password of a password-protected softAP network have at least?
+@@2312
+WPA2 passwords must be at least 8 characters. With a shorter password, the ESP32 either creates the network without a password or does not create it.
+@@2314
+10.1 · Connect to Wi-Fi
+@@2315
+<h2>Connect to Wi-Fi</h2>
+      <p>Wi-Fi is the ESP32's greatest strength! In this lesson we will connect the board to the wireless network at home (here, in the workshop) and learn its IP address.</p>
+      <ol>
+        <li>Add the Wi-Fi library with <code>#include &lt;WiFi.h&gt;</code>.</li>
+        <li>Network name <b>Atolye</b>, password <b>12345678</b>. Start connecting with <code>WiFi.begin(ssid, sifre)</code>.</li>
+        <li>Wait until <code>WiFi.status()</code> is <b>WL_CONNECTED</b> (print a dot every 500 ms).</li>
+        <li>Once connected, print the <b>IP address</b> to the serial monitor and turn on the <b>D0</b> LED.</li>
+      </ol>
+@@2316
+Wi-Fi library and network info
+@@2317
+<p>At the top of the code there is <code>#include &lt;WiFi.h&gt;</code>. Store the network name and password in two variables: <code>ssid</code> and <code>sifre</code>. They are already provided.</p>
+@@2318
+Start connecting
+@@2319
+<p>Write <code>WiFi.begin(ssid, sifre);</code> inside <code>setup()</code>. This line starts connecting but does not wait; connecting takes a few seconds.</p>
+@@2320
+Serial.begin(115200) and pinMode are already there; add WiFi.begin below them.
+@@2321
+Wait until connected
+@@2322
+<p>The loop <code>while (WiFi.status() != WL_CONNECTED) { delay(500); Serial.print("."); }</code> waits for the connection and prints a dot every half second.</p>
+@@2323
+The WL_CONNECTED constant means "connected".
+@@2324
+Print the IP address and turn on the LED
+@@2325
+<p>Once connected, print the IP address with <code>Serial.println(WiFi.localIP());</code>, then turn on the LED with <code>digitalWrite(D0, HIGH);</code>.</p>
+@@2326
+The IP address is the board's address on the network; it looks like 192.168.1.42.
+@@2327
+<p>Press ▶ <b>Run</b>. After a few seconds you should see dots in the serial output, then the IP address, and the LED should turn on.</p>
+@@2328
+Connecting takes about 1.5 seconds.
+@@2329
+The board did not connect to the network. Did you call WiFi.begin(ssid, sifre) and wait for WL_CONNECTED?
+@@2330
+The IP address was not printed to the serial monitor: Serial.println(WiFi.localIP());
+@@2331
+The D0 LED should turn on once connected.
+@@2332
+Great! The ESP32 connected to Wi-Fi, you learned its IP address, and the LED turned on.
+@@2334
+10.2 · Your first web page

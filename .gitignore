@@ -1,0 +1,43 @@
+# Bağımlılıklar ve derleme çıktıları
+node_modules/
+dist/
+dist-e2e/
+release/
+*.log
+
+# Üretilen ekran görüntüleri ve geçici ses örnekleri
+shots/
+shots*.png
+tts-ornek/
+
+# Sesli anlatım mp3'leri (~42 MB) repoya girmez; tools/tts-uret.mjs ile yeniden üretilir.
+# Dosyalar yoksa uygulama tarayıcı sesine düşer.
+public/ses/
+
+# Deneyap Kart 3B modeli (üçüncü taraf, LGPL-2.1 depodan); README'deki adımlarla indirilir/üretilir
+public/models/
+
+# Android (android/.gitignore ile birlikte): yerel yollar, imza dosyaları, derleme çıktıları
+android/local.properties
+android/**/build/
+android/.gradle/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/capacitor-cordova-android-plugins/
+*.apk
+*.aab
+*.jks
+*.keystore
+*.pfx
+*.p12
+
+# Gizli bilgiler (API anahtarı ve parolalar yalnız ortam değişkeninden okunur)
+.env
+.env.*
+
+# Editör / işletim sistemi
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

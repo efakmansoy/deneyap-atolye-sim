@@ -1,0 +1,494 @@
+@@2748
+Fade-out loop
+@@2749
+<p>Make one more just like it, but this time counting <b>from 255 down to 0</b>. Grab the loop block again and set <b>start 255, end 0, step 5</b>. Put a <span class="chip pin">PWM</span> (D0, value <span class="chip degisken">i</span>) and <span class="chip akis">wait 20 ms</span> inside it again. Attach the second loop below the first.</p>
+          <div class="kutu bilgi">If the end is smaller than the start, Blockly automatically counts backwards: 255, 250, 245, ...</div>
+@@2750
+To copy the first loop, click the block, press Ctrl+C and Ctrl+V, then change the numbers.
+@@2751
+<p>Press ▶ <b>Run</b>.</p>
+          <div class="kutu hedef"><b>Goal:</b> The LED slowly rises to full brightness, then slowly fades out.</div>
+@@2752
+If it does not light up, make sure the value is i and the wait block is inside the loop.
+@@2753
+The LED is not brightening smoothly. Count from 0 to 255 in small steps and write PWM at every step.
+@@2754
+The LED did not reach the brightest value (255).
+@@2755
+After brightening it should fade out smoothly. Add a second loop that counts from 255 to 0.
+@@2756
+Great! The LED brightens and fades smoothly.
+@@2759
+<h2>Brightness with a potentiometer</h2>
+      <p>As you turn the potentiometer (pot), it gives a number that changes: between <b>0 and 4095</b>. The LED only understands brightness between <b>0 and 255</b>. So we shrink the number with the <b>map</b> block.</p>
+      <ol>
+        <li>Take the <b>repeat forever</b> block.</li>
+        <li>Put <b>PWM on pin D0</b> inside it.</li>
+        <li>Plug the <b>map</b> block in place of the value: read A0, convert the range 0-4095 to 0-255.</li>
+        <li>Add <b>wait 10 ms</b> at the end. Press ▶ Run and turn the pot (it also turns by itself).</li>
+      </ol>
+@@2760
+Meet the potentiometer
+@@2761
+<p>The scene has a <b>potentiometer</b> and a <b>yellow LED</b>. The pot is connected to pin <span class="pin-etiket">A0</span>. The LED is on pin <span class="pin-etiket">D0</span>.</p>
+          <p>In the 3D scene, <b>turn the potentiometer knob with the mouse</b>. When the program is done, you will see the LED react to it.</p>
+          <div class="kutu bilgi"><b>analogRead:</b> As the pot is turned, a number between <b>0 and 4095</b> goes to the board (12 bit). Full left is 0, full right is 4095.
+            <pre><code>analogRead(A0)</code></pre></div>
+@@2762
+<p>The pot can change at any time, so the board must keep checking it. Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category.</p>
+@@2763
+Write PWM to the LED
+@@2764
+<p>Put the <span class="chip pin">PWM</span> block inside the loop and set the pin to <span class="pin-etiket">D0</span>.</p>
+          <div class="kutu dikkat"><b>Problem:</b> The pot gives 0-4095 but <code>analogWrite</code> only understands 0-255. We need to shrink the number!</div>
+@@2765
+The PWM block is in the Pins category. Bring it close to the mouth of the loop.
+@@2766
+Scale it with the map block
+@@2767
+<p>Take the <span class="chip analog">map</span> block from the <span class="chip analog">Analog</span> category and plug it into the PWM value slot. It already contains the <span class="pin-etiket">A0</span> reading and 0-4095 → 0-255.</p>
+          <div class="kutu bilgi"><b>map:</b> Converts a number from one range to another. The middle value 2048 becomes about 127.
+            <pre><code>analogWrite(D0, map(analogRead(A0), 0, 4095, 0, 255));</code></pre></div>
+@@2768
+The map block comes already filled in; just plug it in place of the number in the PWM block.
+@@2769
+Wait and run
+@@2770
+<p>Add <span class="chip akis">wait 10 ms</span> below the PWM block, then press ▶ <b>Run</b>. While it runs, <b>turn the potentiometer knob with the mouse</b> and watch the LED brightness change.</p>
+          <div class="kutu hedef"><b>Goal:</b> When the pot goes left the LED turns off, and when it goes right the LED shines brightest.</div>
+@@2771
+The wait block defaults to 500 ms; set it to 10. Keep everything inside repeat forever.
+@@2773
+The program ended too early. Put everything inside "repeat forever".
+@@2774
+The LED never lit up. Are you writing PWM to pin D0?
+@@2775
+The LED brightness changes as the pot is turned!
+@@2776
+The brightness does not match the pot. The map block should be 0-4095 → 0-255.
+@@2778
+3.4 · Night light
+@@2779
+<h2>Night light (LDR)</h2>
+      <p>An LDR is a light sensor. It gives a big number in bright light and a small number in the dark (0-4095). If you drag the sun to the left, it gets dark.</p>
+      <ol>
+        <li>Put an <b>if</b> block inside <b>repeat forever</b>.</li>
+        <li>Condition: <b>A0 analog value &lt; 1000</b> (dark).</li>
+        <li>If true, set <b>D0 HIGH</b>; otherwise set <b>D0 LOW</b> (if-else).</li>
+        <li>Press ▶ Run. When the sun goes away, the LED should light up!</li>
+      </ol>
+@@2780
+Meet the LDR
+@@2781
+<p>The scene has an <b>LDR</b> (light sensor) and a <b>yellow LED</b>. The LDR is on pin <span class="pin-etiket">A0</span> and the LED is on pin <span class="pin-etiket">D0</span>.</p>
+          <p>In the 3D scene, <b>drag the sun</b> away from the LDR to make the room dark.</p>
+          <div class="kutu bilgi"><b>Light and dark:</b> In bright light <code>analogRead</code> gives a big number (close to 4095), and in the dark a small number (close to 0).
+            <pre><code>analogRead(A0)</code></pre></div>
+@@2782
+Repeat forever and if
+@@2783
+<p>Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category and put an <span class="chip akis">if</span> block inside it.</p>
+          <div class="kutu bilgi">To add the "else" branch, click the <b>gear icon</b> on the if block and drag "else" inside.
+            <pre><code>if (...) {
+  ...
+} else {
+  ...
+}</code></pre></div>
+@@2784
+The if block is at the end of the Flow category. The gear icon is at the top left of the block.
+@@2785
+Threshold: is it dark?
+@@2786
+<p>Plug the <span class="chip mantik">compare</span> block from the <span class="chip mantik">Logic</span> category into the if condition. Put <span class="chip analog">A0 analog value</span> in the left slot and <span class="chip sayi">1000</span> in the right slot. Set the sign to <b>&lt;</b>.</p>
+          <div class="kutu bilgi"><b>Threshold:</b> The number that marks the border between "dark" and "bright". We chose 1000: anything below it is dark.
+            <pre><code>if (analogRead(A0) &lt; 1000) {</code></pre></div>
+@@2787
+The A0 read block is in the Analog category. Look in the Number category for the number.
+@@2788
+<p>Inside the if branch put <span class="chip pin">set D0 HIGH (1)</span>, and inside the else branch put <span class="chip pin">set D0 LOW (0)</span>. Don't forget to add <span class="chip akis">wait 10 ms</span> at the end.</p>
+          <pre><code>digitalWrite(D0, HIGH);
+...
+digitalWrite(D0, LOW);</code></pre>
+@@2789
+You need two separate pin blocks: one turns on in the dark, the other turns off in the light.
+@@2790
+<p>Press ▶ <b>Run</b>. Then in the 3D scene, <b>move the sun away from the LDR and bring it back</b>.</p>
+          <div class="kutu hedef"><b>Goal:</b> The LED lights up in the dark and turns off in the light. Your night light is ready!</div>
+@@2791
+If the LED is always on, D0 should be LOW in the "else" branch. If it never lights up, is the sign <?
+@@2793
+The program ended too early. Use "repeat forever".
+@@2794
+The LED lit up in the dark and turned off in the light. Your night light is ready!
+@@2795
+The LED never lit up. In the dark (value < 1000) set D0 HIGH.
+@@2796
+The LED is always on. Don't forget to turn it off when there is light (else branch).
+@@2797
+The LED should be off when there is light and on in the dark.
+@@2799
+3.5 · Temperature indicator
+@@2800
+<h2>Temperature alarm</h2>
+      <p>The temperature sensor sends a number through pin A1: the hotter it gets, the bigger the number (0-4095). Above about <b>2500</b> means "too hot".</p>
+      <ol>
+        <li>Put <b>if-else</b> inside <b>repeat forever</b>.</li>
+        <li>Condition: <b>A1 analog value &gt; 2500</b>.</li>
+        <li>If true, the red alarm LED (<b>D0</b>) lights up; otherwise it turns off.</li>
+        <li>Press ▶ Run. When the temperature slider goes right, the alarm should sound.</li>
+      </ol>
+@@2801
+Meet the sensor
+@@2802
+<p>The scene has a <b>temperature sensor</b> (<span class="pin-etiket">A1</span>) and a <b>red alarm LED</b> (<span class="pin-etiket">D0</span>).</p>
+          <p>In the 3D scene, <b>drag the temperature slider</b>: the further right it goes, the hotter the room gets.</p>
+          <div class="kutu bilgi">As the temperature rises, the <code>analogRead(A1)</code> number grows (0-4095). We will call anything above about <b>2500</b> "too hot". This number is our <b>threshold</b>.</div>
+@@2803
+Loop and if-else
+@@2804
+<p>Put an <span class="chip akis">if</span> block inside the <span class="chip akis">repeat forever</span> block. Use the gear icon to add the "else" branch too.</p>
+          <pre><code>if (...) {
+  ...
+} else {
+  ...
+}</code></pre>
+@@2805
+Both are in the Flow category.
+@@2806
+Condition: A1 > 2500
+@@2807
+<p>Plug the <span class="chip mantik">compare</span> block into the if. Put the <span class="chip analog">analog value</span> block in the left slot and set the pin to <span class="pin-etiket">A1</span>. Type <span class="chip sayi">2500</span> in the right slot and choose the sign <b>&gt;</b>.</p>
+          <pre><code>if (analogRead(A1) &gt; 2500) {</code></pre>
+          <div class="kutu dikkat">Don't leave the pin as A0! The temperature sensor is connected to A1.</div>
+@@2808
+Choose A1 from the pin list in the analog read block.
+@@2809
+Turn the alarm on and off
+@@2810
+<p>In the if branch put <span class="chip pin">D0 HIGH</span>, and in the else branch put <span class="chip pin">D0 LOW</span>. Add <span class="chip akis">wait 10 ms</span> at the end.</p>
+@@2811
+Take the pin block twice and set the value to LOW (0) in one of them.
+@@2812
+<p>Press ▶ <b>Run</b>, then drag the <b>temperature slider</b> left and right.</p>
+          <div class="kutu hedef"><b>Goal:</b> When the temperature rises the alarm LED lights up, and when it cools down it turns off.</div>
+@@2813
+If the alarm never sounds, check that the pin is A1 and the sign is &gt;.
+@@2815
+The alarm sounds when it is hot and stops when it cools down!
+@@2816
+The alarm never sounded. D0 should be HIGH when A1 > 2500.
+@@2817
+The alarm is always on. Set D0 LOW when it cools down.
+@@2818
+The LED should be on when it is hot and off when it is cold.
+@@2820
+3.6 · LED bar
+@@2821
+<h2>LED bar: a level indicator</h2>
+      <p>The 8-LED bar is connected from D0 to D7. As you turn the pot, the number of lit LEDs should change (like a volume level indicator).</p>
+      <ol>
+        <li>Take the <b>repeat forever</b> block.</li>
+        <li>Put the <b>LED bar</b> block inside it: <b>8</b> LEDs starting at D0.</li>
+        <li>Plug a <b>map</b> block in place of the level: read A0, convert the range 0-4095 to <b>0-8</b>.</li>
+        <li>Add <b>wait 10 ms</b> at the end. Press ▶ Run and turn the pot.</li>
+      </ol>
+@@2822
+Meet the bar
+@@2823
+<p>The scene has an <b>8-LED bar</b>, connected from <span class="pin-etiket">D0</span> to <span class="pin-etiket">D7</span>. Next to it is a potentiometer on pin <span class="pin-etiket">A0</span>.</p>
+          <p>As the pot is turned, the number of lit LEDs will increase, just like a volume level indicator. In the 3D scene you will try the result by <b>turning the pot knob with the mouse</b>.</p>
+@@2824
+<p>Take the <span class="chip akis">repeat forever</span> block from the <span class="chip akis">Flow</span> category. The pot must be read all the time.</p>
+@@2825
+LED bar block
+@@2826
+<p>Put the <span class="chip analog">LED bar</span> block from the <span class="chip analog">Analog</span> category inside the loop: <b>8</b> LEDs starting at <span class="pin-etiket">D0</span>.</p>
+          <div class="kutu bilgi">The block runs a small loop behind the scenes: as many LEDs light up as the level, and the rest turn off.
+            <pre><code>for (int i = 0; i &lt; 8; i++) {
+  digitalWrite(D0 + i, i &lt; seviye ? HIGH : LOW);
+}</code></pre></div>
+@@2827
+Set the block's start pin to D0 and the number of LEDs to 8.
+@@2829
+<p>Plug a <span class="chip analog">map</span> block into the level slot. The pot gives 0-4095, but the bar shows 0-8 LEDs. So change the last number of the map block from <b>255</b> to <b>8</b>.</p>
+          <pre><code>map(analogRead(A0), 0, 4095, 0, 8)</code></pre>
+          <div class="kutu dikkat">Change only the last number: 0-4095 stays the same, and the target range becomes 0-8.</div>
+@@2830
+Click the rightmost number box of the map block and type 8.
+@@2831
+<p>Add <span class="chip akis">wait 10 ms</span> below the bar block, press ▶ <b>Run</b> and <b>turn the pot knob with the mouse</b>.</p>
+          <div class="kutu hedef"><b>Goal:</b> When the pot goes left the LEDs turn off, and as it goes right the bar fills up.</div>
+@@2832
+If the bar does not fill, check that the last number in the map block is 8.
+@@2833
+No LEDs lit up. Give the LED bar block a level.
+@@2834
+The bar fills and empties as the pot is turned!
+@@2835
+The level does not match the pot. The map block should be 0-4095 → 0-8.
+@@2836
+The LED never lit up. Make sure you are writing to pin D0.
+@@2837
+It should have been at {0}% brightness (now {1}%)
+@@2839
+No LEDs lit up. Give the bar a level.
+@@2840
+With A0 = {0}, {1} LEDs should be lit, but {2} LEDs are lit.
+@@2841
+Make yellow
+@@2842
+<p>Yellow is a mix of red and green light. Make the RGB LED show <b>yellow</b>: <span class="pin-etiket">D0</span> (red) and <span class="pin-etiket">D1</span> (green) at full brightness, and <span class="pin-etiket">D2</span> (blue) off.</p>
+@@2843
+You mixed red + blue for purple. Which two colors should you mix now?
+@@2844
+Bright yellow! Red + green = yellow.
+@@2845
+Blue (D2) must be off, otherwise the color drifts away from yellow.
+@@2846
+Red (D0) must be at full brightness (255).
+@@2847
+If an RGB LED has <b>red and green at full brightness and blue off</b>, which color do you see?
+@@2849
+Yellow
+@@2850
+Turquoise (cyan)
+@@2852
+In light, red + green = yellow. Red + blue gives purple, green + blue gives turquoise, and all three together give white.
+@@2853
+Make orange
+@@2854
+<p>Orange is made by adding a little green to red. Set <span class="pin-etiket">D0</span> to full brightness (255), <span class="pin-etiket">D1</span> to <b>half brightness</b> (about 128), and <span class="pin-etiket">D2</span> off.</p>
+@@2855
+If you turn green fully on, you get yellow. Set the green value somewhere between 0 and 255.
+@@2856
+It's orange! When you reduced the green, the color slid from yellow to orange.
+@@2857
+Blue (D2) must stay off.
+@@2858
+Green is too bright, the color turned back to yellow. Set D1 to about 128.
+@@2859
+Green is too low, the color stayed close to red. Set D1 to about 128.
+@@2861
+Turns off the green light
+@@2862
+Makes the green light fully bright
+@@2863
+Sets pin D1 as an input
+@@2864
+Turns off the whole LED
+@@2865
+If the PWM value is 0, that color does not light at all. The other two colors (D0, D2) are not affected; they keep shining according to their own values.
+@@2866
+Soft white
+@@2867
+<p>Light all three colors at the <b>same, medium brightness</b> (about 128). The resulting color should be a soft, pale white that is easy on the eyes.</p>
+@@2868
+For white, the three channels must be equal. Where is "medium brightness" between 0 and 255?
+@@2869
+The values of the three colors must be close to each other, otherwise it looks colored.
+@@2870
+Too bright. Set all three values to about 128.
+@@2871
+Too dim. Set all three values to about 128.
+@@2872
+Pale white! An equal mix gives white, and a lower value is less bright.
+@@2873
+We can write from 0 to 255 to a color channel with <code>analogWrite</code>. <b>How many different brightness levels</b> can one channel show?
+@@2877
+There are 256 numbers from 0 to 255 (0 counts too). The three channels of an RGB LED can produce 256 × 256 × 256 different colors.
+@@2878
+Red, green, blue in order
+@@2879
+<p>Make the LED light up <b>red, green, blue</b> in order. Each color should be visible for at least half a second, like <code>delay(500)</code>. The colors must be pure: while one color is on, the other two are off.</p>
+@@2880
+When you turn one color on, make sure the others are 0, then wait and move on to the next color.
+@@2881
+red
+@@2882
+green
+@@2883
+It lit up red, green, blue in order!
+@@2884
+No pure color was seen. While one color is on, the other two must be 0, and each color must stay for at least 250 ms (add a wait block).
+@@2885
+Missing or out of place in the sequence: {0}. The order must be red, green, blue, and each must be visible with a wait.
+@@2886
+How does the LED look if the PWM value of all three colors is <b>128</b>?
+@@2888
+Red
+@@2889
+Pale white (light gray)
+@@2890
+Completely off
+@@2891
+When three colors mix equally, you get white. Since the value is half, the brightness is half too, so it is a pale white.
+@@2892
+<p>Light the <span class="pin-etiket">D0</span> LED steadily at <b>half brightness</b>. Not full brightness (255), but the middle of the range.</p>
+@@2893
+0 is off, 255 is full brightness. What is half?
+@@2894
+The LED is off. Write a value to pin D0 with PWM.
+@@2895
+The LED is too bright ({0}%). Write about 128 for half brightness.
+@@2896
+The LED is too dim ({0}%). Write about 128 for half brightness.
+@@2897
+Exactly half brightness!
+@@2898
+What do the letters of <b>PWM</b> stand for?
+@@2901
+Pulse Width Modulation
+@@2903
+PWM switches the pin on and off very fast and sets the brightness by changing how long it stays on (the pulse width).
+@@2904
+Just brighten and stay
+@@2905
+<p>Make the LED <b>slowly brighten from 0 to 255</b> and stay at full brightness. This time, no fading back out.</p>
+@@2906
+You only need one of the two loops you made in the lesson. Which one?
+@@2907
+The LED starts fading out. Remove the fade-out loop so it stays bright.
+@@2908
+At the end the LED must be at full brightness (255).
+@@2909
+The LED slowly brightened and stayed at full brightness.
+@@2910
+About what percent brightness does <code>analogWrite(D0, 64);</code> light the LED?
+@@2915
+64 / 255 is about 0.25. That is a quarter of full brightness, about 25%.
+@@2916
+Slowly fading LED
+@@2917
+<p>This time the LED should <b>start at full brightness</b> and <b>slowly fade out</b> from 255 to 0. Once it fades, it should stay off (no brightening).</p>
+@@2918
+The loop should start at 255 and go down by 5 each time; put a short wait at every step.
+@@2919
+The LED should start at full brightness: the first value should be around 255.
+@@2920
+The LED is not fading smoothly. Count from 255 to 0 in small steps.
+@@2921
+The LED is brightening again. There should only be fading.
+@@2922
+At the end the LED must be completely off (0).
+@@2923
+The LED slowly faded from full brightness.
+@@2924
+What happens if you remove <code>delay(20)</code> from the brightening loop?
+@@2925
+The LED gets brighter
+@@2926
+The brightening finishes so fast that the eye can't notice it
+@@2928
+52 steps finish in a few milliseconds. The wait makes sure each brightness level stays long enough for our eyes to see it.
+@@2929
+Breathe twice
+@@2930
+<p>Make the LED smoothly brighten and fade <b>twice</b> in a row (brighten, fade, brighten, fade). Each time it should reach full brightness (255).</p>
+@@2931
+Repeat the brighten and fade loops a second time, or put them all inside an outer loop.
+@@2932
+The LED is not brightening smoothly. Count in small steps.
+@@2933
+The LED is not fading smoothly. Add a loop that counts from 255 to 0.
+@@2934
+The LED reached full brightness only {0} time(s). Make it do the brighten-fade motion twice.
+@@2935
+The LED breathed twice!
+@@2936
+Make it work in reverse
+@@2937
+<p>When the pot goes <b>left</b> (small value), the LED should be <b>fully bright</b>, and as the pot goes <b>right</b> (<span class="pin-etiket">A0</span> large), the LED should <b>fade out</b>. In other words, inversely proportional.</p>
+@@2938
+You can reverse the output range of the map block, or subtract from 255.
+@@2939
+The LED fades as the pot goes right, it works in reverse!
+@@2940
+On the ESP32-S3, <code>analogRead</code> has 12-bit resolution. What is the <b>largest value</b> it can read?
+@@2942
+12 bits = 2 to the power of 12 = 4096 values, from 0 to 4095. 255 corresponds to 8 bits, and 1023 to 10 bits.
+@@2943
+At most half brightness
+@@2944
+<p>Make the LED reach at most <b>half brightness</b>: even when the pot is fully right, the LED should shine at half power (about 127). When the pot goes left, it should still turn off.</p>
+@@2945
+What should the upper limit of the target range in the map block be, instead of 255?
+@@2946
+The LED stays at half brightness at most!
+@@2947
+Why do we use <b>map</b> to turn the pot value into LED brightness?
+@@2948
+Because the range we read (0-4095) is different from the range we can write (0-255)
+@@2949
+Because the pot is slow
+@@2950
+Because the LED only lights with map
+@@2951
+Because map replaces delay
+@@2952
+<code>map</code> converts a number proportionally from one range to another. If we give 4095 straight to analogWrite, it exceeds the limit of 255.
+@@2953
+Threshold lamp
+@@2954
+<p>No brightness control: when the pot goes <b>past the middle (about 2048) to the right</b>, the LED should light <b>fully bright</b>, and to the left of the middle it should stay <b>off</b>. Make the pot act like a switch.</p>
+@@2955
+This time use "if … greater than" instead of map. Let the threshold be exactly the middle of the pot.
+@@2956
+The lamp is fully on past the middle of the pot, and off on the left!
+@@2957
+When the pot is exactly in the middle, about what does <code>analogRead(A0)</code> read?
+@@2960
+Since the range is 0-4095, the exact middle is about 2048. If you convert this value to 0-255 with <code>map</code>, you get around 127.
+@@2961
+Three-level lamp
+@@2962
+<p>Split the pot range into three. If the value is <b>less than 1365 the LED is off</b>, <b>between 1365 and 2730 it is half bright</b> (about 128), and <b>greater than 2730 it is fully bright</b> (255).</p>
+@@2963
+You can use an if that checks the big threshold first, and a second if in its else branch.
+@@2964
+All three levels are correct: off, half, full!
+@@2965
+Daylight lamp (reversed)
+@@2966
+<p>Reverse the logic: the LED should <b>light up</b> when the room is <b>bright</b> and turn off in the <b>dark</b>. (Like a solar panel indicator!) The threshold can stay 1000.</p>
+@@2967
+Just flip the comparison sign: what do you use instead of less-than?
+@@2968
+The LED is on when there is light and off in the dark!
+@@2969
+What is the <b>threshold</b> in code used for?
+@@2970
+It chooses the color of the light
+@@2971
+It is the border number we use when making a decision
+@@2972
+It sets the LED's maximum brightness
+@@2973
+It changes the name of the pin
+@@2974
+The threshold is the border that decides "dark or bright?". If the sensor value is below this number it does one thing, and above it, another.
+@@2975
+Light up earlier (threshold 2000)
+@@2976
+<p>Make the lamp turn on at evening twilight too: raise the threshold. The LED should light when the A0 value drops <b>below 2000</b>, and be off at 2000 and above.</p>
+@@2977
+Change the number 1000 in the compare block. Which number counts 1800 as "dark" but not 2500?
+@@2978
+The threshold went up, and the lamp lights at twilight too!
+@@2979
+What happens to the LDR's <b>resistance</b> as more light falls on it?
+@@2981
+It does not change
+@@2982
+It is always 1 kΩ
+@@2983
+It decreases
+@@2984
+An LDR becomes more conductive as light increases, so its resistance drops. In a voltage divider circuit, this makes the voltage on pin A0 (and the number you read) change.
+@@2985
+Automatic brightness
+@@2986
+<p>The LED should no longer just blink on and off: the darker the room, the <b>brighter</b> the LED. At A0 = 0 (pitch dark) it should be fully bright (255), and at A0 = 4095 (very bright) it should be off.</p>
+@@2987
+Use the map block: input 0-4095, output going from 255 down to 0 (reversed order).
+@@2988
+A smart lamp that shines brighter in the dark!

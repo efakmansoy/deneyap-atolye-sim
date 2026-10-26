@@ -1,0 +1,442 @@
+@@4192
+Daha erken uyar
+@@4193
+Alarm şu an gaz 2000'in üstüne çıkınca ötüyor. Güvenlik için eşiği <b>1500</b> yap: gaz 1800 iken bile alarm çalsın.
+@@4194
+if (gaz > 2000) koşulundaki 2000 sayısını 1500 yap.
+@@4195
+Gaz azken (600) alarm çalmamalı.
+@@4196
+Gaz 1800 iken LED yanmalı ve buzzer ötmeli. Eşik 1500 olunca 1800 tehlikelidir.
+@@4197
+Gaz azalınca (600) alarm susmalı.
+@@4198
+Alarm 1500 eşiğinde daha erken devreye giriyor!
+@@4199
+MQ-2 sensörü hangi gazlara karşı duyarlıdır?
+@@4200
+Yalnızca oksijene
+@@4201
+LPG, metan, duman ve alkol gibi yanıcı gazlara
+@@4202
+Yalnızca suya
+@@4203
+Radyo dalgalarına
+@@4204
+MQ-2 yanıcı gaz ve duman sensörüdür. Gaz miktarı arttıkça çıkışı yükselir; bu yüzden "gaz > eşik" olunca alarm veririz.
+@@4205
+İki kademeli alarm
+@@4206
+Gaz <b>2000-3000</b> arasındaysa yalnızca <b>LED yansın</b> (uyarı); gaz <b>3000'in üstüne</b> çıkarsa LED yanmaya devam etsin ve <b>buzzer da ötsün</b> (tehlike). 2000'in altında her şey sönük olsun.
+@@4207
+if (gaz > 3000) { LED+tone } else if (gaz > 2000) { LED yak, noTone } else { LED söndür, noTone }
+@@4208
+Gaz azken her şey sönük olmalı.
+@@4209
+Gaz 2500 iken uyarı LED'i yanmalı.
+@@4210
+Gaz 2500 iken yalnızca LED yanmalı; buzzer henüz susmalı.
+@@4211
+Gaz 3600 iken LED yanık kalmalı ve buzzer da ötmeli.
+@@4212
+Gaz azalınca LED ve buzzer sönmeli.
+@@4213
+Uyarı ve tehlike kademeleri çalışıyor!
+@@4214
+Bir gaz alarmında neden hem ses hem ışık kullanılır?
+@@4215
+Işık sensörü beslemek için
+@@4216
+Ses ve ışık aynı elektrik hattını paylaşır
+@@4217
+Gürültülü ortamda ışık, uyuyan ya da göremeyen birinde ses uyarır; ikisi güvenliği artırır
+@@4218
+Buzzer tek başına çalışamaz
+@@4219
+Tek kanala bağlı alarm kaçırılabilir. Ses ve ışığı birlikte kullanmak farklı durumdaki herkesin uyarıyı fark etmesini sağlar.
+@@4220
+Flaşörlü alarm
+@@4221
+Alarm sırasında LED sabit yanmasın, <b>yanıp sönsün</b>: her turda LED'i 200 ms yak, 200 ms söndür. Buzzer alarm boyunca ötmeye devam etsin. Gaz azalınca LED söner, buzzer susar.
+@@4222
+Alarm dalında: digitalWrite(LED, HIGH); tone(BUZZER, 1000); delay(200); digitalWrite(LED, LOW); delay(200);
+@@4223
+Alarm sırasında LED {0} kez yandı; en az 4 kez yanıp sönmeli (200 ms yan, 200 ms sön).
+@@4224
+Alarm sırasında buzzer ötmeli.
+@@4225
+Alarm flaşör gibi yanıp sönüyor!
+@@4226
+Gaz alarmında eşiği çok düşük seçersek ne olur?
+@@4227
+Hafif bir duman ya da koku bile yanlış alarm verir
+@@4228
+Alarm hiç çalmaz
+@@4230
+Sensör kendini ısıtır
+@@4231
+Eşik çok düşükse normal ortam değişimleri bile alarmı tetikler. Çok yüksekse gerçek tehlike kaçırılır. Eşiği seri monitörden değerleri izleyerek seçeriz.
+@@4232
+Servo hiç hareket etmedi. Kilit servosunu D5'e bağlayıp servo.write ile döndür.
+@@4233
+Yanlış şifrede kilit açıldı! Servo yalnızca doğru şifrede 90 dereceye gitmeli.
+@@4234
+Doğru şifre girildi ama kilit açılmadı (servo 90 derece olmalı).
+@@4235
+Kilit açıldıktan sonra tekrar kapanmadı (servo 0 dereceye dönmeli).
+@@4236
+Kilit çok erken kapandı ({0} ms). En az {1} ms açık kalmalı.
+@@4237
+Kilit çok geç kapandı ({0} ms). En fazla {1} ms açık kalmalı.
+@@4238
+Yanlış şifrede kırmızı LED (D0) yanmadı.
+@@4239
+Kasa doğru şifrede açılıp kapanıyor, yanlış şifrede kapalı kalıyor!
+@@4240
+Kendi şifreni belirle
+@@4241
+Kasanın şifresi şu an <b>1-2-3-4</b>. Şifreyi <b>2-4-6-8</b> yap. Önce yanlış (1-2-3-4) sonra doğru (2-4-6-8) deneme yapılacak.
+@@4242
+Şifre dizisini int sifre[4] = {2, 4, 6, 8}; olarak değiştir.
+@@4243
+Tek bir analog pine 12 tuşlu tuş takımı nasıl bağlanabilir?
+@@4244
+Her tuşun arkasına ayrı bir sensör konur
+@@4245
+Tuşlar bir direnç merdivenine bağlanır; her tuş farklı bir gerilim üretir
+@@4246
+Tuşlar radyo ile haberleşir
+@@4247
+Her tuş aynı sayıyı üretir, kart sırayla sayar
+@@4248
+Her tuşa basıldığında devreye farklı değerde bir direnç girer ve analog pin farklı bir sayı okur. Bizde 1. tuş 340, 2. tuş 680, ... 12. tuş 4080 üretir.
+@@4249
+Kasa açık kalma süresi
+@@4250
+Kasanın içine uzanmak 3 saniyeye sığmıyor! Doğru şifrede kilit <b>5 saniye (5000 ms)</b> açık kalsın, sonra tekrar kapansın.
+@@4251
+Servo 90 yazıldıktan sonraki delay(3000) süresini delay(5000) yap.
+@@4252
+Şifreyi kodun içine düz yazı gibi yazmanın (sifre = {1, 2, 3, 4}) güvenlik açısından zayıf yanı nedir?
+@@4253
+Kart şifreyi hemen unutur
+@@4254
+Servo yanlış açıya gider
+@@4255
+Tuş takımı bozulur
+@@4256
+Kodu okuyan ya da karttan programı çeken herkes şifreyi görebilir
+@@4257
+Gerçek kasalarda şifre açıkça saklanmaz; karıştırılmış (hash) biçimde ve korumalı bellekte tutulur. Bu ders bir öğrenme projesidir.
+@@4258
+Yıldız (*) tuşuyla iptal
+@@4259
+Yanlış tuşa basınca baştan başlamak için <b>*</b> tuşu (tuş numarası <b>10</b>) kullanılsın: * basılınca girilen tuş sayısı sıfırlansın ve hata bilgisi temizlensin. Senaryoda <b>1-2-*-1-2-3-4</b> girilecek; kasa açılmalı.
+@@4260
+if (tus == 10) { girilen = 0; dogru = true; } else { eski karşılaştırma ve girilen += 1; }
+@@4261
+Kodda <code>while (tusOku() &gt; 0) { delay(20); }</code> satırı neden var?
+@@4262
+Kullanıcı tuştan elini çekene kadar bekler; böylece bir basış yalnızca bir kez sayılır
+@@4263
+Servoyu hızlandırır
+@@4264
+Şifreyi siler
+@@4265
+LCD'yi kapatır
+@@4266
+Kart çok hızlı döner; bir basış yüzlerce kez okunabilir. Tuş bırakılana kadar beklemek her basışı tek bir tuş olarak saymayı sağlar.
+@@4268
+7.1 · Akıllı saksı sulama
+@@4269
+<h2>Akıllı saksı sulama</h2>
+      <p>Toprağı kuruyan çiçeğini kendi kendine sulayan bir sistem yapıyoruz: toprak nem sensörü <b>A0</b>, su pompası <b>D6</b> pininde.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> içinde <b>A0</b> nem değerini oku (0-4095; <b>ıslak = büyük sayı</b>).</li>
+        <li>Nem <b>1500'ün altındaysa</b> toprak kurudur: <b>D6</b> pompasını <b>HIGH</b> yap.</li>
+        <li>Değilse (toprak yeterince nemli) pompayı <b>LOW</b> yap.</li>
+        <li>Sona <b>100 ms bekle</b> ve ▶ Çalıştır'a bas. Toprak önce nemli, sonra kuru, sonra tekrar nemli olacak.</li>
+      </ol>
+@@4270
+Saksıyı tanı
+@@4271
+<p>Sahnede bir <b>toprak nem sensörü</b> (<span class="pin-etiket">A0</span>) ve bir <b>su pompası</b> (<span class="pin-etiket">D6</span>) var.</p>
+          <div class="kutu bilgi"><b>Islak = büyük sayı:</b> Sensörün iki ucu toprağa batar. Toprak ıslaksa elektrik iyi geçer ve <code>analogRead</code> 4095'e yaklaşır; kuruysa sayı küçülür.
+          <pre><code>int nem = analogRead(A0);</code></pre></div>
+          <div class="kutu hedef"><b>Hedef:</b> Nem 1500'ün altına inince pompa çalışsın, toprak ıslanınca dursun.</div>
+@@4272
+<p>Toprağın durumu her an değişebilir. <span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına bırak.</p>
+@@4273
+Nem eşiği: eğer - değilse
+@@4274
+<p><span class="chip akis">eğer</span> bloğunu döngünün içine koy; dişli simgesiyle bir <b>değilse</b> kolu ekle. Koşula <span class="chip mantik">karşılaştır</span> bloğunu tak: <span class="chip analog">A0 analog değerini oku</span> <b>&lt; 1500</b>.</p>
+          <pre><code>if (analogRead(A0) &lt; 1500) { ... } else { ... }</code></pre>
+@@4275
+Karşılaştır bloğu Mantık kategorisinde, A0 okuma bloğu Analog kategorisinde. Karşılaştırma işaretini &lt; yap.
+@@4276
+Pompayı aç ve kapat
+@@4277
+<p><span class="chip pin">Pinler</span> kategorisinden iki <b>pinini yap</b> bloğu al. "Eğer" koluna <b>D6 pinini YÜKSEK yap</b>, "değilse" koluna <b>D6 pinini DÜŞÜK yap</b> koy.</p>
+@@4278
+Bloğun pin kutusunu D6 yap. İlki YÜKSEK, ikincisi DÜŞÜK olmalı.
+@@4279
+Küçük bir bekleme
+@@4280
+<p><span class="chip akis">100 ms bekle</span> bloğunu eğer-değilse bloğunun altına, <b>sürekli tekrarla</b> içine koy.</p>
+          <div class="kutu dikkat">Toprak nemi saniyede binlerce kez ölçülecek kadar hızlı değişmez. Kısa bir bekleme kartı gereksiz yormaz.</div>
+@@4281
+Bekle bloğu sürekli tekrarla içinde kalsın.
+@@4282
+Çalıştır ve sula
+@@4283
+<p>▶ <b>Çalıştır</b>'a bas. Toprak önce nemli, sonra kuru olur ve pompanın çalıştığını gör. Sonra toprak tekrar ıslanınca pompa durur. Sensörü sahnede kendin de sürükleyebilirsin.</p>
+@@4284
+Pompa hiç çalışmıyorsa eşik karşılaştırmasının yönüne (nem &lt; 1500) ve pompa pinine (D6) bak.
+@@4287
+Pompa hiç çalışmadı. Nem eşiğin altına inince D6 pinini YÜKSEK yap.
+@@4288
+Toprak kuruyunca (nem 700) pompa çalışmadı. Koşul: nem < 1500.
+@@4289
+Toprak tekrar ıslanınca pompa durmadı. "Değilse" koluna D6 DÜŞÜK ekle.
+@@4290
+Saksın kendi kendini suluyor: kuruyunca pompa çalışıyor, ıslanınca duruyor!
+@@4293
+<h2>Hareketle yanan lamba</h2>
+      <p>Koridora giren biri olunca kendiliğinden yanan, sonra sönen bir lamba yapıyoruz: PIR hareket sensörü <b>D5</b>, lamba (LED) <b>D0</b> pininde.</p>
+      <ol>
+        <li><b>sürekli tekrarla</b> içinde <b>D5 yüksek mi?</b> diye PIR'a bak (hareket varsa HIGH).</li>
+        <li>Hareket varsa <b>D0</b> lambasını yak.</li>
+        <li><b>2 saniye (2000 ms)</b> bekle, sonra lambayı söndür.</li>
+        <li>Sona <b>50 ms bekle</b> ve ▶ Çalıştır'a bas. İki kez hareket olacak.</li>
+      </ol>
+@@4294
+PIR sensörünü tanı
+@@4295
+<p>Sahnedeki <b>PIR</b> (<span class="pin-etiket">D5</span>) bir insanın yaydığı kızılötesi ısıdaki değişimi fark eder. Hareket varken çıkışı <b>HIGH</b>, yokken <b>LOW</b> olur. Lamba <span class="pin-etiket">D0</span> pininde.</p>
+          <div class="kutu bilgi"><b>Dijital girdi:</b> PIR bir düğme gibi okunur: <code>digitalRead(D5)</code> hareket varken 1 verir.</div>
+          <div class="kutu hedef"><b>Hedef:</b> Hareket algılanınca lamba 2 saniye yansın, sonra sönsün.</div>
+@@4296
+<p>Hareket her an gelebilir. <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına bırak.</p>
+@@4297
+Hareket var mı?
+@@4298
+<p>Döngünün içine <span class="chip akis">eğer</span> bloğu koy. Koşuluna <span class="chip pin">D5 pini yüksek mi?</span> bloğunu tak.</p>
+          <pre><code>if (digitalRead(D5) == HIGH) { ... }</code></pre>
+@@4299
+Pin kutusunu D5 yap.
+@@4300
+Lambayı yak, bekle, söndür
+@@4301
+<p>"Eğer" içine sırayla <span class="chip pin">D0 pinini YÜKSEK yap</span>, <span class="chip akis">2000 ms bekle</span>, <span class="chip pin">D0 pinini DÜŞÜK yap</span> koy.</p>
+@@4302
+Bekleme süresini 2000 yap. İlk D0 bloğu YÜKSEK, ikincisi DÜŞÜK olmalı.
+@@4303
+<p>▶ <b>Çalıştır</b>'a bas. İki ayrı hareket gelecek: lamba her birinde yanıp sönmeli. PIR'ı sahnede fareyle de tetikleyebilirsin.</p>
+          <div class="kutu dikkat">Gerçek PIR hareketten sonra bir süre HIGH kalır. Bu ders için sorun değil: lamba 2 saniye bekledikten sonra PIR çoktan LOW olmuştur.</div>
+@@4304
+Lamba hiç yanmıyorsa PIR pini (D5) ve lamba pini (D0) doğru mu?
+@@4306
+Lamba hiç yanmadı. PIR (D5) HIGH olunca D0 pinini YÜKSEK yap.
+@@4307
+İlk harekette lamba yanmadı.
+@@4308
+Lamba 2 saniye sonra sönmedi. Bekledikten sonra D0 pinini DÜŞÜK yap.
+@@4309
+İkinci harekette lamba tekrar yanmadı. Her şey sürekli tekrarla içinde olmalı.
+@@4310
+Lamba ikinci harekette de sönmeli.
+@@4311
+Hareket gelince lamba yanıyor, 2 saniye sonra sönüyor!
+@@4314
+<h2>Mini hava istasyonu</h2>
+      <p>Sıcaklığı ve ışığı ölçüp LCD ekranda ve seri monitörde gösteren bir hava istasyonu: sıcaklık sensörü <b>A1</b>, ışık sensörü (LDR) <b>A0</b>, LCD ekran I2C.</p>
+      <ol>
+        <li><b>A1</b> değerini <b>harita</b> ile <b>0-50 °C</b> aralığına çevir.</li>
+        <li><b>A0</b> ışık değerini <b>0-100 yüzde</b> aralığına çevir.</li>
+        <li>LCD'nin 1. satırına <i>Sicaklik: 20 C</i>, 2. satırına <i>Isik: 50 %</i> yaz.</li>
+        <li>Aynı değerleri <b>seri monitöre</b> yaz ve <b>500 ms</b> bekle.</li>
+      </ol>
+@@4315
+İstasyonu tanı
+@@4316
+<p>Sahnede <b>sıcaklık sensörü</b> (<span class="pin-etiket">A1</span>), <b>ışık sensörü</b> (<span class="pin-etiket">A0</span>) ve <b>LCD</b> var.</p>
+          <div class="kutu bilgi"><b>Ham sayıdan gerçek birime:</b> İki sensör de 0-4095 arası bir sayı verir. Sıcaklık için bu sayı 0-50 °C'ye, ışık için 0-100 yüzdeye karşılık gelir. Çevirmek için <b>harita (map)</b> kullanırız.</div>
+@@4317
+<p>Hava durumu değişir. <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına bırak.</p>
+@@4318
+Sıcaklığı LCD'ye yaz
+@@4319
+<p><span class="chip ekran">LCD satır 1 yaz</span> bloğunu döngüye koy. Metin yerine <span class="chip metin">birleştir</span> bloğu tak: ilk kutuya <b>Sicaklik: </b> yaz, ikinciye <span class="chip analog">harita</span> bloğunu tak. Haritada okuma <span class="pin-etiket">A1</span>, çıktı aralığı <b>0 - 50</b> olsun.</p>
+@@4320
+Harita bloğu Analog kategorisinde dolu gelir; A0 yazan yeri A1 yap, son iki sayıyı 0 ve 50 yap.
+@@4321
+Işığı LCD'ye yaz
+@@4322
+<p>Aynısını 2. satır için yap: <span class="chip ekran">LCD satır 2 yaz</span>, birleştir <b>Isik: </b> ve harita (okuma <span class="pin-etiket">A0</span>, çıktı <b>0 - 100</b>).</p>
+@@4323
+LCD bloğunun satır kutusunu 2 yap.
+@@4324
+<p><span class="chip seri">Seri</span> kategorisinden <span class="chip seri">seri monitöre yaz</span> bloğunu al ve sıcaklık değerini oraya da gönder. Seri monitör, bilgisayarda değerleri satır satır görmeni sağlar.</p>
+@@4325
+Metin kutusuna birleştir ya da harita bloğu takabilirsin.
+@@4326
+<p>Döngünün sonuna <span class="chip akis">500 ms bekle</span> koy ve ▶ <b>Çalıştır</b>'a bas. Sıcaklık 20, 30, 10 °C olacak; ışık da değişecek. Ekranın ve seri monitörün güncellendiğini izle.</p>
+@@4327
+Ekran güncellenmiyorsa bekle bloğunun sürekli tekrarla içinde olduğundan emin ol.
+@@4328
+LCD 1. satırda sıcaklık {0} görünmeli (şu an "{1}"). A1'i 0-50 aralığına çevirdin mi?
+@@4329
+LCD 2. satırda ışık yüzdesi {0} görünmeli (şu an "{1}"). A0'ı 0-100 aralığına çevirdin mi?
+@@4330
+Seri monitörde sıcaklık 20 → 30 → 10 olarak görünmeli.
+@@4331
+Hava istasyonu çalışıyor: ekran ve seri monitör sıcaklık ile ışığı gösteriyor!
+@@4333
+7.4 · Gaz kaçağı alarmı
+@@4334
+<h2>Gaz kaçağı alarmı</h2>
+      <p>Mutfaktaki gaz kaçağını fark eden bir güvenlik sistemi: MQ-2 gaz sensörü <b>A0</b>, buzzer <b>D8</b>, kırmızı LED <b>D0</b> pininde.</p>
+      <ol>
+        <li><b>A0</b> gaz değerini oku (0-4095; <b>çok gaz = büyük sayı</b>) ve seri monitöre yaz.</li>
+        <li>Gaz <b>2000'in üstündeyse</b> LED'i yak ve buzzer'ı <b>1000 Hz</b> çal.</li>
+        <li>Değilse LED'i söndür ve buzzer'ı sustur.</li>
+        <li>Sona <b>100 ms bekle</b> ve ▶ Çalıştır'a bas.</li>
+      </ol>
+@@4335
+Alarmı tanı
+@@4336
+<p>Sahnede <b>MQ-2 gaz sensörü</b> (<span class="pin-etiket">A0</span>), <b>buzzer</b> (<span class="pin-etiket">D8</span>) ve <b>kırmızı LED</b> (<span class="pin-etiket">D0</span>) var.</p>
+          <div class="kutu bilgi"><b>Çok gaz = büyük sayı:</b> MQ-2 yanıcı gaz ve dumanı algılar. Havada gaz arttıkça <code>analogRead</code> sayısı büyür.
+          <pre><code>int gaz = analogRead(A0);</code></pre></div>
+          <div class="kutu dikkat">Gerçek MQ-2 sensörü ısınmak için birkaç dakika ister ve alarm eşiği ortama göre ayarlanır. Bu yüzden değerleri seri monitörden izleyip eşik seçilir.</div>
+@@4337
+<p>Gaz her an sızabilir. <span class="chip akis">sürekli tekrarla</span> bloğunu çalışma alanına bırak.</p>
+@@4338
+Eşik koşulu
+@@4339
+<p><span class="chip akis">eğer</span> bloğunu koy, dişliyle <b>değilse</b> kolunu ekle. Koşul: <span class="chip analog">A0 analog değerini oku</span> <b>&gt; 2000</b> (karşılaştırma işaretini &gt; yap).</p>
+@@4340
+Karşılaştır bloğu Mantık, A0 okuma bloğu Analog kategorisinde.
+@@4341
+Alarm: LED ve buzzer
+@@4342
+<p>"Eğer" koluna <span class="chip pin">D0 pinini YÜKSEK yap</span> ve <span class="chip ses">D8 pinine 1000 Hz ses çal</span> koy.</p>
+@@4343
+Buzzer D8, LED D0 pininde. Ses bloğunun frekansını 1000 yap.
+@@4344
+Güvenliyse sustur
+@@4345
+<p>"Değilse" koluna <span class="chip pin">D0 pinini DÜŞÜK yap</span> ve <span class="chip ses">D8 pinindeki sesi sustur</span> koy. Sonra <span class="chip akis">100 ms bekle</span> ekle.</p>
+@@4346
+Sustur bloğu da Ses ve hareket kategorisinde.
+@@4347
+<p>▶ <b>Çalıştır</b>'a bas. Gaz önce az, sonra artar. Alarm yalnızca gaz 2000'i aşınca çalmalı. Sensörü sahnede kendin de sürükleyebilirsin.</p>
+@@4348
+Alarm 1800 iken çalıyorsa eşik 2000'den küçük kalmış olabilir.
+@@4350
+Alarm hiç çalışmadı. Gaz 2000'i aşınca LED yak ve buzzer çal.
+@@4351
+Gaz 1800 iken alarm çalmamalı; eşik 2000.
+@@4352
+Gaz 3200 iken kırmızı LED yanmalı.
+@@4353
+Gaz 3200 iken buzzer ötmeli.
+@@4354
+Gaz azalınca (700) LED ve buzzer sönmeli. "Değilse" koluna ekle.
+@@4355
+Gaz alarmı çalışıyor: eşik aşılınca LED yanıyor ve buzzer ötüyor!
+@@4357
+7.5 · Şifreli kasa
+@@4358
+<h2>Şifreli kasa</h2>
+      <p>12 tuşlu tuş takımıyla açılan bir kasa: tuş takımı <b>A0</b>, kilit servosu <b>D5</b>, kırmızı LED <b>D0</b>, durum ekranı için LCD.</p>
+      <ol>
+        <li>Tuş takımı tek bir analog pinde çalışır: <b>n. tuş = 340 × n</b> (1. tuş 340, 2. tuş 680 ...). Hiçbir tuşa basılmıyorsa <b>0</b>.</li>
+        <li>Şifre <b>1-2-3-4</b>. Doğru sırada 4 tuşa basılırsa servo <b>90 dereceye</b> dönüp kilidi açar.</li>
+        <li><b>3 saniye</b> sonra servo <b>0 dereceye</b> dönüp kilidi kapatır.</li>
+        <li>Yanlış tuşa basılırsa kırmızı LED yanıp kilit kapalı kalır.</li>
+      </ol>
+@@4359
+Kasayı tanı
+@@4360
+<p>Sahnede <b>tuş takımı</b> (<span class="pin-etiket">A0</span>), kilit <b>servosu</b> (<span class="pin-etiket">D5</span>), <b>LCD</b> ve <b>LED</b> (<span class="pin-etiket">D0</span>) var.</p>
+          <div class="kutu bilgi"><b>Tek pin, 12 tuş:</b> Tuşlar bir direnç merdivenine bağlıdır. Her tuş farklı bir sayı verir: 1. tuş 340, 2. tuş 680, 3. tuş 1020, 4. tuş 1360 ... Hiç tuşa basılmazsa 0. Kart sayıya bakarak hangi tuşa basıldığını anlar.</div>
+          <div class="kutu hedef"><b>Hedef:</b> 1, 2, 3, 4 sırasıyla basılırsa servo kilidi 3 saniye açsın; yanlış tuşta kırmızı LED yansın.</div>
+@@4361
+Adım sayacı ve döngü
+@@4362
+<p><span class="chip degisken">Değişkenler</span> kategorisinden <b>adim</b> adlı bir değişken oluştur ve başta <b>0</b> yap. Sonra <span class="chip akis">sürekli tekrarla</span> bloğunu altına bağla.</p>
+          <div class="kutu bilgi"><b>adim</b> şifrenin kaçıncı tuşunu beklediğimizi tutar: 0 = 1. tuş, 1 = 2. tuş, 2 = 3. tuş, 3 = 4. tuş.</div>
+@@4363
+Değişkenler kategorisinde "Değişken oluştur" de, adını adim yaz. "adim değerini 0 yap" bloğunu sürekli tekrarla bloğunun üstüne koy.
+@@4364
+Bir tuşa basıldı mı?
+@@4365
+<p>Döngünün içine <span class="chip akis">eğer</span> koy. Koşul: <span class="chip analog">A0 analog değerini oku</span> <b>&gt; 150</b>. (Hiç tuşa basılmıyorsa değer 0'dır.)</p>
+@@4366
+Karşılaştır bloğunun işaretini &gt; yap ve sağ kutuya 150 yaz.
+@@4367
+Doğru tuş mu?
+@@4368
+<p>Bu "eğer"in içine bir tane daha <span class="chip akis">eğer - değilse eğer - ... - değilse</span> zinciri kur (dişli ile 3 "değilse eğer" ve 1 "değilse" ekle). Her kolun koşulu: <b>adim = k</b> <span class="chip mantik">ve</span> <b>A0, k+1. tuşun aralığında</b>. Örneğin 1. tuş (340) için: <b>A0 &gt; 170</b> ve <b>A0 &lt; 510</b>. Doğruysa adim'ı bir artır.</p>
+          <pre><code>if (adim == 0 &amp;&amp; A0 &gt; 170 &amp;&amp; A0 &lt; 510) adim = 1;
+else if (adim == 1 &amp;&amp; A0 &gt; 510 &amp;&amp; A0 &lt; 850) adim = 2; ...</code></pre>
+          <div class="kutu bilgi">Tuş aralıkları 340 aralıklıdır: 2. tuş 510-850, 3. tuş 850-1190, 4. tuş 1190-1530 arasında okunur.</div>
+@@4369
+Önce zincirin tamamını tek kolla kurup test edebilirsin; sonra dişliden kolları çoğalt. Koşullarda ve bloğu kullan.
+@@4370
+Kilidi aç
+@@4371
+<p>Son kolda (4. tuş doğruysa) <b>adim</b> değerini 0 yap ve servoyu aç-bekle-kapat: <span class="chip ses">D5 servosunu 90 yap</span>, <span class="chip akis">3000 ms bekle</span>, <span class="chip ses">D5 servosunu 0 yap</span>.</p>
+@@4372
+İlk servo bloğunda 90, ikincisinde 0 yaz. Aralarına 3000 ms bekle bloğu gelir.
+@@4373
+Yanlış tuş: LED
+@@4374
+<p>Zincirin son "değilse" koluna (yanlış tuş) <b>adim</b> değerini 0 yap, sonra <span class="chip pin">D0 pinini YÜKSEK yap</span>, <span class="chip akis">500 ms bekle</span>, <span class="chip pin">D0 pinini DÜŞÜK yap</span>. Dış "eğer"in sonuna <span class="chip akis">300 ms bekle</span> koy ki bir basış iki kez sayılmasın. Döngü sonuna 20 ms bekle ekle.</p>
+@@4375
+Basılı tuş yaklaşık 200 ms sürer; 300 ms beklemek bir basışı yalnızca bir kez saymanı sağlar.
+@@4376
+<p>▶ <b>Çalıştır</b>'a bas. Önce yanlış bir şifre (1-2-3-5) girilir: LED yanmalı, kasa kapalı kalmalı. Sonra doğru şifre (1-2-3-4) girilir: servo kilidi açıp 3 saniye sonra kapatmalı. Tuşlara sahnede kendin de basabilirsin.</p>
+@@4377
+Kilit yanlış şifrede de açılıyorsa her kolun koşulunda adim değerini kontrol ettiğinden emin ol.
+@@4380
+Araba hiç kıpırdamadı. Sol motor için D0, sağ motor için D2 pinini YÜKSEK yapmalısın.
+@@4381
+Araba yeterince ileri gitmedi (en fazla {0} cm). İki motor da ileri dönmeli.
+@@4382
+Uzun yol: 3 saniye ileri, 3 saniye geri
+@@4383
+Araba şu an 2 saniye ileri gidiyor. <b>3 saniye ileri</b> git, <b>500 ms dur</b>, sonra <b>3 saniye geri</b> gelip başladığın yere dön ve motorları durdur.
+@@4384
+ileri(); delay(3000); dur(); delay(500); geri(); delay(3000); dur(); sırasını kur.
+@@4385
+Araba 3 saniye geri gelmedi; başladığı yere dönmeli.
+@@4386
+Araba başladığı noktaya dönmedi: ileri ve geri süreleri eşit olmalı.
+@@4387
+Program bitince motorları durdurmayı unutma.
+@@4388
+Araba 75 cm ileri gitti ve aynı yoldan geri döndü!
+@@4389
+Robot arabada motorlar neden doğrudan Deneyap Kart pinine bağlanmaz, motor sürücü (L298N) kullanılır?
+@@4390
+Pinler motoru sürecek büyük akımı veremez; sürücü bu akımı pilden alıp motora verir
+@@4391
+Motor sürücü arabayı daha hızlı yapar
+@@4392
+Pinler yalnızca LED yakabilir
+@@4393
+Motorlar kodu doğrudan okuyamaz
+@@4394
+Bir pin birkaç mA verebilir, DC motor yüzlerce mA çeker. Sürücü, pinden gelen küçük sinyalle pilden gelen büyük akımı açıp kapatır.
+@@4396
+Yalnızca <b>sol motoru</b> 2 saniye ileri çalıştır (sağ motor hiç çalışmasın) ve sonra durdur. Araba kavis çizip bir yöne dönmeli.
+@@4397
+Sadece D0 pinini HIGH yap, 2000 ms bekle, sonra D0 pinini LOW yap.
+@@4398
+Sağ motor (D2, D3) hiç çalışmamalı.
+@@4399
+Sol motoru ileri çalıştırmak için D0 pinini YÜKSEK yap.
+@@4400
+Araba yeterince hareket etmedi.

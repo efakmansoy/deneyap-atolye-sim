@@ -1,0 +1,762 @@
+@@1480
+The upper limit is not included. Make the last number one more than the largest number you want.
+@@1481
+7 or 8 never showed up. Numbers should range from 1 to 8: write random(1, 9).
+@@1482
+The eight-sided die works!
+@@1483
+Longer roll
+@@1484
+The die currently rolls for about half a second. <b>Extend</b> the roll: let the loop run <b>15 rounds</b>. The roll should still finish in about a second.
+@@1486
+Change the number 10 in the loop condition to 15. You don't need to change the wait time.
+@@1487
+The die rolls longer now!
+@@1489
+The number currently appears at the far left of the screen. Make two changes: move the number to the <b>8th column</b> (column number <b>7</b>) and change the text on the top row to <b>ZAR</b>.
+@@1491
+Columns are counted from zero; set the first number in the setCursor command to seven. Change the text inside the quotes.
+@@1492
+The top row should show only ZAR (in capital letters).
+@@1493
+The number should appear in the 8th column (column number 7). Set the first number of setCursor to 7.
+@@1494
+The number still appears at the start of the row.
+@@1495
+The number is in the middle, the title is ZAR!
+@@1509
+Wider detection distance (30 cm)
+@@1510
+Set the detection threshold to <b>30 cm</b> so the lid opens from farther away.
+@@1512
+Change the number 20 in the < 20 expression to 30.
+@@1513
+The lid did not open when you came within 25 cm.
+@@1514
+The detection distance is now 30 cm!
+@@1515
+Keep the lid open for 3 seconds
+@@1516
+Increase the time the lid stays open to <b>3 seconds (3000 ms)</b>.
+@@1518
+Change the number 2000 in the delay(2000) line to 3000.
+@@1519
+The lid did not stay open for 3 seconds.
+@@1520
+The lid stayed open for 3 seconds!
+@@1521
+Open the lid fully upright (110 degrees)
+@@1522
+Set the opening angle to <b>110 degrees</b> so the trash bag fits in easily.
+@@1524
+Change the number 90 in the servo.write(90) command to 110.
+@@1525
+The lid did not open to 110 degrees.
+@@1526
+The lid opened upright to 110 degrees!
+@@1534
+Change the beep frequency
+@@1535
+Set the passing sound to <b>800 Hz</b>.
+@@1537
+Change the number 1500 in the tone function to 800.
+@@1538
+The buzzer did not play at 800 Hz.
+@@1539
+The passing sound is now set to 800 Hz!
+@@1540
+Narrower gate threshold (20 cm)
+@@1541
+Set the distance to <b>20 cm</b> so that only people passing right through the middle of the gate are counted.
+@@1543
+Change the < 30 expression to < 20 (don't forget to change the one inside the while too).
+@@1544
+The counter should have gone up by 1 when something came within 20 cm.
+@@1545
+The turnstile threshold is now 20 cm!
+@@1546
+Make the beep longer
+@@1547
+Make the confirmation beep last <b>250 ms</b> instead of 100 ms.
+@@1549
+Change the delay(100) command to delay(250).
+@@1550
+The beep did not last 250 ms.
+@@1551
+The confirmation sound played for 250 ms!
+@@1557
+Make the feed call sound higher
+@@1558
+Set the feed call tone to <b>1800 Hz</b> instead of 1000 Hz.
+@@1559
+Change the frequency 1000 in the tone function to 1800.
+@@1560
+The buzzer did not play at 1800 Hz.
+@@1561
+The feed call sound is now 1800 Hz!
+@@1562
+Open the hatch wider (120 degrees)
+@@1563
+Open the hatch up to <b>120 degrees</b> so large pellets can pass through.
+@@1565
+The servo did not open to 120 degrees.
+@@1566
+The hatch opened 120 degrees wide!
+@@1567
+Increase the food dropping time
+@@1568
+Make the hatch stay open for <b>1500 ms</b> instead of 1000 ms.
+@@1570
+Change the delay(1000) after the hatch opens to 1500.
+@@1571
+The hatch did not stay open for 1.5 seconds.
+@@1572
+The hatch stayed open for 1.5 seconds!
+@@1578
+Set the threshold to 2000
+@@1579
+Set the light threshold to <b>2000</b> so the alarm sounds earlier.
+@@1581
+Write < 2000 instead of < 1500.
+@@1582
+The alarm did not sound when the light was 1800.
+@@1583
+The light threshold is now 2000!
+@@1584
+Higher-pitched siren tone
+@@1585
+Make the siren more attention-grabbing: set the high tone to <b>2000 Hz</b> instead of 1200.
+@@1587
+Replace the number 1200 with 2000.
+@@1588
+The 2000 Hz siren tone did not play.
+@@1590
+Double the siren speed
+@@1591
+Set the siren wait times to <b>75 ms</b> instead of 150 ms.
+@@1593
+Change the delay(150) lines to delay(75).
+@@1594
+The siren did not play fast enough.
+@@1595
+The siren plays twice as fast!
+@@1601
+Set the barrier opening distance to 35 cm
+@@1602
+Set the distance to <b>35 cm</b> so the barrier opens earlier.
+@@1604
+Write < 35 instead of < 25.
+@@1605
+The barrier did not open at a distance of 30 cm.
+@@1606
+The barrier detection distance is now 35 cm!
+@@1607
+Raise the barrier fully upright (100 degrees)
+@@1608
+Raise the barrier arm up to <b>100 degrees</b> instead of 90.
+@@1609
+Change the number 90 in the servo.write(90) command to 100.
+@@1610
+The servo did not rise to 100 degrees.
+@@1611
+The barrier opened upright to 100 degrees!
+@@1612
+Welcome message
+@@1613
+When a vehicle approaches, print <b>"Hosgeldiniz "</b> on the screen instead of "Geciniz     ".
+@@1615
+Replace the text Geciniz with Hosgeldiniz.
+@@1616
+The Hosgeldiniz message did not appear on the screen.
+@@1617
+The Hosgeldiniz message was shown on the screen!
+@@1620
+Limit the angle to 0-120 degrees
+@@1621
+Set the maximum angle to <b>120 degrees</b> to keep the panel from turning too far.
+@@1623
+Write 0, 120 instead of 0, 180 in the map function.
+@@1624
+The servo did not reach 120 degrees in full light.
+@@1625
+The maximum angle is limited to 120 degrees!
+@@1626
+Turn in the opposite direction (180 - 0)
+@@1627
+Move the panel in the opposite direction: make it 180 in the dark and <b>0 degrees</b> in full light.
+@@1628
+Write the map range as 180, 0.
+@@1629
+The servo did not go down to 0 degrees in full light.
+@@1630
+Reverse tracking was set up successfully!
+@@1631
+Precise movement delay (15 ms)
+@@1632
+Set the wait time to <b>15 ms</b> so the servo moves more smoothly without jitter.
+@@1634
+Change the delay(30) command to delay(15).
+@@1635
+The servo wait time is now 15 ms!
+@@1641
+Set the charging threshold to 65 Watts
+@@1642
+Set the threshold to <b>65 Watts</b> so charging happens only at high efficiency.
+@@1644
+Write >= 65 instead of >= 50.
+@@1645
+The LED should have turned on above 65W.
+@@1646
+The charging threshold is now 65 Watts!
+@@1647
+Set the power range to 0-150 Watts
+@@1648
+For a large panel, set the maximum power to <b>150 Watts</b> instead of 100.
+@@1650
+Write 0, 150 instead of 0, 100 in the map function.
+@@1651
+The screen should show 150 W at maximum light.
+@@1652
+The panel capacity is now set to 150 Watts!
+@@1653
+Increase the screen refresh rate (50 ms)
+@@1654
+Set the delay time to <b>50 ms</b> so the screen updates faster.
+@@1655
+Change the delay(100) command to delay(50).
+@@1656
+The screen refresh time is now 50 ms!
+@@1662
+Hareket var
+@@1674
+Set the threshold to 2500
+@@1675
+Don't let the flower get too dry: run the pump when the soil moisture drops <b>below 2500</b>. Change only the threshold number.
+@@1676
+Write < 2500 instead of < 1500. The pump should run when the moisture is 2200.
+@@1677
+The pump should not run when the soil is wet (3500).
+@@1678
+The pump did not run at moisture 2200; the threshold should be 2500.
+@@1679
+The pump should stop when the soil gets wet again.
+@@1680
+The threshold is now 2500, so the pot is watered earlier!
+@@1681
+Run the pump for 3 seconds
+@@1682
+The pump runs for <b>1 second</b> on every watering, and that's not enough. Increase the run time to <b>3 seconds (3000 ms)</b>.
+@@1683
+Change the delay(1000) after the pump goes HIGH to delay(3000).
+@@1684
+The pump did not turn on and off.
+@@1685
+The pump ran for {0} ms; it should run for 3000 ms.
+@@1686
+The pump now runs for 3 seconds!
+@@1687
+Print the moisture once per second
+@@1688
+The serial monitor is flooded with moisture numbers! Increase the measurement interval to <b>1 second (1000 ms)</b> so one line is printed per second.
+@@1689
+Change the delay(100) command at the end of the loop to delay(1000).
+@@1690
+Not enough values were printed to the serial monitor.
+@@1691
+{0} lines were printed in 4.5 seconds; it should be one line per second (at most 5-6).
+@@1692
+The moisture is now printed once per second!
+@@1698
+Keep the lamp on for 4 seconds
+@@1699
+Keep the lamp on for <b>4 seconds (4000 ms)</b> after motion.
+@@1700
+Change the delay(2000) after the lamp turns on to delay(4000).
+@@1701
+The lamp did not turn on when motion was detected.
+@@1702
+The lamp went out too early; it should stay on for 4 seconds.
+@@1703
+The lamp did not go out after 4 seconds.
+@@1704
+The lamp stays on for 4 seconds!
+@@1705
+Don't let the night lamp dazzle: set the brightness to <b>80 instead of 255</b> (analogWrite takes a brightness from 0 to 255).
+@@1707
+Change the number 255 in the analogWrite(LAMBA, 255) line to 80.
+@@1708
+The lamp brightness is {0}; it should be about 80.
+@@1709
+The lamp glows dimly and doesn't dazzle!
+@@1710
+Change the message
+@@1711
+The serial monitor prints <b>Hareket var</b> when there is motion. Change it to <b>Hareket algilandi</b>.
+@@1712
+"Hareket var"
+@@1713
+Hareket algilandi
+@@1714
+Change the text inside the quotes to Hareket algilandi. Don't delete the quotes.
+@@1715
+The message should be "Hareket algilandi" (right now it is "{0}").
+@@1716
+The message was updated!
+@@1723
+Set the sensor range to 0-100 degrees
+@@1724
+An industrial temperature sensor measures <b>0-100 °C</b>. Change the last number of the temperature map from <b>50 to 100</b>.
+@@1726
+Change the last number inside map(analogRead(SICAKLIK), 0, 4095, 0, 50) to 100.
+@@1727
+If the sensor measures 0-100 degrees, the LCD should show 40 and 60 (right now "{0}" and "{1}").
+@@1728
+The temperature range is now 0-100 degrees!
+@@1729
+Reduce the measurement to once per second
+@@1730
+The serial monitor scrolls too fast to read. Set the wait time to <b>1000 ms</b> so one line is printed per second.
+@@1731
+Change the delay(500) command at the end of the loop to delay(1000).
+@@1732
+Not enough lines were printed to the serial monitor.
+@@1733
+{0} lines were printed in 4.5 seconds; it should be one line per second.
+@@1734
+The serial monitor updates once per second!
+@@1735
+Make the title "Isi:"
+@@1736
+The first row of the LCD says <b>Sicaklik: </b>. Write the shorter <b>Isi: </b> instead.
+@@1739
+Change the text "Sicaklik: " inside lcd.print to "Isi: ". Don't delete the quotes.
+@@1740
+The title still says "Sicaklik: ".
+@@1741
+Row 1 should start with "Isi: ...".
+@@1742
+The title is now "Isi:"!
+@@1748
+Reduce false alarms
+@@1749
+The alarm goes off for no reason when you fry food in the kitchen. Set the threshold to <b>2500</b>; the alarm should not sound when the gas is 2200.
+@@1751
+Change the number 2000 in the if condition to 2500.
+@@1752
+The alarm should not sound when the gas is 2200; the threshold should be 2500.
+@@1753
+The alarm should sound when the gas is 3200.
+@@1754
+The alarm should stop when the gas decreases.
+@@1755
+The threshold is now 2500, and the false alarms are reduced!
+@@1757
+Make the alarm sound more attention-grabbing: set the buzzer frequency to <b>2500 Hz instead of 1000 Hz</b>.
+@@1758
+Change the number 1000 in the tone(BUZZER, 1000) line to 2500.
+@@1759
+The buzzer did not sound during the alarm.
+@@1760
+The buzzer played at {0} Hz; it should be 2500 Hz.
+@@1761
+The alarm beeps with a shrill 2500 Hz tone!
+@@1762
+Print the gas value every half second
+@@1763
+The serial monitor prints ten lines per second. Set the wait time to <b>500 ms</b>.
+@@1764
+Change the delay(100) command at the end of the loop to delay(500).
+@@1765
+{0} lines were printed in 4.4 seconds; it should be one line every half second (about 9).
+@@1766
+The gas value is printed every half second!
+@@1776
+Keep the LED on for 2 seconds on a wrong password
+@@1777
+When the thief enters the wrong password, keep the red LED on for <b>2 seconds (2000 ms)</b>.
+@@1778
+Change the delay(1000) after the LED turns on to delay(2000).
+@@1779
+The LED did not turn on with the wrong password.
+@@1780
+The LED never turned off.
+@@1781
+The LED was on for {0} ms; it should be on for 2000 ms.
+@@1782
+The LED stays on for 2 seconds with the wrong password!
+@@1783
+Make the password 4-3-2-1
+@@1784
+Change the safe's password to <b>4-3-2-1</b>. First a wrong password (1-2-3-4) and then the correct one (4-3-2-1) will be tried.
+@@1787
+Change the numbers in the int sifre[4] = {1, 2, 3, 4}; array to 4, 3, 2, 1.
+@@1788
+Open the lock wider
+@@1789
+The lock latch should open wider: turn the servo to <b>120 degrees instead of 90</b>.
+@@1791
+Change the number 90 in the kilit.write(90) command in the correct-password branch to 120.
+@@1792
+The lock did not open with the correct password.
+@@1794
+The lock opens up to 120 degrees!
+@@1818
+Three seconds forward
+@@1819
+The car currently drives forward for 2 seconds. Increase the forward driving time to <b>3 seconds (3000 ms)</b>.
+@@1820
+Change the delay(2000) value after the İleri() call to 3000.
+@@1821
+The car drove forward for 3 seconds!
+@@1822
+Two seconds back
+@@1823
+When the car comes back, it only drives for 1 second. Set the reverse driving time to <b>2 seconds (2000 ms)</b> so the car returns to where it started.
+@@1824
+Change the delay(1000) value after the geri() call to 2000.
+@@1825
+The car did not come back far enough (it should go back at least 45 cm).
+@@1826
+The car came back for 2 seconds and returned to its starting point!
+@@1827
+Wait 2 seconds while stopped
+@@1828
+After driving forward, the car stops for only half a second. Make this wait time <b>2 seconds (2000 ms)</b>.
+@@1829
+Change the delay(500) value after the dur() call to 2000.
+@@1830
+The car did not go forward and then come back.
+@@1831
+The car stopped for {0} ms; it should stop for at least 2000 ms.
+@@1832
+The car stopped for 2 seconds between forward and back!
+@@1833
+Draw a triangle
+@@1834
+Draw an <b>equilateral triangle</b> instead of a square: let the loop run <b>3</b> times and make each turn <b>120 degrees</b> (about <b>507 ms</b>).
+@@1837
+Write i < 3 instead of i < 4, and delay(507) instead of delay(380).
+@@1838
+The car drove {0} cm; the 3 sides of the triangle should add up to about 75 cm.
+@@1839
+The triangle is done, and the car returned to where it started!
+@@1840
+Round-trip path
+@@1841
+Let the car go forward once, turn <b>180 degrees</b> (about <b>760 ms</b>), come back, and turn again. Let the loop run <b>2</b> times.
+@@1842
+Write i < 2 and delay(760). The car should go back and forth along the same line.
+@@1843
+The car drove {0} cm; the two sides should add up to about 50 cm.
+@@1844
+The car did not go back and forth along the same line. The turns should be 180 degrees.
+@@1845
+The car went there and back and ended up in the same place!
+@@1846
+Turn time error
+@@1847
+This square just won't close! The turn time is too short, so the car can't turn 90 degrees. Set the time to <b>380 ms</b>.
+@@1848
+Change the delay(300) value after the saga() call to 380.
+@@1849
+The car did not complete the square.
+@@1850
+The turns are now 90 degrees, and the square closed!
+@@1851
+Closer reaction: 25 cm
+@@1852
+The car reacts when it is 30 cm from the obstacle. Set the threshold to <b>25 cm</b>; the car should get a bit closer to the obstacle before turning back.
+@@1853
+Write 25 instead of 30 in the mesafeOlc(D4) < 30 condition.
+@@1854
+The car never reversed when it approached the obstacle.
+@@1855
+The car reversed too early (x = {0}). The threshold should be 25 cm.
+@@1856
+The car did not repeat the avoidance maneuver.
+@@1857
+Threshold 25 cm: the car got a bit closer to the obstacle and then turned back!
+@@1858
+Escape to the left
+@@1859
+The car turns right when it escapes. Change that: let it escape the obstacle by turning <b>left</b>.
+@@1862
+Change the turning function from saga() to sola().
+@@1863
+The car did not turn left (heading {0} degrees). When turning left, the left motor runs backward and the right motor runs forward.
+@@1864
+The car escaped the obstacle by turning left!
+@@1865
+Longer backing up
+@@1866
+Set the backing-up time to <b>600 ms</b> when the car escapes an obstacle, so it gets farther away from it.
+@@1867
+Change the delay(400) value after the geri() call to 600.
+@@1868
+The reverse movement did not finish.
+@@1869
+The car reversed for {0} ms; it should reverse for about 600 ms.
+@@1870
+The car backed up for 600 ms!
+@@1871
+Three seconds of preparation
+@@1872
+The car waits 1 second before starting the race. Set the wait time to <b>3 seconds (3000 ms)</b>.
+@@1873
+Change the delay(1000) value in setup to 3000.
+@@1874
+The car did not move at all.
+@@1875
+The car moved after {0} ms; it should wait 3000 ms.
+@@1876
+The car did not move far enough after waiting.
+@@1877
+The car left the line.
+@@1878
+The car waited 3 seconds and started following the line!
+@@1879
+Sensors wired backwards
+@@1880
+The car runs off the line right away! The left and right sensor pins are read the wrong way around in the code. Fix it so the <b>left sensor is D5 and the right sensor is D6</b>.
+@@1883
+It should be int sol = digitalRead(D5); and int sag = digitalRead(D6);.
+@@1884
+The car left the line and hit the wall. Are the sensor pins being read correctly?
+@@1885
+The car strayed {0} cm from the line.
+@@1886
+The car did not follow the line far enough.
+@@1887
+The sensors are read correctly, and the car is on the line!
+@@1888
+Checking too slowly
+@@1889
+The car keeps losing the line because it waits half a second between two measurements. Set the check interval to <b>50 ms</b>.
+@@1890
+Change the delay(500) value at the end of loop to 50.
+@@1891
+The car lost the line and hit the wall. The wait between measurements is too long.
+@@1892
+The car strayed {0} cm from the line. Take measurements more often.
+@@1893
+The car doesn't lose the line anymore!
+@@1903
+Blink slowly (1000 ms)
+@@1904
+Make the LED blink more slowly: set the on and off times to <b>1000 ms</b>.
+@@1905
+Change both delay(500) lines to delay(1000).
+@@1906
+The times should be about 1000 ms.
+@@1907
+The LED now changes once per second!
+@@1908
+Print <b>Merhaba Atolye!</b> to the serial monitor.
+@@1910
+Change the text inside the quotes; don't delete the quotes.
+@@1911
+The text "Merhaba Atolye!" did not appear on the serial monitor.
+@@1912
+The new message was printed to the serial monitor!
+@@1913
+Short flash
+@@1914
+Let the LED shine for <b>100 ms</b>, then stay off for <b>900 ms</b> (a short flash like a flashlight).
+@@1917
+The first delay should be 100, and the second delay should be 900.
+@@1918
+The LED was on for {0} ms, it should be 100 ms.
+@@1919
+The LED stayed off for {0} ms, it should be 900 ms.
+@@1920
+The short flash effect is ready!
+@@1926
+Fast breathing (5 ms)
+@@1927
+Make the LED brighten faster: set the wait time to <b>5 ms</b>.
+@@1928
+Change both delay(20) lines to delay(5).
+@@1929
+The LED did not reach full brightness.
+@@1930
+It reached full brightness in {0} ms; it should reach it within 600 ms.
+@@1931
+Fast breathing is ready!
+@@1932
+At most half brightness
+@@1933
+Never let the LED shine brighter than half: set the highest value to <b>128</b>.
+@@1934
+The number 255 appears in two places; change both to 128.
+@@1935
+No value was written to the LED.
+@@1936
+The LED was brighter than half. The highest value should be 128.
+@@1937
+The LED was too dim; the peak value should be 128.
+@@1938
+The brightness is limited to half!
+@@1939
+Stepped brightness (step 15)
+@@1940
+Make the brightness steps noticeable: set the step size to <b>15</b> (p += 15 and p -= 15).
+@@1943
+Write 15 instead of 5 in both for loops.
+@@1944
+It reached full brightness in {0} steps; about 18 steps are expected (step 15).
+@@1945
+It brightens in bigger steps!
+@@1948
+On normally, off when pressed
+@@1949
+Reverse the logic: the LED should be <b>on normally</b> and <b>turn off when the button is pressed</b>. Hint: write HIGH instead of LOW in the condition.
+@@1950
+Change the == LOW expression to == HIGH.
+@@1951
+The LED should be on when the button is not pressed.
+@@1952
+The LED should be off while the button is pressed.
+@@1953
+The reversed logic works!
+@@1954
+Light up at half brightness
+@@1955
+When the button is pressed, let the LED light up at <b>half brightness</b>: write <code>analogWrite(D0, 128)</code> instead of <code>digitalWrite(D0, HIGH)</code>.
+@@1957
+Change the whole line to analogWrite(D0, 128).
+@@1958
+While pressed, the LED should be at half brightness (128/255).
+@@1959
+The LED lights up at half brightness!
+@@1960
+Stay on for half a second after release
+@@1961
+When you release the button, the LED shouldn't turn off right away; <b>keep it on for 500 ms more</b>. Hint: add <code>delay(500);</code> before turning it off.
+@@1964
+Inside else, write delay(500); above the digitalWrite(D0, LOW) line.
+@@1965
+The LED should be on while the button is pressed.
+@@1966
+The LED turned off as soon as the button was released; it should stay on for 500 ms more.
+@@1967
+The LED should turn off shortly.
+@@1968
+The LED stays on for half a second after release!
+@@1975
+Stricter threshold (20)
+@@1976
+Don't count light touches (value ~25). Set the threshold to <b>20</b>.
+@@1978
+Change the number 40 in the ESIK = 40 expression to 20.
+@@1979
+A light touch (value 25) changed the LED; the threshold should be 20.
+@@1980
+A firm touch did not turn on the LED.
+@@1981
+The threshold is 20, and light touches are ignored!
+@@1982
+Sensitive threshold (60)
+@@1983
+Make the pad very sensitive: even a value of <b>55</b> should count as a touch. Set the threshold to <b>60</b>.
+@@1984
+Change the number 40 in the ESIK = 40 expression to 60.
+@@1985
+The LED did not turn on at value 55; the threshold should be 60.
+@@1986
+The pad is now very sensitive!
+@@1987
+Message to the serial monitor
+@@1988
+On every touch, print <b>Dokunuldu</b> to the serial monitor instead of the number.
+@@1991
+Write "Dokunuldu" (with quotes) instead of deger inside println.
+@@1992
+"Dokunuldu" did not appear on the serial monitor.
+@@1993
+The touch message was printed!
+@@1997
+Blink once
+@@1998
+<b>Turn on</b> the <span class="pin-etiket">D0</span> LED, <b>wait</b> half a second (<b>500 ms</b>), then <b>turn it off</b>. The LED should blink only <b>once</b> and the program should end there. Don't use the repeat forever block!
+@@1999
+Three blocks are enough: set HIGH, wait, set LOW. You don't need a loop this time.
+@@2000
+The LED never turned on. First set pin D0 to HIGH.
+@@2001
+The LED should turn on first (D0 HIGH).
+@@2002
+The LED turned on but did not turn off. After the wait, set pin D0 to LOW.
+@@2003
+The LED changed more than once. Don't use repeat forever; turn on, wait, turn off is enough.
+@@2004
+The LED was on for {0} ms. It should be on for about 500 ms.
+@@2005
+Exactly what we wanted: it turned on once and went off!
+@@2007
+When the <code>digitalWrite(D0, HIGH);</code> command runs, about how many volts are on pin <span class="pin-etiket">D0</span> of the ESP32-S3?
+@@2012
+ESP32-S3 pins work at 3.3 V: HIGH means about 3.3 V and LOW means 0 V.
+@@2013
+Light up late
+@@2014
+When the program starts, the LED should <b>not turn on right away</b>: first <b>wait 300 ms</b>, then turn on the <span class="pin-etiket">D0</span> LED. After it turns on, <b>keep it on</b>.
+@@2015
+The wait block must come before the LED block. Commands run from top to bottom, so order matters.
+@@2016
+The LED turned on right away. Wait 300 ms before turning it on.
+@@2017
+The LED turned on after {0} ms. You should wait about 300 ms.
+@@2018
+The LED should stay on after turning on; it should not turn off again.
+@@2019
+The LED turned on after 300 ms and stayed on!
+@@2020
+What is the difference between <code>setup()</code> and <code>loop()</code> in an Arduino program?
+@@2021
+Both repeat forever
+@@2022
+setup() runs every round, loop() runs only once
+@@2023
+setup() runs once, loop() runs repeatedly
+@@2024
+loop() runs only when the button is pressed
+@@2025
+setup() runs once when the board powers on (for preparation), while loop() goes back to the start when it finishes and runs continuously.
+@@2026
+Blink three times
+@@2027
+Let the <span class="pin-etiket">D0</span> LED blink <b>exactly 3 times</b>: each time <b>on for 200 ms</b> and <b>off for 200 ms</b>. In the end, the LED should stay <b>off</b>. You can use a <b>count</b> loop if you like.
+@@2028
+The "count i from 1 to 3" block repeats what is inside it 3 times. Repeat forever never ends.
+@@2029
+The LED turned on {0} times; it should turn on 3 times.
+@@2030
+The LED turned on {0} times. It should blink exactly 3 times and stop; use a count loop instead of repeat forever.
+@@2031
+The LED should stay off after the last blink. D0 should be low at the end.
+@@2032
+The on and off times should be about 200 ms.
+@@2033
+The LED blinked exactly 3 times!
+@@2034
+Which command <b>turns on</b> the LED connected to pin <span class="pin-etiket">D0</span>?
+@@2039
+The command that writes a value to a pin is digitalWrite(). pinMode() only decides whether the pin is an input or an output.
+@@2040
+What does the line <code>pinMode(D0, OUTPUT);</code> do?
+@@2042
+Makes pin D0 an output: it can send voltage out of the board
+@@2043
+Makes pin D0 an input, reads a sensor
+@@2044
+Stops the program
+@@2045
+OUTPUT says that the pin will send a signal out. digitalWrite(HIGH) is also needed for the LED to light up.
+@@2046
+This time make the LED blink <b>fast</b>: <span class="pin-etiket">D0</span> should be <b>on for 200 ms</b>, <b>off for 200 ms</b>, and repeat forever.
+@@2047
+Change the value 500 in the wait blocks. Both waits should be the same.
+@@2048
+The LED changed only {0} times. Do turn on, wait, turn off, wait inside repeat forever.
+@@2049
+Both the on time and the off time should be about 200 ms. Check the wait blocks.

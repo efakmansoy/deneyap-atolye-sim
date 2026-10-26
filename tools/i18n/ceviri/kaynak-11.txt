@@ -1,0 +1,585 @@
+@@3909
+Bariyer kolu yatayken 0 derece (kapalı), dikey kalktığında 90 derece (açık) olur.
+@@3910
+Hareket açısını sınırla
+@@3911
+Servo panel mekanik olarak en fazla 120 dereceye dönebiliyor. Açıyı 0-180 yerine <b>0-120</b> aralığına sınırla.
+@@3912
+map(isik, 0, 4095, 0, 180) satırındaki 180 sayısını 120 yap.
+@@3913
+Tam ışıkta servo 120 derece olmalı (şu an {0} derece).
+@@3914
+Güneş takipçi açısı 0-120 dereceye sınırlandı!
+@@3915
+Arduino/ESP32'de <code>map(deger, 0, 4095, 0, 180)</code> fonksiyonu ne işe yarar?
+@@3916
+0-4095 arasındaki sensör değerini 0-180 arasındaki servo açısına orantılı çevirir
+@@3917
+Kartın haritasını çıkarır
+@@3918
+Sensörün GPS konumunu bulur
+@@3919
+Açıyı 4095 ile çarpar
+@@3920
+map() matematiksel oran-orantı kurar; giriş aralığındaki sayıyı hedef aralığa dengeli olarak yayar.
+@@3921
+Ters yönlü takip
+@@3922
+Mekanizma ters bağlandı! Işık arttıkça servo 180'e değil 0'a doğru dönsün. Yani aralığı <b>180, 0</b> yap.
+@@3923
+map(isik, 0, 4095, 180, 0) şeklinde yaz.
+@@3924
+Tam ışıkta servo 0 dereceye inmeli (şu an {0} derece).
+@@3925
+Güneş takip sistemlerinin sabit güneş panellerine göre avantajı nedir?
+@@3926
+Güneş ışınlarını dik açıyla alarak gün boyu maksimum elektrik üretir
+@@3927
+Daha az yer kaplar
+@@3928
+Gece elektrik üretir
+@@3929
+Pilsiz çalışır
+@@3930
+Güneş ışınları panele 90 derece dik vurduğunda üretilen enerji en üst seviyeye çıkar.
+@@3931
+Şarj eşiğini 70W yap
+@@3932
+Şarj LED'i şu an 50W üzerinde yanıyor. Aküyü korumak için eşiği <b>70 Watt</b> yap: yalnızca 70W ve üstünde yansın.
+@@3933
+if (guc >= 50) koşulundaki 50 sayısını 70 yap.
+@@3934
+58W güçte LED yanmamalı; eşik 70W olmalı.
+@@3935
+78W güçte LED yanmalı.
+@@3936
+Şarj eşiği 70 Watt olarak güncellendi!
+@@3937
+Güneş paneli istasyonunda LCD'de canlı güç göstermenin önemi nedir?
+@@3938
+Paneli temizleme zamanını ve üretilen anlık elektriği izlemeyi sağlar
+@@3939
+LCD elektrik üretir
+@@3940
+Güneşin batmasını engeller
+@@3941
+Sensörün ısınmasını önler
+@@3942
+Kullanıcı veya teknisyen ekran sayesinde panelin ne kadar güç ürettiğini ve verimini anlık olarak görür.
+@@3943
+Voltaj cinsinden göster
+@@3944
+İstasyonda güç yerine voltaj göster: 0-4095 ışık değerini <b>0-12 Volt</b> aralığına çevir ve 2. satırda <b>"Volt: "</b> ile birlikte yazdır.
+@@3945
+map(isik, 0, 4095, 0, 12) kullan ve lcd.print("Volt: ") yaz.
+@@3946
+2. satırda "Volt: " yazısı görünmeli.
+@@3947
+Tam ışıkta voltaj 12 Volt görünmeli.
+@@3948
+İstasyon artık voltaj değerini başarıyla gösteriyor!
+@@3949
+<code>lcd.print(" W   ");</code> satırındaki boşlukların işlevi nedir?
+@@3950
+Sayı basamağı azaldığında (100 -> 9) ekranda eski karakterlerin kalmasını önler
+@@3951
+Ekranı kapatır
+@@3952
+Voltajı dengeler
+@@3953
+3 basamaklı bir sayıdan 2 basamağa geçildiğinde en sondaki basamağı boşlukla temizlemek gerekir.
+@@3955
+6.1 · Akıllı çöp kovası
+@@3956
+<h2>Akıllı çöp kovası</h2>
+      <p>Elini yaklaştırdığında kapağı kendi kendine açılan, hijyenik ve akıllı bir çöp kovası yapıyoruz!</p>
+      <ol>
+        <li>Mesafe sensörü <b>D3</b> pininde, kapağı açıp kapatan servo motor <b>D5</b> pinindedir.</li>
+        <li>El <b>20 cm</b>'den yakınsa kapağı <b>90 dereceye</b> aç.</li>
+        <li>Çöpü atabilmek için <b>2 saniye (2000 ms)</b> bekle.</li>
+        <li>Sonra kapağı kapatmak için servoyu <b>0 dereceye</b> getir.</li>
+      </ol>
+@@3957
+<p>Mesafe sensörü (<span class="pin-etiket">D3</span>) yaklaşan elleri ölçer. Servo (<span class="pin-etiket">D5</span>) kapağı kaldırır.</p>
+@@3958
+Sürekli döngü
+@@3959
+<p><span class="chip akis">Akış</span> kategorisinden <span class="chip akis">sürekli tekrarla</span> bloğunu al.</p>
+@@3960
+Mesafe koşulu
+@@3961
+<p>Döngünün içine <span class="chip akis">eğer</span> bloğu koy. Koşuluna <span class="chip mantik">D3 mesafe &lt; 20</span> tak.</p>
+@@3962
+Mesafe bloğu Ses ve hareket kategorisindedir.
+@@3963
+Kapağı aç, bekle ve kapat
+@@3964
+<p>Eğer koluna <span class="chip ses">D5 servo yaz 90</span>, altına <span class="chip akis">2000 ms bekle</span>, altına <span class="chip ses">D5 servo yaz 0</span> koy.</p>
+@@3965
+İlk servo 90, bekleme 2000 ms, ikinci servo 0.
+@@3966
+<p>▶ <b>Çalıştır</b>'a bas. Engel sensöre yaklaştığında kapak açılacak ve 2 saniye sonra kapanacak.</p>
+@@3967
+Programı çalıştırıp turuncu engeli sensöre yaklaştır.
+@@3968
+Servo hiç hareket etmedi. D5 servo yaz bloğunu kullandın mı?
+@@3969
+Engel 15 cm yaklaştığında kapak açılmadı. Koşul: mesafe < 20.
+@@3970
+Kapak açıldıktan sonra geri kapanmadı.
+@@3971
+Harika! Akıllı çöp kovası yaklaşınca açılıyor ve otomatik kapanıyor.
+@@3973
+6.2 · Kişi sayacı kapı
+@@3974
+<h2>Kişi sayacı kapı</h2>
+      <p>Kapıdan geçen kişileri ultrasonik sensörle sayıp LCD ekranda gösteren ve bip sesi veren akıllı turnike sistemi!</p>
+      <ol>
+        <li>Mesafe sensörü <b>D3</b>, LCD ekran I2C, buzzer <b>D8</b> pinindedir.</li>
+        <li>Biri kapıdan geçtiğinde (mesafe &lt; 30 cm) kişi sayacını 1 artır.</li>
+        <li>Buzzer ile kısa bir bip (1500 Hz, 100 ms) çal.</li>
+        <li>LCD 1. satırda <i>Kisi Sayisi:</i>, 2. satırda sayacı göster.</li>
+        <li>Kişi uzaklaşana kadar (mesafe &lt; 30 olduğu sürece) döngüde bekle.</li>
+      </ol>
+@@3975
+<p>Mesafe sensörü (<span class="pin-etiket">D3</span>), LCD ve Buzzer (<span class="pin-etiket">D8</span>) hazır.</p>
+@@3976
+Başlangıç ekranı
+@@3977
+<p><span class="chip ekran">LCD satır 1 yaz</span> al ve içine <span class="chip analog">Kisi Sayisi:</span> yaz.</p>
+@@3978
+İlk satır 0 numaralı satırdır.
+@@3979
+Döngü ve sayaç
+@@3980
+<p><span class="chip akis">sürekli tekrarla</span> koy. İçinde eğer mesafe &lt; 30 ise sayacı 1 artır.</p>
+@@3981
+Değişken oluşturup değerini 1 artırabilirsin.
+@@3982
+Ses ve ekrana yaz
+@@3983
+<p>Eğer içinde <span class="chip ses">D8 ses çal 1500</span>, <span class="chip akis">100 ms bekle</span>, <span class="chip ses">ses sustur</span> ekle. Ardından LCD satır 2'ye sayacı yaz.</p>
+@@3985
+<p>▶ <b>Çalıştır</b>'a bas. Kişiler geçtikçe sayacın arttığını ve ekranın güncellendiğini izle.</p>
+@@3986
+Kişiler sırayla geçtikçe sayı artacaktır.
+@@3987
+1. satırda "Kisi Sayisi:" başlığı olmalı.
+@@3988
+Geçişlerde buzzer çalmadı.
+@@3989
+3 kişi geçtikten sonra sayaç 3 olmalı.
+@@3990
+Turnike başarıyla çalışıyor! Geçişler sayıldı ve sesle onaylandı.
+@@3992
+6.3 · Akıllı yem verici
+@@3993
+<h2>Akıllı yem verici</h2>
+      <p>Evcil hayvanlar için düğmeye basıldığında sesli çağrı yapan ve mama kapağını açan akıllı besleme makinesi!</p>
+      <ol>
+        <li>Düğme <b>D2</b>, servo motor <b>D5</b>, buzzer <b>D8</b> pinindedir.</li>
+        <li>Düğmeye basıldığında (D2 HIGH):</li>
+        <li>Buzzer ile <b>1000 Hz</b> frekansta <b>300 ms</b> mama çağrısı çal.</li>
+        <li>Servo kapağı <b>90 dereceye</b> aç.</li>
+        <li>Yemin dökülmesi için <b>1 saniye (1000 ms)</b> bekle ve kapağı <b>0 dereceye</b> kapat.</li>
+      </ol>
+@@3994
+<p>Düğme (<span class="pin-etiket">D2</span>), Servo (<span class="pin-etiket">D5</span>) ve Buzzer (<span class="pin-etiket">D8</span>) hazır.</p>
+@@3995
+Sürekli döngü ve düğme kontrolü
+@@3996
+<p><span class="chip akis">sürekli tekrarla</span> içine <span class="chip akis">eğer D2 dijital oku == 1</span> koy.</p>
+@@3998
+Düğme D2 pinindedir.
+@@3999
+Sesli çağrı çal
+@@4000
+<p>Eğer koluna <span class="chip ses">D8 ses çal 1000</span>, <span class="chip akis">300 ms bekle</span> ve <span class="chip ses">ses sustur</span> ekle.</p>
+@@4001
+Kapağı aç ve kapat
+@@4002
+<p><span class="chip ses">D5 servo yaz 90</span>, <span class="chip akis">1000 ms bekle</span> ve <span class="chip ses">D5 servo yaz 0</span> ekle.</p>
+@@4004
+<p>▶ <b>Çalıştır</b>'a bas. Düğmeye basıldığında ses çalacak ve kapak açılıp kapanacaktır.</p>
+@@4005
+Çalıştırıp düğmeye tıkla.
+@@4006
+Düğmeye basılınca buzzer mama çağrısı çalmadı.
+@@4007
+Kapak 90 dereceye açılmadı.
+@@4008
+Kapak 1 saniye sonra geri kapanmadı.
+@@4009
+Yem verici harika çalışıyor! Sesli uyarı verdi ve mamayı döktü.
+@@4011
+6.4 · Hırsız alarmı
+@@4012
+<h2>Hırsız alarmı</h2>
+      <p>Işık demeti veya lazer kesildiğinde devreye giren iki tonlu acil durum sireni ve flaşör LED!</p>
+      <ol>
+        <li>Işık sensörü <b>A0</b>, buzzer <b>D8</b>, kırmızı LED <b>D0</b> pinindedir.</li>
+        <li>Sensörün üstü gölgelendiğinde (ışık &lt; 1500):</li>
+        <li>Kırmızı LED'i yak ve buzzer'ı <b>1200 Hz</b> çal, <b>150 ms</b> bekle.</li>
+        <li>LED'i söndür ve buzzer'ı <b>800 Hz</b> çal, <b>150 ms</b> bekle (iki tonlu siren).</li>
+        <li>Işık normal ise LED sönsün ve buzzer sussun.</li>
+      </ol>
+@@4013
+<p>LDR (<span class="pin-etiket">A0</span>), Kırmızı LED (<span class="pin-etiket">D0</span>) ve Buzzer (<span class="pin-etiket">D8</span>) hazır.</p>
+@@4014
+Sürekli döngü ve ışık koşulu
+@@4015
+<p><span class="chip akis">sürekli tekrarla</span> koy. İçine <span class="chip akis">eğer değilse</span> bloğu tak. Koşul: <span class="chip mantik">A0 analog &lt; 1500</span>.</p>
+@@4016
+Dişliden değilse kolunu ekle.
+@@4017
+Siren ve flaşör
+@@4018
+<p>Eğer koluna LED HIGH, ses 1200, 150 ms bekle; ardından LED LOW, ses 800, 150 ms bekle ekle.</p>
+@@4019
+Giriş ve Çıkış
+@@4022
+Değilse durumunda sustur
+@@4023
+<p>Değilse koluna LED LOW ve ses sustur ekle.</p>
+@@4024
+Ortam aydınlıkken alarm susmalıdır.
+@@4025
+<p>▶ <b>Çalıştır</b>'a bas. Işık sensörüne gölge düştüğünde alarm çalacaktır.</p>
+@@4026
+Güneşi karartarak alarmı test et.
+@@4027
+Işık kesilince buzzer alarmı çalmadı.
+@@4028
+Işık kesilince kırmızı LED flaş yapmadı.
+@@4029
+Işık normale dönünce alarm susmadı.
+@@4030
+Hırsız alarmı kusursuz çalışıyor! Işık kesilince siren çalıyor ve LED yanıyor.
+@@4033
+<h2>Otopark bariyeri</h2>
+      <p>Araç yaklaştığında bariyeri kaldıran ve LCD ekranda yönlendirme mesajı veren akıllı otopark sistemi!</p>
+      <ol>
+        <li>Mesafe sensörü <b>D3</b>, bariyer servosu <b>D5</b>, LCD ekran I2C bağlıdır.</li>
+        <li>Araç yaklaştığında (mesafe &lt; 25 cm):</li>
+        <li>Bariyeri aç (servo <b>90 derece</b>) ve LCD 2. satıra <i>Geciniz</i> yaz.</li>
+        <li>Araç uzaktayken (mesafe &gt;= 25 cm):</li>
+        <li>Bariyeri kapat (servo <b>0 derece</b>) ve LCD 2. satıra <i>DUR</i> yaz.</li>
+      </ol>
+@@4034
+<p>Mesafe sensörü (<span class="pin-etiket">D3</span>), Servo bariyer (<span class="pin-etiket">D5</span>) ve LCD hazır.</p>
+@@4035
+LCD başlığı
+@@4036
+<p>En başa <span class="chip ekran">LCD satır 1 yaz</span> koy ve içine <span class="chip analog">Otopark</span> yaz.</p>
+@@4037
+Mesafe ve bariyer kontrolü
+@@4038
+<p><span class="chip akis">sürekli tekrarla</span> içinde eğer mesafe &lt; 25 ise servo 90 ve LCD "Geciniz", değilse servo 0 ve LCD "DUR" koy.</p>
+@@4039
+Eğer-değilse bloğunu kullan.
+@@4040
+<p>▶ <b>Çalıştır</b>'a bas. Araç yaklaşınca bariyer kalkacak ve LCD güncellenecektir.</p>
+@@4041
+Engeli yaklaşarak test et.
+@@4042
+1. satırda "Otopark" başlığı olmalı.
+@@4043
+Bariyer servosu hiç hareket etmedi.
+@@4044
+Araç yaklaşınca bariyer açılmadı.
+@@4045
+Araç uzaklaşınca bariyer kapanmadı.
+@@4046
+Otopark bariyeri başarıyla çalışıyor! Araç gelince açılıyor, gidince kapanıyor.
+@@4048
+6.6 · Güneş takipçi
+@@4049
+<h2>Güneş takipçi</h2>
+      <p>Güneş panelinin açısını ışığın geldiği yöne doğru otomatik çeviren tek eksenli solar tracker projesi!</p>
+      <ol>
+        <li>Işık sensörü <b>A0</b>, yön servosu <b>D5</b> pinindedir.</li>
+        <li>A0 analog pininden ışık değerini (0-4095) oku.</li>
+        <li>Bu değeri <b>harita (map)</b> bloğu ile <b>0-180 derece</b> servo açısına dönüştür.</li>
+        <li>Dönüştürülen açıyı D5 servosuna yaz.</li>
+      </ol>
+@@4050
+<p>LDR (<span class="pin-etiket">A0</span>) güneşi izler, Servo (<span class="pin-etiket">D5</span>) paneli döndürür.</p>
+@@4051
+Harita ile dönüştür ve servo yaz
+@@4052
+<p>Döngünün içine <span class="chip ses">D5 servo yaz</span> koy. Açısına <span class="chip sayi">harita</span> bloğu tak: A0 analog oku, 0-4095 aralığını 0-180 yap.</p>
+@@4053
+Harita bloğu Sayı kategorisindedir.
+@@4054
+<p>▶ <b>Çalıştır</b>'a bas. Güneşi hareket ettirdikçe servonun ışığı takip ettiğini gör.</p>
+@@4055
+Güneşin konumunu değiştirerek testi tamamla.
+@@4056
+Servo ışık değişimlerini izlemedi.
+@@4057
+Işık orta seviyedeyken açı ~90 olmalı (şu an {0}).
+@@4058
+Işık tam parlakken açı ~180 olmalı (şu an {0}).
+@@4059
+Tebrikler! Güneş paneli ışığı hassas şekilde takip ediyor.
+@@4061
+6.7 · Güneş paneli istasyonu
+@@4062
+<h2>Güneş paneli istasyonu</h2>
+      <p>Güneş panelinin ürettiği elektrik gücünü ölçüp LCD ekranda gösteren ve yeterli güçte şarj LED'ini yakan izleme sistemi!</p>
+      <ol>
+        <li>Işık sensörü <b>A0</b>, LCD ekran I2C, yeşil LED <b>D0</b> pinindedir.</li>
+        <li>A0 ışık değerini (0-4095) oku ve <b>0-100 Watt</b> güce dönüştür.</li>
+        <li>LCD 1. satıra <i>Gunes Paneli</i>, 2. satıra <i>Guc: [Watt] W</i> yazdır.</li>
+        <li>Güç <b>50 Watt ve üzerindeyse</b> yeşil LED yansın (şarj aktif), altındaysa sönsün.</li>
+      </ol>
+@@4063
+<p>LDR (<span class="pin-etiket">A0</span>), LCD ve Yeşil LED (<span class="pin-etiket">D0</span>) hazır.</p>
+@@4064
+Başlık yaz
+@@4065
+<p><span class="chip ekran">LCD satır 1 yaz</span> bloğu ile <span class="chip analog">Gunes Paneli</span> yaz.</p>
+@@4066
+İlk satır 0 numaradır.
+@@4067
+Güç hesabı ve ekrana yazma
+@@4068
+<p><span class="chip akis">sürekli tekrarla</span> içinde ışığı 0-100 aralığına çevirip LCD 2. satıra yaz.</p>
+@@4069
+Şarj LED koşulu
+@@4070
+<p>Güç &gt;= 50 ise D0 LED HIGH, değilse D0 LED LOW yap.</p>
+@@4071
+<p>▶ <b>Çalıştır</b>'a bas. Işığı değiştirerek üretilen gücü ve şarj durumunu gözlemle.</p>
+@@4072
+Güneş ışığını artırıp azaltarak test et.
+@@4073
+1. satırda "Gunes Paneli" başlığı olmalı.
+@@4074
+2. satırda "Guc: " yazısı olmalı.
+@@4075
+Işık yüksekken (güç >= 50W) yeşil şarj LED'i yanmadı.
+@@4076
+Işık azalınca (güç < 50W) yeşil şarj LED'i sönmedi.
+@@4077
+Güneş paneli istasyonu kusursuz çalışıyor! Güç ekranda ve şarj LED'i aktif.
+@@4078
+Daha hassas sulama
+@@4079
+Saksı şu an toprak nemi 1500'ün altına inince sulanıyor. Çiçek biraz daha çabuk susasın: nem <b>2000'in altına</b> inince pompa çalışsın.
+@@4080
+if koşulundaki 1500 sayısını 2000 yap. Nem 1800 iken pompa çalışmalı, 3000 iken çalışmamalı.
+@@4081
+Toprak ıslakken (3000) pompa çalışmamalı.
+@@4082
+Nem 1800 iken pompa çalışmadı. Eşik 2000 olunca 1800 kuru sayılır.
+@@4083
+Toprak tekrar ıslanınca (3000) pompa durmadı.
+@@4084
+Saksı artık 2000 eşiğine göre daha hassas sulanıyor!
+@@4085
+Bu derste kullandığımız toprak nem sensörü ıslak toprakta nasıl bir sayı verir?
+@@4086
+Küçük bir sayı (sıfıra yakın)
+@@4087
+Hiçbir sayı vermez
+@@4088
+Toprak ne kadar ıslaksa elektrik o kadar iyi iletilir ve sensör o kadar büyük sayı verir. Kuru toprakta sayı küçüktür, bu yüzden "nem < eşik" olunca sularız.
+@@4090
+Pompa sürekli çalışırsa saksı su basar. Toprak kuruyken pompa <b>2 saniye (2000 ms)</b> çalışsın, sonra <b>3 saniye (3000 ms)</b> dinlensin; toprak hâlâ kuruysa bu döngü tekrarlansın.
+@@4091
+Kuru dalında: pompayı HIGH yap, delay(2000), pompayı LOW yap, delay(3000).
+@@4092
+Toprak kuruyken pompa hiç çalışmadı.
+@@4093
+Pompa hiç durmadı. Sulamadan sonra pompayı LOW yapıp dinlendirmelisin.
+@@4094
+Pompa {0} ms çalıştı; 2000 ms çalışmalı.
+@@4095
+Dinlenmeden sonra toprak hâlâ kuruysa pompa tekrar çalışmalı.
+@@4097
+Pompa 2 sn çalışıp 3 sn dinleniyor: saksı su basmıyor!
+@@4098
+Su pompasını doğrudan kartın pinine bağlamak yerine neden röle ya da transistörlü bir modül kullanılır?
+@@4099
+Röle pompayı daha sessiz çalıştırır
+@@4101
+Pompa kartın bir pininin verebileceğinden çok daha fazla akım çeker
+@@4102
+Modül olmadan nem sensörü çalışmaz
+@@4103
+Kartın bir pini yalnızca birkaç on miliamper verebilir. Pompa ise yüzlerce miliamper çeker; röle/transistör küçük pin sinyaliyle büyük akımı açıp kapatır.
+@@4104
+Nem yüzdesini seri monitöre yaz
+@@4105
+Bahçıvanlar "nem yüzde kaç?" diye sorar. Nem değerini <b>0-100 yüzde</b> aralığına çevir (<code>map</code>) ve her turda seri monitöre <code>Serial.println</code> ile yazdır. (Önce <code>Serial.begin(115200);</code> unutma.)
+@@4106
+int yuzde = map(nem, 0, 4095, 0, 100); Serial.println(yuzde); Tam ıslakta 100, yarı nemde 50 yazmalı.
+@@4107
+Seri monitöre hiçbir şey yazılmadı. Serial.println kullandın mı?
+@@4108
+Yüzde 100'ü geçmemeli; ham sensör sayısını map ile 0-100 aralığına çevir.
+@@4109
+Tam ıslak toprakta (4095) 100 yazmalı.
+@@4110
+Nem yarıya düşünce (2048) 50 yazmalı.
+@@4111
+Nem çeyreğe düşünce (1024) 25 yazmalı.
+@@4112
+Nem yüzdesi seri monitörde: 100 → 50 → 25!
+@@4113
+Eşik değerini 1500 yerine 4000 yaparsak ne olur?
+@@4114
+Toprak neredeyse her zaman "kuru" sayılır ve pompa neredeyse sürekli çalışır
+@@4115
+Pompa hiç çalışmaz
+@@4116
+Sensör bozulur
+@@4117
+Nem sayısı en fazla 4095 olabilir. Eşik çok yüksekse neredeyse her ölçüm eşiğin altında kalır; toprak ıslak olsa bile pompa çalışır ve saksı su basar.
+@@4118
+Lamba 5 saniye yansın
+@@4119
+Koridorda yürümek 2 saniyeden uzun sürüyor! Hareket algılanınca lamba <b>5 saniye (5000 ms)</b> yansın, sonra sönsün.
+@@4120
+Lambayı yaktıktan sonraki delay(2000) bekleme süresini delay(5000) yap.
+@@4121
+Hareket yokken lamba sönük olmalı.
+@@4122
+Lamba çok erken söndü; hareketten sonra 5 saniye yanık kalmalı.
+@@4123
+Lamba 5 saniye sonra sönmedi.
+@@4124
+Lamba hareketten sonra tam 5 saniye yanıyor!
+@@4125
+PIR sensörü hareketi nasıl algılar?
+@@4126
+Ses dalgası gönderip yankıyı dinler
+@@4127
+İnsan vücudunun yaydığı kızılötesi ısıdaki değişimi algılar
+@@4128
+Kameradan görüntü alıp karşılaştırır
+@@4129
+Havadaki gaz miktarını ölçer
+@@4130
+PIR (Pasif Kızılötesi) sensörü ortamdaki ısı ışınımının değişmesini fark eder. Sıcak bir cisim (insan, hayvan) önünden geçince çıkışını HIGH yapar.
+@@4131
+Hareket sayacı
+@@4132
+Bekçi her hareketi saymak istiyor. Bir <b>sayac</b> değişkeni tut: her hareket algılandığında sayacı 1 artır ve <code>Serial.println(sayac)</code> ile seri monitöre yaz. Lamba yine yansın.
+@@4133
+int sayac = 0; if içinde sayac += 1; Serial.println(sayac); Serial.begin(115200) setup içinde olmalı. Lamba yanık beklerken PIR sönmüş olacağı için aynı hareket iki kez sayılmaz.
+@@4134
+Sayaç 3'ü geçti: aynı hareketi birden çok kez saydın. Sayacı yalnızca hareket algılanınca bir kez artır.
+@@4135
+3 hareket oldu ama son yazılan sayı {0}. Sayaç 1, 2, 3 diye artmalı.
+@@4136
+yok
+@@4137
+Hareketler sayılıyor: 1, 2, 3!
+@@4138
+PIR sensörü açıldıktan sonra neden ilk 30-60 saniye yanlış sinyaller verebilir?
+@@4139
+Pili henüz şarj olmamıştır
+@@4140
+Sensör önce ses dinler
+@@4141
+Lamba çok parlaktır
+@@4142
+Çevrenin kızılötesi görüntüsünü öğrenmesi (kalibrasyon) gerekir
+@@4143
+PIR ilk açıldığında ortamın "normal" ısı haritasını öğrenir. Bu süre içinde hareket etmemek en iyisidir.
+@@4144
+Yavaşça sönen lamba
+@@4145
+Lamba bir anda sönünce göz kamaşıyor. Süre dolunca lamba <b>yavaş yavaş sönsün</b>: parlaklığı <code>analogWrite(LAMBA, değer)</code> ile 255'ten 0'a doğru küçük adımlarla (örneğin 5'er 5'er, her adımda 20 ms bekleyerek) azalt.
+@@4147
+Hareket algılanınca lamba tam parlaklıkta yanmalı.
+@@4148
+Lamba yavaş sönmedi. Parlaklığı 255'ten 0'a küçük adımlarla azaltmalısın.
+@@4149
+Lamba sonunda tamamen sönmeli.
+@@4150
+Lamba kademeli olarak sönüyor, göz kamaşmıyor!
+@@4151
+Lambayı <code>delay(2000)</code> ile yanık tutmanın dezavantajı nedir?
+@@4152
+O iki saniye boyunca kart başka hiçbir şeye bakamaz; yeni hareketi o sırada fark edemez
+@@4153
+Lamba daha parlak yanar
+@@4154
+PIR sensörü bozulur
+@@4155
+Hiçbir dezavantajı yoktur
+@@4156
+delay() sırasında program bekler. Daha gelişmiş projelerde bunun yerine millis() ile geçen süre ölçülür; böylece kart beklerken de sensörlere bakmaya devam eder.
+@@4157
+Fahrenheit göster
+@@4158
+Amerikalı arkadaşın sıcaklığı Fahrenheit ile okuyor. LCD'nin 1. satırında sıcaklığı <b>Fahrenheit</b> olarak göster: <code>F = C * 9 / 5 + 32</code> ve sonuna " F" yaz. (20 °C → 68 F)
+@@4159
+int fahr = sic * 9 / 5 + 32; Sonra lcd.print(fahr); lcd.print(" F  "); yaz.
+@@4160
+1. satırda {0} F görünmeli (şu an "{1}"). Formül: C * 9 / 5 + 32.
+@@4161
+LCD artık Fahrenheit gösteriyor: 68 → 86 → 50 F!
+@@4162
+<code>Serial.print</code> ile <code>Serial.println</code> arasındaki fark nedir?
+@@4163
+print sayı, println yazı yazdırır
+@@4164
+println yazdıktan sonra alt satıra geçer, print geçmez
+@@4165
+print seri monitörü, println LCD'yi kullanır
+@@4166
+Aralarında hiçbir fark yoktur
+@@4167
+println ("print line") yazının sonuna satır sonu ekler; sıradaki yazı yeni satırdan başlar. print ile art arda yazılanlar aynı satırda yan yana görünür.
+@@4168
+Sıcaklık uyarısı
+@@4169
+Sıcaklık <b>25 °C'yi geçince</b> seri monitöre <b>UYARI: Cok sicak</b> mesajı yazılsın (<code>Serial.println</code>). 25 °C ve altında bu mesaj yazılmasın.
+@@4170
+if (sic > 25) { Serial.println("UYARI: Cok sicak"); } Sıcaklık 20 iken yazmamalı, 30 iken yazmalı.
+@@4171
+Sıcaklık 20 °C iken UYARI yazılmamalı.
+@@4172
+Sıcaklık 30 °C olunca seri monitöre "UYARI: Cok sicak" yazılmalı.
+@@4173
+Sıcaklık 25 °C'yi geçince uyarı çıkıyor!
+@@4174
+Sıcaklık sensöründen gelen 0-4095 sayısını neden <code>map</code> ile 0-50 aralığına çeviririz?
+@@4175
+Sensörü ısıtmak için
+@@4176
+LCD'nin parlaklığını ayarlamak için
+@@4177
+Ham sayıyı insanın anlayacağı derece (°C) değerine çevirmek için
+@@4178
+Kartın hızını artırmak için
+@@4179
+Sensör gerilim/sayı üretir, derece üretmez. map() ham ölçümü anlamlı bir birime (burada 0-50 °C) orantılı çevirir.
+@@4180
+Gece / gündüz yazısı
+@@4181
+Işık yüzdesi <b>30'un altına</b> inince LCD'nin 2. satırında "Isik: ..." yerine <b>Gece</b>, değilse <b>Gunduz</b> yazsın.
+@@4182
+if (isik < 30) { lcd.print("Gece       "); } else { lcd.print("Gunduz     "); } Yazıların sonuna boşluk ekleyerek eski harfleri sil.
+@@4183
+Işık yüksekken (%100) 2. satırda "Gunduz" yazmalı.
+@@4184
+Işık %25 iken 2. satırda "Gece" yazmalı.
+@@4185
+İstasyon gece ile gündüzü ayırt ediyor!
+@@4186
+<code>lcd.print(" %  ")</code> gibi bir yazının sonundaki boşluklar ne işe yarar?
+@@4187
+Önceki daha uzun yazıdan (örneğin 100) kalan karakterleri ekrandan silmek
+@@4188
+Ekranı daha parlak yapmak
+@@4189
+Seri monitörü açmak
+@@4190
+Sıcaklığı hesaplamak
+@@4191
+LCD yeni yazıyı eskinin üstüne yazar. Sayı 100'den 25'e inince "100" ün son rakamı ekranda kalmasın diye sona boşluk eklenir.
