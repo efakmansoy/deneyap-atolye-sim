@@ -4,6 +4,8 @@ A browser-based 3D lab and course for learning Arduino-style programming on the 
 
 Türkçe: [README.tr.md](README.tr.md)
 
+> **Status: under active development.** The project works, but lessons, 3D parts and the app itself are still changing; expect rough edges and breaking changes. The first release (v0.1.0) is a pre-release. Bug reports and suggestions are welcome as [issues](../../issues).
+
 ## Features
 
 - **47 lessons in 10 modules**: LEDs, buttons, analog and PWM, sound and motion, LCD projects, smart projects, nature and safety, a robot car, ESP32 basics, Wi-Fi and the web.

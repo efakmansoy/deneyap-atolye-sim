@@ -4,6 +4,8 @@
 
 English: [README.md](README.md)
 
+> **Durum: geliştirme aşamasında.** Proje çalışıyor, ancak dersler, 3B parçalar ve uygulamanın kendisi hâlâ değişiyor; eksikler ve uyumsuz değişiklikler olabilir. İlk sürüm (v0.1.0) ön sürümdür. Hata bildirimleri ve öneriler [issue](../../issues) olarak memnuniyetle karşılanır.
+
 ## Özellikler
 
 - **10 modülde 47 ders**: LED, düğmeler, analog ve PWM, ses ve hareket, LCD projeleri, akıllı projeler, doğa ve güvenlik, robot araba, ESP32 tanışma, Wi-Fi ve web.
